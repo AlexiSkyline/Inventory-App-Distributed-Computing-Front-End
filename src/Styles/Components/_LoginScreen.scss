@@ -1,0 +1,135 @@
+section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+
+    .container__img {
+        position: relative;
+        width: 50%;
+        height: 100%;
+    }
+
+    .container__img img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .form__container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        height: 100%;
+        width: 50%;
+
+        h2 {
+            color: $greyColor;
+            font-weight: 600;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        h2:after {
+            background: $primaryColor;
+            border-radius: 10px;
+            content: '';
+            display: block;
+            height: 4px;
+            margin-bottom: 20px;
+            width: 90px;
+        }
+
+        .input__box {
+            margin-bottom: 20px;
+        }
+
+        .input__box span {
+            font-size: 16px;
+            margin-bottom: 5px;
+            display: inline-block;
+            color: $greyColor;
+            font-weight: 300;
+            font-size: 16px;
+            letter-spacing: 1px;
+        }
+
+        .input__box input {
+            width: 100%;
+            padding: 10px 20px;
+            outline: none;
+            font-weight: 400;
+            border: 1px solid $greyColor;
+            font-size: 16px;
+            letter-spacing: 1px;
+            color: $greyColor;
+            background: transparent;
+            border-radius: 30px;
+        }
+
+        .remember {
+            margin-bottom: 10px;
+            color: $greyColor;
+            font-weight: 400;
+            font-size: 14px;
+        }
+    }
+
+    .form__container .input__box p {
+        color: $greyColor;
+
+        a {
+            color: $primaryColor;
+        }
+    }
+
+    .form__container .check__in {
+        text-align: center;
+    }
+}
+
+@media ( max-width : 768px ) {
+    section {
+        .container__img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    
+        .form__container {
+            background: rgb( 255, 255, 255 );
+            border-radius: 30px;
+            height: 75%;
+            margin: auto;
+            width: 70%;
+            z-index: 1;
+
+            h3 {
+                color: $greyColor;
+                font-weight: 500;
+                margin: 30px 0 10px;
+                text-align: center;
+            }
+        }
+    }
+}
+
+@media ( max-width : 620px ) {
+    section .form__container {
+        width: 80%;
+        background: rgb( 255, 255, 255 );
+        
+        .form__container--form {
+            padding: 50px;
+        }
+    }
+}

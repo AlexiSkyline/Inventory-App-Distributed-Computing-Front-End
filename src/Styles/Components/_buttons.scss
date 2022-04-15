@@ -1,0 +1,19 @@
+.btn-primary {
+    background: $primaryColor;
+    border: none;
+    border-radius: 30px;
+    color: $whiteColor;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 20px;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    outline: none;
+    width: 100%;
+
+    &:hover {
+        background-color: darken( $color: $primaryColor, $amount: 10);
+    }
+
+    transition: background-color .30s ease;
+}

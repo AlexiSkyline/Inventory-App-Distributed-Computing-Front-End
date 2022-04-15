@@ -8,7 +8,7 @@ import { clientAxios } from '../../Config/Axios';
 
 export const AuthState = ( props ) => {
     const initialState = {
-        isAuthenticated: null,
+        isAuthenticated: false,
         user: null,
         message: null,
         loading: true
@@ -26,9 +26,13 @@ export const AuthState = ( props ) => {
                 payload: response.data
             });
         } catch (error) {
+            const alert = {
+                msg: error.response.data.message,
+                type: 'alert-error'
+            }
             dispatch({
                 type: types.loginFailed,
-                payload: error.response.data.message
+                payload: alert
             });
         }
     }

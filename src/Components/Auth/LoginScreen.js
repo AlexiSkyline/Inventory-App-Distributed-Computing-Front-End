@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { AlertContext } from '../../Context/Alert/AlertContext';
 import { AuthContext } from '../../Context/Auth/AuthContext';
 import { useForm } from '../../Hooks/useForm';
@@ -8,8 +8,14 @@ export const LoginScreen = () => {
     const { alert, showAlert } = alertContext;
 
     const authContext = useContext( AuthContext );
-    const { login } = authContext;
+    const { login, message } = authContext;
 
+    useEffect(() => {
+        if( message ) {
+            showAlert( message.msg, message.type );
+        }
+    }, [message]);
+    
     const [ formValue, handleInputChange ] = useForm({
         username: '',
         password: ''
@@ -27,6 +33,16 @@ export const LoginScreen = () => {
             return;
         }
 
+        if( username.length >= 20 ) {
+            showAlert( 'El nombre de usuario debe tener un máximo de 20 caracteres.', 'alert-error' )
+            return;
+        }
+
+        if( password.length <= 6 ) {
+            showAlert( 'La contraseña debe tener un minimo de 6 caracteres.', 'alert-error' )
+            return;
+        }
+
         login({ username, password });
     }
 
@@ -35,6 +51,8 @@ export const LoginScreen = () => {
             <div className='container__img'>
                 <img src='./assets/inventario.jpg' alt='avatar' />
             </div>
+
+            { alert && <div className={ `alerta ${ alert.type }` }> { alert.msg } </div> }
 
             <div className='form__container'>
                 <form className='form__container--form' onSubmit={ handleSubmit }>
@@ -75,8 +93,6 @@ export const LoginScreen = () => {
                     <div className='input__box check__in'>
                         <p>Don't have an account <a href='#'>Sign up</a> </p>
                     </div>
-
-                    { alert && <div className={ `alerta ${ alert.type }` }> { alert.msg } </div> }
                 </form>
             </div>
         </section>

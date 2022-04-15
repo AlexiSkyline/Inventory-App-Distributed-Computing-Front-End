@@ -1,6 +1,10 @@
 import { useReducer } from 'react';
+
 import { AuthContext } from './AuthContext';
 import { authReducer } from './authReducer';
+
+import { types } from '../../Types/types';
+import { clientAxios } from '../../Config/Axios';
 
 export const AuthState = ( props ) => {
     const initialState = {

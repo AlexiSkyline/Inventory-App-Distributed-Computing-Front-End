@@ -1,6 +1,14 @@
 import React from 'react';
+import { useForm } from '../../Hooks/useForm';
 
 export const LoginScreen = () => {
+    const [ formValue, handleInputChange ] = useForm({
+        username: '',
+        password: ''
+    });
+
+    const { username, password } = formValue;
+
     return (
         <section>
             <div className='container__img'>
@@ -13,12 +21,24 @@ export const LoginScreen = () => {
 
                     <div className='input__box'>
                         <span>Username</span>
-                        <input type='text' name='username' placeholder='User Name'/>
+                        <input 
+                            type='text' 
+                            name='username' 
+                            placeholder='User Name'
+                            value={ username }
+                            onChange={ handleInputChange }
+                        />
                     </div>
 
                     <div className='input__box'>
                         <span>Password</span>
-                        <input type='password' name='password' placeholder='Password'/>
+                        <input 
+                            type='password' 
+                            name='password' 
+                            placeholder='Password'
+                            value={ password }
+                            onChange={ handleInputChange }
+                        />
                     </div>
 
                     <div className='remember'>

@@ -1,5 +1,8 @@
 export const types = {
     login: '[auth] login',
     logout: '[auth] logout',
-    loginFailed: '[auth] login failed'
+    loginFailed: '[auth] login failed',
+
+    showAlert: '[alert] show alert',
+    removeAlert: '[alert] remove alert',
 }

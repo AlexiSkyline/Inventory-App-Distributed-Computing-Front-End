@@ -16,13 +16,31 @@ export const AuthState = ( props ) => {
 
     const [ state, dispatch ] = useReducer( authReducer, initialState );
 
+    // * Cuando el usuario inicia sesión
+    const login = async( userData ) => {
+        try {
+            const response = await clientAxios.post( '/api/Auth/Login' ,userData );
+            response.data.isAuthenticated = true;
+            dispatch({
+                type: types.login,
+                payload: response.data
+            });
+        } catch (error) {
+            dispatch({
+                type: types.loginFailed,
+                payload: error.response.data.message
+            });
+        }
+    }
+
     return (
         <AuthContext.Provider 
             value={{ 
                 isAuthenticated: state.isAuthenticated,
                 user: state.user,
                 message: state.message,
-                loading: state.loading
+                loading: state.loading,
+                login
             }}
         >
             { props.children }

@@ -1,13 +1,30 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../Context/Auth/AuthContext';
 import { useForm } from '../../Hooks/useForm';
 
 export const LoginScreen = () => {
+    const authContext = useContext( AuthContext );
+    const { login } = authContext;
+
     const [ formValue, handleInputChange ] = useForm({
         username: '',
         password: ''
     });
 
     const { username, password } = formValue;
+
+    // todo: Cuando el usuario quiere iniciar Sesión
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        // Todo: Validar los campos
+        if( username.trim() === '' || password.trim() === '' ) {
+            console.log( 'Los campos no pueden ir vacios' );
+            return;
+        }
+
+        login({ username, password });
+    }
 
     return (
         <section>
@@ -16,7 +33,7 @@ export const LoginScreen = () => {
             </div>
 
             <div className='form__container'>
-                <form className='form__container--form'>
+                <form className='form__container--form' onSubmit={ handleSubmit }>
                     <h2>Login</h2>
 
                     <div className='input__box'>

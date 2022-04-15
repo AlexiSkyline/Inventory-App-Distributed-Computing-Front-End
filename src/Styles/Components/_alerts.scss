@@ -1,0 +1,21 @@
+.alerta {
+    position: fixed;
+    top: 20px;
+    right: 0;
+    padding: 1rem 3rem;
+    border-radius: 1rem;
+    text-transform: uppercase;
+    font-size: 15px;
+    text-align: center;
+    width: 40%;
+
+    &.alert-ok {
+        background-color: rgb(94, 215, 94);
+        color: $whiteColor;
+    }
+    
+    &.alert-error {
+        background-color: rgb(230, 78, 78);
+        color: $whiteColor;
+    }
+}

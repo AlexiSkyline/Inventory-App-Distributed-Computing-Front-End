@@ -1,8 +1,12 @@
 import React, { useContext } from 'react';
+import { AlertContext } from '../../Context/Alert/AlertContext';
 import { AuthContext } from '../../Context/Auth/AuthContext';
 import { useForm } from '../../Hooks/useForm';
 
 export const LoginScreen = () => {
+    const alertContext = useContext( AlertContext );
+    const { alert, showAlert } = alertContext;
+
     const authContext = useContext( AuthContext );
     const { login } = authContext;
 
@@ -19,7 +23,7 @@ export const LoginScreen = () => {
 
         // Todo: Validar los campos
         if( username.trim() === '' || password.trim() === '' ) {
-            console.log( 'Los campos no pueden ir vacios' );
+            showAlert( 'Todos los campos son obligatorios', 'alert-error' )
             return;
         }
 
@@ -71,6 +75,8 @@ export const LoginScreen = () => {
                     <div className='input__box check__in'>
                         <p>Don't have an account <a href='#'>Sign up</a> </p>
                     </div>
+
+                    { alert && <div className={ `alerta ${ alert.type }` }> { alert.msg } </div> }
                 </form>
             </div>
         </section>

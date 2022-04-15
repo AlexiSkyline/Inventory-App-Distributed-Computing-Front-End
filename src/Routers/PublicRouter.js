@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Navigate } from 'react-router-dom';
 
-export const PublicRoute = ({ children }) => {
-    const [ user, setUser ] = useState({ logged: false });
-
+export const PublicRoute = ({ children, isAuthenticated }) => {
     return (
-        user.logged ? ( <Navigate to='/' /> ) : children
+        isAuthenticated ? ( <Navigate to='/' /> ) : children
     );
 }

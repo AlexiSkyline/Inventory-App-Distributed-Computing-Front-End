@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Navigate } from 'react-router-dom';
 
-export const PrivateRoute = ({ children }) => {
-    const [ user, setUser ] = useState({ logged: false });
-    
+export const PrivateRoute = ({ children, isAuthenticated }) => {
     return (
-        user.logged ? children : ( <Navigate to='/login' /> )   
+        isAuthenticated ? children : ( <Navigate to='/login' /> )   
     );
 }

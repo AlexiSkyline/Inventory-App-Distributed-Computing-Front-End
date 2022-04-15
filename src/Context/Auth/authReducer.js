@@ -3,7 +3,7 @@ import { types } from '../../Types/types';
 export const authReducer = ( state, action ) => {
     switch ( action.type ) {
         case types.login:
-            localStorage.setItem( 'user', JSON.stringify( state.user ) );
+            localStorage.setItem( 'user', JSON.stringify( action.payload ) );
             return {
                 ...state,
                 isAuthenticated: true,

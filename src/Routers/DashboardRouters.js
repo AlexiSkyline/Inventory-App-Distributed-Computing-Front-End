@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { HomeScreen } from '../Components/Home/HomeScreen';
 
 export const DashboardRouters = () => {
     return (
@@ -7,8 +8,9 @@ export const DashboardRouters = () => {
             <div>
                 <Routes>
                     <Route path = '/ventas' />
+                    <Route path = '/home' element={ <HomeScreen /> }/>
 
-                    <Route path = '/inicio' />
+                    <Route path = '/' element={ <HomeScreen /> }/>
                 </Routes>
             </div>
         </>

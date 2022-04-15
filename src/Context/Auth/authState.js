@@ -8,8 +8,8 @@ import { clientAxios } from '../../Config/Axios';
 
 export const AuthState = ( props ) => {
     const initialState = {
-        isAuthenticated: false,
-        user: null,
+        isAuthenticated: localStorage.getItem( 'user' ) ? true : false,
+        user: localStorage.getItem( 'user' ) ? JSON.parse( localStorage.getItem( 'user' ) ) : null,
         message: null,
         loading: true
     }

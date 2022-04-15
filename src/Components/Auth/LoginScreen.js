@@ -14,7 +14,7 @@ export const LoginScreen = () => {
         if( message ) {
             showAlert( message.msg, message.type );
         }
-    }, [message]);
+    }, [message, showAlert]);
     
     const [ formValue, handleInputChange ] = useForm({
         username: '',
@@ -33,12 +33,12 @@ export const LoginScreen = () => {
             return;
         }
 
-        if( username.length >= 20 ) {
+        if( username.length > 20 ) {
             showAlert( 'El nombre de usuario debe tener un máximo de 20 caracteres.', 'alert-error' )
             return;
         }
 
-        if( password.length <= 6 ) {
+        if( password.length < 6 ) {
             showAlert( 'La contraseña debe tener un minimo de 6 caracteres.', 'alert-error' )
             return;
         }
@@ -91,7 +91,7 @@ export const LoginScreen = () => {
                     </div>
 
                     <div className='input__box check__in'>
-                        <p>Don't have an account <a href='#'>Sign up</a> </p>
+                        <p>Don't have an account <a href='/register'>Sign up</a> </p>
                     </div>
                 </form>
             </div>

@@ -1,4 +1,5 @@
 .sidebar__close {
+    position: absolute;
     width: 60px;
     height: 100vh;
     background-color: $darkBlueColor;
@@ -6,50 +7,36 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    .sidebar__header { 
-        width: 30px;
-        margin-top: 20px;
-        flex-direction: column;
-        cursor: pointer;
-
-        .sidebar__header-user {
-            display: none;
-        }
-    }
+    justify-content: space-between;
 
     .link__container {
         display: flex;
         flex-direction: column;
+        align-items: center;
         margin-top: 20px;
-
-        .last__child {
-            margin-top: 120px;
-        }
-
-        img {
-            background-color: $neutralBlueColor;
-            padding: 8px;
-            border-radius: 10px;
-        }
     }
+}
 
+.img__option {
+    background-color: $neutralBlueColor;
+    padding: 8px;
+    border-radius: 10px;
 }
 
 .sidebar__open {
+    position: absolute;
     width: 230px;
     height: 100vh;
     background-color: $darkBlueColor;
     transition-duration: 0.15s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     .link__container {
         display: flex;
         flex-direction: column;
         margin-top: 20px;
-
-        .last__child {
-            margin-top: 120px;
-        }
 
         img {
             background-color: $neutralBlueColor;
@@ -60,31 +47,5 @@
 
     a {
         text-decoration: none;
-    }
-
-    .menu__hamburger {
-        width: 27px;
-        margin-top: 20px;
-        cursor: pointer;
-        margin-left: 17.5px;
-    }
-
-    .sidebar__header { 
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-
-        .sidebar__header-user {
-            padding-left: 20px;
-            padding-top: 22px;
-            
-            p {
-                background-color: $neutralBlueColor;
-                border-radius: 10px;
-                color: $whiteColor;
-                font-size: 15px;
-                padding: 8px;
-            }
-        }
     }
 }

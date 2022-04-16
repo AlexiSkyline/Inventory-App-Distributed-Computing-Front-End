@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { HomeScreen } from '../Components/Home/HomeScreen';
-import { SideBar } from '../Components/UI/SideBar/SideBar';
+import { ToolBar } from '../Components/UI/ToolBar/ToolBar';
 
 export const DashboardRouters = () => {
     return (
         <>
-            <SideBar />
+            <ToolBar />
 
             <div>
                 <Routes>

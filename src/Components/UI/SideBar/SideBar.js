@@ -1,30 +1,11 @@
-import React, { useContext, useState } from 'react'
-
-import { AuthContext } from '../../../Context/Auth/AuthContext';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { Links } from '../../../Data/Links';
 import { Item } from './Item';
 
-export const SideBar = () => {
-    const authContext = useContext( AuthContext );
-    const { user } = authContext;
-
-    const [ open, setOpen ] = useState(false);
-
+export const SideBar = ({ open }) => {
     return (
         <div className={ `${ open ? 'sidebar__open' : 'sidebar__close' }` }>
-            <div className='sidebar__header'>
-                <img 
-                    src={ `./assets/${ open ? 'xx.png' : 'menu.png' }` } 
-                    alt='menu' 
-                    className='menu__hamburger'
-                    onClick={ () => setOpen( !open ) }
-                />
-                
-                <div className='sidebar__header-user'>
-                    <p>{ user.name }</p>
-                </div>
-            </div>
-
             <div className='link__container'>
                 {
                     Links.map( ({ text, to, img }) => ( 
@@ -40,6 +21,13 @@ export const SideBar = () => {
                     ))
                 }
             </div>
+
+            <NavLink className={ `${ open ? 'link__open' : 'normal' } logout__item` }  to= { '/logout' }>
+                <div>
+                    <img src='./assets/cerrar_sesion.png' className='img__option' alt='Cerrar sesión' />
+                </div>
+                { open ? <p>Cerrar sesión</p> : null }
+            </NavLink>
         </div>
     );
 }

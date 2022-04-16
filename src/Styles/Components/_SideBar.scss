@@ -26,12 +26,18 @@
         .last__child {
             margin-top: 120px;
         }
+
+        img {
+            background-color: $neutralBlueColor;
+            padding: 8px;
+            border-radius: 10px;
+        }
     }
 
 }
 
 .sidebar__open {
-    width: 200px;
+    width: 230px;
     height: 100vh;
     background-color: $darkBlueColor;
     transition-duration: 0.15s;
@@ -43,6 +49,12 @@
 
         .last__child {
             margin-top: 120px;
+        }
+
+        img {
+            background-color: $neutralBlueColor;
+            padding: 8px;
+            border-radius: 10px;
         }
     }
 

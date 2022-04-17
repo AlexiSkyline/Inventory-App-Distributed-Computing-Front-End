@@ -11,11 +11,11 @@ export const authReducer = ( state, action ) => {
                 message: action.payload.message,
             };
         case types.logout:
+            localStorage.removeItem( 'user' );
             return {
-                ...state,
                 isAuthenticated: false,
                 user: null,
-                message: action.payload
+                message: action.payload,
             };
         case types.loginFailed:
             localStorage.removeItem( 'user' );

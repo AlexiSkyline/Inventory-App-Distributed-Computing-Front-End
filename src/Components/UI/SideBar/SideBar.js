@@ -1,10 +1,14 @@
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import { AuthContext } from '../../../Context/Auth/AuthContext';
 import { MenuContext } from '../../../Context/Menu/MenuContext';
 import { Links } from '../../../Data/Links';
 import { Item } from './Item';
 
 export const SideBar = () => {
+    const authContext = useContext( AuthContext );
+    const { logout } = authContext;
+    
     const menuContext = useContext( MenuContext );
     const { activeMenu } = menuContext;
 
@@ -26,7 +30,11 @@ export const SideBar = () => {
                 }
             </div>
 
-            <NavLink className={ `${ activeMenu ? 'link__open' : 'normal' } logout__item` }  to= { '/logout' }>
+            <NavLink 
+                className={ `${ activeMenu ? 'link__open' : 'normal' } logout__item` }  
+                to= { '/login' }
+                onClick={ logout }
+            >
                 <div>
                     <img src='./assets/cerrar_sesion.png' className='img__option' alt='Cerrar sesión' />
                 </div>

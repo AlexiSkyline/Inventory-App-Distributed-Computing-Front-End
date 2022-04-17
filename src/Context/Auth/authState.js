@@ -37,6 +37,12 @@ export const AuthState = ( props ) => {
         }
     }
 
+    const logout = () => {
+        dispatch({
+            type: types.logout
+        });
+    }
+
     return (
         <AuthContext.Provider 
             value={{ 
@@ -45,6 +51,7 @@ export const AuthState = ( props ) => {
                 message: state.message,
                 loading: state.loading,
                 login,
+                logout
             }}
         >
             { props.children }

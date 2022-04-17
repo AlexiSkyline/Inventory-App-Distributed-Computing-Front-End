@@ -1,6 +1,6 @@
 export const OptionsHome = [
     {
-        to: '/Ventas',
+        to: '/ventas',
         title: 'Realizar una Venta',
         description: 'Hacer una venta',
         img: {
@@ -10,9 +10,9 @@ export const OptionsHome = [
         }
     },
     {
-        to: '/Productos',
+        to: '/productos',
         title: 'Ver mis Productos',
-        description: 'Registrar, eliminar o actualizar detalles productos',
+        description: 'Registrar, eliminar o actualizar detalles de los productos',
         img: {
             path: './assets/Options/producto.png', 
             classN:'img__option', 
@@ -20,7 +20,7 @@ export const OptionsHome = [
         }
     },
     {
-        to: '/Clientes',
+        to: '/clientes',
         title: 'Mis Clientes',
         description: 'Registrar, eliminar o actualizar detalles de clientes',
         img: {
@@ -30,7 +30,7 @@ export const OptionsHome = [
         }
     },
     {
-        to: '/Ventas',
+        to: '/ventas',
         title: 'Ventas Realizadas',
         description: 'Ver el historial de ventas realizadas',
         img: {
@@ -43,7 +43,7 @@ export const OptionsHome = [
 
 export const OptionStaff = [
     {
-        to: '/Clientes',
+        to: '/clientes',
         title: 'Mis Clientes',
         description: 'Registrar, eliminar o actualizar detalles de clientes',
         img: {
@@ -53,7 +53,7 @@ export const OptionStaff = [
         },
     },
     {
-        to: '/Proveedores',
+        to: '/proveedores',
         title: 'Proveedores',
         description: 'Registrar, eliminar o actualizar detalles de tus proveedores',
         img: {
@@ -63,7 +63,7 @@ export const OptionStaff = [
         },
     },
     {
-        to: '/Vendedores',
+        to: '/vendedores',
         title: 'Vendedores',
         description: 'Registrar, eliminar o actualizar detalles de tus vendedores',
         img: {
@@ -76,7 +76,7 @@ export const OptionStaff = [
 
 export const OptionActivities = [
     {
-        to: '/Ventas',
+        to: '/ventas',
         title: 'Realizar una Venta',
         description: 'Hacer una venta',
         img: {
@@ -86,13 +86,56 @@ export const OptionActivities = [
         }
     },
     {
-        to: '/DetallesVentas',
+        to: '/detallesVentas',
         title: 'Detalles de Ventas',
         description: 'Ver el historial de ventas realizadas',
         img: {
             path: './assets/Options/dventas.png', 
             classN: 'img__option',
-            alt: 'Ventas'
+            alt: 'Detalles de Ventas'
+        }
+    }
+];
+
+export const OtherOption = [
+    {
+        to: '/productos',
+        title: 'Ver mis Productos',
+        description: 'Registrar, eliminar o actualizar detalles de los productos.',
+        img: {
+            path: './assets/Options/producto.png', 
+            classN:'img__option', 
+            alt: 'Productos'
+        }
+    },
+    {
+        to: '/marca',
+        title: 'Administrar Marcas',
+        description: 'Registrar, eliminar o actualizar detalles de marcas.',
+        img: {
+            path: './assets/Options/marca.png', 
+            classN:'img__option', 
+            alt: 'Marcas'
+        }
+    },
+    {
+        to: '/empresa',
+        title: 'Empresas',
+        description: 'Registrar, eliminar o actualizar detalles de las empresas.',
+        img: {
+            path: './assets/Options/empresa.png', 
+            classN:'img__option', 
+            alt: 'Empresas'
+        }
+    },
+    {
+        to: '/medidas',
+        title: 'Unidades de medida',
+        description: 'Registrar, eliminar o actualizar detalles de las unidades de medida.',
+        img: {
+            path: './assets/Options/medida.png', 
+            classN:'img__option', 
+            alt: 'Empresas'
         }
     }
 ];

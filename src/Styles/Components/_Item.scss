@@ -6,6 +6,7 @@
     align-items: center;
     justify-content: center;
     transition-duration: 0.3s;
+    margin-bottom: 10px;
 }
 
 /* Sidebar Cerrada e item Activo */
@@ -45,6 +46,7 @@
     align-items: center;
     gap: 15px;
     transition-duration: 0.3s;
+    margin-bottom: 10px;
 
     p {
         color: $whiteColor;

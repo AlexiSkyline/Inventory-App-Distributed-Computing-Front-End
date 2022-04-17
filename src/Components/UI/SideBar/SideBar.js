@@ -32,7 +32,7 @@ export const SideBar = () => {
 
             <NavLink 
                 className={ `${ activeMenu ? 'link__open' : 'normal' } logout__item` }  
-                to= { '/login' }
+                to='/login'
                 onClick={ logout }
             >
                 <div>

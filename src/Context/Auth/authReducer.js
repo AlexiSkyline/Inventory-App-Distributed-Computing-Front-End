@@ -14,7 +14,7 @@ export const authReducer = ( state, action ) => {
             localStorage.removeItem( 'user' );
             return {
                 isAuthenticated: false,
-                user: null,
+                user: '',
                 message: action.payload,
             };
         case types.loginFailed:
@@ -22,7 +22,7 @@ export const authReducer = ( state, action ) => {
             return {
                 ...state,
                 isAuthenticated: false,
-                user: null,
+                user: '',
                 message: action.payload
             }
         default:

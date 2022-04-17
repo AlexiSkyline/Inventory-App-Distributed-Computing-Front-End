@@ -6,7 +6,7 @@ import './Styles/Styles.scss';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <InventarioApp />
-  </React.StrictMode>
+    <React.StrictMode>
+        <InventarioApp />
+    </React.StrictMode>
 );

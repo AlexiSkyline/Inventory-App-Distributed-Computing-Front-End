@@ -22,7 +22,6 @@ export const AppRouter = () => {
             setIsLoggedIn( false );
         }
         
-        
         setChecking( false );
     }, [isAuthenticated, setChecking, setIsLoggedIn])
     

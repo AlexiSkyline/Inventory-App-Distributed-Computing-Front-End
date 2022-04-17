@@ -7,6 +7,6 @@ export const HomeScreen = () => {
         <OptionCards
             title='Bienvenido. Elija una opción'
             listOptions={ OptionsHome }
-        ></OptionCards>
+        />
     );
 }

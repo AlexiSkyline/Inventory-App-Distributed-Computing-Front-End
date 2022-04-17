@@ -12,7 +12,6 @@ export const AuthState = ( props ) => {
         user: localStorage.getItem( 'user' ) ? JSON.parse( localStorage.getItem( 'user' ) ) : null,
         message: null,
         loading: true,
-        currentPage: 'Inicio',
     }
 
     const [ state, dispatch ] = useReducer( authReducer, initialState );
@@ -38,13 +37,6 @@ export const AuthState = ( props ) => {
         }
     }
 
-    const myCurrentPage = ( currentPage ) => {
-        dispatch({
-            type: types.currentPage,
-            payload: currentPage
-        });
-    }
-
     return (
         <AuthContext.Provider 
             value={{ 
@@ -52,9 +44,7 @@ export const AuthState = ( props ) => {
                 user: state.user,
                 message: state.message,
                 loading: state.loading,
-                currentPage: state.currentPage,
                 login,
-                myCurrentPage
             }}
         >
             { props.children }

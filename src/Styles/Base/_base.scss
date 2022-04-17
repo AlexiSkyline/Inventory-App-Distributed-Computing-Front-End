@@ -4,3 +4,21 @@
     box-sizing: border-box;
     font-family: sans-serif;
 }
+
+a {
+    text-decoration: none;
+}
+
+.content__page {
+    margin-left: 65px;
+    display: flex;
+    justify-content: center;
+}
+
+.content__page.active {
+    padding-left: 170px;
+}
+
+.title__Card {
+    color: $darkBlueColor;
+}

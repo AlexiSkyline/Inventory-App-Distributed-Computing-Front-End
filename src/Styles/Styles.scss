@@ -1,8 +1,9 @@
-@import './Base/base';
 @import './Base/settings';
+@import './Base/base';
 
 // * Componentes
 @import './Components/LoginScreen';
+@import './Components/HomeScreen';
 @import './Components/buttons';
 @import './Components/alerts';
 @import './Components/Item';

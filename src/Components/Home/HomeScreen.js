@@ -1,11 +1,12 @@
 import React from 'react';
+import { OptionsHome } from '../../Data/Options';
+import { OptionCards } from '../UI/Card/OptionsCards';
 
 export const HomeScreen = () => {
     return (
-        <>
-            <div className="title__container">
-                <h1 className="title">Bienvenido. Elija una opción</h1>
-            </div>
-        </>
+        <OptionCards
+            title='Bienvenido. Elija una opción'
+            listOptions={ OptionsHome }
+        ></OptionCards>
     );
 }

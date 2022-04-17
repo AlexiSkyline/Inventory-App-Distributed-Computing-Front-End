@@ -4,7 +4,8 @@ export const menuReducer = ( state, action ) => {
     switch( action.type ) {
         case types.currentPage:
             return {
-                alert: action.payload
+                ...state,
+                currentPage: action.payload
             }
         case types.menuIsActive:
             return {

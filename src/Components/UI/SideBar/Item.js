@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
-import { AuthContext } from '../../../Context/Auth/AuthContext';
+import { MenuContext } from '../../../Context/Menu/MenuContext';
 
 export const Item = ({ text, to, img, open }) => {
-    const authContext = useContext( AuthContext );
-    const { myCurrentPage } = authContext;
+    const menuContext = useContext( MenuContext );
+    const { myCurrentPage } = menuContext;
 
     return (
         <NavLink 

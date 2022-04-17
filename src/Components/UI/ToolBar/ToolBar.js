@@ -1,10 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../../Context/Auth/AuthContext';
+import { MenuContext } from '../../../Context/Menu/MenuContext';
 import { SideBar } from '../SideBar/SideBar';
 
 export const ToolBar = () => {
     const authContext = useContext( AuthContext );
-    const { user, currentPage } = authContext;
+    const { user } = authContext;
+    
+    const menuContext = useContext( MenuContext );
+    const { currentPage } = menuContext;
     const [ open, setOpen ] = useState(false);
 
     return (

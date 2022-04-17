@@ -6,7 +6,7 @@ import { OptionCards } from '../UI/Card/OptionsCards';
 export const StaffScreen = () => {
     return (
         <OptionCards
-            title='Administre a su Personal'
+            title='Administre a su Personal.'
             listOptions={ OptionStaff }
         />
     );

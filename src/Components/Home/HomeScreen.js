@@ -5,7 +5,7 @@ import { OptionCards } from '../UI/Card/OptionsCards';
 export const HomeScreen = () => {
     return (
         <OptionCards
-            title='Bienvenido. Elija una opción'
+            title='Bienvenido. Elija una opción.'
             listOptions={ OptionsHome }
         />
     );

@@ -73,3 +73,26 @@ export const OptionStaff = [
         },
     }
 ];
+
+export const OptionActivities = [
+    {
+        to: '/Ventas',
+        title: 'Realizar una Venta',
+        description: 'Hacer una venta',
+        img: {
+            path: './assets/Options/bienes.png', 
+            classN: 'img__option',
+            alt: 'Ventas'
+        }
+    },
+    {
+        to: '/DetallesVentas',
+        title: 'Detalles de Ventas',
+        description: 'Ver el historial de ventas realizadas',
+        img: {
+            path: './assets/Options/dventas.png', 
+            classN: 'img__option',
+            alt: 'Ventas'
+        }
+    }
+];

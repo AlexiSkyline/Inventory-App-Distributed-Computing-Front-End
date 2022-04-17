@@ -6,6 +6,7 @@
 
 .card_container {
     display: flex;
+    justify-content: center;
     gap: 30px;
 
     .card__info {

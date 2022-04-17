@@ -1,47 +1,29 @@
 /* Sidebar Cerrada e item Desactivado */
 .normal {
     width: 60px;
-    height: 80px;
+    height: 65px;
     display: flex;
     align-items: center;
     justify-content: center;
     transition-duration: 0.3s;
-
-    div {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    a:hover {
-        path {
-            fill: white;
-        }
-    }
 }
 
 /* Sidebar Cerrada e item Activo */
 .normal[aria-current] {
     position: relative;
     width: 60px;
-    height: 50px;
+    height: 60px;
     background-color: $neutralBlueColor;
     display: flex;
     align-items: center;
     justify-content: center;
     transition-duration: 0.3s;
 
-    div {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
     ::after {
         content: "";
         position: absolute;
         width: 3px;
-        height: 50px;
+        height: 60px;
         background-color: $primaryColor;
         left: 0;
         top: 0;
@@ -57,9 +39,9 @@
 
 /* Sidebar Abierta e item Desactivado */
 .link__open {
-    height: 80px;
+    height: 65px;
     display: flex;
-    padding-left: 25px;
+    padding-left: 15px;
     align-items: center;
     gap: 15px;
     transition-duration: 0.3s;

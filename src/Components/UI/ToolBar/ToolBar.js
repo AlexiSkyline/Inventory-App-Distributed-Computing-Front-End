@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { AuthContext } from '../../../Context/Auth/AuthContext';
 import { MenuContext } from '../../../Context/Menu/MenuContext';
 import { SideBar } from '../SideBar/SideBar';
@@ -6,23 +6,21 @@ import { SideBar } from '../SideBar/SideBar';
 export const ToolBar = () => {
     const authContext = useContext( AuthContext );
     const { user } = authContext;
-    
+
     const menuContext = useContext( MenuContext );
-    const { currentPage } = menuContext;
-    const [ open, setOpen ] = useState(false);
+    const { currentPage, activeMenu, activateMenu } = menuContext;
 
     return (
         <>
-            <SideBar 
-                open={ open }
-            />
-            <div className={ `toolbar__content ${ open ? 'active' : '' }` }>
+            <SideBar />
+
+            <div className={ `toolbar__content ${ activeMenu ? 'active' : '' }` }>
                 <div className='toolbar__changes'>
                     <div className='toolbar__button'>
                         <img 
-                            src={ `./assets/${ open ? 'xx.png' : 'menu.png' }` } 
+                            src={ `./assets/${ activeMenu ? 'xx.png' : 'menu.png' }` } 
                             alt='menu' 
-                            onClick={ () => setOpen( !open ) }
+                            onClick={ () => activateMenu( !activeMenu ) }
                         />
                     </div>
 

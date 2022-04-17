@@ -9,7 +9,8 @@ export const menuReducer = ( state, action ) => {
             }
         case types.menuIsActive:
             return {
-                alert: null
+                ...state,
+                activeMenu: !state.activeMenu
             }
         default:
             return state;

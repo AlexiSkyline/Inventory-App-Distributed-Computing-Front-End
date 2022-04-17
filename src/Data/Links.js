@@ -24,7 +24,7 @@ export const Links = [
         to: '/administration',
         text: 'Administración',
         img: (
-            <img src='./assets/productos.png' className='img__option' alt='Administración' />
+            <img src='./assets/admin.png' className='img__option' alt='Administración' />
         ),
     },
     {

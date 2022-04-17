@@ -5,7 +5,7 @@ import { menuReducer } from './menuReducer';
 
 export const MenuState = ( props ) => { 
     const initialState = {
-        menuIsActive: false,
+        activeMenu: false,
         currentPage: 'Inicio'
     }
 
@@ -18,12 +18,19 @@ export const MenuState = ( props ) => {
         });
     }
 
+    const activateMenu = () => {
+        dispatch({
+            type: types.menuIsActive
+        });
+    }
+
     return (
         <MenuContext.Provider
             value={{
-                menuIsActive: state.menuIsActive,
+                activeMenu: state.activeMenu,
                 currentPage: state.currentPage,
-                myCurrentPage
+                myCurrentPage,
+                activateMenu
             }}
         >
             { props.children }

@@ -8,11 +8,10 @@ export const ProductScreen = () => {
     const productContext = useContext( ProductContext );
     const { products, getProducts } = productContext;
 
-    //
     useEffect( () => { 
         getProducts() } 
         // eslint-disable-next-line
-    , [] );
+    , [products] );
 
     return (
         <main className='data__container content__page'>

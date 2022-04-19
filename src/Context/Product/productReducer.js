@@ -15,6 +15,13 @@ export const productReducer = ( state, action ) => {
                 error: true
             }
         }
+        case types.deleteProduct:
+            return {
+                ...state,
+                message: action.payload,
+                loading: false,
+                products: state.products.filter( product => product.id !== action.payload )
+            }
         default:
             return state;
     }

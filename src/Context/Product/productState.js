@@ -28,7 +28,22 @@ export const ProductState = ( props ) => {
             dispatch({
                 type: types.getProductsFailed
             });
-            console.log( error );
+        }
+    }
+
+    const deleteProduct = async ( id ) => {
+        try {
+            const response = await clientAxios.delete( `/api/Product/${ id }` );
+            dispatch({
+                type: types.deleteProduct,
+                payload: response.data.message
+            });
+        } catch (error) {
+            dispatch({
+                type: types.deleteProductFailed,
+                payload: error.response.data.message
+            });
+            console.log( error )
         }
     }
 
@@ -38,7 +53,9 @@ export const ProductState = ( props ) => {
                 products: state.products, 
                 loading: state.loading, 
                 error: state.error,
-                getProducts
+                message: state.message,
+                getProducts,
+                deleteProduct
             }}
         >
             { props.children }

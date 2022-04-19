@@ -12,6 +12,9 @@ export const types = {
     getProducts: '[products] get products',
     getProductsSuccess: '[products] get products success',
     getProductsFailed: '[products] get products failed',
+    deleteProduct: '[products] delete product',
+    deleteProductSuccess: '[products] delete product success',
+    deleteProductFailed: '[products] delete product failed',
 
     uiOpenModal: '[ui] Open modal',
     uiCloseModal: '[ui] Close modal'

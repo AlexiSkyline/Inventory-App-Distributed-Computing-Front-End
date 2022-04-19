@@ -74,3 +74,8 @@
         transition: 0.80s;
     }
 }
+
+.fab-close {
+    background-image: url(../../../public/assets/cerrar.png);
+    z-index: 9999;
+}

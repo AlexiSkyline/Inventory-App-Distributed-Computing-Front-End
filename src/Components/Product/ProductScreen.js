@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { ProductContext } from '../../Context/Product/ProductContext';
 import { FloatingButton } from '../UI/FloatingButton/FloatingButton';
+import { FloatingButtonClose } from '../UI/FloatingButton/FloatingButtonClose';
 import { ProductModal } from './ProductModal';
 import { TableProducts } from './TableProducts';
 
@@ -34,6 +35,7 @@ export const ProductScreen = () => {
                 />
             </div>
 
+            <FloatingButtonClose />
             <FloatingButton />
             <ProductModal />
         </main>

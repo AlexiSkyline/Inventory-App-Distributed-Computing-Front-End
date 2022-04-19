@@ -1,17 +1,17 @@
 import React, { useContext } from 'react';
 import { ModalContext } from '../../../Context/Modal/ModalContext';
 
-export const FloatingButton = () => {
+export const FloatingButtonClose = () => {
     const modalContext = useContext( ModalContext );
-    const { modalOpen, uiOpenModal } = modalContext;
+    const { modalOpen, uiCloseModal } = modalContext;
 
     const handleClickNew = () => {
-        uiOpenModal();
+        uiCloseModal();
     }
 
     return (
         <>
-            { !modalOpen && <button className='fab' onClick={ handleClickNew } /> }
+            { modalOpen && <button className='fab fab-close' onClick={ handleClickNew } /> }
         </>
     );
 }

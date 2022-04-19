@@ -12,4 +12,7 @@ export const types = {
     getProducts: '[products] get products',
     getProductsSuccess: '[products] get products success',
     getProductsFailed: '[products] get products failed',
+
+    uiOpenModal: '[ui] Open modal',
+    uiCloseModal: '[ui] Close modal'
 }

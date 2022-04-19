@@ -8,4 +8,8 @@ export const types = {
     
     currentPage: '[auth] current page',
     menuIsActive: '[auth] menu is active',
+
+    getProducts: '[products] get products',
+    getProductsSuccess: '[products] get products success',
+    getProductsFailed: '[products] get products failed',
 }

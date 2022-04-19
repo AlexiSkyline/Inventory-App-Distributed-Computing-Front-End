@@ -7,7 +7,11 @@ export const ProductScreen = () => {
     const productContext = useContext( ProductContext );
     const { products, getProducts } = productContext;
 
-    useEffect( () => { getProducts() } , [] );
+    //
+    useEffect( () => { 
+        getProducts() } 
+        // eslint-disable-next-line
+    , [] );
 
     return (
         <main className='data__container content__page'>

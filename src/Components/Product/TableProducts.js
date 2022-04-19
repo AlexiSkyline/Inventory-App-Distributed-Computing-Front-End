@@ -14,45 +14,27 @@ export const TableProducts = ({ titles , products }) => {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>90a9fad5</td>
-                    <td>Doritos</td>
-                    <td>Pizza</td>
-                    <td>$8.5</td>
-                    <td>Piezas</td>
-                    <td>Sabritas</td>
-                    <td>95</td>
-                    <td>
-                        <button className='btn__edit'>Editar</button>
-                        <button className='btn__delete'>Eliminar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>90a9fad5</td>
-                    <td>Doritos</td>
-                    <td>Pizza</td>
-                    <td>$8.5</td>
-                    <td>Piezas</td>
-                    <td>Sabritas</td>
-                    <td>95</td>
-                    <td>
-                        <button className='btn__edit'>Editar</button>
-                        <button className='btn__delete'>Eliminar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>90a9fad5</td>
-                    <td>Doritos</td>
-                    <td>Pizza</td>
-                    <td>$8.5</td>
-                    <td>Piezas</td>
-                    <td>Sabritas</td>
-                    <td>95</td>
-                    <td>
-                        <button className='btn__edit'>Editar</button>
-                        <button className='btn__delete'>Eliminar</button>
-                    </td>
-                </tr>
+                {
+                    products.map( product => (
+                        <tr 
+                            key={ product.id }
+                            className={ `${ product.id }` }
+                        >
+                            <td>{ product.id.split('-')[0] }</td>
+                            <td>{ product.name }</td>
+                            <td>{ product.brand }</td>
+                            <td>{ product.description.length > 15 ? product.description.substr( 0, 15 ) : product.description }</td>
+                            <td>{ `$${ product.price}` }</td>
+                            <td>{ product.unitMesurement }</td>
+                            <td>{ product.stock }</td>
+                            <td>{ product.provider.length > 10 ? product.provider.substr( 0, 8 ) : product.provider }...</td>
+                            <td>
+                                <button className='btn__edit'>Editar</button>
+                                <button className='btn__delete'>Eliminar</button>
+                            </td>
+                        </tr>
+                    ))
+                }
             </tbody>
         </table>
     );

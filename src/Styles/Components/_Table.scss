@@ -1,4 +1,4 @@
-.product__container {
+.data__container {
     .input__search-box {
         margin-bottom: 20px;
         width: 70%;
@@ -27,7 +27,7 @@
 
         thead tr {
             height: 60px;
-            background: #36304a;
+            background: $darkBlueColor;
         }
         tbody tr {
             height: 50px;

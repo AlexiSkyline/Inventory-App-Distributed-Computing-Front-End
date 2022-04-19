@@ -28,7 +28,7 @@ export const AppRouter = () => {
     if( checking ) {
         return (
             <div className='loaded__container'>
-                <span class='loader'>Espere un momento, por favor....</span>
+                <span className='loader'>Espere un momento, por favor....</span>
             </div>
         );
     }

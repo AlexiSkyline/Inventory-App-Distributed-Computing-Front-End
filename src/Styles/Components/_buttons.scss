@@ -16,3 +16,40 @@
 
     transition: background-color .30s ease;
 }
+
+.btn__edit {
+    background: rgb(92, 248, 92);
+    border: none;
+    border-radius: 10px;
+    color: $whiteColor;
+    cursor: pointer;
+    padding: 10px;
+    letter-spacing: 1px;
+    outline: none;
+    margin-right: 10px;
+
+    &:hover {
+        transition: .90s;
+        background-color: darken( $color: rgb(76, 216, 76), $amount: 10);
+    }
+
+    transition: .90s;
+}
+
+.btn__delete {
+    background: rgb(211, 73, 60);
+    border: none;
+    border-radius: 10px;
+    color: $whiteColor;
+    cursor: pointer;
+    padding: 10px;
+    letter-spacing: 1px;
+    outline: none;
+
+    &:hover {
+        transition: .90s;
+        background-color: darken( $color: rgb(184, 63, 52), $amount: 10);
+    }
+
+    transition: .90s;
+}

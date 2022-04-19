@@ -12,7 +12,8 @@ a {
 .content__page {
     margin-left: 65px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .content__page.active {
@@ -21,4 +22,11 @@ a {
 
 .title__Card {
     color: $darkBlueColor;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: $darkBlueColor;
+    margin: 20px 0;
 }

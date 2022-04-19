@@ -53,3 +53,24 @@
 
     transition: .90s;
 }
+
+/* Fabs */
+.fab {
+    background-image: url(../../../public/assets/mas.png);
+    border: none;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: 100%;;
+    bottom: 25px;
+    font-size: 30px;
+    padding: 25px;
+    position: fixed;
+    right: 25px;
+    cursor: pointer;
+    transition: 0.80s;
+
+    &:hover {
+        transform: scale(1.25);
+        transition: 0.80s;
+    }
+}

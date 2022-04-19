@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { ProductContext } from '../../Context/Product/ProductContext';
+import { FloatingButton } from '../UI/FloatingButton/FloatingButton';
 import { TableProducts } from './TableProducts';
 
 export const ProductScreen = () => {
@@ -32,6 +33,8 @@ export const ProductScreen = () => {
                     products={ products }
                 />
             </div>
+
+            <FloatingButton />
         </main>
     );
 }

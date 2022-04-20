@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
 import Modal from 'react-modal';
 import { ModalContext } from '../../Context/Modal/ModalContext';
+import { ProductContext } from '../../Context/Product/ProductContext';
 
 export const ProductModal = () => {
     const modalContext = useContext( ModalContext );
     const { modalOpen, closeModal } = modalContext;
+    const productContext = useContext( ProductContext );
+    const { products, getProducts } = productContext;
 
     return (
         <Modal
@@ -18,20 +21,20 @@ export const ProductModal = () => {
                 <label htmlFor='name'>Nombre: </label>
                 <input type='text' className='form-control' placeholder='Nombre' />
                 
-                <label htmlFor='lastName'>Apellidos: </label>
-                <input type='text' className='form-control' placeholder='Apellidos' />
+                <label htmlFor='description'>Descripción: </label>
+                <input type='text' className='form-control' placeholder='Descripción' />
 
-                <label htmlFor='RFC'>RFC: </label>
-                <input type='text' className='form-control' placeholder='RFC' />
+                <label htmlFor='price'>Precio: </label>
+                <input type='number' className='form-control' placeholder='Precio' />
 
-                <label htmlFor='address'>Dirección: </label>
-                <input type='text' className='form-control' placeholder='Dirección' />
+                <label htmlFor='idUnitMesurement'>ID Unidad de Medida: </label>
+                <input type='text' className='form-control' placeholder='ID Unidad de Medida' />
             
-                <label htmlFor='Email'>Email: </label>
-                <input type='email' className='form-control' placeholder='Email' />
+                <label htmlFor='idBrand'>ID de la Marca: </label>
+                <input type='text' className='form-control' placeholder='ID Marca' />
 
-                <label htmlFor='noCel'>Numero de Celular: </label>
-                <input type='text' className='form-control' placeholder='Numero de Celular' />
+                <label htmlFor='stock'>Stock: </label>
+                <input type='number' className='form-control' placeholder='Stock' />
                         
                 <input type='submit' className='btn-primary btn__edit modal-btn' value='Agregar Producto' />
             </form>

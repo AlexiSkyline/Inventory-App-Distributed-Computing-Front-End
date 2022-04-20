@@ -13,6 +13,7 @@ export const ProductState = ( props ) => {
         productSearch: '',
         productSearchFilter: [],
         productSearchFilterStatus: false,
+        productModeEdit: false,
     }
 
     const [ state, dispatch ] = useReducer( productReducer, initialState );

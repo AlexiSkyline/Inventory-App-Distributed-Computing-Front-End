@@ -1,9 +1,13 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import { AlertContext } from '../../Context/Alert/AlertContext';
 import { ProductContext } from '../../Context/Product/ProductContext';
 
 export const TableProducts = ({ titles , products }) => {
+    const alertContext = useContext( AlertContext );
+    const { alert, showAlert } = alertContext;
+    
     const MySwal = withReactContent(Swal)
 
     const productContext = useContext( ProductContext );
@@ -21,56 +25,61 @@ export const TableProducts = ({ titles , products }) => {
             cancelButtonText: 'Cancelar'
         }).then(( result) => {
             if( result.isConfirmed ) {
+                deleteProduct( id );
                 MySwal.fire(
                   'Deleted!',
                    message,
                   'success'
                 )
-                deleteProduct( id );
+                showAlert( message, 'alert-ok' );
             }
         });
     }
 
     return (
-        <table className='table'>
-            <thead>
-                <tr>
+        <>
+            { alert &&  <div className={ `alerta ${ alert.type }` }> { alert.msg } </div> }
+            
+            <table className='table'> 
+                <thead>
+                    <tr>
+                        {
+                            titles.map( ( title, index ) => <th key={ index }>{ title }</th> )
+                        }
+                        <th>
+                            Acciones
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
                     {
-                        titles.map( ( title, index ) => <th key={ index }>{ title }</th> )
+                        products.map( product => (
+                            <tr 
+                                key={ product.id }
+                                className={ `${ product.id }` }
+                            >
+                                <td>{ product.id.split('-')[0] }</td>
+                                <td>{ product.name }</td>
+                                <td>{ product.brand }</td>
+                                <td>{ product.description.length > 15 ? product.description.substr( 0, 15 ) : product.description }</td>
+                                <td>{ `$${ product.price}` }</td>
+                                <td>{ product.unitMesurement }</td>
+                                <td>{ product.stock }</td>
+                                <td>{ product.provider.length > 10 ? product.provider.substr( 0, 8 ) : product.provider }...</td>
+                                <td>
+                                    <button className='btn__edit'>Editar</button>
+                                    <button 
+                                        className='btn__delete'
+                                        onClick={ () => handleEliminar( product.id ) }
+                                    >
+                                        Eliminar
+                                    </button>
+                                </td>
+                            </tr>
+                        ))
                     }
-                    <th>
-                        Acciones
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                {
-                    products.map( product => (
-                        <tr 
-                            key={ product.id }
-                            className={ `${ product.id }` }
-                        >
-                            <td>{ product.id.split('-')[0] }</td>
-                            <td>{ product.name }</td>
-                            <td>{ product.brand }</td>
-                            <td>{ product.description.length > 15 ? product.description.substr( 0, 15 ) : product.description }</td>
-                            <td>{ `$${ product.price}` }</td>
-                            <td>{ product.unitMesurement }</td>
-                            <td>{ product.stock }</td>
-                            <td>{ product.provider.length > 10 ? product.provider.substr( 0, 8 ) : product.provider }...</td>
-                            <td>
-                                <button className='btn__edit'>Editar</button>
-                                <button 
-                                    className='btn__delete'
-                                    onClick={ () => handleEliminar( product.id ) }
-                                >
-                                    Eliminar
-                                </button>
-                            </td>
-                        </tr>
-                    ))
-                }
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </>
     );
 }

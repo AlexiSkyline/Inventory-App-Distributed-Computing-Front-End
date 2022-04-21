@@ -15,12 +15,16 @@ export const ProductScreen = () => {
     const alertContext = useContext( AlertContext );
     const { alert, showAlert } = alertContext;
 
+    // * State para guardar la lista de producto a mostrar
     const [ listProduct, getListProduct ] = useState([]);
+
+    // * State para almacenar el parametro de busqueda
     const [ formValues, setFormValues ] = useState({
         searchProductValue: ''
     });
     const { searchProductValue } = formValues;
 
+    // * Funcion para obtener el parametro de busqueda
     const handleInputChange = ({ target }) => {
         setFormValues({
             ...formValues,
@@ -29,12 +33,19 @@ export const ProductScreen = () => {
         searchProduct( target.value );
     };
 
+    /*
+        * funcion para reiniciar el input de busqueda 
+    */
     function handleResetInput() {
         setFormValues({
             searchProductValue: ''
         });
     }
 
+    /* 
+        * Obtenemos los productos y cargarlos en el state
+        * El otro caso es obtener los productos filtrados si el status es true
+    */
     useEffect( () => { 
         getProducts();
         if( productSearchFilterStatus ) {
@@ -45,6 +56,10 @@ export const ProductScreen = () => {
         // eslint-disable-next-line
     } , [products, productSearchFilterStatus] );
     
+    /*
+        * Mostramos el mesaje si existe uno en el state
+        * El otro caso es que no se muestre ningun mensaje
+    */
     useEffect( () => {
         if( message ) {
             showAlert( message, typeMessage );

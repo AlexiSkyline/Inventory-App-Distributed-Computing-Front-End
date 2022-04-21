@@ -13,6 +13,14 @@ export const TableProducts = ({ titles , products, handleResetInput }) => {
     const modalContext = useContext( ModalContext );
     const { uiOpenModal } = modalContext;
 
+    /*
+        * Funcion para eliminar un producto
+        * Recibe el id del producto a eliminar
+        * Luego pregunta si desea eliminarlo
+        * Luego elimina el producto
+        * Luego desactiva el modo de busqueda si esta activo
+        * Luego reinicia el input de busqueda de productos
+    */
     const handleDelete = ( id ) => { 
         MySwal.fire({
             title: '¿Estas Seguro?',
@@ -37,6 +45,12 @@ export const TableProducts = ({ titles , products, handleResetInput }) => {
         });
     }
 
+    /*
+        * Funcion para abrir el modal de editar un producto
+        * Recibe todo el producto a editar
+        * Abri el modal
+        * Luego activa el modo de edicion
+    */
     const handleUpdate = ( product ) => {
         uiOpenModal();
         activeModeEdit( product );

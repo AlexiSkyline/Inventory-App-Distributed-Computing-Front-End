@@ -4,6 +4,7 @@ import { ModalContext } from '../../Context/Modal/ModalContext';
 import { ProductContext } from '../../Context/Product/ProductContext';
 import { useForm } from '../../Hooks/useForm';
 
+// * Cuerpo inicial de nuestro inputs de agregar o editar producto
 const initEvent = {
     name: '',
     description: '',
@@ -21,9 +22,15 @@ export const ProductModal = ({ handleResetInput }) => {
     const productContext = useContext( ProductContext );
     const { createProduct, productModeEdit, productEdit, updateProduct, modeSearchProductDesactive } = productContext;
 
+    // * State para almacenar la informacion del producto a crear o actualizar
     const [ formValues, setFormValues ] = useState( initEvent );
     const { name, description, price, idUnitMesurement, idBrand, stock, idProvider } = formValues;
 
+    /*
+        * Hook para obtener los valores del para el modal 'Formulario'
+        * Caso 1: Le pasa los pavalores del producto a editar
+        * Caso 2: Le pasa los pavalores del producto a crear
+    */
     useEffect(() => {
         if( productModeEdit ) {
             setFormValues( productEdit );
@@ -32,6 +39,7 @@ export const ProductModal = ({ handleResetInput }) => {
         }
     }, [ productModeEdit, setFormValues ]);
     
+     // * Funcion para obtener los valores del formulario
     const handleInputChange = ({ target }) => {
         setFormValues({
             ...formValues,
@@ -39,6 +47,13 @@ export const ProductModal = ({ handleResetInput }) => {
         });
     };
 
+    /*
+        * Funcion para crear o actualizar un producto 
+        * Caso 1: Crear un producto
+        * Caso 2: Actualizar un producto
+        * Luego Desactivamos el modo de busqueda si esta activo
+        * Luego reiniciamos el input de busqueda
+    */
     const handleOnSubmit = ( e ) => {
         e.preventDefault();
         if( !productModeEdit ) {

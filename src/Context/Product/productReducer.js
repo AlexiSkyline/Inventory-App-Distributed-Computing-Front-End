@@ -5,18 +5,9 @@ export const productReducer = ( state, action ) => {
         case types.getProducts:
             return {
                 ...state,
-                // products: action.payload,
+                products: action.payload,
                 loading: false,
             }
-        case types.getProductsFailed: {
-            return {
-                ...state,
-                loading: false,
-                error: true,
-                message: action.payload.message,
-                typeMessage: 'alert-error'
-            }
-        }
         case types.addProduct: {
             return {
                 ...state,
@@ -31,14 +22,26 @@ export const productReducer = ( state, action ) => {
                 ...state,
                 message: action.payload,
                 loading: false,
-                // products: state.products.filter( product => product.id !== action.payload.id ),
+                products: state.products.filter( product => product.id !== action.payload.id ),
                 message: action.payload.message,
                 typeMessage: 'alert-ok'
             }
+        case types.activeModeEdit:
+            return {
+                ...state,
+                productModeEdit: true
+            }
+        case types.desactiveModeEdit:
+            return {
+                ...state,
+                productModeEdit: false
+            }
+        case types.getProductsFailed:
         case types.deleteProductFailed:
             return {
                 ...state,
                 loading: false,
+                error: true,
                 message: action.payload,
                 typeMessage: 'alert-error'
             }

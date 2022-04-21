@@ -9,7 +9,7 @@ export const ProductModal = () => {
     const { modalOpen, closeModal, uiCloseModal } = modalContext;
 
     const productContext = useContext( ProductContext );
-    const { createProduct } = productContext;
+    const { createProduct, productModeEdit } = productContext;
 
     const [ formValue, handleInputChange, resetInputs ] = useForm({
         name: '',
@@ -23,9 +23,13 @@ export const ProductModal = () => {
 
     const handleOnSubmit = ( e ) => {
         e.preventDefault();
-        createProduct( formValue );
-        resetInputs();
-        uiCloseModal();
+        if( !productModeEdit ) {
+            createProduct( formValue );
+            resetInputs();
+            uiCloseModal();
+        } else {
+            
+        }
     }
 
     return (
@@ -36,7 +40,7 @@ export const ProductModal = () => {
             ariaHideApp={false}
         >
             <form className='form__modal' onSubmit={ handleOnSubmit }>
-                <legend>Agregar producto</legend>
+                <legend>{ productModeEdit ? 'Editar Producto': 'Agregar producto' }</legend>
                 
                 <label htmlFor='name'>Nombre: </label>
                 <input 
@@ -111,7 +115,7 @@ export const ProductModal = () => {
                 <input 
                     type='submit' 
                     className='btn-primary btn__edit modal-btn' 
-                    value='Agregar Producto'
+                    value={ productModeEdit ? 'Editar Producto': 'Agregar producto' }
                 />
             </form>
         </Modal>

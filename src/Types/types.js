@@ -15,10 +15,14 @@ export const types = {
     getProducts: '[products] get products',
     getProductsSuccess: '[products] get products success',
     getProductsFailed: '[products] get products failed',
+
     deleteProduct: '[products] delete product',
     deleteProductSuccess: '[products] delete product success',
     deleteProductFailed: '[products] delete product failed',
 
+    activeModeEdit: '[products] active mode edit',
+    desactiveModeEdit: '[products] desactive mode edit',
+    
     removeMessages: '[messages] remove messages',
 
     uiOpenModal: '[ui] Open modal',

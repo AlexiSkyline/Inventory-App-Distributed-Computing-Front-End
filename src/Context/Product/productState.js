@@ -84,6 +84,18 @@ export const ProductState = ( props ) => {
         deleteMessage();
     }
 
+    const activeModeEdit = () => {
+        dispatch({
+            type: types.activeModeEdit
+        });
+    }
+
+    const desactiveModeEdit = () => {
+        dispatch({
+            type: types.desactiveModeEdit
+        });
+    }
+
     return (
         <ProductContext.Provider 
             value={{ 
@@ -92,9 +104,12 @@ export const ProductState = ( props ) => {
                 error: state.error,
                 message: state.message,
                 typeMessage: state.typeMessage,
+                productModeEdit: state.productModeEdit,
                 getProducts,
                 deleteProduct,
-                createProduct
+                createProduct,
+                activeModeEdit,
+                desactiveModeEdit
             }}
         >
             { props.children }

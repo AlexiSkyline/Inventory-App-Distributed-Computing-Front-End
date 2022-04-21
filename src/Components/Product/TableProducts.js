@@ -1,19 +1,19 @@
-import React, { useContext, useEffect } from 'react'
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
-import { AlertContext } from '../../Context/Alert/AlertContext';
+import React, { useContext } from 'react';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import { ModalContext } from '../../Context/Modal/ModalContext';
 import { ProductContext } from '../../Context/Product/ProductContext';
 
 export const TableProducts = ({ titles , products }) => {
-    const alertContext = useContext( AlertContext );
-    const { alert, showAlert } = alertContext;
-    
     const MySwal = withReactContent(Swal)
 
     const productContext = useContext( ProductContext );
-    const { deleteProduct, message } = productContext;
+    const { deleteProduct, message, activeModeEdit } = productContext;
 
-    const handleEliminar = ( id ) => { 
+    const modalContext = useContext( ModalContext );
+    const { modalOpen, closeModal, uiOpenModal } = modalContext;
+
+    const handleDelete = ( id ) => { 
         MySwal.fire({
             title: '¿Estas Seguro?',
             text: 'El producto se eliminará permanentemente',
@@ -33,6 +33,11 @@ export const TableProducts = ({ titles , products }) => {
                 );
             }
         });
+    }
+
+    const handleUpdate = ( product ) => {
+        uiOpenModal();
+        activeModeEdit();
     }
 
     return (
@@ -64,10 +69,15 @@ export const TableProducts = ({ titles , products }) => {
                                 <td>{ product.stock }</td>
                                 <td>{ product.provider.length > 10 ? product.provider.substr( 0, 8 ) : product.provider }...</td>
                                 <td>
-                                    <button className='btn__edit'>Editar</button>
+                                    <button 
+                                        className='btn__edit'
+                                        onClick={ () => handleUpdate( product ) }
+                                    >
+                                        Editar
+                                    </button>
                                     <button 
                                         className='btn__delete'
-                                        onClick={ () => handleEliminar( product.id ) }
+                                        onClick={ () => handleDelete( product.id ) }
                                     >
                                         Eliminar
                                     </button>

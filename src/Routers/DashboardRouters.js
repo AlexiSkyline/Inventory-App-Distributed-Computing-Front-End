@@ -1,10 +1,14 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { ActivitiesScreen } from '../Components/Home/ActivitiesScreen';
+
 import { HomeScreen } from '../Components/Home/HomeScreen';
-import { OtherScreen } from '../Components/Home/OtherScreen';
 import { StaffScreen } from '../Components/Home/StaffScreen';
+import { ActivitiesScreen } from '../Components/Home/ActivitiesScreen';
+import { OtherScreen } from '../Components/Home/OtherScreen';
+
+import { BrandScreen } from '../Components/Brand/BrandScreen';
 import { ProductScreen } from '../Components/Product/ProductScreen';
+
 import { ToolBar } from '../Components/UI/ToolBar/ToolBar';
 
 export const DashboardRouters = () => {
@@ -20,6 +24,7 @@ export const DashboardRouters = () => {
                     <Route path = '/other' element={ <OtherScreen /> }/>
                     
                     <Route path = '/productos' element={ <ProductScreen /> }/>
+                    <Route path = '/marca' element={ <BrandScreen /> }/>
 
                     <Route path = '/' element={ <HomeScreen /> }/>
                 </Routes>

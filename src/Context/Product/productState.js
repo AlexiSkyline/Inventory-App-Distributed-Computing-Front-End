@@ -73,7 +73,7 @@ export const ProductState = ( props ) => {
             const response = await clientAxios.delete( `/api/Product/${ id }` );
             dispatch({
                 type: types.deleteProduct,
-                payload: { id: response.data.id, message: response.data.message }
+                payload: response.data.message
             });
         } catch (error) {
             dispatch({

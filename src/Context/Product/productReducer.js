@@ -17,13 +17,13 @@ export const productReducer = ( state, action ) => {
                 typeMessage: 'alert-ok'
             }
         }
+        case types.updateProduct:
         case types.deleteProduct:
             return {
                 ...state,
                 message: action.payload,
-                loading: false,
-                message: action.payload.message,
-                typeMessage: 'alert-ok'
+                typeMessage: 'alert-ok',
+                loading: false
             }
         case types.activeModeEdit:
             return {
@@ -37,15 +37,9 @@ export const productReducer = ( state, action ) => {
                 productModeEdit: false,
                 productEdit: null
             }
-        case types.updateProduct:
-            return {
-                ...state,
-                message: action.payload,
-                typeMessage: 'alert-ok',
-                productModeEdit: false
-            }
         case types.getProductsFailed:
         case types.deleteProductFailed:
+        case types.updateProductFailed:
             return {
                 ...state,
                 loading: false,

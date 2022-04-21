@@ -25,6 +25,18 @@ export const productReducer = ( state, action ) => {
                 typeMessage: 'alert-ok',
                 loading: false
             }
+        case types.searchProductActive:
+            return {
+                ...state,
+                productSearchFilterStatus: true,
+                productSearchFilter: state.products.filter( product => product.description.toLowerCase().includes( action.payload.toLowerCase() ) )        
+            }
+        case types.searchProductDesactive:
+            return {
+                ...state,
+                productSearchFilterStatus: false,
+                productSearchFilter: []
+            }
         case types.activeModeEdit:
             return {
                 ...state,

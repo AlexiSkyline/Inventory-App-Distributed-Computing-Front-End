@@ -11,7 +11,6 @@ export const ProductState = ( props ) => {
         error: null,
         message: '',
         typeMessage: '',
-        productSearch: '',
         productSearchFilter: [],
         productSearchFilterStatus: false,
         productModeEdit: false,
@@ -127,6 +126,23 @@ export const ProductState = ( props ) => {
             });
         }
     }
+    
+    const modeSearchProductDesactive = () => {
+        dispatch({
+            type: types.searchProductDesactive
+        });
+    }
+
+    const searchProduct = async ( filter ) => {
+        if( filter.trim() !== '' ) {
+            dispatch({
+                type: types.searchProductActive,
+                payload: filter
+            });
+        } else {
+            modeSearchProductDesactive();
+        }
+    }
 
     return (
         <ProductContext.Provider 
@@ -138,12 +154,16 @@ export const ProductState = ( props ) => {
                 typeMessage: state.typeMessage,
                 productModeEdit: state.productModeEdit,
                 productEdit: state.productEdit,
+                productSearchFilter: state.productSearchFilter,
+                productSearchFilterStatus: state.productSearchFilterStatus,
                 getProducts,
                 deleteProduct,
                 createProduct,
                 activeModeEdit,
                 desactiveModeEdit,
-                updateProduct
+                updateProduct,
+                searchProduct,
+                modeSearchProductDesactive
             }}
         >
             { props.children }

@@ -14,12 +14,12 @@ const initEvent = {
     idProvider: ''
 }
 
-export const ProductModal = () => {
+export const ProductModal = ({ handleResetInput }) => {
     const modalContext = useContext( ModalContext );
     const { modalOpen, closeModal, uiCloseModal } = modalContext;
 
     const productContext = useContext( ProductContext );
-    const { createProduct, productModeEdit, productEdit, updateProduct } = productContext;
+    const { createProduct, productModeEdit, productEdit, updateProduct, modeSearchProductDesactive } = productContext;
 
     const [ formValues, setFormValues ] = useState( initEvent );
     const { name, description, price, idUnitMesurement, idBrand, stock, idProvider } = formValues;
@@ -49,6 +49,8 @@ export const ProductModal = () => {
             updateProduct( formValues );
             uiCloseModal();
         }
+        modeSearchProductDesactive();
+        handleResetInput();
     }
 
     return (

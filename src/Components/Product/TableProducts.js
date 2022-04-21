@@ -4,11 +4,11 @@ import withReactContent from 'sweetalert2-react-content';
 import { ModalContext } from '../../Context/Modal/ModalContext';
 import { ProductContext } from '../../Context/Product/ProductContext';
 
-export const TableProducts = ({ titles , products }) => {
+export const TableProducts = ({ titles , products, handleResetInput }) => {
     const MySwal = withReactContent(Swal)
 
     const productContext = useContext( ProductContext );
-    const { deleteProduct, message, activeModeEdit } = productContext;
+    const { deleteProduct, message, activeModeEdit, modeSearchProductDesactive } = productContext;
 
     const modalContext = useContext( ModalContext );
     const { uiOpenModal } = modalContext;
@@ -31,6 +31,8 @@ export const TableProducts = ({ titles , products }) => {
                    message,
                   'success'
                 );
+                modeSearchProductDesactive();
+                handleResetInput();
             }
         });
     }

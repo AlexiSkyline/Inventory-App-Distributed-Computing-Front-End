@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { AlertContext } from '../../Context/Alert/AlertContext';
 import { ProductContext } from '../../Context/Product/ProductContext';
 import { FloatingButton } from '../UI/FloatingButton/FloatingButton';
@@ -9,15 +9,41 @@ import { TableProducts } from './TableProducts';
 export const ProductScreen = () => {
     const header = ['id', 'Nombre', 'Marca','Descripción', 'Precio', 'U. Medida', 'Stock', 'Proveedor' ];
     const productContext = useContext( ProductContext );
-    const { products, getProducts, message, typeMessage } = productContext;
+    const { products, getProducts, message, typeMessage, 
+            searchProduct, productSearchFilter, productSearchFilterStatus } = productContext;
 
     const alertContext = useContext( AlertContext );
     const { alert, showAlert } = alertContext;
 
+    const [ listProduct, getListProduct ] = useState([]);
+    const [ formValues, setFormValues ] = useState({
+        searchProductValue: ''
+    });
+    const { searchProductValue } = formValues;
+
+    const handleInputChange = ({ target }) => {
+        setFormValues({
+            ...formValues,
+            [target.name]: target.value
+        });
+        searchProduct( target.value );
+    };
+
+    function handleResetInput() {
+        setFormValues({
+            searchProductValue: ''
+        });
+    }
+
     useEffect( () => { 
-        getProducts() } 
+        getProducts();
+        if( productSearchFilterStatus ) {
+            getListProduct( productSearchFilter );
+        } else {
+            getListProduct( products );
+        }
         // eslint-disable-next-line
-    , [products] );
+    } , [products, productSearchFilterStatus] );
     
     useEffect( () => {
         if( message ) {
@@ -37,20 +63,25 @@ export const ProductScreen = () => {
                     type='text'
                     placeholder='Buscar un producto por su descripción'
                     className='form-control'
-                    name='busqueda'
+                    name='searchProductValue'
+                    value={ searchProductValue }
+                    onChange={ handleInputChange }
                 />
             </div>
             
             <div className='table__container'>
                 <TableProducts 
                     titles={ header }
-                    products={ products }
+                    products={ listProduct }
+                    handleResetInput={ handleResetInput }
                 />
             </div>
 
             <FloatingButtonClose />
             <FloatingButton />
-            <ProductModal />
+            <ProductModal 
+                handleResetInput={ handleResetInput }
+            />
         </main>
     );
 }

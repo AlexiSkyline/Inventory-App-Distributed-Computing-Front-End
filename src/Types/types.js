@@ -26,6 +26,9 @@ export const types = {
     updateProduct: '[products] update product',
     updateProductSuccess: '[products] update product success',
     updateProductFailed: '[products] update product failed',
+
+    searchProductActive: '[products] search product active',
+    searchProductDesactive: '[products] search product desactive',
     
     removeMessages: '[messages] remove messages',
 

@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react'
+import { AlertContext } from '../../Context/Alert/AlertContext';
 import { ProductContext } from '../../Context/Product/ProductContext';
 import { FloatingButton } from '../UI/FloatingButton/FloatingButton';
 import { FloatingButtonClose } from '../UI/FloatingButton/FloatingButtonClose';
@@ -8,15 +9,26 @@ import { TableProducts } from './TableProducts';
 export const ProductScreen = () => {
     const header = ['id', 'Nombre', 'Marca','Descripción', 'Precio', 'U. Medida', 'Stock', 'Proveedor' ];
     const productContext = useContext( ProductContext );
-    const { products, getProducts } = productContext;
+    const { products, getProducts, message, typeMessage } = productContext;
+
+    const alertContext = useContext( AlertContext );
+    const { alert, showAlert } = alertContext;
 
     useEffect( () => { 
         getProducts() } 
         // eslint-disable-next-line
     , [products] );
+    
+    useEffect( () => {
+        if( message ) {
+            showAlert( message, typeMessage );
+        }
+    } , [message] );
 
     return (
         <main className='data__container content__page'>
+            { alert && <div className={ `alerta ${ alert.type }` }> { alert.msg } </div> }
+
             <h1>Todos los productos</h1>
             
             <div className='input__search-box'>

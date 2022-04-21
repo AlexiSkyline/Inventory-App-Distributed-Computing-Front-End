@@ -10,6 +10,7 @@ export const ProductState = ( props ) => {
         loading: false,
         error: null,
         message: '',
+        typeMessage: '',
         productSearch: '',
         productSearchFilter: [],
         productSearchFilterStatus: false,
@@ -17,6 +18,34 @@ export const ProductState = ( props ) => {
     }
 
     const [ state, dispatch ] = useReducer( productReducer, initialState );
+
+    const createProduct = async ( product ) => {
+        try {
+            const response = await clientAxios.post( '/api/product', {
+                name: product.name,
+                description: product.description,
+                price: product.price,
+                idUnitMesurement: product.idUnitMesurement,
+                idBrand: product.idBrand,
+                stock: 100,
+                idProvider: product.idProvider
+            });
+
+            dispatch({
+                type: types.addProduct,
+                payload: response.data
+            });
+        } catch (error) {
+            dispatch({
+                type: types.addProductFailed
+            });
+            console.log(error);
+        }
+
+        setTimeout(() => {
+            initialState.message = '';
+        } , 3000);
+    }
 
     const getProducts = async () => {
         try {
@@ -44,7 +73,6 @@ export const ProductState = ( props ) => {
                 type: types.deleteProductFailed,
                 payload: error.response.data.message
             });
-            console.log( error )
         }
     }
 
@@ -55,8 +83,10 @@ export const ProductState = ( props ) => {
                 loading: state.loading, 
                 error: state.error,
                 message: state.message,
+                typeMessage: state.typeMessage,
                 getProducts,
-                deleteProduct
+                deleteProduct,
+                createProduct
             }}
         >
             { props.children }

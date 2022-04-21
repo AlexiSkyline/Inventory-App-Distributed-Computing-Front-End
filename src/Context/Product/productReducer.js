@@ -15,6 +15,15 @@ export const productReducer = ( state, action ) => {
                 error: true
             }
         }
+        case types.addProduct: {
+            return {
+                ...state,
+                products: [ ...state.products, action.payload ],
+                loading: false,
+                message: action.payload.message,
+                typeMessage: 'alert-ok'
+            }
+        }
         case types.deleteProduct:
             return {
                 ...state,

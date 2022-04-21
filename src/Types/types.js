@@ -9,6 +9,9 @@ export const types = {
     currentPage: '[auth] current page',
     menuIsActive: '[auth] menu is active',
 
+    addProduct: '[product] add product',
+    addProductFailed: '[product] add product failed',
+
     getProducts: '[products] get products',
     getProductsSuccess: '[products] get products success',
     getProductsFailed: '[products] get products failed',

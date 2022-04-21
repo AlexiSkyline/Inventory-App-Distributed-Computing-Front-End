@@ -23,6 +23,7 @@ export const ProductScreen = () => {
         if( message ) {
             showAlert( message, typeMessage );
         }
+        // eslint-disable-next-line
     } , [message] );
 
     return (

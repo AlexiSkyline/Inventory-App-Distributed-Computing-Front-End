@@ -30,16 +30,13 @@ export const TableProducts = ({ titles , products }) => {
                   'Deleted!',
                    message,
                   'success'
-                )
-                showAlert( message, 'alert-ok' );
+                );
             }
         });
     }
 
     return (
-        <>
-            { alert &&  <div className={ `alerta ${ alert.type }` }> { alert.msg } </div> }
-            
+        <>  
             <table className='table'> 
                 <thead>
                     <tr>

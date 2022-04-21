@@ -14,7 +14,8 @@ export const LoginScreen = () => {
         if( message ) {
             showAlert( message.msg, message.type );
         }
-    }, [message, showAlert]);
+        // eslint-disable-next-line
+    }, [message]);
     
     const [ formValue, handleInputChange ] = useForm({
         username: '',

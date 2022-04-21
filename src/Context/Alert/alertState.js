@@ -23,7 +23,7 @@ export const AlertState = ( props ) => {
             dispatch({
                 type: types.removeAlert
             });
-        }, 5000);
+        }, 3000);
     }
 
     return (

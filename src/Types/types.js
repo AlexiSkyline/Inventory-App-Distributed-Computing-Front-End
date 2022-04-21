@@ -19,6 +19,8 @@ export const types = {
     deleteProductSuccess: '[products] delete product success',
     deleteProductFailed: '[products] delete product failed',
 
+    removeMessages: '[messages] remove messages',
+
     uiOpenModal: '[ui] Open modal',
     uiCloseModal: '[ui] Close modal'
 }

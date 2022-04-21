@@ -19,6 +19,12 @@ export const ProductState = ( props ) => {
 
     const [ state, dispatch ] = useReducer( productReducer, initialState );
 
+    const deleteMessage = () => {
+        setTimeout(() => {
+            dispatch({ type: types.removeMessages });
+        } , 3000);
+    }
+
     const createProduct = async ( product ) => {
         try {
             const response = await clientAxios.post( '/api/product', {
@@ -42,9 +48,7 @@ export const ProductState = ( props ) => {
             console.log(error);
         }
 
-        setTimeout(() => {
-            initialState.message = '';
-        } , 3000);
+        deleteMessage();
     }
 
     const getProducts = async () => {
@@ -59,6 +63,8 @@ export const ProductState = ( props ) => {
                 type: types.getProductsFailed
             });
         }
+
+        deleteMessage();
     }
 
     const deleteProduct = async ( id ) => {
@@ -66,7 +72,7 @@ export const ProductState = ( props ) => {
             const response = await clientAxios.delete( `/api/Product/${ id }` );
             dispatch({
                 type: types.deleteProduct,
-                payload: response.data.message
+                payload: { id: response.data.id, message: response.data.message }
             });
         } catch (error) {
             dispatch({
@@ -74,6 +80,8 @@ export const ProductState = ( props ) => {
                 payload: error.response.data.message
             });
         }
+
+        deleteMessage();
     }
 
     return (

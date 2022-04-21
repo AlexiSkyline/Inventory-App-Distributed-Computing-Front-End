@@ -1,34 +1,53 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import { ModalContext } from '../../Context/Modal/ModalContext';
 import { ProductContext } from '../../Context/Product/ProductContext';
 import { useForm } from '../../Hooks/useForm';
+
+const initEvent = {
+    name: '',
+    description: '',
+    price: 0,
+    idUnitMesurement: '',
+    idBrand: '',
+    stock: 0,
+    idProvider: ''
+}
 
 export const ProductModal = () => {
     const modalContext = useContext( ModalContext );
     const { modalOpen, closeModal, uiCloseModal } = modalContext;
 
     const productContext = useContext( ProductContext );
-    const { createProduct, productModeEdit } = productContext;
+    const { createProduct, productModeEdit, productEdit, updateProduct } = productContext;
 
-    const [ formValue, handleInputChange, resetInputs ] = useForm({
-        name: '',
-        description: '',
-        price: 0,
-        idUnitMesurement: '',
-        idBrand: '',
-        stock: 0,
-        idProvider: ''
-    });
+    const [ formValues, setFormValues ] = useState( initEvent );
+    const { name, description, price, idUnitMesurement, idBrand, stock, idProvider } = formValues;
+
+    useEffect(() => {
+        if( productModeEdit ) {
+            setFormValues( productEdit );
+        } else {
+            setFormValues( initEvent );
+        }
+    }, [ productModeEdit, setFormValues ]);
+    
+    const handleInputChange = ({ target }) => {
+        setFormValues({
+            ...formValues,
+            [target.name]: target.value
+        });
+    };
 
     const handleOnSubmit = ( e ) => {
         e.preventDefault();
         if( !productModeEdit ) {
-            createProduct( formValue );
-            resetInputs();
+            createProduct( formValues );
+            setFormValues( initEvent );
             uiCloseModal();
         } else {
-            
+            updateProduct( formValues );
+            uiCloseModal();
         }
     }
 
@@ -48,7 +67,7 @@ export const ProductModal = () => {
                     className='form-control'
                     placeholder='name'
                     name='name'
-                    value={ formValue.name }
+                    value={ name }
                     onChange={ handleInputChange }
                 />
                 
@@ -58,7 +77,7 @@ export const ProductModal = () => {
                     className='form-control' 
                     placeholder='Descripción'
                     name='description'
-                    value={ formValue.description }
+                    value={ description }
                     onChange={ handleInputChange }
                 />
 
@@ -68,7 +87,7 @@ export const ProductModal = () => {
                     className='form-control' 
                     placeholder='Precio' 
                     name='price'
-                    value={ formValue.price }
+                    value={ price }
                     onChange={ handleInputChange }
                 />
 
@@ -78,7 +97,7 @@ export const ProductModal = () => {
                     className='form-control' 
                     placeholder='ID Unidad de Medida' 
                     name='idUnitMesurement'
-                    value={ formValue.idUnitMesurement }
+                    value={ idUnitMesurement }
                     onChange={ handleInputChange }
                 />
             
@@ -88,7 +107,7 @@ export const ProductModal = () => {
                     className='form-control' 
                     placeholder='ID Marca' 
                     name='idBrand'
-                    value={ formValue.idBrand }
+                    value={ idBrand }
                     onChange={ handleInputChange }
                 />
 
@@ -98,7 +117,7 @@ export const ProductModal = () => {
                     className='form-control' 
                     placeholder='Stock' 
                     name='stock'
-                    value={ formValue.stock }
+                    value={ stock }
                     onChange={ handleInputChange }
                 />
                 
@@ -108,7 +127,7 @@ export const ProductModal = () => {
                     className='form-control' 
                     placeholder='ID Proveedor' 
                     name='idProvider'
-                    value={ formValue.idProvider }
+                    value={ idProvider }
                     onChange={ handleInputChange }
                 />
                         

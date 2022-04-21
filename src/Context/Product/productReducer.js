@@ -22,18 +22,26 @@ export const productReducer = ( state, action ) => {
                 ...state,
                 message: action.payload,
                 loading: false,
-                products: state.products.filter( product => product.id !== action.payload.id ),
                 message: action.payload.message,
                 typeMessage: 'alert-ok'
             }
         case types.activeModeEdit:
             return {
                 ...state,
-                productModeEdit: true
+                productModeEdit: true,
+                productEdit: action.payload
             }
         case types.desactiveModeEdit:
             return {
                 ...state,
+                productModeEdit: false,
+                productEdit: null
+            }
+        case types.updateProduct:
+            return {
+                ...state,
+                message: action.payload,
+                typeMessage: 'alert-ok',
                 productModeEdit: false
             }
         case types.getProductsFailed:

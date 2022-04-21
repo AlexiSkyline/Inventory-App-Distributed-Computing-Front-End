@@ -15,6 +15,7 @@ export const ProductState = ( props ) => {
         productSearchFilter: [],
         productSearchFilterStatus: false,
         productModeEdit: false,
+        productEdit: null
     }
 
     const [ state, dispatch ] = useReducer( productReducer, initialState );
@@ -33,7 +34,7 @@ export const ProductState = ( props ) => {
                 price: product.price,
                 idUnitMesurement: product.idUnitMesurement,
                 idBrand: product.idBrand,
-                stock: 100,
+                stock: product.stock,
                 idProvider: product.idProvider
             });
 
@@ -84,16 +85,47 @@ export const ProductState = ( props ) => {
         deleteMessage();
     }
 
-    const activeModeEdit = () => {
+    const activeModeEdit = ( product = {} ) => {
+        product.idUnitMesurement = '';
+        product.idBrand = '';
+        product.idProvider = '';   
+
         dispatch({
-            type: types.activeModeEdit
+            type: types.activeModeEdit,
+            payload: product
         });
     }
 
     const desactiveModeEdit = () => {
-        dispatch({
-            type: types.desactiveModeEdit
-        });
+        setTimeout(() => {
+            dispatch({
+                type: types.desactiveModeEdit
+            });
+        } , 500);
+    }
+
+    const updateProduct = async ( product ) => {
+        try {
+            const response = await clientAxios.put( `/api/Product/${ state.productEdit.id }`, {
+                name: product.name,
+                description: product.description,
+                price: product.price,
+                idUnitMesurement: product.idUnitMesurement,
+                idBrand: product.idBrand,
+                stock: product.stock,
+                idProvider: product.idProvider
+            });
+
+            dispatch({
+                type: types.updateProduct,
+                payload: response.data.message
+            });
+        } catch (error) {
+            dispatch({
+                type: types.updateProductFailed,
+                payload: error.response.data.message
+            });
+        }
     }
 
     return (
@@ -105,11 +137,13 @@ export const ProductState = ( props ) => {
                 message: state.message,
                 typeMessage: state.typeMessage,
                 productModeEdit: state.productModeEdit,
+                productEdit: state.productEdit,
                 getProducts,
                 deleteProduct,
                 createProduct,
                 activeModeEdit,
-                desactiveModeEdit
+                desactiveModeEdit,
+                updateProduct
             }}
         >
             { props.children }

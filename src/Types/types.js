@@ -22,6 +22,10 @@ export const types = {
 
     activeModeEdit: '[products] active mode edit',
     desactiveModeEdit: '[products] desactive mode edit',
+
+    updateProduct: '[products] update product',
+    updateProductSuccess: '[products] update product success',
+    updateProductFailed: '[products] update product failed',
     
     removeMessages: '[messages] remove messages',
 

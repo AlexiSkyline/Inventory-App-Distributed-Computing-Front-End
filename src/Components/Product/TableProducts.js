@@ -11,7 +11,7 @@ export const TableProducts = ({ titles , products }) => {
     const { deleteProduct, message, activeModeEdit } = productContext;
 
     const modalContext = useContext( ModalContext );
-    const { modalOpen, closeModal, uiOpenModal } = modalContext;
+    const { uiOpenModal } = modalContext;
 
     const handleDelete = ( id ) => { 
         MySwal.fire({
@@ -37,7 +37,7 @@ export const TableProducts = ({ titles , products }) => {
 
     const handleUpdate = ( product ) => {
         uiOpenModal();
-        activeModeEdit();
+        activeModeEdit( product );
     }
 
     return (

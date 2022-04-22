@@ -5,6 +5,7 @@ import { ProductContext } from '../../Context/Product/ProductContext';
 import { FloatingButton } from '../UI/FloatingButton/FloatingButton';
 import { FloatingButtonClose } from '../UI/FloatingButton/FloatingButtonClose';
 import { HeadBoard } from '../UI/HeadBoard/HeadBoard';
+import { InputSearch } from '../UI/InputSearch/InputSearch';
 import { ProductModal } from './ProductModal';
 import { TableProducts } from './TableProducts';
 
@@ -61,16 +62,12 @@ export const ProductScreen = () => {
                 title='Lista de todos los productos'
             />
             
-            <div className='input__search-box'>
-                <input 
-                    type='text'
-                    placeholder='Buscar un producto por su descripción'
-                    className='form-control'
-                    name='searchProductValue'
-                    value={ searchProductValue }
-                    onChange={ handleInputChange }
-                />
-            </div>
+            <InputSearch
+                name={ 'searchProductValue' }
+                value={ searchProductValue }
+                placeholder={ 'Buscar productos por la descripción' }
+                handleInputChange={ handleInputChange }
+            />
             
             <div className='table__container'>
                 <TableProducts 

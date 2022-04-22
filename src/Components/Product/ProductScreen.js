@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { AlertContext } from '../../Context/Alert/AlertContext';
 
 import { ProductContext } from '../../Context/Product/ProductContext';
 
@@ -13,7 +14,10 @@ export const ProductScreen = () => {
     const header = ['id', 'Nombre', 'Marca','Descripción', 'Precio', 'U. Medida', 'Stock', 'Proveedor' ];
     const productContext = useContext( ProductContext );
     const { products, getProducts, searchProduct, productSearchFilter, 
-                        productSearchFilterStatus } = productContext;
+                message, typeMessage, productSearchFilterStatus } = productContext;
+    
+    const alertContext = useContext( AlertContext );
+    const { showAlert } = alertContext;
 
     // * State para guardar la lista de producto a mostrar
     const [ listProduct, getListProduct ] = useState([]);
@@ -41,6 +45,17 @@ export const ProductScreen = () => {
             searchProductValue: ''
         });
     }
+
+    /*
+        * Mostramos el mesaje si existe uno en el state
+        * El otro caso es que no se muestre ningun mensaje
+    */
+    useEffect( () => {
+        if( message ) {
+            showAlert( message, typeMessage );
+        }
+        // eslint-disable-next-line
+    } , [message] );
 
     /* 
         * Obtenemos los productos y cargarlos en el state

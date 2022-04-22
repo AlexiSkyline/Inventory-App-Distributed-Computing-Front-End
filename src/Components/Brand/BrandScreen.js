@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { AlertContext } from '../../Context/Alert/AlertContext';
 import { BrandContext } from '../../Context/Brand/BrandContext';
-import { useForm } from '../../Hooks/useForm';
 import { HeadBoard } from '../UI/HeadBoard/HeadBoard';
 import { InputSearch } from '../UI/InputSearch/InputSearch';
 import { TableBrands } from './TableBrands';
@@ -8,7 +8,10 @@ import { TableBrands } from './TableBrands';
 const headers = [ 'id', 'descripción' ];
 export const BrandScreen = () => {
     const brandContext = useContext( BrandContext );
-    const { brands, getBrands } = brandContext;
+    const { brands, getBrands, message, typeMessage,  } = brandContext;
+
+    const alertContext = useContext( AlertContext );
+    const { showAlert } = alertContext;
 
     // * State para almacenar el parametro de busqueda
     const [ formValues, setFormValues ] = useState({
@@ -23,6 +26,13 @@ export const BrandScreen = () => {
             [target.name]: target.value
         });
     };
+
+    useEffect( () => {
+        if( message ) {
+            showAlert( message, typeMessage );
+        }
+        // eslint-disable-next-line
+    } , [message] );
 
     useEffect(() => {
         getBrands();

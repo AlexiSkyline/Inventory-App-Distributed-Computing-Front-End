@@ -6,4 +6,7 @@ export const types_brand = {
     // ! Acciones para eliminar una Marca
     deleteBrand: '[brands] delete brand',
     deleteBrandFailed: '[brands] delete brand failed',
+
+    // ! Acciones para eliminar un mensaje
+    removeMessages: '[brands] remove messages'
 }

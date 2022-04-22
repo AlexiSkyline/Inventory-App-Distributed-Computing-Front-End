@@ -35,5 +35,7 @@ export const types = {
 
     // ! Acciones para el modal
     uiOpenModal: '[ui] Open modal',
-    uiCloseModal: '[ui] Close modal'
+    uiCloseModal: '[ui] Close modal',
+
+    addGlobalMessage: '[messages] add global message',
 }

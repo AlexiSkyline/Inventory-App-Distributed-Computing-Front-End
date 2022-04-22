@@ -6,7 +6,11 @@ import { alertReducer } from './alertReducer';
 
 export const AlertState = ( props ) => {
     const initialState = {
-        alert: null
+        alert: {
+            msg: null,
+            type: null
+        },
+        globalMessage: false,
     }
 
     const [state, dispatch] = useReducer( alertReducer, initialState );
@@ -26,11 +30,19 @@ export const AlertState = ( props ) => {
         }, 3000);
     }
 
+    const addGlobalMessage = ( message ) => {
+        dispatch({
+            type: types.addGlobalMessage,
+            payload: message
+        });
+    }
+
     return (
         <AlertContext.Provider
             value={{
                 alert: state.alert,
-                showAlert
+                showAlert,
+                addGlobalMessage
             }}
         >
             { props.children }

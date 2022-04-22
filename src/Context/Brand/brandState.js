@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import { clientAxios } from '../../Config/Axios';
 import { types_brand } from '../../Types/types.brand';
 import { BrandContext } from './BrandContext';
@@ -16,6 +16,14 @@ export const BrandState = ( props ) => {
         brandSearchFilterStatus: false,
         brandModeEdit: false,
         brandEdit: null
+    }
+
+    const [ state, dispatch ] = useReducer( brandReducer, initialState );
+
+    const deleteMessage = () => {
+        setTimeout(() => {
+            dispatch({ type: types_brand.removeMessages });
+        } , 3000);
     }
 
     const getBrands = async () => {
@@ -45,14 +53,16 @@ export const BrandState = ( props ) => {
                 payload: error.response.data.message
             });
         }
-    }
 
-    const [ state, dispatch ] = React.useReducer( brandReducer, initialState );
+        deleteMessage();
+    }
     
     return (
         <BrandContext.Provider
             value={{
                 brands: state.brands,
+                message: state.message,
+                typeMessage: state.typeMessage,
                 getBrands,
                 deleteBrand
             }}

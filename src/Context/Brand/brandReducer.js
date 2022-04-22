@@ -19,6 +19,13 @@ export const brandReducer = ( state, action ) => {
                 message: action.payload,
                 typeMessage: 'alert-error'
             }
+        case types_brand.removeMessages:
+            return {
+                ...state,
+                message: '',
+                typeMessage: '',
+                error: false
+            }
         default :
             return state;
     }

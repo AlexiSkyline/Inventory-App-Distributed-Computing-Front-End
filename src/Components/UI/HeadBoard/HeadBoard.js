@@ -12,21 +12,7 @@ import { ProductContext } from '../../../Context/Product/ProductContext';
 */
 export const HeadBoard = ({ title }) => {
     const alertContext = useContext( AlertContext );
-    const { alert, showAlert } = alertContext;
-
-    const productContext = useContext( ProductContext );
-    const { message, typeMessage } = productContext;
-
-    /*
-        * Mostramos el mesaje si existe uno en el state
-        * El otro caso es que no se muestre ningun mensaje
-    */
-    useEffect( () => {
-        if( message ) {
-            showAlert( message, typeMessage );
-        }
-        // eslint-disable-next-line
-    } , [message] );
+    const { alert } = alertContext;
     
     return (
         <div className='header'>

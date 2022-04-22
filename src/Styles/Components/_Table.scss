@@ -15,7 +15,7 @@
         }
     }
 
-    table {
+    .table {
         border-spacing: 1;
         border-collapse: collapse;
         background: white;
@@ -78,4 +78,9 @@
         background-color: #f5f5f5;
         cursor: pointer;
     }
+}
+
+.table__brands {
+    height: 30px;
+    width: 60%;
 }

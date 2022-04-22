@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import { ModalContext } from '../../Context/Modal/ModalContext';
 import { ProductContext } from '../../Context/Product/ProductContext';
-import { useForm } from '../../Hooks/useForm';
 
 // * Cuerpo inicial de nuestro inputs de agregar o editar producto
 const initEvent = {
@@ -28,8 +27,8 @@ export const ProductModal = ({ handleResetInput }) => {
 
     /*
         * Hook para obtener los valores del para el modal 'Formulario'
-        * Caso 1: Le pasa los pavalores del producto a editar
-        * Caso 2: Le pasa los pavalores del producto a crear
+        * Caso 1: Le pasa los valores del producto a editar
+        * Caso 2: Le pasa los el objeto initEvent para crear un nuevo producto
     */
     useEffect(() => {
         if( productModeEdit ) {
@@ -37,6 +36,7 @@ export const ProductModal = ({ handleResetInput }) => {
         } else {
             setFormValues( initEvent );
         }
+        // eslint-disable-next-line
     }, [ productModeEdit, setFormValues ]);
     
      // * Funcion para obtener los valores del formulario

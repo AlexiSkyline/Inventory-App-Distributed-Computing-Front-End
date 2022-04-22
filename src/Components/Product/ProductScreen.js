@@ -3,17 +3,15 @@ import { AlertContext } from '../../Context/Alert/AlertContext';
 import { ProductContext } from '../../Context/Product/ProductContext';
 import { FloatingButton } from '../UI/FloatingButton/FloatingButton';
 import { FloatingButtonClose } from '../UI/FloatingButton/FloatingButtonClose';
+import { HeadBoard } from '../UI/HeadBoard/HeadBoard';
 import { ProductModal } from './ProductModal';
 import { TableProducts } from './TableProducts';
 
 export const ProductScreen = () => {
     const header = ['id', 'Nombre', 'Marca','Descripción', 'Precio', 'U. Medida', 'Stock', 'Proveedor' ];
     const productContext = useContext( ProductContext );
-    const { products, getProducts, message, typeMessage, 
-            searchProduct, productSearchFilter, productSearchFilterStatus } = productContext;
-
-    const alertContext = useContext( AlertContext );
-    const { alert, showAlert } = alertContext;
+    const { products, getProducts, searchProduct, productSearchFilter, 
+                        productSearchFilterStatus } = productContext;
 
     // * State para guardar la lista de producto a mostrar
     const [ listProduct, getListProduct ] = useState([]);
@@ -55,23 +53,12 @@ export const ProductScreen = () => {
         }
         // eslint-disable-next-line
     } , [products, productSearchFilterStatus] );
-    
-    /*
-        * Mostramos el mesaje si existe uno en el state
-        * El otro caso es que no se muestre ningun mensaje
-    */
-    useEffect( () => {
-        if( message ) {
-            showAlert( message, typeMessage );
-        }
-        // eslint-disable-next-line
-    } , [message] );
 
     return (
         <main className='data__container content__page'>
-            { alert && <div className={ `alerta ${ alert.type }` }> { alert.msg } </div> }
-
-            <h1>Todos los productos</h1>
+            <HeadBoard 
+                title='Lista de todos los productos'
+            />
             
             <div className='input__search-box'>
                 <input 

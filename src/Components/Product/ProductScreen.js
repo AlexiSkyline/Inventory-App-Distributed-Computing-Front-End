@@ -1,6 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { AlertContext } from '../../Context/Alert/AlertContext';
+import React, { useContext, useEffect, useState } from 'react';
+
 import { ProductContext } from '../../Context/Product/ProductContext';
+
 import { FloatingButton } from '../UI/FloatingButton/FloatingButton';
 import { FloatingButtonClose } from '../UI/FloatingButton/FloatingButtonClose';
 import { HeadBoard } from '../UI/HeadBoard/HeadBoard';

@@ -1,6 +1,44 @@
-import React from 'react'
+import React, { useContext } from 'react';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import { BrandContext } from '../../Context/Brand/BrandContext';
 
 export const TableBrands = ({ titles , brands }) => {
+    const MySwal = withReactContent(Swal);
+
+    const brandContext = useContext( BrandContext );
+    const { deleteBrand, message } = brandContext;
+    
+    /*
+        * Funcion para eliminar un producto
+        * Recibe el id del producto a eliminar
+        * Luego pregunta si desea eliminarlo
+        * Luego elimina el producto
+        * Luego desactiva el modo de busqueda si esta activo
+        * Luego reinicia el input de busqueda de productos
+    */
+    const handleDelete = ( id ) => { 
+        MySwal.fire({
+            title: '¿Estas Seguro?',
+            text: 'El producto se eliminará permanentemente',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Aceptar',
+            cancelButtonText: 'Cancelar'
+        }).then(( result) => {
+            if( result.isConfirmed ) {
+                deleteBrand( id );
+                MySwal.fire(
+                   'Deleted!',
+                   'La marca se eliminó correctamente',
+                   'success'
+                );
+            }
+        });
+    }
+
     return (
         <>  
             <table className='table table__brands'> 
@@ -31,6 +69,7 @@ export const TableBrands = ({ titles , brands }) => {
                                     </button>
                                     <button 
                                         className='btn__delete'
+                                        onClick={ () => handleDelete( brand.id ) }
                                     >
                                         Eliminar
                                     </button>

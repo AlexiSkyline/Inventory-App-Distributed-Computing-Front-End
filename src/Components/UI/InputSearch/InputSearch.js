@@ -20,7 +20,7 @@ export const InputSearch = ({ name, value, placeholder, handleInputChange }) => 
                 onChange={ handleInputChange }
             />
         </div>
-    )
+    );
 }
 
 InputSearch.prototype = {

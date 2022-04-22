@@ -63,8 +63,6 @@ export const ProductState = ( props ) => {
                 type: types.getProductsFailed
             });
         }
-
-        deleteMessage();
     }
 
     const deleteProduct = async ( id ) => {

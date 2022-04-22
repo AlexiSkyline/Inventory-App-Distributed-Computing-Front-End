@@ -26,8 +26,7 @@ export const BrandScreen = () => {
 
     useEffect(() => {
         getBrands();
-        // eslint-disable-next-line
-    }, [])
+    }, [brands])
     
     return (
         <main className='data__container content__page'>

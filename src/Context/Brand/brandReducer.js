@@ -6,7 +6,18 @@ export const brandReducer = ( state, action ) => {
             return {
                 ...state,
                 brands: action.payload,
-                loading: false,
+            }
+        case types_brand.deleteBrand:
+            return {
+                ...state,
+                message: action.payload,
+                typeMessage: 'alert-ok'
+            }
+        case types_brand.deleteBrandFailed:
+            return {
+                ...state,
+                message: action.payload,
+                typeMessage: 'alert-error'
             }
         default :
             return state;

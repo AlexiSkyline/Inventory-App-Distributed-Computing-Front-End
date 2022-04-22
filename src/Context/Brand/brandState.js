@@ -8,7 +8,6 @@ export const BrandState = ( props ) => {
     const path = '/api/Brand';
     const initialState = {
         brands: [],
-        loading: false,
         error: null,
         message: '',
         typeMessage: '',
@@ -33,6 +32,21 @@ export const BrandState = ( props ) => {
         }
     }
 
+    const deleteBrand = async ( id ) => {
+        try {
+            const response = await clientAxios.delete( path + `/${ id }` );
+            dispatch({
+                type: types_brand.deleteBrand,
+                payload: response.data.message
+            });
+        } catch ( error ) {
+            dispatch({
+                type: types_brand.deleteBrandFailed,
+                payload: error.response.data.message
+            });
+        }
+    }
+
     const [ state, dispatch ] = React.useReducer( brandReducer, initialState );
     
     return (
@@ -40,6 +54,7 @@ export const BrandState = ( props ) => {
             value={{
                 brands: state.brands,
                 getBrands,
+                deleteBrand
             }}
         >
             { props.children }

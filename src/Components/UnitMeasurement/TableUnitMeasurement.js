@@ -10,7 +10,7 @@ export const TableUnitMeasurement = ({ unitMs, handleResetSearchInput }) => {
     const MySwal = withReactContent(Swal);
 
     const unitMeasurementContext = useContext( UnitMeasurementContext );
-    const { deleteUnitM, activeModeEdit } = unitMeasurementContext;
+    const { deleteUnitM, activeModeEdit, modeSearchUnitMDesactive } = unitMeasurementContext;
 
     const modalContext = useContext( ModalContext );
     const { uiOpenModal } = modalContext;
@@ -34,6 +34,7 @@ export const TableUnitMeasurement = ({ unitMs, handleResetSearchInput }) => {
                    'success'
                 );
                 handleResetSearchInput();
+                modeSearchUnitMDesactive();
             }
         });
     }
@@ -47,6 +48,8 @@ export const TableUnitMeasurement = ({ unitMs, handleResetSearchInput }) => {
     const handleUpdate = ( unitM ) => {
         uiOpenModal();
         activeModeEdit( unitM );
+        modeSearchUnitMDesactive();
+        handleResetSearchInput();
     }
 
     return (

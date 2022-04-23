@@ -31,6 +31,18 @@ export const unitMeasurementReducer = ( state, action ) => {
                 message: action.payload,
                 typeMessage: 'alert-error'
             }
+        case types_unitMeasurement.searchUnitMActive:
+            return {
+                ...state,
+                unitMsSearchFilterStatus: true,
+                unitMsSearchFilter: state.unitMs.filter( unitMs => unitMs.description.toLowerCase().includes( action.payload.toLowerCase() ) )
+            }
+        case types_unitMeasurement.searchUnitMDesactive:
+            return {
+                ...state,
+                unitMsSearchFilterStatus: false,
+                unitMsSearchFilter: []
+            }
         case types_unitMeasurement.activeModeEdit:
             return {
                 ...state,

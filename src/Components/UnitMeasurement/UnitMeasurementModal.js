@@ -48,6 +48,13 @@ export const UnitMeasurementModal = () => {
         setFormValues( initEvent );
     }
 
+    /*
+        * Funcion para crear o actualizar una unidad de medida 
+        * Caso 1: Crear una unidad de medida
+        * Caso 2: Actualizar una unidad de medida
+        * Luego Desactivamos el modo de busqueda si esta activo
+        * Luego reiniciamos el input de busqueda
+    */
     const handleOnSubmit = ( e ) => {
         e.preventDefault();
         if( !unitMsModeEdit ) {

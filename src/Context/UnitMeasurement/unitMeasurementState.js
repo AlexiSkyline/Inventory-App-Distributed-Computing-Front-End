@@ -41,6 +41,8 @@ export const UnitMeasurementState = ( props ) => {
                 payload: error.response.data.errors.Description[0]
             });
         }
+
+        deleteMessage();
     }
 
     const getUnitMs = async () => {
@@ -73,6 +75,8 @@ export const UnitMeasurementState = ( props ) => {
                 payload: error.response.data.message
             });
         }
+
+        deleteMessage();
     }
 
     const deleteUnitM = async ( id ) => {
@@ -107,12 +111,31 @@ export const UnitMeasurementState = ( props ) => {
         } , 500);
     }
 
+    const modeSearchUnitMDesactive = () => {
+        dispatch({
+            type: types_unitMeasurement.searchUnitMDesactive
+        });
+    }
+
+    const activeModeSearch = ( value ) => {
+        if( value.trim() !== '' ) {
+            dispatch({
+                type: types_unitMeasurement.searchUnitMActive,
+                payload: value
+            });
+        } else {
+            modeSearchUnitMDesactive();
+        }
+    }
+
     return (
         <UnitMeasurementContext.Provider
             value={{
                 unitMs: state.unitMs,
                 message: state.message, 
                 typeMessage: state.typeMessage,
+                unitMsSearchFilter: state.unitMsSearchFilter,
+                unitMsSearchFilterStatus: state.unitMsSearchFilterStatus,
                 unitMsModeEdit: state.unitMsModeEdit,
                 unitMsEdit: state.unitMsEdit,
                 createUnitMs,
@@ -120,7 +143,9 @@ export const UnitMeasurementState = ( props ) => {
                 updateUnitMs,
                 deleteUnitM,
                 activeModeEdit,
-                desactiveModeEdit
+                desactiveModeEdit,
+                activeModeSearch,
+                modeSearchUnitMDesactive
             }}
         >
             {props.children}

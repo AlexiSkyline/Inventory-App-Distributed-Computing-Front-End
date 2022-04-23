@@ -12,10 +12,14 @@ import { UnitMeasurementModal } from './UnitMeasurementModal';
 
 export const UnitMeasurementScreen = () => {
     const unitMeasurementContext = useContext( UnitMeasurementContext );
-    const { unitMs, message, typeMessage, getUnitMs, desactiveModeEdit } = unitMeasurementContext;
+    const { unitMs, message, typeMessage, unitMsSearchFilter, unitMsSearchFilterStatus,
+            getUnitMs, desactiveModeEdit, activeModeSearch } = unitMeasurementContext;
 
     const alertContext = useContext( AlertContext );
     const { showAlert } = alertContext;
+
+    // * State para guardar la lista de unidad de medida a mostrar
+    const [ listUnitMs, getListUnitMs ] = useState([]);
 
     // * State para almacenar el parametro de busqueda
     const [ formValues, setFormValues ] = useState({
@@ -29,6 +33,8 @@ export const UnitMeasurementScreen = () => {
             ...formValues,
             [target.name]: target.value
         });
+
+        activeModeSearch( target.value );
     };
 
      /*
@@ -36,7 +42,7 @@ export const UnitMeasurementScreen = () => {
     */
      function handleResetSearchInput() {
         setFormValues({
-            searchBrandValue: ''
+            searchUnitMsValue: ''
         });
     }
 
@@ -56,9 +62,14 @@ export const UnitMeasurementScreen = () => {
         * El otro caso es obtener las unidades de medida filtrados si el status es true
     */
     useEffect( () => {
-        setTimeout(() => { getUnitMs() }, 800);
+        setTimeout(() => { getUnitMs() }, 800 );
+        if( unitMsSearchFilterStatus ) {
+            getListUnitMs( unitMsSearchFilter );
+        } else {
+            getListUnitMs( unitMs );
+        }
         // eslint-disable-next-line
-    }, [unitMs] );
+    }, [unitMs, unitMsSearchFilterStatus] );
 
     return (
         <main className='data__container content__page'>
@@ -74,7 +85,7 @@ export const UnitMeasurementScreen = () => {
             />
             
             <TableUnitMeasurement 
-                unitMs={ unitMs }
+                unitMs={ listUnitMs }
                 handleResetSearchInput={ handleResetSearchInput }
             />
 

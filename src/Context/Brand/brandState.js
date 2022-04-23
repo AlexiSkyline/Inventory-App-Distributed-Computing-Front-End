@@ -26,6 +26,25 @@ export const BrandState = ( props ) => {
         } , 3000);
     }
 
+    const createBrand = async ( brand ) => { 
+        try {
+            const response = await clientAxios.post( path, {
+                description: brand.description
+            });
+
+            dispatch({
+                type: types_brand.addBrand,
+                payload: response.data
+            });
+        } catch (error) {
+            dispatch({
+                type: types_brand.addBrandFailed
+            });
+        }
+
+        deleteMessage();
+    }
+
     const getBrands = async () => {
         try {
             const response = await clientAxios.get( path );
@@ -63,6 +82,9 @@ export const BrandState = ( props ) => {
                 brands: state.brands,
                 message: state.message,
                 typeMessage: state.typeMessage,
+                brandModeEdit: state.brandModeEdit,
+                brandEdit: state.brandEdit,
+                createBrand,
                 getBrands,
                 deleteBrand
             }}

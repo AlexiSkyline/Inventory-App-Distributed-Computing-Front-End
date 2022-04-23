@@ -8,9 +8,9 @@ const initEvent = {
     description: ''
 }
 
-export const BrandModal = () => {
+export const BrandModal = ({ handleResetInput }) => {
     const brandContext = useContext( BrandContext );
-    const { brandModeEdit } = brandContext;
+    const { brandModeEdit, brandEdit, createBrand } = brandContext;
 
     const modalContext = useContext( ModalContext );
     const { modalOpen, closeModal, uiCloseModal } = modalContext;
@@ -27,8 +27,18 @@ export const BrandModal = () => {
         });
     };
 
-    const handleOnSubmit = ( e ) => {
+    /*
+        * funcion para reiniciar el input de busqueda 
+    */
+    function handleResetInput() {
+        setFormValues( initEvent );
+    }
 
+    const handleOnSubmit = ( e ) => {
+        e.preventDefault();
+        createBrand( formValues );
+        uiCloseModal();
+        handleResetInput();
     }
 
     return (

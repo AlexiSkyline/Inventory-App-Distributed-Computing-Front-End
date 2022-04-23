@@ -49,6 +49,7 @@ export const productReducer = ( state, action ) => {
                 productModeEdit: false,
                 productEdit: null
             }
+        case types.addProductFailed:
         case types.getProductsFailed:
         case types.deleteProductFailed:
         case types.updateProductFailed:

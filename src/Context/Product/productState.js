@@ -45,7 +45,6 @@ export const ProductState = ( props ) => {
             dispatch({
                 type: types.addProductFailed
             });
-            console.log(error);
         }
 
         deleteMessage();

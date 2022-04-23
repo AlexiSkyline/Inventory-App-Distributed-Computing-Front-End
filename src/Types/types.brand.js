@@ -1,4 +1,8 @@
 export const types_brand = {
+    // ! Acciones para crear una marca
+    addBrand: '[Brand] Add Brand',
+    addBrandFailed: '[Brand] Add Brand Failed',
+
     // ! Acciones para las Marcas
     getBrands: '[brands] get brands',
     getBrandsFailed: '[brands] get brands failed',

@@ -1,8 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
+
 import { AlertContext } from '../../Context/Alert/AlertContext';
 import { BrandContext } from '../../Context/Brand/BrandContext';
+
+import { FloatingButton } from '../UI/FloatingButton/FloatingButton';
+import { FloatingButtonClose } from '../UI/FloatingButton/FloatingButtonClose';
 import { HeadBoard } from '../UI/HeadBoard/HeadBoard';
 import { InputSearch } from '../UI/InputSearch/InputSearch';
+import { BrandModal } from './BrandModal';
 import { TableBrands } from './TableBrands';
 
 const headers = [ 'id', 'descripción' ];
@@ -51,12 +56,15 @@ export const BrandScreen = () => {
                 handleInputChange={ handleInputChange }
             />
 
-            <div className='table__container'>
-                <TableBrands
-                    titles={ headers }
-                    brands={ brands }
-                />
-            </div>
+            <TableBrands
+                titles={ headers }
+                brands={ brands }
+            />
+
+            <FloatingButtonClose />
+            <FloatingButton />
+
+            <BrandModal />
         </main>
     );
 }

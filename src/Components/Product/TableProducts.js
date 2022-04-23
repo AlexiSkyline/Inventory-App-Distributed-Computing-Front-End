@@ -57,7 +57,7 @@ export const TableProducts = ({ titles , products, handleResetInput }) => {
     }
 
     return (
-        <>  
+        <div className='table__container'>  
             <table className='table'> 
                 <thead>
                     <tr>
@@ -103,6 +103,6 @@ export const TableProducts = ({ titles , products, handleResetInput }) => {
                     }
                 </tbody>
             </table>
-        </>
+        </div>
     );
 }

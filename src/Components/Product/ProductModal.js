@@ -155,5 +155,5 @@ export const ProductModal = ({ handleResetInput }) => {
                 />
             </form>
         </Modal>
-    )
+    );
 }

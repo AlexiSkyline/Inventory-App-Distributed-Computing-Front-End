@@ -40,7 +40,7 @@ export const TableBrands = ({ titles , brands }) => {
     }
 
     return (
-        <>  
+        <div className='table__container'>  
             <table className='table table__brands'> 
                 <thead>
                     <tr>
@@ -79,6 +79,6 @@ export const TableBrands = ({ titles , brands }) => {
                     }
                 </tbody>
             </table>
-        </>
+        </div>
     );
 }

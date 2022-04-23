@@ -84,13 +84,11 @@ export const ProductScreen = () => {
                 handleInputChange={ handleInputChange }
             />
             
-            <div className='table__container'>
-                <TableProducts 
-                    titles={ header }
-                    products={ listProduct }
-                    handleResetInput={ handleResetInput }
-                />
-            </div>
+            <TableProducts 
+                titles={ header }
+                products={ listProduct }
+                handleResetInput={ handleResetInput }
+            />
 
             <FloatingButtonClose />
             <FloatingButton />

@@ -57,6 +57,24 @@ export const UnitMeasurementState = ( props ) => {
         }
     }
 
+    const updateUnitMs = async ( unitMeasurement ) => {
+        try {
+            const response = await clientAxios.put( `${ path }/${ unitMeasurement.id }`, {
+                description: unitMeasurement.description
+            });
+
+            dispatch({
+                type: types_unitMeasurement.updateUnitMs,
+                payload: response.data.message
+            });
+        } catch ( error ) {
+            dispatch({
+                type: types_unitMeasurement.updateUnitMsFailed,
+                payload: error.response.data.message
+            });
+        }
+    }
+
     const deleteUnitM = async ( id ) => {
         try {
             const respose = await clientAxios.delete( `${ path }/${ id }` );
@@ -99,6 +117,7 @@ export const UnitMeasurementState = ( props ) => {
                 unitMsEdit: state.unitMsEdit,
                 createUnitMs,
                 getUnitMs,
+                updateUnitMs,
                 deleteUnitM,
                 activeModeEdit,
                 desactiveModeEdit

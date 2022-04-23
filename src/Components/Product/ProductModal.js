@@ -65,10 +65,10 @@ export const ProductModal = () => {
         e.preventDefault();
         if( !productModeEdit ) {
             createProduct( formValues );
-            setFormValues( initEvent );
         } else {
             updateProduct( formValues );
         }
+        setFormValues( initEvent );
         uiCloseModal();
         modeSearchProductDesactive();
         handleResetInput();

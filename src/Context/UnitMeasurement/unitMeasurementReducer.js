@@ -14,6 +14,7 @@ export const unitMeasurementReducer = ( state, action ) => {
                 ...state,
                 unitMs: action.payload
             }
+        case types_unitMeasurement.updateUnitMs:
         case types_unitMeasurement.deleteUnitMs:
             return {
                 ...state,
@@ -22,6 +23,7 @@ export const unitMeasurementReducer = ( state, action ) => {
             }
         case types_unitMeasurement.addUnitMsFailed:
         case types_unitMeasurement.getUnitMsFailed:
+        case types_unitMeasurement.updateUnitMsFailed:    
         case types_unitMeasurement.deleteUnitMsFailed:
             return {
                 ...state,

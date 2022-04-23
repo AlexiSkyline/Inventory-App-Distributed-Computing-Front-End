@@ -10,7 +10,7 @@ const initEvent = {
 
 export const BrandModal = () => {
     const brandContext = useContext( BrandContext );
-    const { brandModeEdit, brandEdit, createBrand, updateBrand } = brandContext;
+    const { brandModeEdit, brandEdit, createBrand, updateBrand, modeSearchBrandDesactive } = brandContext;
 
     const modalContext = useContext( ModalContext );
     const { modalOpen, closeModal, uiCloseModal } = modalContext;
@@ -59,13 +59,13 @@ export const BrandModal = () => {
         e.preventDefault();
         if( !brandModeEdit ) {
             createBrand( formValues );
-            setFormValues( initEvent );
         } else {
             updateBrand( formValues );
-            setFormValues( initEvent );
         }
+        setFormValues( initEvent );
         uiCloseModal();
         handleResetInput();
+        modeSearchBrandDesactive();
     }
 
     return (

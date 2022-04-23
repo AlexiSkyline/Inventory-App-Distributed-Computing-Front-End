@@ -13,7 +13,7 @@ export const TableUnitMeasurement = ({ unitMs, handleResetSearchInput }) => {
     const handleDelete = ( id ) => {
         MySwal.fire({
             title: '¿Estas Seguro?',
-            text: 'La Unidad de medida se eliminará permanentemente',
+            text: 'La unidad de medida se eliminará permanentemente',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -25,10 +25,9 @@ export const TableUnitMeasurement = ({ unitMs, handleResetSearchInput }) => {
                 deleteUnitM( id );
                 MySwal.fire(
                    'Deleted!',
-                   'La Unidad de medida se eliminó correctamente',
+                   'La unidad de medida se eliminó correctamente',
                    'success'
                 );
-                handleResetSearchInput();
             }
         });
     }

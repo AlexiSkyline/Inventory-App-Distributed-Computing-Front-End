@@ -8,10 +8,11 @@ import { FloatingButtonClose } from '../UI/FloatingButton/FloatingButtonClose';
 import { HeadBoard } from '../UI/HeadBoard/HeadBoard';
 import { InputSearch } from '../UI/InputSearch/InputSearch';
 import { TableUnitMeasurement } from './TableUnitMeasurement';
+import { UnitMeasurementModal } from './UnitMeasurementModal';
 
 export const UnitMeasurementScreen = () => {
     const unitMeasurementContext = useContext( UnitMeasurementContext );
-    const { unitMs, message, typeMessage, getUnitMs } = unitMeasurementContext;
+    const { unitMs, message, typeMessage, getUnitMs, desactiveModeEdit } = unitMeasurementContext;
 
     const alertContext = useContext( AlertContext );
     const { showAlert } = alertContext;
@@ -77,9 +78,11 @@ export const UnitMeasurementScreen = () => {
                 handleResetSearchInput={ handleResetSearchInput }
             />
 
-            <FloatingButtonClose/>
+            <FloatingButtonClose desactiveModeEdit={ desactiveModeEdit }/>
 
             <FloatingButton />
+
+            <UnitMeasurementModal />
         </main>
     );
 }

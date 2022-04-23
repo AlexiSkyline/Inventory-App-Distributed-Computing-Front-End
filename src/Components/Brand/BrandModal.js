@@ -91,7 +91,7 @@ export const BrandModal = () => {
                 <input 
                     type='submit' 
                     className='btn-primary btn__edit modal-btn' 
-                    value={ brandModeEdit ? 'Editar Producto': 'Agregar producto' }
+                    value={ brandModeEdit ? 'Editar marca': 'Agregar marca' }
                 />
             </form>
         </Modal>

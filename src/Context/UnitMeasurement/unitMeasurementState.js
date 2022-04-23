@@ -62,6 +62,7 @@ export const UnitMeasurementState = ( props ) => {
                 unitMs: state.unitMs,
                 message: state.message, 
                 typeMessage: state.typeMessage,
+                unitMsModeEdit: state.unitMsModeEdit,
                 getUnitMs,
                 deleteUnitM
             }}

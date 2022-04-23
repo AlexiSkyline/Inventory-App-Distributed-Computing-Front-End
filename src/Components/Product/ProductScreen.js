@@ -62,7 +62,7 @@ export const ProductScreen = () => {
         * El otro caso es obtener los productos filtrados si el status es true
     */
     useEffect( () => { 
-        getProducts();
+        setTimeout(() => { getProducts() }, 800 );
         if( productSearchFilterStatus ) {
             getListProduct( productSearchFilter );
         } else {
@@ -94,7 +94,7 @@ export const ProductScreen = () => {
 
             <FloatingButton />
 
-            <ProductModal />
+            <ProductModal handleResetSearchInput={ handleResetSearchInput }/>
         </main>
     );
 }

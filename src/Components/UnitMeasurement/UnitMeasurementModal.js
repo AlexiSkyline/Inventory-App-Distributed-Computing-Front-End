@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Modal from 'react-modal';
+import Proptypes from 'prop-types';
 import { ModalContext } from '../../Context/Modal/ModalContext';
 import { UnitMeasurementContext } from '../../Context/UnitMeasurement/UnitMeasurementContext';
 
@@ -8,9 +9,10 @@ const initEvent = {
     description: ''
 }
 
-export const UnitMeasurementModal = () => {
+export const UnitMeasurementModal = ({ handleResetSearchInput }) => {
     const unitMeasurementContext = useContext( UnitMeasurementContext );
-    const { unitMsModeEdit, unitMsEdit, createUnitMs, updateUnitMs } = unitMeasurementContext;
+    const { unitMsModeEdit, unitMsEdit, createUnitMs, updateUnitMs, 
+                modeSearchUnitMDesactive } = unitMeasurementContext;
 
     const modalContext = useContext( ModalContext );
     const { modalOpen, closeModal, uiCloseModal } = modalContext;
@@ -65,6 +67,8 @@ export const UnitMeasurementModal = () => {
         setFormValues( initEvent );
         uiCloseModal();
         handleResetInput();
+        modeSearchUnitMDesactive();
+        handleResetSearchInput();
     }
 
     return (
@@ -95,4 +99,8 @@ export const UnitMeasurementModal = () => {
             </form>
         </Modal>
     );
+}
+
+UnitMeasurementModal.prototype = {
+    handleResetSearchInput: Proptypes.func.isRequired
 }

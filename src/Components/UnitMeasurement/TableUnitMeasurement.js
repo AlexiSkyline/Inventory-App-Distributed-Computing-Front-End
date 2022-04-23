@@ -48,8 +48,6 @@ export const TableUnitMeasurement = ({ unitMs, handleResetSearchInput }) => {
     const handleUpdate = ( unitM ) => {
         uiOpenModal();
         activeModeEdit( unitM );
-        modeSearchUnitMDesactive();
-        handleResetSearchInput();
     }
 
     return (

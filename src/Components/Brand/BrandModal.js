@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Modal from 'react-modal';
+import Proptypes from 'prop-types';
 import { BrandContext } from '../../Context/Brand/BrandContext';
 import { ModalContext } from '../../Context/Modal/ModalContext';
 
@@ -8,7 +9,7 @@ const initEvent = {
     description: ''
 }
 
-export const BrandModal = () => {
+export const BrandModal = ({ handleResetSearchInput }) => {
     const brandContext = useContext( BrandContext );
     const { brandModeEdit, brandEdit, createBrand, updateBrand, modeSearchBrandDesactive } = brandContext;
 
@@ -66,6 +67,7 @@ export const BrandModal = () => {
         uiCloseModal();
         handleResetInput();
         modeSearchBrandDesactive();
+        handleResetSearchInput();
     }
 
     return (
@@ -96,4 +98,8 @@ export const BrandModal = () => {
             </form>
         </Modal>
     );
+}
+
+BrandModal.propTypes = {
+    handleResetSearchInput: Proptypes.func.isRequired
 }

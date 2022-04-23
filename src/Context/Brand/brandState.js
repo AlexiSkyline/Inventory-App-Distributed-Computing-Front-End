@@ -75,6 +75,8 @@ export const BrandState = ( props ) => {
                 payload: error.response.data.message
             });
         }
+
+        deleteMessage();
     }
 
     const deleteBrand = async ( id ) => {

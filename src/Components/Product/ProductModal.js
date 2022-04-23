@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Modal from 'react-modal';
+import Proptypes from 'prop-types';
 import { ModalContext } from '../../Context/Modal/ModalContext';
 import { ProductContext } from '../../Context/Product/ProductContext';
 
@@ -14,7 +15,7 @@ const initEvent = {
     idProvider: ''
 }
 
-export const ProductModal = () => {
+export const ProductModal = ({ handleResetSearchInput }) => {
     const modalContext = useContext( ModalContext );
     const { modalOpen, closeModal, uiCloseModal } = modalContext;
 
@@ -70,8 +71,9 @@ export const ProductModal = () => {
         }
         setFormValues( initEvent );
         uiCloseModal();
-        modeSearchProductDesactive();
         handleResetInput();
+        modeSearchProductDesactive();
+        handleResetSearchInput();
     }
 
     return (
@@ -162,4 +164,8 @@ export const ProductModal = () => {
             </form>
         </Modal>
     );
+}
+
+ProductModal.prototype = {
+    handleResetSearchInput: Proptypes.func.isRequired
 }

@@ -93,7 +93,9 @@ export const UnitMeasurementScreen = () => {
 
             <FloatingButton />
 
-            <UnitMeasurementModal />
+            <UnitMeasurementModal 
+                handleResetSearchInput={ handleResetSearchInput }
+            />
         </main>
     );
 }

@@ -55,8 +55,6 @@ export const TableBrands = ({ titles , brands, handleResetSearchInput }) => {
     const handleUpdate = ( brand ) => {
         uiOpenModal();
         activeModeEdit( brand );
-        modeSearchBrandDesactive();
-        handleResetSearchInput();
     }
 
     return (

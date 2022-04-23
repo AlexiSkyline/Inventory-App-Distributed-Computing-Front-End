@@ -95,7 +95,9 @@ export const BrandScreen = () => {
 
             <FloatingButton />
 
-            <BrandModal />
+            <BrandModal 
+                handleResetSearchInput={ handleResetSearchInput }
+            />
         </main>
     );
 }

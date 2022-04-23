@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { UnitMeasurementContext } from '../../Context/UnitMeasurement/UnitMeasurementContext';
 import { FloatingButton } from '../UI/FloatingButton/FloatingButton';
 import { FloatingButtonClose } from '../UI/FloatingButton/FloatingButtonClose';
 import { HeadBoard } from '../UI/HeadBoard/HeadBoard';
 import { InputSearch } from '../UI/InputSearch/InputSearch';
 
 export const UnitMeasurementScreen = () => {
+    const unitMeasurementContext = useContext( UnitMeasurementContext );
+    const { unitMs, getUnitMs } = unitMeasurementContext;
+
     // * State para almacenar el parametro de busqueda
     const [ formValues, setFormValues ] = useState({
         searchUnitMsValue: ''
@@ -18,6 +22,11 @@ export const UnitMeasurementScreen = () => {
             [target.name]: target.value
         });
     };
+
+    useEffect( () => {
+        getUnitMs();
+        // eslint-disable-next-line
+    }, [] );
 
     return (
         <main className='data__container content__page'>

@@ -21,6 +21,18 @@ export const unitMeasurementReducer = ( state, action ) => {
                 message: action.payload,
                 typeMessage: 'alert-error'
             }
+        case types_unitMeasurement.activeModeEdit:
+            return {
+                ...state,
+                unitMsModeEdit: true,
+                unitMsEdit: action.payload
+            }
+        case types_unitMeasurement.desactiveModeEdit:
+            return {
+                ...state,
+                unitMsModeEdit: false,
+                unitMsEdit: null
+            }
         case types_unitMeasurement.removeMessages:
             return {
                 ...state,

@@ -2,13 +2,18 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+
 import { UnitMeasurementContext } from '../../Context/UnitMeasurement/UnitMeasurementContext';
+import { ModalContext } from '../../Context/Modal/ModalContext';
 
 export const TableUnitMeasurement = ({ unitMs, handleResetSearchInput }) => {
     const MySwal = withReactContent(Swal);
 
     const unitMeasurementContext = useContext( UnitMeasurementContext );
-    const { deleteUnitM } = unitMeasurementContext;
+    const { deleteUnitM, activeModeEdit } = unitMeasurementContext;
+
+    const modalContext = useContext( ModalContext );
+    const { uiOpenModal } = modalContext;
 
     const handleDelete = ( id ) => {
         MySwal.fire({
@@ -30,6 +35,17 @@ export const TableUnitMeasurement = ({ unitMs, handleResetSearchInput }) => {
                 );
             }
         });
+    }
+
+    /*
+        * Funcion para abrir el modal de editar una unidad de medida
+        * Recibe todo la unidad de medida a editar
+        * Abri el modal
+        * Luego activa el modo de edicion
+    */
+    const handleUpdate = ( unitM ) => {
+        uiOpenModal();
+        activeModeEdit( unitM );
     }
 
     return (
@@ -56,6 +72,7 @@ export const TableUnitMeasurement = ({ unitMs, handleResetSearchInput }) => {
                                 <td>
                                     <button 
                                         className='btn__edit'
+                                        onClick={ () => handleUpdate( unitM ) }
                                     >
                                         Editar
                                     </button>

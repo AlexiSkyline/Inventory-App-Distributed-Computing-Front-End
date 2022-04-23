@@ -56,6 +56,21 @@ export const UnitMeasurementState = ( props ) => {
         deleteMessage();
     }
 
+    const activeModeEdit = ( brand ) => {
+        dispatch({
+            type: types_unitMeasurement.activeModeEdit,
+            payload: brand
+        });
+    }
+
+    const desactiveModeEdit = () => {
+        setTimeout(() => {
+            dispatch({
+                type: types_unitMeasurement.desactiveModeEdit
+            });
+        } , 500);
+    }
+
     return (
         <UnitMeasurementContext.Provider
             value={{
@@ -63,8 +78,11 @@ export const UnitMeasurementState = ( props ) => {
                 message: state.message, 
                 typeMessage: state.typeMessage,
                 unitMsModeEdit: state.unitMsModeEdit,
+                unitMsEdit: state.unitMsEdit,
                 getUnitMs,
-                deleteUnitM
+                deleteUnitM,
+                activeModeEdit,
+                desactiveModeEdit
             }}
         >
             {props.children}

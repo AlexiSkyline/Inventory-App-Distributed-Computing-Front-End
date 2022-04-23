@@ -10,6 +10,7 @@ import { BrandScreen } from '../Components/Brand/BrandScreen';
 import { ProductScreen } from '../Components/Product/ProductScreen';
 
 import { ToolBar } from '../Components/UI/ToolBar/ToolBar';
+import { UnitMeasurementScreen } from '../Components/UnitMeasurement/UnitMeasurementScreen';
 
 export const DashboardRouters = () => {
     return (
@@ -25,6 +26,7 @@ export const DashboardRouters = () => {
                     
                     <Route path = '/productos' element={ <ProductScreen /> }/>
                     <Route path = '/marca' element={ <BrandScreen /> }/>
+                    <Route path = '/medidas' element={ <UnitMeasurementScreen /> }/>
 
                     <Route path = '/' element={ <HomeScreen /> }/>
                 </Routes>

@@ -2,12 +2,16 @@ import React, { useContext } from 'react';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { BrandContext } from '../../Context/Brand/BrandContext';
+import { ModalContext } from '../../Context/Modal/ModalContext';
 
 export const TableBrands = ({ titles , brands }) => {
     const MySwal = withReactContent(Swal);
 
     const brandContext = useContext( BrandContext );
-    const { deleteBrand, message } = brandContext;
+    const { deleteBrand, activeModeEdit } = brandContext;
+
+    const modalContext = useContext( ModalContext );
+    const { uiOpenModal } = modalContext;
     
     /*
         * Funcion para eliminar un producto
@@ -39,6 +43,11 @@ export const TableBrands = ({ titles , brands }) => {
         });
     }
 
+    const handleUpdate = ( brand ) => {
+        uiOpenModal();
+        activeModeEdit( brand );
+    }
+
     return (
         <div className='table__container'>  
             <table className='table table__brands'> 
@@ -64,6 +73,7 @@ export const TableBrands = ({ titles , brands }) => {
                                 <td>
                                     <button 
                                         className='btn__edit'
+                                        onClick={ () => handleUpdate( brand ) }
                                     >
                                         Editar
                                     </button>

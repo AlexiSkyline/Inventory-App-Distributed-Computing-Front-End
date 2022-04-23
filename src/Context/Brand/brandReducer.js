@@ -14,6 +14,7 @@ export const brandReducer = ( state, action ) => {
                 ...state,
                 brands: action.payload,
             }
+        case types_brand.updateBrand:
         case types_brand.deleteBrand:
             return {
                 ...state,
@@ -35,6 +36,18 @@ export const brandReducer = ( state, action ) => {
                 error: true,
                 message: action.payload,
                 typeMessage: 'alert-error'
+            }
+        case types_brand.activeModeEdit:
+            return {
+                ...state,
+                brandModeEdit: true,
+                brandEdit: action.payload
+            }
+        case types_brand.desactiveModeEdit:
+            return {
+                ...state,
+                brandModeEdit: false,
+                brandEdit: null
             }
         case types_brand.removeMessages:
             return {

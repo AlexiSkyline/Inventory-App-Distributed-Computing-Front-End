@@ -7,10 +7,18 @@ export const types_brand = {
     getBrands: '[brands] get brands',
     getBrandsFailed: '[brands] get brands failed',
 
+    // ! Acciones para actualizar una marca
+    updateBrand: '[Brand] Update Brand',
+    updateBrandFailed: '[Brand] Update Brand Failed',
+
     // ! Acciones para eliminar una Marca
     deleteBrand: '[brands] delete brand',
     deleteBrandFailed: '[brands] delete brand failed',
 
     // ! Acciones para eliminar un mensaje
-    removeMessages: '[brands] remove messages'
+    removeMessages: '[brands] remove messages',
+
+    // ! Acciones activar y desactivar modo de edición
+    activeModeEdit: '[brands] active mode edit',
+    desactiveModeEdit: '[brands] desactive mode edit'
 }

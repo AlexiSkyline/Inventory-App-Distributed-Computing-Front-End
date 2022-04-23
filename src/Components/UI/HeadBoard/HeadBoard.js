@@ -16,7 +16,7 @@ export const HeadBoard = ({ title }) => {
     
     return (
         <div className='header'>
-            { alert && <div className={ `alerta ${ alert.type }` }>{ alert.msg }</div> }
+            { alert && <div className={ `alerta alerta__action ${ alert.type }` }>{ alert.msg }</div> }
 
             <h1>{ title }</h1>
         </div>

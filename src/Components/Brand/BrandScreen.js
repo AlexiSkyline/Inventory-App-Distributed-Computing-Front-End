@@ -13,7 +13,7 @@ import { TableBrands } from './TableBrands';
 const headers = [ 'id', 'descripción' ];
 export const BrandScreen = () => {
     const brandContext = useContext( BrandContext );
-    const { brands, getBrands, message, typeMessage,  } = brandContext;
+    const { brands, getBrands, message, typeMessage, desactiveModeEdit } = brandContext;
 
     const alertContext = useContext( AlertContext );
     const { showAlert } = alertContext;
@@ -61,7 +61,8 @@ export const BrandScreen = () => {
                 brands={ brands }
             />
 
-            <FloatingButtonClose />
+            <FloatingButtonClose desactiveModeEdit={ desactiveModeEdit }/>
+
             <FloatingButton />
 
             <BrandModal />

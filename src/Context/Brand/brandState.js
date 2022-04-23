@@ -38,7 +38,8 @@ export const BrandState = ( props ) => {
             });
         } catch (error) {
             dispatch({
-                type: types_brand.addBrandFailed
+                type: types_brand.addBrandFailed,
+                payload: error.response.data.errors.Description[0]
             });
         }
 
@@ -75,6 +76,21 @@ export const BrandState = ( props ) => {
 
         deleteMessage();
     }
+
+    const activeModeEdit = ( brand ) => {
+        dispatch({
+            type: types_brand.activeModeEdit,
+            payload: brand
+        });
+    }
+
+    const desactiveModeEdit = () => {
+        setTimeout(() => {
+            dispatch({
+                type: types_brand.desactiveModeEdit
+            });
+        } , 500);
+    }
     
     return (
         <BrandContext.Provider
@@ -86,7 +102,9 @@ export const BrandState = ( props ) => {
                 brandEdit: state.brandEdit,
                 createBrand,
                 getBrands,
-                deleteBrand
+                deleteBrand,
+                activeModeEdit,
+                desactiveModeEdit
             }}
         >
             { props.children }

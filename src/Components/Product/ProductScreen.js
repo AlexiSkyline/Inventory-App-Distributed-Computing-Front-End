@@ -14,7 +14,7 @@ export const ProductScreen = () => {
     const header = ['id', 'Nombre', 'Marca','Descripción', 'Precio', 'U. Medida', 'Stock', 'Proveedor' ];
     const productContext = useContext( ProductContext );
     const { products, getProducts, searchProduct, productSearchFilter, 
-                message, typeMessage, productSearchFilterStatus } = productContext;
+                message, typeMessage, productSearchFilterStatus, desactiveModeEdit } = productContext;
     
     const alertContext = useContext( AlertContext );
     const { showAlert } = alertContext;
@@ -90,8 +90,10 @@ export const ProductScreen = () => {
                 handleResetInput={ handleResetInput }
             />
 
-            <FloatingButtonClose />
+            <FloatingButtonClose desactiveModeEdit={ desactiveModeEdit }/>
+
             <FloatingButton />
+
             <ProductModal 
                 handleResetInput={ handleResetInput }
             />

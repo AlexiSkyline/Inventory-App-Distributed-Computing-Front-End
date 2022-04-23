@@ -43,7 +43,8 @@ export const ProductState = ( props ) => {
             });
         } catch (error) {
             dispatch({
-                type: types.addProductFailed
+                type: types.addProductFailed,
+                payload: error.response.data.errors.Description[0]
             });
         }
 

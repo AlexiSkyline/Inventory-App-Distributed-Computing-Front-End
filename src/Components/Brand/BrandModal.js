@@ -8,7 +8,7 @@ const initEvent = {
     description: ''
 }
 
-export const BrandModal = ({ handleResetInput }) => {
+export const BrandModal = () => {
     const brandContext = useContext( BrandContext );
     const { brandModeEdit, brandEdit, createBrand, updateBrand } = brandContext;
 

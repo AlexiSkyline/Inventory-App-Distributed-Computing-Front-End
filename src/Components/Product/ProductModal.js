@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import { ModalContext } from '../../Context/Modal/ModalContext';
 import { ProductContext } from '../../Context/Product/ProductContext';
@@ -14,7 +15,7 @@ const initEvent = {
     idProvider: ''
 }
 
-export const ProductModal = ({ handleResetInput }) => {
+export const ProductModal = () => {
     const modalContext = useContext( ModalContext );
     const { modalOpen, closeModal, uiCloseModal } = modalContext;
 
@@ -46,6 +47,13 @@ export const ProductModal = ({ handleResetInput }) => {
             [target.name]: target.value
         });
     };
+
+    /*
+        * funcion para reiniciar el input de busqueda 
+    */
+    function handleResetInput() {
+        setFormValues( initEvent );
+    }
 
     /*
         * Funcion para crear o actualizar un producto 

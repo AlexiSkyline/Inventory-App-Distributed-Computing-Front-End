@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { ModalContext } from '../../Context/Modal/ModalContext';
 import { ProductContext } from '../../Context/Product/ProductContext';
 
-export const TableProducts = ({ titles , products, handleResetInput }) => {
+export const TableProducts = ({ titles , products, handleResetSearchInput }) => {
     const MySwal = withReactContent(Swal)
 
     const productContext = useContext( ProductContext );
@@ -40,7 +41,7 @@ export const TableProducts = ({ titles , products, handleResetInput }) => {
                   'success'
                 );
                 modeSearchProductDesactive();
-                handleResetInput();
+                handleResetSearchInput();
             }
         });
     }
@@ -105,4 +106,10 @@ export const TableProducts = ({ titles , products, handleResetInput }) => {
             </table>
         </div>
     );
+}
+
+TableProducts.prototype = { 
+    titles: PropTypes.array.isRequired,
+    products: PropTypes.array.isRequired,
+    handleResetSearchInput: PropTypes.func.isRequired
 }

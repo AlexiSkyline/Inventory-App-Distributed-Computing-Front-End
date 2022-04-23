@@ -40,7 +40,7 @@ export const ProductScreen = () => {
     /*
         * funcion para reiniciar el input de busqueda 
     */
-    function handleResetInput() {
+    function handleResetSearchInput() {
         setFormValues({
             searchProductValue: ''
         });
@@ -87,16 +87,14 @@ export const ProductScreen = () => {
             <TableProducts 
                 titles={ header }
                 products={ listProduct }
-                handleResetInput={ handleResetInput }
+                handleResetSearchInput={ handleResetSearchInput }
             />
 
             <FloatingButtonClose desactiveModeEdit={ desactiveModeEdit }/>
 
             <FloatingButton />
 
-            <ProductModal 
-                handleResetInput={ handleResetInput }
-            />
+            <ProductModal />
         </main>
     );
 }

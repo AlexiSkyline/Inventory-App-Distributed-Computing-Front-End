@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import { ModalContext } from '../../../Context/Modal/ModalContext';
 
 export const FloatingButtonClose = ({ desactiveModeEdit }) => {
@@ -15,4 +16,8 @@ export const FloatingButtonClose = ({ desactiveModeEdit }) => {
             { modalOpen && <button className='fab fab-close' onClick={ handleClickNew } /> }
         </>
     );
+}
+
+FloatingButtonClose.prototype = { 
+    desactiveModeEdit: PropTypes.func.isRequired
 }

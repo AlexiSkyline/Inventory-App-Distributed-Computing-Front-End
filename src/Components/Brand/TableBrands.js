@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { BrandContext } from '../../Context/Brand/BrandContext';
 import { ModalContext } from '../../Context/Modal/ModalContext';
 
-export const TableBrands = ({ titles , brands }) => {
+export const TableBrands = ({ titles , brands, handleResetSearchInput }) => {
     const MySwal = withReactContent(Swal);
 
     const brandContext = useContext( BrandContext );
@@ -14,17 +15,17 @@ export const TableBrands = ({ titles , brands }) => {
     const { uiOpenModal } = modalContext;
     
     /*
-        * Funcion para eliminar un producto
-        * Recibe el id del producto a eliminar
+        * Funcion para eliminar una marca
+        * Recibe el id de la marca a eliminar
         * Luego pregunta si desea eliminarlo
-        * Luego elimina el producto
+        * Luego elimina la marca
         * Luego desactiva el modo de busqueda si esta activo
-        * Luego reinicia el input de busqueda de productos
+        * Luego reinicia el input de busqueda de la marca
     */
     const handleDelete = ( id ) => { 
         MySwal.fire({
             title: '¿Estas Seguro?',
-            text: 'El producto se eliminará permanentemente',
+            text: 'La marca se eliminará permanentemente',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -91,4 +92,10 @@ export const TableBrands = ({ titles , brands }) => {
             </table>
         </div>
     );
+}
+
+TableBrands.prototype = {
+    titles: PropTypes.array.isRequired,
+    brands: PropTypes.array.isRequired,
+    handleResetSearchInput: PropTypes.func.isRequired
 }

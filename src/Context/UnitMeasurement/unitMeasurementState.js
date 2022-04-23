@@ -25,6 +25,24 @@ export const UnitMeasurementState = ( props ) => {
         } , 3000);
     }
 
+    const createUnitMs = async ( unitMeasurement ) => {
+        try {
+            const response = await clientAxios.post( path, {
+                description: unitMeasurement.description
+            });
+
+            dispatch({
+                type: types_unitMeasurement.addUnitMs,
+                payload: response.data
+            });
+        } catch (error) {
+            dispatch({
+                type: types_unitMeasurement.addUnitMsFailed,
+                payload: error.response.data.errors.Description[0]
+            });
+        }
+    }
+
     const getUnitMs = async () => {
         try {
             const response = await clientAxios.get( path );
@@ -79,6 +97,7 @@ export const UnitMeasurementState = ( props ) => {
                 typeMessage: state.typeMessage,
                 unitMsModeEdit: state.unitMsModeEdit,
                 unitMsEdit: state.unitMsEdit,
+                createUnitMs,
                 getUnitMs,
                 deleteUnitM,
                 activeModeEdit,

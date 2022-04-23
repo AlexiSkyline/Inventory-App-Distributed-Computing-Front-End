@@ -2,6 +2,13 @@ import { types_unitMeasurement } from "../../Types/types.UnitMeasurement";
 
 export const unitMeasurementReducer = ( state, action ) => {
     switch ( action.type ) {
+        case types_unitMeasurement.addUnitMs:
+            return {
+                ...state,
+                unitMs: [ ...state.unitMs, action.payload ],
+                message: action.payload.message,
+                typeMessage: 'alert-ok',
+            }
         case types_unitMeasurement.getUnitMs:
             return {
                 ...state,
@@ -13,6 +20,7 @@ export const unitMeasurementReducer = ( state, action ) => {
                 message: action.payload,
                 typeMessage: 'alert-ok'
             }
+        case types_unitMeasurement.addUnitMsFailed:
         case types_unitMeasurement.getUnitMsFailed:
         case types_unitMeasurement.deleteUnitMsFailed:
             return {

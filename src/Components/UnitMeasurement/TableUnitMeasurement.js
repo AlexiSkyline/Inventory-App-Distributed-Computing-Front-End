@@ -33,6 +33,7 @@ export const TableUnitMeasurement = ({ unitMs, handleResetSearchInput }) => {
                    'La unidad de medida se eliminó correctamente',
                    'success'
                 );
+                handleResetSearchInput();
             }
         });
     }

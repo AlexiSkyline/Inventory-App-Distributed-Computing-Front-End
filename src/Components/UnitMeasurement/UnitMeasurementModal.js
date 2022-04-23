@@ -10,7 +10,7 @@ const initEvent = {
 
 export const UnitMeasurementModal = () => {
     const unitMeasurementContext = useContext( UnitMeasurementContext );
-    const { unitMsModeEdit, unitMsEdit } = unitMeasurementContext;
+    const { createUnitMs, unitMsModeEdit, unitMsEdit } = unitMeasurementContext;
 
     const modalContext = useContext( ModalContext );
     const { modalOpen, closeModal, uiCloseModal } = modalContext;
@@ -49,6 +49,13 @@ export const UnitMeasurementModal = () => {
     }
 
     const handleOnSubmit = ( e ) => {
+        e.preventDefault();
+        if( !unitMsModeEdit ) {
+            createUnitMs( formValues );
+            setFormValues( initEvent );
+        } else {
+            console.log( 'Actualizar' );
+        }
         uiCloseModal();
         handleResetInput();
     }

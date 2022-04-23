@@ -59,11 +59,10 @@ export const ProductModal = ({ handleResetInput }) => {
         if( !productModeEdit ) {
             createProduct( formValues );
             setFormValues( initEvent );
-            uiCloseModal();
         } else {
             updateProduct( formValues );
-            uiCloseModal();
         }
+        uiCloseModal();
         modeSearchProductDesactive();
         handleResetInput();
     }

@@ -60,6 +60,24 @@ export const BrandState = ( props ) => {
         }
     }
 
+    const updateBrand = async ( brand ) => {
+        try {
+            const response = await clientAxios.put( path + `/${ state.brandEdit.id }`, {
+                description: brand.description
+            });
+
+            dispatch({
+                type: types_brand.updateBrand,
+                payload: response.data.message
+            });
+        } catch (error) {
+            dispatch({
+                type: types_brand.updateBrandFailed,
+                payload: error.response.data.message
+            });
+        }
+    }
+
     const deleteBrand = async ( id ) => {
         try {
             const response = await clientAxios.delete( path + `/${ id }` );
@@ -102,6 +120,7 @@ export const BrandState = ( props ) => {
                 brandEdit: state.brandEdit,
                 createBrand,
                 getBrands,
+                updateBrand,
                 deleteBrand,
                 activeModeEdit,
                 desactiveModeEdit

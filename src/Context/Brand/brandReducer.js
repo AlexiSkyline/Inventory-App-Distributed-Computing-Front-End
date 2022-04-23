@@ -21,21 +21,26 @@ export const brandReducer = ( state, action ) => {
                 message: action.payload,
                 typeMessage: 'alert-ok'
             }
-        case types_brand.deleteBrandFailed:
-            return {
-                ...state,
-                message: action.payload,
-                typeMessage: 'alert-error'
-            }
         case types_brand.addBrandFailed:
         case types_brand.getBrandsFailed:
         case types_brand.deleteBrandFailed:
             return {
                 ...state,
-                loading: false,
                 error: true,
                 message: action.payload,
                 typeMessage: 'alert-error'
+            }
+        case types_brand.searchBrandActive:
+            return {
+                ...state,
+                brandSearchFilterStatus: true,
+                brandSearchFilter: state.brands.filter( brand => brand.description.toLowerCase().includes( action.payload.toLowerCase() ) )
+            }
+        case types_brand.searchBrandDesactive:
+            return {
+                ...state,
+                brandSearchFilterStatus: false,
+                brandSearchFilter: []
             }
         case types_brand.activeModeEdit:
             return {

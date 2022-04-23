@@ -13,10 +13,14 @@ import { TableBrands } from './TableBrands';
 const headers = [ 'id', 'descripción' ];
 export const BrandScreen = () => {
     const brandContext = useContext( BrandContext );
-    const { brands, getBrands, message, typeMessage, desactiveModeEdit } = brandContext;
+    const { brands, getBrands, message, typeMessage, desactiveModeEdit,
+                brandSearchFilter, brandSearchFilterStatus, activeModeSearch } = brandContext;
 
     const alertContext = useContext( AlertContext );
     const { showAlert } = alertContext;
+
+    // * State para guardar la lista de producto a mostrar
+    const [ listBrands, getListBrands ] = useState([]);
 
     // * State para almacenar el parametro de busqueda
     const [ formValues, setFormValues ] = useState({
@@ -30,8 +34,23 @@ export const BrandScreen = () => {
             ...formValues,
             [target.name]: target.value
         });
+
+        activeModeSearch( target.value );
     };
 
+    /*
+        * funcion para reiniciar el input de busqueda 
+    */
+    function handleResetSearchInput() {
+        setFormValues({
+            searchBrandValue: ''
+        });
+    }
+
+    /*
+        * Mostramos el mesaje si existe uno en el state
+        * El otro caso es que no se muestre ningun mensaje
+    */
     useEffect( () => {
         if( message ) {
             showAlert( message, typeMessage );
@@ -39,9 +58,19 @@ export const BrandScreen = () => {
         // eslint-disable-next-line
     } , [message] );
 
-    useEffect(() => {
+    /* 
+        * Obtenemos las marcas y cargarlos en el state
+        * El otro caso es obtener las marcas filtrados si el status es true
+    */
+    useEffect( () => { 
         getBrands();
-    }, [brands])
+        if( brandSearchFilterStatus ) {
+            getListBrands( brandSearchFilter );
+        } else {
+            getListBrands( brands );
+        }
+        // eslint-disable-next-line
+    } , [brands, brandSearchFilterStatus] );
     
     return (
         <main className='data__container content__page'>
@@ -58,7 +87,8 @@ export const BrandScreen = () => {
 
             <TableBrands
                 titles={ headers }
-                brands={ brands }
+                brands={ listBrands }
+                handleResetSearchInput={ handleResetSearchInput }
             />
 
             <FloatingButtonClose desactiveModeEdit={ desactiveModeEdit }/>

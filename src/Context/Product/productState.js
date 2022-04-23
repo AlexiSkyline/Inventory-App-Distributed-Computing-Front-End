@@ -131,7 +131,7 @@ export const ProductState = ( props ) => {
         });
     }
 
-    const searchProduct = async ( filter ) => {
+    const searchProduct = ( filter ) => {
         if( filter.trim() !== '' ) {
             dispatch({
                 type: types.searchProductActive,

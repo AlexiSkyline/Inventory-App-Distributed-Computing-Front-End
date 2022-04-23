@@ -1,8 +1,7 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
 import { AlertContext } from '../../../Context/Alert/AlertContext';
-import { ProductContext } from '../../../Context/Product/ProductContext';
 
 /*
     * Este componente nos ayuda a mostrar la cabecera de la pantalla 

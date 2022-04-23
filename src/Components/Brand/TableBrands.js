@@ -9,7 +9,7 @@ export const TableBrands = ({ titles , brands, handleResetSearchInput }) => {
     const MySwal = withReactContent(Swal);
 
     const brandContext = useContext( BrandContext );
-    const { deleteBrand, activeModeEdit } = brandContext;
+    const { deleteBrand, activeModeEdit, modeSearchBrandDesactive } = brandContext;
 
     const modalContext = useContext( ModalContext );
     const { uiOpenModal } = modalContext;
@@ -40,13 +40,23 @@ export const TableBrands = ({ titles , brands, handleResetSearchInput }) => {
                    'La marca se eliminó correctamente',
                    'success'
                 );
+                modeSearchBrandDesactive();
+                handleResetSearchInput();
             }
         });
     }
 
+    /*
+        * Funcion para abrir el modal de editar una marca
+        * Recibe todo la marca a editar
+        * Abri el modal
+        * Luego activa el modo de edicion
+    */
     const handleUpdate = ( brand ) => {
         uiOpenModal();
         activeModeEdit( brand );
+        modeSearchBrandDesactive();
+        handleResetSearchInput();
     }
 
     return (

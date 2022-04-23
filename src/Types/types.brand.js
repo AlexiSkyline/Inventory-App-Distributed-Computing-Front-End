@@ -20,5 +20,9 @@ export const types_brand = {
 
     // ! Acciones activar y desactivar modo de edición
     activeModeEdit: '[brands] active mode edit',
-    desactiveModeEdit: '[brands] desactive mode edit'
+    desactiveModeEdit: '[brands] desactive mode edit',
+
+    // ! Acciones para activar y desactivar el modo de busqueda
+    searchBrandActive: '[brands] search brand active',
+    searchBrandDesactive: '[brands] search brand desactive',
 }

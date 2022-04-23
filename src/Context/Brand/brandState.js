@@ -11,7 +11,6 @@ export const BrandState = ( props ) => {
         error: null,
         message: '',
         typeMessage: '',
-        brandSearch: '',
         brandSearchFilter: [],
         brandSearchFilterStatus: false,
         brandModeEdit: false,
@@ -110,12 +109,31 @@ export const BrandState = ( props ) => {
         } , 500);
     }
     
+    const modeSearchBrandDesactive = () => {
+        dispatch({
+            type: types_brand.searchBrandDesactive
+        });
+    }
+
+    const activeModeSearch = ( value ) => {
+        if( value.trim() !== '' ) {
+            dispatch({
+                type: types_brand.searchBrandActive,
+                payload: value
+            });
+        } else {
+            modeSearchBrandDesactive();
+        }
+    }
+
     return (
         <BrandContext.Provider
             value={{
                 brands: state.brands,
                 message: state.message,
                 typeMessage: state.typeMessage,
+                brandSearchFilter: state.brandSearchFilter,
+                brandSearchFilterStatus: state.brandSearchFilterStatus,
                 brandModeEdit: state.brandModeEdit,
                 brandEdit: state.brandEdit,
                 createBrand,
@@ -123,7 +141,9 @@ export const BrandState = ( props ) => {
                 updateBrand,
                 deleteBrand,
                 activeModeEdit,
-                desactiveModeEdit
+                desactiveModeEdit,
+                activeModeSearch,
+                modeSearchBrandDesactive
             }}
         >
             { props.children }

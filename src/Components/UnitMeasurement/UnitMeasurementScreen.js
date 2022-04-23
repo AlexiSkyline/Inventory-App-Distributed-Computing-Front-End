@@ -4,6 +4,7 @@ import { FloatingButton } from '../UI/FloatingButton/FloatingButton';
 import { FloatingButtonClose } from '../UI/FloatingButton/FloatingButtonClose';
 import { HeadBoard } from '../UI/HeadBoard/HeadBoard';
 import { InputSearch } from '../UI/InputSearch/InputSearch';
+import { TableUnitMeasurement } from './TableUnitMeasurement';
 
 export const UnitMeasurementScreen = () => {
     const unitMeasurementContext = useContext( UnitMeasurementContext );
@@ -23,6 +24,15 @@ export const UnitMeasurementScreen = () => {
         });
     };
 
+     /*
+        * funcion para reiniciar el input de busqueda 
+    */
+     function handleResetSearchInput() {
+        setFormValues({
+            searchBrandValue: ''
+        });
+    }
+
     useEffect( () => {
         getUnitMs();
         // eslint-disable-next-line
@@ -39,6 +49,11 @@ export const UnitMeasurementScreen = () => {
                 value={ searchUnitMsValue }
                 placeholder={ 'Buscar unidad de medida por su descripción' }
                 handleInputChange={ handleInputChange }
+            />
+            
+            <TableUnitMeasurement 
+                unitMs={ unitMs }
+                handleResetSearchInput={ handleResetSearchInput }
             />
 
             <FloatingButtonClose/>

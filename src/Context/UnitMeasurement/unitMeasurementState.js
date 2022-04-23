@@ -19,6 +19,12 @@ export const UnitMeasurementState = ( props ) => {
 
     const [ state, dispatch ] = React.useReducer( unitMeasurementReducer, initialState );
 
+    const deleteMessage = () => {
+        setTimeout(() => {
+            dispatch({ type: types_unitMeasurement.removeMessages });
+        } , 3000);
+    }
+
     const getUnitMs = async () => {
         try {
             const response = await clientAxios.get( path );
@@ -33,11 +39,31 @@ export const UnitMeasurementState = ( props ) => {
         }
     }
 
+    const deleteUnitM = async ( id ) => {
+        try {
+            const respose = await clientAxios.delete( `${ path }/${ id }` );
+            dispatch({
+                type: types_unitMeasurement.deleteUnitMs,
+                payload: respose.data.message
+            });
+        } catch ( error ) {
+            dispatch({
+                type: types_unitMeasurement.deleteUnitMFailed,
+                payload: error.response.data.message
+            });
+        }
+
+        deleteMessage();
+    }
+
     return (
         <UnitMeasurementContext.Provider
             value={{
                 unitMs: state.unitMs,
-                getUnitMs
+                message: state.message, 
+                typeMessage: state.typeMessage,
+                getUnitMs,
+                deleteUnitM
             }}
         >
             {props.children}

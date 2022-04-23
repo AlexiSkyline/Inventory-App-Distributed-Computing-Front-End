@@ -1,7 +1,38 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import { UnitMeasurementContext } from '../../Context/UnitMeasurement/UnitMeasurementContext';
 
 export const TableUnitMeasurement = ({ unitMs, handleResetSearchInput }) => {
+    const MySwal = withReactContent(Swal);
+
+    const unitMeasurementContext = useContext( UnitMeasurementContext );
+    const { deleteUnitM } = unitMeasurementContext;
+
+    const handleDelete = ( id ) => {
+        MySwal.fire({
+            title: '¿Estas Seguro?',
+            text: 'La Unidad de medida se eliminará permanentemente',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Aceptar',
+            cancelButtonText: 'Cancelar'
+        }).then(( result) => {
+            if( result.isConfirmed ) {
+                deleteUnitM( id );
+                MySwal.fire(
+                   'Deleted!',
+                   'La Unidad de medida se eliminó correctamente',
+                   'success'
+                );
+                handleResetSearchInput();
+            }
+        });
+    }
+
     return (
         <div className='table__container'>  
             <table className='table table__brands'> 
@@ -31,6 +62,7 @@ export const TableUnitMeasurement = ({ unitMs, handleResetSearchInput }) => {
                                     </button>
                                     <button 
                                         className='btn__delete'
+                                        onClick={ () => handleDelete( unitM.id ) }
                                     >
                                         Eliminar
                                     </button>

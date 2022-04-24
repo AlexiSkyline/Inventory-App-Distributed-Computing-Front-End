@@ -58,7 +58,7 @@ export const PersonState = ( props ) => {
             });
         } catch (error) {
             dispatch({
-                type: types_business.getBusinessFailed,
+                type: types_person.getPeopleFailed
             });
         }
     }

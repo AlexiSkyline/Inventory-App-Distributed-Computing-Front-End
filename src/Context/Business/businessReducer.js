@@ -31,6 +31,18 @@ export const businessReducer = ( state, action ) => {
                 message: action.payload,
                 typeMessage: 'alert-error',
             }
+        case types_business.activeModeEdit:
+            return {
+                ...state,
+                businessModeEdit: true,
+                businessEdit: action.payload
+            }
+        case types_business.desactiveModeEdit:
+            return {
+                ...state,
+                businessModeEdit: false,
+                businessEdit: null
+            }
         case types_business.removeMessages:
             return {
                 ...state,

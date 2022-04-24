@@ -95,6 +95,21 @@ export const BusinessState = ( props ) => {
 
         deleteMessage();
     }
+
+    const activeModeEdit = ( business ) => {
+        dispatch({
+            type: types_business.activeModeEdit,
+            payload: business
+        });
+    }
+
+    const desactiveModeEdit = () => {
+        setTimeout(() => {
+            dispatch({
+                type: types_business.desactiveModeEdit
+            });
+        } , 500);
+    }
     
     return (
         <BusinessContext.Provider 

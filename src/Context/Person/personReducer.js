@@ -31,6 +31,18 @@ export const personReducer = ( state, action ) => {
                 message: action.payload,
                 typeMessage: 'alert-error',
             }
+        case types_person.activeModeEdit:
+            return {
+                ...state,
+                statusEditModePerson: true,
+                infPersonEdit: action.payload
+            }
+        case types_person.desactiveModeEdit:
+            return {
+                ...state,
+                infPersonEdit: false,
+                infPersonEdit: null
+            }
         case types_person.removeMessages: 
             return {
                 ...state,

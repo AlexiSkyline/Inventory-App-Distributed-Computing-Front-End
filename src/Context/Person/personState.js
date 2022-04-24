@@ -104,6 +104,21 @@ export const PersonState = ( props ) => {
         deleteMessage();
     }
 
+    const activeModeEdit = ( business ) => {
+        dispatch({
+            type: types_person.activeModeEdit,
+            payload: business
+        });
+    }
+
+    const desactiveModeEdit = () => {
+        setTimeout(() => {
+            dispatch({
+                type: types_person.desactiveModeEdit
+            });
+        } , 500);
+    }
+
     return (
         <PersonContext.Provider
             value={{
@@ -120,6 +135,8 @@ export const PersonState = ( props ) => {
                 updatePerson,
                 deletePerson,
                 deleteMessage,
+                activeModeEdit,
+                desactiveModeEdit
             }}
         >
             { props.children }

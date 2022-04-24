@@ -16,7 +16,7 @@ export const BusinessModal = ({ handleResetSearchInput }) => {
     const { modalOpen, closeModal, uiCloseModal } = modalContext;
 
     const businessContext = useContext( BusinessContext );
-    const { businessModeEdit, createBusiness } = businessContext;
+    const { businessModeEdit, businessEdit, createBusiness } = businessContext;
 
     // * State para almacenar la informacion de la empresa a crear o actualizar
     const [ formValues, setFormValues ] = useState( initEvent );
@@ -29,7 +29,7 @@ export const BusinessModal = ({ handleResetSearchInput }) => {
     */
     useEffect(() => {
         if( businessModeEdit ) {
-
+            setFormValues( businessEdit );
         } else {
             setFormValues( initEvent );
         }

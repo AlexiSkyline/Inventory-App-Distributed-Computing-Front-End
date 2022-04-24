@@ -4,12 +4,16 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
 import { BusinessContext } from '../../Context/Business/BusinessContext';
+import { ModalContext } from '../../Context/Modal/ModalContext';
 
 export const TableBusiness = ({ business, handleResetSearchInput  }) => {
     const MySwal = withReactContent(Swal);
 
     const businessContext = useContext( BusinessContext );
-    const { deleteBusiness } = businessContext;
+    const { deleteBusiness, activeModeEdit } = businessContext;
+
+    const modalContext = useContext( ModalContext );
+    const { uiOpenModal } = modalContext;
     
     const handleDelete = ( id ) => {
         MySwal.fire({
@@ -41,7 +45,8 @@ export const TableBusiness = ({ business, handleResetSearchInput  }) => {
         * Luego activa el modo de edicion
     */
     const handleUpdate = ( busines ) => {
-        
+        uiOpenModal();
+        activeModeEdit( busines );
     }
 
     return (

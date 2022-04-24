@@ -25,7 +25,7 @@ export const PersonState = ( props ) => {
         }, 3000 );
     }
 
-    const createPerson = async ( data, type = '' ) => { 
+    const createPerson = async ( data, type ) => { 
         try {
             const response = await clientAxios.post( `/api/${ type }`, {
                 name: data.name,
@@ -49,6 +49,20 @@ export const PersonState = ( props ) => {
         deleteMessage();
     }
 
+    const getPeople = async ( type ) => {
+        try {
+            const response = await clientAxios.get( `/api/${ type }` );
+            dispatch({
+                type: types_person.getPeople,
+                payload: response.data.results
+            });
+        } catch (error) {
+            dispatch({
+                type: types_business.getBusinessFailed,
+            });
+        }
+    }
+
     return (
         <PersonContext.Provider
             value={{
@@ -61,6 +75,7 @@ export const PersonState = ( props ) => {
                 statusEditModePerson: state.statusEditModePerson,
                 infPersonEdit: state.infPersonEdit,
                 createPerson,
+                getPeople,
                 deleteMessage,
             }}
         >

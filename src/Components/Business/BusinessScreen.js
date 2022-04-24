@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { AlertContext } from '../../Context/Alert/AlertContext';
 import { BusinessContext } from '../../Context/Business/BusinessContext';
 import { FloatingButton } from '../UI/FloatingButton/FloatingButton';
 import { FloatingButtonClose } from '../UI/FloatingButton/FloatingButtonClose';
@@ -11,6 +12,9 @@ export const BusinessScreen = () => {
     const { business, message, typeMessage, businessSearchFilter, businessSearchFilterStatus, 
                 getBusiness, desactiveModeEdit, activeModeSearch } = businessContext;
     
+    const alertContext = useContext( AlertContext );
+    const { showAlert } = alertContext;
+
     // * State para guardar la lista de producto a mostrar
     const [ listBusiness, getListBusiness ] = useState([]);
 
@@ -38,6 +42,17 @@ export const BusinessScreen = () => {
             searchBrandValue: ''
         });
     }
+
+     /*
+        * Mostramos el mesaje si existe uno en el state
+        * El otro caso es que no se muestre ningun mensaje
+    */
+     useEffect( () => {
+        if( message ) {
+            showAlert( message, typeMessage );
+        }
+        // eslint-disable-next-line
+    } , [message] );
 
     /* 
         * Obtenemos las empresas y cargarlos en el state

@@ -1,11 +1,11 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Modal from 'react-modal';
 import Proptypes from 'prop-types';
 
 import { ModalContext } from '../../Context/Modal/ModalContext';
 import { BusinessContext } from '../../Context/Business/BusinessContext';
 
-// * Cuerpo inicial de nuestro inputs de agregar o editar unidad de medida
+// * Cuerpo inicial de nuestro inputs de agregar o editar empresa
 const initEvent = {
     name: '',
     address: '',
@@ -16,11 +16,25 @@ export const BusinessModal = ({ handleResetSearchInput }) => {
     const { modalOpen, closeModal, uiCloseModal } = modalContext;
 
     const businessContext = useContext( BusinessContext );
-    const { businessModeEdit } = businessContext;
+    const { businessModeEdit, createBusiness } = businessContext;
 
-    // * State para almacenar la informacion de la unidad de medida a crear o actualizar
+    // * State para almacenar la informacion de la empresa a crear o actualizar
     const [ formValues, setFormValues ] = useState( initEvent );
     const { name, address } = formValues;
+
+    /*
+        * Hook para obtener los valores del para el modal 'Formulario'
+        * Caso 1: Le pasa los valores de la empresa a editar
+        * Caso 2: Le pasa los el objeto initEvent para crear una nueva empresa
+    */
+    useEffect(() => {
+        if( businessModeEdit ) {
+
+        } else {
+            setFormValues( initEvent );
+        }
+        // eslint-disable-next-line
+    }, [ businessModeEdit, setFormValues ]);
 
     // * Funcion para obtener los valores del formulario
     const handleInputChange = ({ target }) => {
@@ -38,14 +52,24 @@ export const BusinessModal = ({ handleResetSearchInput }) => {
     }
 
     /*
-        * Funcion para crear o actualizar una unidad de medida 
-        * Caso 1: Crear una unidad de medida
-        * Caso 2: Actualizar una unidad de medida
+        * Funcion para crear o actualizar una empresa 
+        * Caso 1: Crear una empresa
+        * Caso 2: Actualizar una empresa
         * Luego Desactivamos el modo de busqueda si esta activo
         * Luego reiniciamos el input de busqueda
     */
     const handleOnSubmit = ( e ) => {
+        e.preventDefault();
+        setFormValues( initEvent );
+        if( !businessModeEdit ) {
+            createBusiness( formValues );
+        } else {
 
+        }
+        setFormValues( initEvent );
+        uiCloseModal();
+        handleResetInput();
+        handleResetSearchInput();
     }
 
     return (

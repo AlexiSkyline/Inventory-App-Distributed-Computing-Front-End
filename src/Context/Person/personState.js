@@ -83,6 +83,25 @@ export const PersonState = ( props ) => {
                 payload: error.response.data.message
             });
         }
+
+        deleteMessage();
+    }
+
+    const deletePerson = async ( id, type ) => {
+        try {
+            const response = await clientAxios.delete( `/api/${ type }/${ id }` );
+            dispatch({
+                type: types_person.deletePerson,
+                payload: response.data.message
+            });
+        } catch (error) {
+            dispatch({
+                type: types_person.deletePersonFailed,
+                payload: error.response.data.message
+            });
+        }
+
+        deleteMessage();
     }
 
     return (
@@ -99,6 +118,7 @@ export const PersonState = ( props ) => {
                 createPerson,
                 getPeople,
                 updatePerson,
+                deletePerson,
                 deleteMessage,
             }}
         >

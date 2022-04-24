@@ -15,6 +15,7 @@ export const personReducer = ( state, action ) => {
                 peopleList: action.payload,
             }
         case types_person.updatePerson:
+        case types_person.deletePerson:
             return {
                 ...state,
                 message: action.payload,
@@ -23,6 +24,7 @@ export const personReducer = ( state, action ) => {
         case types_person.addPersonFailed:
         case types_person.getPeopleFailed:
         case types_person.updatePersonFailed:
+        case types_person.deletePersonFailed:
             return {
                 ...state,
                 error: true,

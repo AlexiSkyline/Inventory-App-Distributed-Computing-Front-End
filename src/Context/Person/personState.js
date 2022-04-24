@@ -63,6 +63,28 @@ export const PersonState = ( props ) => {
         }
     }
 
+    const updatePerson = async ( data, type ) => {
+        try {
+            const response = await clientAxios.put( `/api/${ type }/${ state.infPersonEdit.id }`, {
+                name: data.name,
+                lastName: data.lastName,
+                rfc: data.rfc,
+                address: data.address,
+                email: data.email,
+                phoneNumber: data.phoneNumber
+            });
+            dispatch({
+                type: types_person.updatePerson,
+                payload: response.data.message
+            })
+        } catch (error) {
+            dispatch({
+                type: types_person.updatePersonFailed,
+                payload: error.response.data.message
+            });
+        }
+    }
+
     return (
         <PersonContext.Provider
             value={{
@@ -76,6 +98,7 @@ export const PersonState = ( props ) => {
                 infPersonEdit: state.infPersonEdit,
                 createPerson,
                 getPeople,
+                updatePerson,
                 deleteMessage,
             }}
         >

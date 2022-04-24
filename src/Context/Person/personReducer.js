@@ -14,8 +14,15 @@ export const personReducer = ( state, action ) => {
                 ...state,
                 peopleList: action.payload,
             }
+        case types_person.updatePerson:
+            return {
+                ...state,
+                message: action.payload,
+                typeMessage: 'alert-ok',
+            }
         case types_person.addPersonFailed:
         case types_person.getPeopleFailed:
+        case types_person.updatePersonFailed:
             return {
                 ...state,
                 error: true,

@@ -14,8 +14,15 @@ export const businessReducer = ( state, action ) => {
                 ...state,
                 business: action.payload,
             }
+        case types_business.updateBusiness:
+            return {
+                ...state,
+                message: action.payload,
+                typeMessage: 'alert-ok',
+            }
         case types_business.addBusinessFailed:
         case types_business.getBusinessFailed:
+        case types_business.updateBusinessFailed:
             return {
                 ...state,
                 error: true,

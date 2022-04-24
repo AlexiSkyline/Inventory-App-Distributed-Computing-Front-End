@@ -59,6 +59,26 @@ export const BusinessState = ( props ) => {
         }
     }
     
+    const updateBussines = async ( business ) => {
+        try {
+            const response = await clientAxios.put( `path/${ state.businessEdit.id }`, {
+                name: business.name,
+                address: business.address,
+            });
+            dispatch({
+                type: types_business.updateBusiness,
+                payload: response.data.message
+            });
+        } catch ( error) { 
+            dispatch({
+                type: types_business.updateBusinessFailed,
+                payload: error.response.data.message
+            });
+        }
+
+        deleteMessage();
+    }
+    
     return (
         <BusinessContext.Provider 
             value={{
@@ -72,6 +92,7 @@ export const BusinessState = ( props ) => {
                 deleteMessage,
                 createBusiness,
                 getBusiness,
+                updateBussines,
             }}
         >
             {props.children}

@@ -88,9 +88,9 @@ export const ClientState = ( props ) => {
         deleteMessage();
     }
 
-    const deleteClient = async ( id, type ) => {
+    const deleteClient = async ( id ) => {
         try {
-            const response = await clientAxios.delete( `/api/${ type }/${ id }` );
+            const response = await clientAxios.delete( `${ path }/${ id }` );
             dispatch({
                 type: types_client.deleteClient,
                 payload: response.data.message
@@ -105,10 +105,10 @@ export const ClientState = ( props ) => {
         deleteMessage();
     }
 
-    const activeModeEdit = ( business ) => {
+    const activeModeEdit = ( client ) => {
         dispatch({
             type: types_client.activeModeEdit,
-            payload: business
+            payload: client
         });
     }
 

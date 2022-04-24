@@ -12,6 +12,7 @@ import { ProductScreen } from '../Components/Product/ProductScreen';
 import { ToolBar } from '../Components/UI/ToolBar/ToolBar';
 import { UnitMeasurementScreen } from '../Components/UnitMeasurement/UnitMeasurementScreen';
 import { BusinessScreen } from '../Components/Business/BusinessScreen';
+import { ClientScreen } from '../Components/Client/ClientScreen';
 
 export const DashboardRouters = () => {
     return (
@@ -29,6 +30,7 @@ export const DashboardRouters = () => {
                     <Route path = '/marca' element={ <BrandScreen /> }/>
                     <Route path = '/medidas' element={ <UnitMeasurementScreen /> }/>
                     <Route path = '/empresa' element={ <BusinessScreen /> }/>
+                    <Route path = '/clientes' element={ <ClientScreen /> }/>
 
                     <Route path = '/' element={ <HomeScreen /> }/>
                 </Routes>

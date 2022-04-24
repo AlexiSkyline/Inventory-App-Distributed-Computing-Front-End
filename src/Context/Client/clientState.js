@@ -1,33 +1,34 @@
 import React, { useReducer } from 'react';
 import { clientAxios } from '../../Config/Axios';
-import { types_person } from '../../Types/types.person';
+import { types_client } from '../../Types/types.client';
 
-import { PersonContext } from './PersonContext';
-import { personReducer } from './personReducer';
+import { ClientContext } from './ClientContext';
+import { clientReducer } from './clientReducer';
 
-export const PersonState = ( props ) => {
+export const ClientState = ( props ) => {
+    const path = '/api/Client';
     const initialState = { 
-        peopleList: [],
+        clientList: [],
         error: null,
         message: '',
         typeMessage: '',
-        listPeopleFound: [],
+        listClientFound: [],
         searchModeStatus: false,
-        statusEditModePerson: false,
-        infPersonEdit: null,
+        statusEditModeClient: false,
+        infClientEdit: null,
     };
 
-    const [ state, dispatch ] = useReducer( personReducer, initialState );
+    const [ state, dispatch ] = useReducer( clientReducer, initialState );
     
     const deleteMessage = () => { 
         setTimeout(() => {
-            dispatch({ type: types_person.removeMessages });
+            dispatch({ type: types_client.removeMessages });
         }, 3000 );
     }
 
-    const createPerson = async ( data, type ) => { 
+    const createClient = async ( data ) => { 
         try {
-            const response = await clientAxios.post( `/api/${ type }`, {
+            const response = await clientAxios.post( path, {
                 name: data.name,
                 lastName: data.lastName,
                 rfc: data.rfc,
@@ -36,12 +37,12 @@ export const PersonState = ( props ) => {
                 phoneNumber: data.phoneNumber
             });
             dispatch({
-                type: types_person.addPerson,
+                type: types_client.addClient,
                 payload: response.data
             });
         } catch (error) {
             dispatch({
-                type: types_person.addPersonFailed,
+                type: types_client.addClientFailed,
                 payload: error.response.data.errors.Description[0]
             });
         }
@@ -49,23 +50,23 @@ export const PersonState = ( props ) => {
         deleteMessage();
     }
 
-    const getPeople = async ( type ) => {
+    const getClients = async () => {
         try {
-            const response = await clientAxios.get( `/api/${ type }` );
+            const response = await clientAxios.get( path );
             dispatch({
-                type: types_person.getPeople,
+                type: types_client.getClient,
                 payload: response.data.results
             });
         } catch (error) {
             dispatch({
-                type: types_person.getPeopleFailed
+                type: types_client.getClientFailed,
             });
         }
     }
 
-    const updatePerson = async ( data, type ) => {
+    const updateClient = async ( data ) => {
         try {
-            const response = await clientAxios.put( `/api/${ type }/${ state.infPersonEdit.id }`, {
+            const response = await clientAxios.put( `${ path }/${ state.infPersonEdit.id }`, {
                 name: data.name,
                 lastName: data.lastName,
                 rfc: data.rfc,
@@ -74,12 +75,12 @@ export const PersonState = ( props ) => {
                 phoneNumber: data.phoneNumber
             });
             dispatch({
-                type: types_person.updatePerson,
+                type: types_client.updateClient,
                 payload: response.data.message
             })
         } catch (error) {
             dispatch({
-                type: types_person.updatePersonFailed,
+                type: types_client.updateClientFailed,
                 payload: error.response.data.message
             });
         }
@@ -87,16 +88,16 @@ export const PersonState = ( props ) => {
         deleteMessage();
     }
 
-    const deletePerson = async ( id, type ) => {
+    const deleteClient = async ( id, type ) => {
         try {
             const response = await clientAxios.delete( `/api/${ type }/${ id }` );
             dispatch({
-                type: types_person.deletePerson,
+                type: types_client.deleteClient,
                 payload: response.data.message
             });
         } catch (error) {
             dispatch({
-                type: types_person.deletePersonFailed,
+                type: types_client.deleteClientFailed,
                 payload: error.response.data.message
             });
         }
@@ -106,7 +107,7 @@ export const PersonState = ( props ) => {
 
     const activeModeEdit = ( business ) => {
         dispatch({
-            type: types_person.activeModeEdit,
+            type: types_client.activeModeEdit,
             payload: business
         });
     }
@@ -114,51 +115,51 @@ export const PersonState = ( props ) => {
     const desactiveModeEdit = () => {
         setTimeout(() => {
             dispatch({
-                type: types_person.desactiveModeEdit
+                type: types_client.desactiveModeEdit
             });
         } , 500);
     }
 
-    const disactivePersonEditingMode = () => {
+    const disactiveClientEditingMode = () => {
         dispatch({
-            type: types_person.searchPeopleDesactive
+            type: types_client.searchClientDesactive
         });
     }
 
-    const searchPeople = async ( value ) => {
+    const searchClient = async ( value ) => {
         if( value.trim() !== '' ) {
             dispatch({
-                type: types_person.searchPeopleActive,
+                type: types_client.searchClientActive,
                 payload: value
             });
         } else {
-            disactivePersonEditingMode();
+            disactiveClientEditingMode();
         }
     }
 
     return (
-        <PersonContext.Provider
+        <ClientContext.Provider
             value={{
-                peopleList: state.peopleList,
+                clientList: state.clientList,
                 error: state.error,
                 message: state.message,
                 typeMessage: state.typeMessage,
-                listPeopleFound: state.listPeopleFound,
+                listClientFound: state.listClientFound,
                 searchModeStatus: state.searchModeStatus,
-                statusEditModePerson: state.statusEditModePerson,
-                infPersonEdit: state.infPersonEdit,
-                createPerson,
-                getPeople,
-                updatePerson,
-                deletePerson,
+                statusEditModeClient: state.statusEditModeClient,
+                infClientEdit: state.infClientEdit,
+                createClient,
+                getClients,
+                updateClient,
+                deleteClient,
                 deleteMessage,
                 activeModeEdit,
                 desactiveModeEdit,
-                searchPeople,
-                disactivePersonEditingMode
+                searchClient,
+                disactiveClientEditingMode
             }}
         >
             { props.children }
-        </PersonContext.Provider>
+        </ClientContext.Provider>
     );
 }

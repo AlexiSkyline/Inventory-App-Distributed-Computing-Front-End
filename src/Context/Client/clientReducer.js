@@ -1,61 +1,61 @@
-import { types_person } from "../../Types/types.person";
+import { types_client } from '../../Types/types.client';
 
-export const personReducer = ( state, action ) => {
+export const clientReducer = ( state, action ) => {
     switch( action.type ) {
-        case types_person.addPerson:
+        case types_client.addClient:
             return {
                 ...state,
-                peopleList: [ ...state.peopleList, action.payload ],
+                clientList: [ ...state.clientList, action.payload ],
                 message: action.payload.message,
                 typeMessage: 'alert-ok',
             }
-        case types_person.getPeople:
+        case types_client.getClient:
             return {
                 ...state,
                 peopleList: action.payload,
             }
-        case types_person.updatePerson:
-        case types_person.deletePerson:
+        case types_client.updateClient:
+        case types_client.deleteClient:
             return {
                 ...state,
                 message: action.payload,
                 typeMessage: 'alert-ok',
             }
-        case types_person.addPersonFailed:
-        case types_person.getPeopleFailed:
-        case types_person.updatePersonFailed:
-        case types_person.deletePersonFailed:
+        case types_client.addClientFailed:
+        case types_client.getClientFailed:
+        case types_client.updateClientFailed:
+        case types_client.deleteClientFailed:
             return {
                 ...state,
                 error: true,
                 message: action.payload,
                 typeMessage: 'alert-error',
             }
-        case types_person.activeModeEdit:
+        case types_client.activeModeEdit:
             return {
                 ...state,
                 statusEditModePerson: true,
                 infPersonEdit: action.payload
             }
-        case types_person.desactiveModeEdit:
+        case types_client.desactiveModeEdit:
             return {
                 ...state,
                 infPersonEdit: false,
                 infPersonEdit: null
             }
-        case types_person.searchPeopleActive:
+        case types_client.searchClientActive:
             return {
                 ...state,
                 searchModeStatus: true,
                 listPeopleFound: state.peopleList.filter( person => person.name.toLowerCase().includes( action.payload.toLowerCase() ) )
             }
-        case types_person.searchPeopleDesactive:
+        case types_client.searchClientDesactive:
             return {
                 ...state,
                 searchModeStatus: false,
                 listPeopleFound: []
             }
-        case types_person.removeMessages: 
+        case types_client.removeMessages: 
             return {
                 ...state,
                 message: '',

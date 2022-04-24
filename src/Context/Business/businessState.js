@@ -44,19 +44,34 @@ export const BusinessState = ( props ) => {
 
         deleteMessage();
     }
+
+    const getBusiness = async () => {
+        try {
+            const response =  await clientAxios.get( path );
+            dispatch({
+                type: types_business.getBusiness,
+                payload: response.data.results
+            });
+        } catch (error) {
+            dispatch({
+                type: types_business.getBusinessFailed,
+            });
+        }
+    }
     
     return (
         <BusinessContext.Provider 
             value={{
-                business: initialState.business,
-                message: initialState.message,
-                typeMessage: initialState.typeMessage,
-                businessSearchFilter: initialState.businessSearchFilter,
-                businessSearchFilterStatus: initialState.businessSearchFilterStatus,
-                businessModeEdit: initialState.businessModeEdit,
-                businessEdit: initialState.businessEdit,
+                business: state.business,
+                message: state.message,
+                typeMessage: state.typeMessage,
+                businessSearchFilter: state.businessSearchFilter,
+                businessSearchFilterStatus: state.businessSearchFilterStatus,
+                businessModeEdit: state.businessModeEdit,
+                businessEdit: state.businessEdit,
                 deleteMessage,
                 createBusiness,
+                getBusiness,
             }}
         >
             {props.children}

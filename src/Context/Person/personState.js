@@ -1,4 +1,5 @@
 import React, { useReducer } from 'react';
+import { clientAxios } from '../../Config/Axios';
 import { types_person } from '../../Types/types.person';
 
 import { PersonContext } from './PersonContext';
@@ -24,6 +25,30 @@ export const PersonState = ( props ) => {
         }, 3000 );
     }
 
+    const createPerson = async ( data, type = '' ) => { 
+        try {
+            const response = await clientAxios.post( `/api/${ type }`, {
+                name: data.name,
+                lastName: data.lastName,
+                rfc: data.rfc,
+                address: data.address,
+                email: data.email,
+                phoneNumber: data.phoneNumber
+            });
+            dispatch({
+                type: types_person.addPerson,
+                payload: response.data
+            });
+        } catch (error) {
+            dispatch({
+                type: types_person.addPersonFailed,
+                payload: error.response.data.errors.Description[0]
+            });
+        }
+
+        deleteMessage();
+    }
+
     return (
         <PersonContext.Provider
             value={{
@@ -35,6 +60,8 @@ export const PersonState = ( props ) => {
                 searchModeStatus: state.searchModeStatus,
                 statusEditModePerson: state.statusEditModePerson,
                 infPersonEdit: state.infPersonEdit,
+                createPerson,
+                deleteMessage,
             }}
         >
             { props.children }

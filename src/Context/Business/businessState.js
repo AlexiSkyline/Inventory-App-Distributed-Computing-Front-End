@@ -59,7 +59,7 @@ export const BusinessState = ( props ) => {
         }
     }
     
-    const updateBussines = async ( business ) => {
+    const updateBusiness = async ( business ) => {
         try {
             const response = await clientAxios.put( `${ path }/${ state.businessEdit.id }`, {
                 name: business.name,
@@ -141,7 +141,7 @@ export const BusinessState = ( props ) => {
                 createBusiness,
                 getBusiness,
                 deleteBusiness,
-                updateBussines,
+                updateBusiness,
                 deleteMessage,
                 activeModeEdit,
                 desactiveModeEdit,

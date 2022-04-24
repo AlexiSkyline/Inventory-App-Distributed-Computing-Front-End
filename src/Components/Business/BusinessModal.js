@@ -12,11 +12,11 @@ const initEvent = {
 }
 
 export const BusinessModal = ({ handleResetSearchInput }) => {
+    const businessContext = useContext( BusinessContext );
+    const { businessModeEdit, businessEdit, createBusiness, updateBusiness } = businessContext;
+    
     const modalContext = useContext( ModalContext );
     const { modalOpen, closeModal, uiCloseModal } = modalContext;
-
-    const businessContext = useContext( BusinessContext );
-    const { businessModeEdit, businessEdit, createBusiness } = businessContext;
 
     // * State para almacenar la informacion de la empresa a crear o actualizar
     const [ formValues, setFormValues ] = useState( initEvent );
@@ -64,7 +64,7 @@ export const BusinessModal = ({ handleResetSearchInput }) => {
         if( !businessModeEdit ) {
             createBusiness( formValues );
         } else {
-
+            updateBusiness( formValues );
         }
         setFormValues( initEvent );
         uiCloseModal();

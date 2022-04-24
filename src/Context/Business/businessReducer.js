@@ -31,6 +31,18 @@ export const businessReducer = ( state, action ) => {
                 message: action.payload,
                 typeMessage: 'alert-error',
             }
+        case types_business.searchBusinesActive:
+            return {
+                ...state,
+                businessSearchFilterStatus: true,
+                businessSearchFilter: state.business.filter( brand => brand.name.toLowerCase().includes( action.payload.toLowerCase() ) )
+            }
+        case types_business.searchBusinesDesactive:
+            return {
+                ...state,
+                businessSearchFilterStatus: false,
+                businessSearchFilter: []
+            }
         case types_business.activeModeEdit:
             return {
                 ...state,

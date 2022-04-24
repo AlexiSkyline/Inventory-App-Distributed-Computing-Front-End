@@ -110,6 +110,23 @@ export const BusinessState = ( props ) => {
             });
         } , 500);
     }
+
+    const modeSearchBusinessDesactive = () => {
+        dispatch({
+            type: types_business.searchBusinesDesactive
+        });
+    }
+
+    const activeModeSearch = ( value ) => {
+        if( value.trim() !== '' ) {
+            dispatch({
+                type: types_business.searchBusinesActive,
+                payload: value
+            });
+        } else {
+            modeSearchBusinessDesactive();
+        }
+    }
     
     return (
         <BusinessContext.Provider 
@@ -126,6 +143,10 @@ export const BusinessState = ( props ) => {
                 getBusiness,
                 updateBussines,
                 deleteBusiness,
+                activeModeEdit,
+                desactiveModeEdit,
+                activeModeSearch,
+                modeSearchBusinessDesactive
             }}
         >
             {props.children}

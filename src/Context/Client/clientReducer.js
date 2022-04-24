@@ -12,7 +12,7 @@ export const clientReducer = ( state, action ) => {
         case types_client.getClient:
             return {
                 ...state,
-                peopleList: action.payload,
+                clientList: action.payload,
             }
         case types_client.updateClient:
         case types_client.deleteClient:
@@ -35,25 +35,25 @@ export const clientReducer = ( state, action ) => {
             return {
                 ...state,
                 statusEditModePerson: true,
-                infPersonEdit: action.payload
+                infClientEdit: action.payload
             }
         case types_client.desactiveModeEdit:
             return {
                 ...state,
-                infPersonEdit: false,
-                infPersonEdit: null
+                infClientEdit: false,
+                infClientEdit: null
             }
         case types_client.searchClientActive:
             return {
                 ...state,
                 searchModeStatus: true,
-                listPeopleFound: state.peopleList.filter( person => person.name.toLowerCase().includes( action.payload.toLowerCase() ) )
+                listClientFound: state.peopleList.filter( person => person.name.toLowerCase().includes( action.payload.toLowerCase() ) )
             }
         case types_client.searchClientDesactive:
             return {
                 ...state,
                 searchModeStatus: false,
-                listPeopleFound: []
+                listClientFound: []
             }
         case types_client.removeMessages: 
             return {

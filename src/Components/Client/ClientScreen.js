@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { ClientContext } from '../../Context/Client/ClientContext';
 
@@ -6,6 +6,7 @@ import { FloatingButton } from '../UI/FloatingButton/FloatingButton';
 import { FloatingButtonClose } from '../UI/FloatingButton/FloatingButtonClose';
 import { HeadBoard } from '../UI/HeadBoard/HeadBoard';
 import { InputSearch } from '../UI/InputSearch/InputSearch';
+import { TableClients } from './TableClients';
 
 export const ClientScreen = () => {
     const clientContext = useContext( ClientContext );
@@ -13,7 +14,7 @@ export const ClientScreen = () => {
                 getClients, desactiveModeEdit, activeModeSearch } = clientContext;
 
     // * State para guardar la lista de Clientes a mostrar
-    const [ listBusiness, getListBusiness ] = useState([]);
+    const [ listClients, getListClients ] = useState([]);
 
     // * State para almacenar el parametro de busqueda
     const [ formValues, setFormValues ] = useState({
@@ -38,6 +39,14 @@ export const ClientScreen = () => {
         });
     }
 
+    /* 
+        * Obtenemos las empresas y cargarlos en el state
+        * El otro caso es obtener las empresas filtrados si el status es true
+    */
+    useEffect( () => {
+        setTimeout(() => { getClients() }, 800);
+    }, [ clientList ] );
+
     return (
         <main className='data__container content__page'>
             <HeadBoard
@@ -51,10 +60,10 @@ export const ClientScreen = () => {
                 handleInputChange={ handleInputChange }
             />
             
-            {/* <TableClients
-                clients={ listClient }
+            <TableClients
+                listClients={ clientList }
                 handleResetSearchInput={ handleResetSearchInput }
-            /> */}
+            />
 
             <FloatingButtonClose desactiveModeEdit={ desactiveModeEdit }/>
 

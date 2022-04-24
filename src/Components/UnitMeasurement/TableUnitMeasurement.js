@@ -52,7 +52,7 @@ export const TableUnitMeasurement = ({ unitMs, handleResetSearchInput }) => {
 
     return (
         <div className='table__container'>  
-            <table className='table table__brands'> 
+            <table className='table table__small'> 
                 <thead>
                     <tr>
                         <th>ID</th>

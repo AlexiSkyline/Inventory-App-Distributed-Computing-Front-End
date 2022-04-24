@@ -13,8 +13,9 @@ const initEvent = {
 
 export const BusinessModal = ({ handleResetSearchInput }) => {
     const businessContext = useContext( BusinessContext );
-    const { businessModeEdit, businessEdit, createBusiness, updateBusiness } = businessContext;
-    
+    const { businessModeEdit, businessEdit, createBusiness, 
+                updateBusiness, modeSearchBusinessDesactive } = businessContext;
+
     const modalContext = useContext( ModalContext );
     const { modalOpen, closeModal, uiCloseModal } = modalContext;
 
@@ -69,6 +70,7 @@ export const BusinessModal = ({ handleResetSearchInput }) => {
         setFormValues( initEvent );
         uiCloseModal();
         handleResetInput();
+        modeSearchBusinessDesactive();
         handleResetSearchInput();
     }
 

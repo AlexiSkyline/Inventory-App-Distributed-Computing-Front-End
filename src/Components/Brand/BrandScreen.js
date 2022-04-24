@@ -19,7 +19,7 @@ export const BrandScreen = () => {
     const alertContext = useContext( AlertContext );
     const { showAlert } = alertContext;
 
-    // * State para guardar la lista de producto a mostrar
+    // * State para guardar la lista de marca a mostrar
     const [ listBrands, getListBrands ] = useState([]);
 
     // * State para almacenar el parametro de busqueda
@@ -63,7 +63,7 @@ export const BrandScreen = () => {
         * El otro caso es obtener las marcas filtrados si el status es true
     */
     useEffect( () => { 
-        getBrands();
+        setTimeout(() => { getBrands() }, 800);
         if( brandSearchFilterStatus ) {
             getListBrands( brandSearchFilter );
         } else {

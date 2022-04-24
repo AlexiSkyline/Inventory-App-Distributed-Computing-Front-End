@@ -59,7 +59,7 @@ export const TableBrands = ({ titles , brands, handleResetSearchInput }) => {
 
     return (
         <div className='table__container'>  
-            <table className='table table__brands'> 
+            <table className='table table__small'> 
                 <thead>
                     <tr>
                         {

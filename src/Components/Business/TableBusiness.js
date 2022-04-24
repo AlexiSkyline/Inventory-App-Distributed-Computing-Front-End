@@ -10,7 +10,7 @@ export const TableBusiness = ({ business, handleResetSearchInput  }) => {
     const MySwal = withReactContent(Swal);
 
     const businessContext = useContext( BusinessContext );
-    const { deleteBusiness, activeModeEdit } = businessContext;
+    const { deleteBusiness, activeModeEdit, modeSearchBusinessDesactive } = businessContext;
 
     const modalContext = useContext( ModalContext );
     const { uiOpenModal } = modalContext;
@@ -34,6 +34,7 @@ export const TableBusiness = ({ business, handleResetSearchInput  }) => {
                    'success'
                 );
                 handleResetSearchInput();
+                modeSearchBusinessDesactive();
             }
         });
     }

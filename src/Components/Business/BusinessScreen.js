@@ -16,7 +16,7 @@ export const BusinessScreen = () => {
     const alertContext = useContext( AlertContext );
     const { showAlert } = alertContext;
 
-    // * State para guardar la lista de producto a mostrar
+    // * State para guardar la lista de empresas a mostrar
     const [ listBusiness, getListBusiness ] = useState([]);
 
     // * State para almacenar el parametro de busqueda
@@ -40,7 +40,7 @@ export const BusinessScreen = () => {
     */
     function handleResetSearchInput() {
         setFormValues({
-            searchBrandValue: ''
+            searchBusinessValue: ''
         });
     }
 
@@ -61,8 +61,13 @@ export const BusinessScreen = () => {
     */
     useEffect( () => { 
         setTimeout(() => { getBusiness() }, 800);
+        if( businessSearchFilterStatus ) {
+            getListBusiness( businessSearchFilter );
+        } else {
+            getListBusiness( business );
+        }
         // eslint-disable-next-line
-    } , [business] );
+    } , [business, businessSearchFilterStatus] );
     
     return (
         <main className='data__container content__page'>
@@ -78,7 +83,7 @@ export const BusinessScreen = () => {
             />
 
             <TableBusiness
-                business={ business }
+                business={ listBusiness }
                 handleResetSearchInput={ handleResetSearchInput }
             />
 

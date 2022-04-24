@@ -15,6 +15,7 @@ export const businessReducer = ( state, action ) => {
                 business: action.payload,
             }
         case types_business.updateBusiness:
+        case types_business.deleteBusiness:
             return {
                 ...state,
                 message: action.payload,
@@ -23,6 +24,7 @@ export const businessReducer = ( state, action ) => {
         case types_business.addBusinessFailed:
         case types_business.getBusinessFailed:
         case types_business.updateBusinessFailed:
+        case types_business.deleteBusinessFailed:
             return {
                 ...state,
                 error: true,

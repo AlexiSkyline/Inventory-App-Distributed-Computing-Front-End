@@ -78,6 +78,23 @@ export const BusinessState = ( props ) => {
 
         deleteMessage();
     }
+
+    const deleteBusiness = async ( id ) => {
+        try {
+            const response = await clientAxios.delete( `path/${ id }` );
+            dispatch({
+                type: types_business.deleteBusiness,
+                payload: response.data.message
+            });
+        } catch ( error) { 
+            dispatch({
+                type: types_business.deleteBusinessFailed,
+                payload: error.response.data.message
+            });
+        }
+
+        deleteMessage();
+    }
     
     return (
         <BusinessContext.Provider 
@@ -93,6 +110,7 @@ export const BusinessState = ( props ) => {
                 createBusiness,
                 getBusiness,
                 updateBussines,
+                deleteBusiness,
             }}
         >
             {props.children}

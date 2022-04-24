@@ -5,6 +5,7 @@ import { FloatingButton } from '../UI/FloatingButton/FloatingButton';
 import { FloatingButtonClose } from '../UI/FloatingButton/FloatingButtonClose';
 import { HeadBoard } from '../UI/HeadBoard/HeadBoard';
 import { InputSearch } from '../UI/InputSearch/InputSearch';
+import { BusinessModal } from './BusinessModal';
 import { TableBusiness } from './TableBusiness';
 
 export const BusinessScreen = () => {
@@ -85,9 +86,9 @@ export const BusinessScreen = () => {
 
             <FloatingButton />
 
-            {/* <BrandModal 
+            <BusinessModal 
                 handleResetSearchInput={ handleResetSearchInput }
-            /> */}
+            />
         </main>
     );
 }

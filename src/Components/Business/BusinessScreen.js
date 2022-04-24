@@ -4,11 +4,15 @@ import { FloatingButton } from '../UI/FloatingButton/FloatingButton';
 import { FloatingButtonClose } from '../UI/FloatingButton/FloatingButtonClose';
 import { HeadBoard } from '../UI/HeadBoard/HeadBoard';
 import { InputSearch } from '../UI/InputSearch/InputSearch';
+import { TableBusiness } from './TableBusiness';
 
 export const BusinessScreen = () => {
     const businessContext = useContext( BusinessContext );
     const { business, message, typeMessage, businessSearchFilter, businessSearchFilterStatus, 
                 getBusiness, desactiveModeEdit, activeModeSearch } = businessContext;
+    
+    // * State para guardar la lista de producto a mostrar
+    const [ listBusiness, getListBusiness ] = useState([]);
 
     // * State para almacenar el parametro de busqueda
     const [ formValues, setFormValues ] = useState({
@@ -35,6 +39,15 @@ export const BusinessScreen = () => {
         });
     }
 
+    /* 
+        * Obtenemos las empresas y cargarlos en el state
+        * El otro caso es obtener las empresas filtrados si el status es true
+    */
+    useEffect( () => { 
+        setTimeout(() => { getBusiness() }, 800);
+        // eslint-disable-next-line
+    } , [business] );
+    
     return (
         <main className='data__container content__page'>
             <HeadBoard
@@ -48,11 +61,10 @@ export const BusinessScreen = () => {
                 handleInputChange={ handleInputChange }
             />
 
-            {/* <TableBrands
-                titles={ headers }
-                brands={ listBrands }
+            <TableBusiness
+                business={ business }
                 handleResetSearchInput={ handleResetSearchInput }
-            /> */}
+            />
 
             <FloatingButtonClose desactiveModeEdit={ desactiveModeEdit }/>
 

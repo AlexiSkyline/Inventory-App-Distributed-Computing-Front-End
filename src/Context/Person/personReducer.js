@@ -43,6 +43,18 @@ export const personReducer = ( state, action ) => {
                 infPersonEdit: false,
                 infPersonEdit: null
             }
+        case types_person.searchPeopleActive:
+            return {
+                ...state,
+                searchModeStatus: true,
+                listPeopleFound: state.peopleList.filter( person => person.name.toLowerCase().includes( action.payload.toLowerCase() ) )
+            }
+        case types_person.searchPeopleDesactive:
+            return {
+                ...state,
+                searchModeStatus: false,
+                listPeopleFound: []
+            }
         case types_person.removeMessages: 
             return {
                 ...state,

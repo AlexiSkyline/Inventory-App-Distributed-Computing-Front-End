@@ -119,6 +119,23 @@ export const PersonState = ( props ) => {
         } , 500);
     }
 
+    const disactivePersonEditingMode = () => {
+        dispatch({
+            type: types_person.searchPeopleDesactive
+        });
+    }
+
+    const searchPeople = async ( value ) => {
+        if( value.trim() !== '' ) {
+            dispatch({
+                type: types_person.searchPeopleActive,
+                payload: value
+            });
+        } else {
+            disactivePersonEditingMode();
+        }
+    }
+
     return (
         <PersonContext.Provider
             value={{
@@ -136,7 +153,9 @@ export const PersonState = ( props ) => {
                 deletePerson,
                 deleteMessage,
                 activeModeEdit,
-                desactiveModeEdit
+                desactiveModeEdit,
+                searchPeople,
+                disactivePersonEditingMode
             }}
         >
             { props.children }

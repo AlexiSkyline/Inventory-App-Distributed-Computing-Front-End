@@ -61,7 +61,7 @@ export const BusinessState = ( props ) => {
     
     const updateBussines = async ( business ) => {
         try {
-            const response = await clientAxios.put( `path/${ state.businessEdit.id }`, {
+            const response = await clientAxios.put( `${ path }/${ state.businessEdit.id }`, {
                 name: business.name,
                 address: business.address,
             });
@@ -81,7 +81,7 @@ export const BusinessState = ( props ) => {
 
     const deleteBusiness = async ( id ) => {
         try {
-            const response = await clientAxios.delete( `path/${ id }` );
+            const response = await clientAxios.delete( `${ path }/${ id }` );
             dispatch({
                 type: types_business.deleteBusiness,
                 payload: response.data.message

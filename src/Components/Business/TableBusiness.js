@@ -1,10 +1,37 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
+import { BusinessContext } from '../../Context/Business/BusinessContext';
 
 export const TableBusiness = ({ business, handleResetSearchInput  }) => {
+    const MySwal = withReactContent(Swal);
 
+    const businessContext = useContext( BusinessContext );
+    const { deleteBusiness } = businessContext;
+    
     const handleDelete = ( id ) => {
-        handleResetSearchInput();
+        MySwal.fire({
+            title: '¿Estas Seguro?',
+            text: 'La empresa se eliminará permanentemente',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Aceptar',
+            cancelButtonText: 'Cancelar'
+        }).then(( result) => {
+            if( result.isConfirmed ) {
+                deleteBusiness( id );
+                MySwal.fire(
+                   'Deleted!',
+                   'La empresa se eliminó correctamente',
+                   'success'
+                );
+                handleResetSearchInput();
+            }
+        });
     }
 
     /*

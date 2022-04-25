@@ -4,6 +4,10 @@ import Proptypes from 'prop-types';
 
 import { ClientContext } from '../../Context/Client/ClientContext';
 import { ModalContext } from '../../Context/Modal/ModalContext';
+import { useValidation } from '../../Hooks/useValidation';
+import { ValidateClient } from '../../validations/ValidateClient';
+import { AlertContext } from '../../Context/Alert/AlertContext';
+import { ModeEditContext } from '../../Context/ModeEdit/ModeEditContext';
 
 // * Cuerpo inicial de nuestro inputs de agregar o editar cliente
 const initEvent = {
@@ -23,8 +27,13 @@ export const ClientModal = ({ handleResetSearchInput }) => {
     const modalContext = useContext( ModalContext );
     const { modalOpen, closeModal, uiCloseModal } = modalContext;
 
-    // * State para almacenar la informacion del Cliente a crear o actualizar
-    const [ formValues, setFormValues ] = useState( initEvent );
+    const alertContext = useContext( AlertContext );
+    const { showAlert } = alertContext;
+
+    const modeEditContext = useContext( ModeEditContext );
+    const { activeModeEdit, desactiveModeEdit } = modeEditContext;
+
+    const { formValues, errors, handleSubmit, handleInputChange, isValid, handleResetInput } = useValidation( initEvent, ValidateClient, infClientEdit );
     const { name, lastName, rfc, address, email, phoneNumber } = formValues;
 
     /*
@@ -34,27 +43,12 @@ export const ClientModal = ({ handleResetSearchInput }) => {
     */
     useEffect(() => {
         if( statusEditModeClient ) {
-            setFormValues( infClientEdit );
+            activeModeEdit( infClientEdit );
         } else {
-            setFormValues( initEvent );
+            desactiveModeEdit();
         }
         // eslint-disable-next-line
-    }, [ statusEditModeClient, setFormValues ]);
-
-    // * Funcion para obtener los valores del formulario
-    const handleInputChange = ({ target }) => {
-        setFormValues({
-            ...formValues,
-            [target.name]: target.value
-        });
-    };
-
-    /*
-        * funcion para reiniciar el input de busqueda 
-    */
-    function handleResetInput() {
-        setFormValues( initEvent );
-    }
+    }, [ statusEditModeClient, activeModeEdit ]);
 
     /*
         * Funcion para crear o actualizar un cliente 
@@ -63,20 +57,27 @@ export const ClientModal = ({ handleResetSearchInput }) => {
         * Luego Desactivamos el modo de busqueda si esta activo
         * Luego reiniciamos el input de busqueda
     */
-    const handleOnSubmit = ( e ) => {
+    function handleOnSubmit( e ) {
         e.preventDefault();
-        setFormValues( initEvent );
-        if( !statusEditModeClient ) {
-            createClient( formValues );
-        } else {
-            updateClient( formValues );
+        handleSubmit(e);
+        if( isValid ) {
+            if( !statusEditModeClient ) {
+                createClient( formValues );
+            } else {
+                updateClient( formValues );
+            }
+            uiCloseModal();
+            handleResetInput();
+            disactiveClientSearchMode();
+            handleResetSearchInput();
         }
-        setFormValues( initEvent );
-        uiCloseModal();
-        handleResetInput();
-        disactiveClientSearchMode();
-        handleResetSearchInput();
     }
+
+    useEffect(() => {
+        if( Object.values(errors)[0] ) {
+            showAlert( Object.values(errors)[0], 'alert-error' );
+        }
+    }, [errors]);
 
     return (
         <Modal

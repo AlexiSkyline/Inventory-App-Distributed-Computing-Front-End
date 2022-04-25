@@ -66,7 +66,7 @@ export const ClientState = ( props ) => {
 
     const updateClient = async ( data ) => {
         try {
-            const response = await clientAxios.put( `${ path }/${ state.infPersonEdit.id }`, {
+            const response = await clientAxios.put( `${ path }/${ state.infClientEdit.id }`, {
                 name: data.name,
                 lastName: data.lastName,
                 rfc: data.rfc,
@@ -77,7 +77,7 @@ export const ClientState = ( props ) => {
             dispatch({
                 type: types_client.updateClient,
                 payload: response.data.message
-            })
+            });
         } catch (error) {
             dispatch({
                 type: types_client.updateClientFailed,

@@ -34,13 +34,13 @@ export const clientReducer = ( state, action ) => {
         case types_client.activeModeEdit:
             return {
                 ...state,
-                statusEditModePerson: true,
+                statusEditModeClient: true,
                 infClientEdit: action.payload
             }
         case types_client.desactiveModeEdit:
             return {
                 ...state,
-                infClientEdit: false,
+                statusEditModeClient: false,
                 infClientEdit: null
             }
         case types_client.searchClientActive:

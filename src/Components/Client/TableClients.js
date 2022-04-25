@@ -4,12 +4,16 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
 import { ClientContext } from '../../Context/Client/ClientContext';
+import { ModalContext } from '../../Context/Modal/ModalContext';
 
 export const TableClients = ({ listClients, handleResetSearchInput }) => {
     const MySwal = withReactContent(Swal);
 
     const clientContext = useContext( ClientContext );
-    const { deleteClient, activeModeEdit, disactiveClientEditingMode } = clientContext;
+    const { deleteClient, activeModeEdit, disactiveClientSearchMode } = clientContext;
+
+    const modalContext = useContext( ModalContext );
+    const { uiOpenModal } = modalContext;
 
     const handleDelete = ( id ) => {
         MySwal.fire({
@@ -30,10 +34,11 @@ export const TableClients = ({ listClients, handleResetSearchInput }) => {
                    'success'
                 );
                 handleResetSearchInput();
+                disactiveClientSearchMode();
             }
         });
     }
-    
+
     /*
         * Funcion para abrir el modal de editar una Cliente
         * Recibe todo los datos del Cliente a editar
@@ -41,7 +46,8 @@ export const TableClients = ({ listClients, handleResetSearchInput }) => {
         * Luego activa el modo de edicion
     */
     const handleUpdate = ( client ) => {
-        
+        uiOpenModal();
+        activeModeEdit( client );
     }
 
     return (

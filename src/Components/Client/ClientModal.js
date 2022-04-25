@@ -17,7 +17,7 @@ const initEvent = {
 
 export const ClientModal = ({ handleResetSearchInput }) => {
     const clientContext = useContext( ClientContext );
-    const { clientModeEdit, clientEdit, createClient, 
+    const { statusEditModeClient, infClientEdit, createClient, 
                 updateClient, disactiveClientSearchMode } = clientContext;
     
     const modalContext = useContext( ModalContext );
@@ -33,13 +33,13 @@ export const ClientModal = ({ handleResetSearchInput }) => {
         * Caso 2: Le pasa los el objeto initEvent para crear un Cliente
     */
     useEffect(() => {
-        if( clientModeEdit ) {
-            setFormValues( clientEdit );
+        if( statusEditModeClient ) {
+            setFormValues( infClientEdit );
         } else {
             setFormValues( initEvent );
         }
         // eslint-disable-next-line
-    }, [ clientModeEdit, setFormValues ]);
+    }, [ statusEditModeClient, setFormValues ]);
 
     // * Funcion para obtener los valores del formulario
     const handleInputChange = ({ target }) => {
@@ -66,7 +66,7 @@ export const ClientModal = ({ handleResetSearchInput }) => {
     const handleOnSubmit = ( e ) => {
         e.preventDefault();
         setFormValues( initEvent );
-        if( !clientModeEdit ) {
+        if( !statusEditModeClient ) {
             createClient( formValues );
         } else {
             updateClient( formValues );
@@ -86,7 +86,7 @@ export const ClientModal = ({ handleResetSearchInput }) => {
             ariaHideApp={false}
         >
             <form className='form__modal' onSubmit={ handleOnSubmit }>
-                <legend>{ clientModeEdit ? 'Editar Cliente': 'Agregar Cliente' }</legend>
+                <legend>{ statusEditModeClient ? 'Editar Cliente': 'Agregar Cliente' }</legend>
                 
                 <label htmlFor='name'>Nombre: </label>
                 <input 
@@ -140,7 +140,7 @@ export const ClientModal = ({ handleResetSearchInput }) => {
 
                 <label htmlFor='phoneNumber'>Numero de Telefono: </label>
                 <input 
-                    type='number' 
+                    type='text' 
                     className='form-control' 
                     placeholder='Ingrese el el numero de telefono del cliente'
                     name='phoneNumber'
@@ -151,7 +151,7 @@ export const ClientModal = ({ handleResetSearchInput }) => {
                 <input 
                     type='submit' 
                     className='btn-primary btn__edit modal-btn' 
-                    value={ clientModeEdit ? 'Editar cliente': 'Agregar cliente' }
+                    value={ statusEditModeClient ? 'Editar cliente': 'Agregar cliente' }
                 />
             </form>
         </Modal>

@@ -1,13 +1,37 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
 import { ClientContext } from '../../Context/Client/ClientContext';
 
 export const TableClients = ({ listClients, handleResetSearchInput }) => {
+    const MySwal = withReactContent(Swal);
+
     const clientContext = useContext( ClientContext );
     const { deleteClient, activeModeEdit, disactiveClientEditingMode } = clientContext;
 
     const handleDelete = ( id ) => {
-
+        MySwal.fire({
+            title: '¿Estas Seguro?',
+            text: 'El cliente se eliminará permanentemente',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Aceptar',
+            cancelButtonText: 'Cancelar'
+        }).then(( result) => {
+            if( result.isConfirmed ) {
+                deleteClient( id );
+                MySwal.fire(
+                   'Deleted!',
+                   'El cliente se eliminó correctamente',
+                   'success'
+                );
+                handleResetSearchInput();
+            }
+        });
     }
     /*
         * Funcion para abrir el modal de editar una Cliente

@@ -1,9 +1,13 @@
 import { useState, useEffect, useContext } from 'react';
 import { ModeEditContext } from '../Context/ModeEdit/ModeEditContext';
+import { AlertContext } from '../Context/Alert/AlertContext';
 
 export const useValidation = ( initialState, validate ) => {
     const modeEditContext = useContext( ModeEditContext );
     const { statusEditMode, editInfo } = modeEditContext;
+
+    const alertContext = useContext( AlertContext );
+    const { showAlert } = alertContext;
 
     const [ formValues, setFormValues ] = useState( initialState );
     const [ errors, setErrors ] = useState({});
@@ -13,6 +17,8 @@ export const useValidation = ( initialState, validate ) => {
     useEffect(() => {
         if( statusEditMode ) {
             setFormValues( editInfo );
+        } else {
+            setFormValues( initialState );
         }
         // eslint-disable-next-line
     }, [ statusEditMode ]);
@@ -35,6 +41,10 @@ export const useValidation = ( initialState, validate ) => {
             [e.target.name]: e.target.value
         });
     } 
+    
+    const handleResetInput = () => {
+        setFormValues( initialState );
+    }
 
     // Todo: Función se ejecuta cuando hay un submit
     const handleSubmit = (e) => {   
@@ -42,15 +52,17 @@ export const useValidation = ( initialState, validate ) => {
         const errorsValidate = validate( formValues );
         setErrors( errorsValidate );
         setSubmitForm( true );
+        handleResetInput();
     }
 
-    const handleResetInput = () => {
-        setFormValues( initialState );
-    }
+    useEffect(() => {
+        if( Object.values(errors)[0] ) {
+            showAlert( Object.values(errors)[0], 'alert-error' );
+        }
+    }, [errors]);
 
     return {
         formValues,
-        errors,
         handleSubmit,
         handleInputChange,
         isValid,

@@ -8,16 +8,7 @@ import { useValidation } from '../../Hooks/useValidation';
 import { ValidateClient } from '../../validations/ValidateClient';
 import { AlertContext } from '../../Context/Alert/AlertContext';
 import { ModeEditContext } from '../../Context/ModeEdit/ModeEditContext';
-
-// * Cuerpo inicial de nuestro inputs de agregar o editar cliente
-const initEvent = {
-    name: '',
-    lastName: '',
-    rfc: '',
-    address: '',
-    email: '',
-    phoneNumber: ''
-}
+import { initialFormValuesClient } from '../../Data/InitialFormValues';
 
 export const ClientModal = ({ handleResetSearchInput }) => {
     const clientContext = useContext( ClientContext );
@@ -27,13 +18,10 @@ export const ClientModal = ({ handleResetSearchInput }) => {
     const modalContext = useContext( ModalContext );
     const { modalOpen, closeModal, uiCloseModal } = modalContext;
 
-    const alertContext = useContext( AlertContext );
-    const { showAlert } = alertContext;
-
     const modeEditContext = useContext( ModeEditContext );
     const { activeModeEdit, desactiveModeEdit } = modeEditContext;
 
-    const { formValues, errors, handleSubmit, handleInputChange, isValid, handleResetInput } = useValidation( initEvent, ValidateClient, infClientEdit );
+    const { formValues, handleSubmit, handleInputChange, isValid } = useValidation( initialFormValuesClient, ValidateClient );
     const { name, lastName, rfc, address, email, phoneNumber } = formValues;
 
     /*
@@ -67,17 +55,10 @@ export const ClientModal = ({ handleResetSearchInput }) => {
                 updateClient( formValues );
             }
             uiCloseModal();
-            handleResetInput();
             disactiveClientSearchMode();
             handleResetSearchInput();
         }
     }
-
-    useEffect(() => {
-        if( Object.values(errors)[0] ) {
-            showAlert( Object.values(errors)[0], 'alert-error' );
-        }
-    }, [errors]);
 
     return (
         <Modal

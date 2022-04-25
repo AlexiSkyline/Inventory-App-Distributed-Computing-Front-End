@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import Proptypes from 'prop-types';
+
 import { ModalContext } from '../../Context/Modal/ModalContext';
 import { UnitMeasurementContext } from '../../Context/UnitMeasurement/UnitMeasurementContext';
+import { ModeEditContext } from '../../Context/ModeEdit/ModeEditContext';
 
-// * Cuerpo inicial de nuestro inputs de agregar o editar unidad de medida
-const initEvent = {
-    description: ''
-}
+import { useValidation } from '../../Hooks/useValidation';
+import { initialFormValuesUnitMeasurement } from '../../Data/InitialFormValues';
+import { ValidateUnitMeasurement } from '../../validations/ValidateUnitMeasurement';
 
 export const UnitMeasurementModal = ({ handleResetSearchInput }) => {
     const unitMeasurementContext = useContext( UnitMeasurementContext );
@@ -16,9 +17,11 @@ export const UnitMeasurementModal = ({ handleResetSearchInput }) => {
 
     const modalContext = useContext( ModalContext );
     const { modalOpen, closeModal, uiCloseModal } = modalContext;
+    
+    const modeEditContext = useContext( ModeEditContext );
+    const { activeModeEdit, desactiveModeEdit } = modeEditContext;
 
-    // * State para almacenar la informacion de la unidad de medida a crear o actualizar
-    const [ formValues, setFormValues ] = useState( initEvent );
+    const { formValues, handleSubmit, handleInputChange } = useValidation( initialFormValuesUnitMeasurement, ValidateUnitMeasurement, handleCreateAndUpdate );
     const { description } = formValues;
 
     /*
@@ -28,27 +31,12 @@ export const UnitMeasurementModal = ({ handleResetSearchInput }) => {
     */
     useEffect(() => {
         if( unitMsModeEdit ) {
-            setFormValues( unitMsEdit );
+            activeModeEdit( unitMsEdit );
         } else {
-            setFormValues( initEvent );
+            desactiveModeEdit();
         }
         // eslint-disable-next-line
-    }, [ unitMsModeEdit, setFormValues ]);
-
-    // * Funcion para obtener los valores del formulario
-    const handleInputChange = ({ target }) => {
-        setFormValues({
-            ...formValues,
-            [target.name]: target.value
-        });
-    };
-
-    /*
-        * funcion para reiniciar el input de busqueda 
-    */
-    function handleResetInput() {
-        setFormValues( initEvent );
-    }
+    }, [ unitMsModeEdit, activeModeEdit ]);
 
     /*
         * Funcion para crear o actualizar una unidad de medida 
@@ -57,16 +45,13 @@ export const UnitMeasurementModal = ({ handleResetSearchInput }) => {
         * Luego Desactivamos el modo de busqueda si esta activo
         * Luego reiniciamos el input de busqueda
     */
-    const handleOnSubmit = ( e ) => {
-        e.preventDefault();
+    function handleCreateAndUpdate() {
         if( !unitMsModeEdit ) {
             createUnitMs( formValues );
         } else {
             updateUnitMs( formValues );
         }
-        setFormValues( initEvent );
         uiCloseModal();
-        handleResetInput();
         modeSearchUnitMDesactive();
         handleResetSearchInput();
     }
@@ -78,7 +63,7 @@ export const UnitMeasurementModal = ({ handleResetSearchInput }) => {
             className='modal modal__brand'
             ariaHideApp={false}
         >
-            <form className='form__modal' onSubmit={ handleOnSubmit }>
+            <form className='form__modal' onSubmit={ handleSubmit }>
                 <legend>{ unitMsModeEdit ? 'Editar unidad de medida': 'Agregar unidad de medida' }</legend>
                 
                 <label htmlFor='description'>Descripción: </label>

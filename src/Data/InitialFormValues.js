@@ -18,3 +18,8 @@ export const initialFormValuesBusiness = {
     name: '',
     address: '',
 }
+
+// * Cuerpo inicial de nuestro inputs de agregar o editar unidad de medida
+export const initialFormValuesUnitMeasurement = {
+    description: ''
+}

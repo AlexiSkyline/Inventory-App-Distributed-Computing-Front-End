@@ -13,7 +13,7 @@ import { TableClients } from './TableClients';
 export const ClientScreen = () => {
     const clientContext = useContext( ClientContext );
     const { clientList, message, typeMessage, listClientFound, searchModeStatus, 
-                getClients, desactiveModeEdit, activeModeSearch } = clientContext;
+                getClients, desactiveModeEdit, searchClient } = clientContext;
     
     const alertContext = useContext( AlertContext );
     const { showAlert } = alertContext;
@@ -33,6 +33,8 @@ export const ClientScreen = () => {
             ...formValues,
             [target.name]: target.value
         });
+
+        searchClient( target.value );
     };
 
     /*
@@ -61,7 +63,13 @@ export const ClientScreen = () => {
     */
     useEffect( () => {
         setTimeout(() => { getClients() }, 800);
-    }, [ clientList ] );
+        if( searchModeStatus ) {
+            getListClients( listClientFound );
+        } else {
+            getListClients( clientList );
+        }
+        // eslint-disable-next-line
+    }, [ clientList, searchModeStatus ] );
 
     return (
         <main className='data__container content__page'>
@@ -77,7 +85,7 @@ export const ClientScreen = () => {
             />
             
             <TableClients
-                listClients={ clientList }
+                listClients={ listClients }
                 handleResetSearchInput={ handleResetSearchInput }
             />
 

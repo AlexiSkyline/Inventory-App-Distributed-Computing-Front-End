@@ -47,7 +47,7 @@ export const clientReducer = ( state, action ) => {
             return {
                 ...state,
                 searchModeStatus: true,
-                listClientFound: state.peopleList.filter( person => person.name.toLowerCase().includes( action.payload.toLowerCase() ) )
+                listClientFound: state.clientList.filter( client => client.name.toLowerCase().includes( action.payload.toLowerCase() ) )
             }
         case types_client.searchClientDesactive:
             return {

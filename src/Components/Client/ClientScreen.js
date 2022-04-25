@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { AlertContext } from '../../Context/Alert/AlertContext';
 
 import { ClientContext } from '../../Context/Client/ClientContext';
 
@@ -12,6 +13,9 @@ export const ClientScreen = () => {
     const clientContext = useContext( ClientContext );
     const { clientList, message, typeMessage, listClientFound, searchModeStatus, 
                 getClients, desactiveModeEdit, activeModeSearch } = clientContext;
+    
+    const alertContext = useContext( AlertContext );
+    const { showAlert } = alertContext;
 
     // * State para guardar la lista de Clientes a mostrar
     const [ listClients, getListClients ] = useState([]);
@@ -38,6 +42,17 @@ export const ClientScreen = () => {
             searchClientValue: ''
         });
     }
+
+    /*
+        * Mostramos el mesaje si existe uno en el state
+        * El otro caso es que no se muestre ningun mensaje
+    */
+    useEffect( () => {
+        if( message ) {
+            showAlert( message, typeMessage );
+        }
+        // eslint-disable-next-line
+    } , [message] );
 
     /* 
         * Obtenemos las empresas y cargarlos en el state

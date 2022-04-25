@@ -95,7 +95,6 @@ export const ClientState = ( props ) => {
                 type: types_client.deleteClient,
                 payload: response.data.message
             });
-            console.log( response.data );
         } catch (error) {
             dispatch({
                 type: types_client.deleteClientFailed,

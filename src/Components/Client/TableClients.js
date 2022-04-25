@@ -33,6 +33,7 @@ export const TableClients = ({ listClients, handleResetSearchInput }) => {
             }
         });
     }
+    
     /*
         * Funcion para abrir el modal de editar una Cliente
         * Recibe todo los datos del Cliente a editar
@@ -44,7 +45,7 @@ export const TableClients = ({ listClients, handleResetSearchInput }) => {
     }
 
     return (
-        <div className='table__container'>  
+        <div className='table__container table__median'>  
             <table className='table'> 
                 <thead>
                     <tr>

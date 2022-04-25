@@ -120,7 +120,7 @@ export const ClientState = ( props ) => {
         } , 500);
     }
 
-    const disactiveClientEditingMode = () => {
+    const disactiveClientSearchMode = () => {
         dispatch({
             type: types_client.searchClientDesactive
         });
@@ -133,7 +133,7 @@ export const ClientState = ( props ) => {
                 payload: value
             });
         } else {
-            disactiveClientEditingMode();
+            disactiveClientSearchMode();
         }
     }
 
@@ -156,7 +156,7 @@ export const ClientState = ( props ) => {
                 activeModeEdit,
                 desactiveModeEdit,
                 searchClient,
-                disactiveClientEditingMode
+                disactiveClientSearchMode
             }}
         >
             { props.children }

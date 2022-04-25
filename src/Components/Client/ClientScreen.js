@@ -7,6 +7,7 @@ import { FloatingButton } from '../UI/FloatingButton/FloatingButton';
 import { FloatingButtonClose } from '../UI/FloatingButton/FloatingButtonClose';
 import { HeadBoard } from '../UI/HeadBoard/HeadBoard';
 import { InputSearch } from '../UI/InputSearch/InputSearch';
+import { ClientModal } from './ClientModal';
 import { TableClients } from './TableClients';
 
 export const ClientScreen = () => {
@@ -84,9 +85,9 @@ export const ClientScreen = () => {
 
             <FloatingButton />
 
-            {/* <ClientModal 
+            <ClientModal 
                 handleResetSearchInput={ handleResetSearchInput }
-            /> */}
+            />
         </main>
     );
 }

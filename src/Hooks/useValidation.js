@@ -22,7 +22,7 @@ export const useValidation = ( initialState, validate ) => {
 
     /*
         * En esta parte verificamos si hay algun objeto a editar
-        * Si hay un objeto a editar, entonces le pasamos los fatos al formulario
+        * Si hay un objeto a editar, entonces le pasamos los datos al formulario
         * Si no hay un objeto a editar, entonces le pasamos los valores vacios al formulario 
     */
     useEffect(() => {

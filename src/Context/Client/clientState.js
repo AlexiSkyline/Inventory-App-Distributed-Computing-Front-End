@@ -117,7 +117,7 @@ export const ClientState = ( props ) => {
             dispatch({
                 type: types_client.desactiveModeEdit
             });
-        } , 500);
+        } , 100);
     }
 
     const disactiveClientSearchMode = () => {

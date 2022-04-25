@@ -7,3 +7,8 @@ export const initialFormValuesClient = {
     email: '',
     phoneNumber: ''
 }
+
+// * Cuerpo inicial de nuestro inputs de agregar o editar marca
+export const initialFormValuesBrand = {
+    description: ''
+}

@@ -108,7 +108,7 @@ export const UnitMeasurementState = ( props ) => {
             dispatch({
                 type: types_unitMeasurement.desactiveModeEdit
             });
-        } , 500);
+        } , 100);
     }
 
     const modeSearchUnitMDesactive = () => {

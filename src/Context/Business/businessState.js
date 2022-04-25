@@ -108,7 +108,7 @@ export const BusinessState = ( props ) => {
             dispatch({
                 type: types_business.desactiveModeEdit
             });
-        } , 500);
+        } , 100);
     }
 
     const modeSearchBusinessDesactive = () => {

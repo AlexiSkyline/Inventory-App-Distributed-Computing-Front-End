@@ -98,7 +98,7 @@ export const ProductState = ( props ) => {
             dispatch({
                 type: types.desactiveModeEdit
             });
-        } , 500);
+        } , 100);
     }
 
     const updateProduct = async ( product ) => {

@@ -1,13 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Modal from 'react-modal';
 import Proptypes from 'prop-types';
+
 import { BrandContext } from '../../Context/Brand/BrandContext';
 import { ModalContext } from '../../Context/Modal/ModalContext';
+import { ModeEditContext } from '../../Context/ModeEdit/ModeEditContext';
 
-// * Cuerpo inicial de nuestro inputs de agregar o editar marca
-const initEvent = {
-    description: ''
-}
+import { useValidation } from '../../Hooks/useValidation';
+import { ValidateBrand } from '../../validations/ValidateBrand';
+import { initialFormValuesBrand } from '../../Data/InitialFormValues';
 
 export const BrandModal = ({ handleResetSearchInput }) => {
     const brandContext = useContext( BrandContext );
@@ -15,9 +16,11 @@ export const BrandModal = ({ handleResetSearchInput }) => {
 
     const modalContext = useContext( ModalContext );
     const { modalOpen, closeModal, uiCloseModal } = modalContext;
+
+    const modeEditContext = useContext( ModeEditContext );
+    const { activeModeEdit, desactiveModeEdit } = modeEditContext;
     
-    // * State para almacenar la informacion de la marca a crear o actualizar
-    const [ formValues, setFormValues ] = useState( initEvent );
+    const { formValues, handleSubmit, handleInputChange, isValid } = useValidation( initialFormValuesBrand, ValidateBrand );
     const { description } = formValues;
 
     /*
@@ -27,27 +30,12 @@ export const BrandModal = ({ handleResetSearchInput }) => {
     */
     useEffect(() => {
         if( brandModeEdit ) {
-            setFormValues( brandEdit );
+            activeModeEdit( brandEdit );
         } else {
-            setFormValues( initEvent );
+            desactiveModeEdit();
         }
         // eslint-disable-next-line
-    }, [ brandModeEdit, setFormValues ]);
-
-    // * Funcion para obtener los valores del formulario
-    const handleInputChange = ({ target }) => {
-        setFormValues({
-            ...formValues,
-            [target.name]: target.value
-        });
-    };
-
-    /*
-        * funcion para reiniciar el input de busqueda 
-    */
-    function handleResetInput() {
-        setFormValues( initEvent );
-    }
+    }, [ brandModeEdit, activeModeEdit ]);
 
     /*
         * Funcion para crear o actualizar una marca 
@@ -58,16 +46,17 @@ export const BrandModal = ({ handleResetSearchInput }) => {
     */
     const handleOnSubmit = ( e ) => {
         e.preventDefault();
-        if( !brandModeEdit ) {
-            createBrand( formValues );
-        } else {
-            updateBrand( formValues );
+        handleSubmit(e);
+        if( isValid ) {
+            if( !brandModeEdit ) {
+                createBrand( formValues );
+            } else {
+                updateBrand( formValues );
+            }
+            uiCloseModal();
+            modeSearchBrandDesactive();
+            handleResetSearchInput();
         }
-        setFormValues( initEvent );
-        uiCloseModal();
-        handleResetInput();
-        modeSearchBrandDesactive();
-        handleResetSearchInput();
     }
 
     return (

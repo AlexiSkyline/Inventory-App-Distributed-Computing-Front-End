@@ -108,7 +108,7 @@ export const BrandState = ( props ) => {
             dispatch({
                 type: types_brand.desactiveModeEdit
             });
-        } , 500);
+        } , 100);
     }
     
     const modeSearchBrandDesactive = () => {

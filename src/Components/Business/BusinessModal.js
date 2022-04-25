@@ -4,12 +4,11 @@ import Proptypes from 'prop-types';
 
 import { ModalContext } from '../../Context/Modal/ModalContext';
 import { BusinessContext } from '../../Context/Business/BusinessContext';
+import { ModeEditContext } from '../../Context/ModeEdit/ModeEditContext';
 
-// * Cuerpo inicial de nuestro inputs de agregar o editar empresa
-const initEvent = {
-    name: '',
-    address: '',
-}
+import { useValidation } from '../../Hooks/useValidation';
+import { initialFormValuesBusiness } from '../../Data/InitialFormValues';
+import { ValidateBusiness } from '../../validations/ValidateBusiness';
 
 export const BusinessModal = ({ handleResetSearchInput }) => {
     const businessContext = useContext( BusinessContext );
@@ -19,8 +18,10 @@ export const BusinessModal = ({ handleResetSearchInput }) => {
     const modalContext = useContext( ModalContext );
     const { modalOpen, closeModal, uiCloseModal } = modalContext;
 
-    // * State para almacenar la informacion de la empresa a crear o actualizar
-    const [ formValues, setFormValues ] = useState( initEvent );
+    const modeEditContext = useContext( ModeEditContext );
+    const { activeModeEdit, desactiveModeEdit } = modeEditContext;
+
+    const { formValues, handleSubmit, handleInputChange } = useValidation( initialFormValuesBusiness, ValidateBusiness, handleCreateAndUpdate );
     const { name, address } = formValues;
 
     /*
@@ -30,27 +31,12 @@ export const BusinessModal = ({ handleResetSearchInput }) => {
     */
     useEffect(() => {
         if( businessModeEdit ) {
-            setFormValues( businessEdit );
+            activeModeEdit( businessEdit );
         } else {
-            setFormValues( initEvent );
+            desactiveModeEdit();
         }
         // eslint-disable-next-line
-    }, [ businessModeEdit, setFormValues ]);
-
-    // * Funcion para obtener los valores del formulario
-    const handleInputChange = ({ target }) => {
-        setFormValues({
-            ...formValues,
-            [target.name]: target.value
-        });
-    };
-
-    /*
-        * funcion para reiniciar el input de busqueda 
-    */
-    function handleResetInput() {
-        setFormValues( initEvent );
-    }
+    }, [ businessModeEdit, activeModeEdit ]);
 
     /*
         * Funcion para crear o actualizar una empresa 
@@ -59,17 +45,13 @@ export const BusinessModal = ({ handleResetSearchInput }) => {
         * Luego Desactivamos el modo de busqueda si esta activo
         * Luego reiniciamos el input de busqueda
     */
-    const handleOnSubmit = ( e ) => {
-        e.preventDefault();
-        setFormValues( initEvent );
+    function handleCreateAndUpdate() {
         if( !businessModeEdit ) {
             createBusiness( formValues );
         } else {
             updateBusiness( formValues );
         }
-        setFormValues( initEvent );
         uiCloseModal();
-        handleResetInput();
         modeSearchBusinessDesactive();
         handleResetSearchInput();
     }
@@ -81,7 +63,7 @@ export const BusinessModal = ({ handleResetSearchInput }) => {
             className='modal modal_medium'
             ariaHideApp={false}
         >
-            <form className='form__modal' onSubmit={ handleOnSubmit }>
+            <form className='form__modal' onSubmit={ handleSubmit }>
                 <legend>{ businessModeEdit ? 'Editar empresa': 'Agregar empresa' }</legend>
                 
                 <label htmlFor='name'>Nombre: </label>

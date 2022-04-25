@@ -12,3 +12,9 @@ export const initialFormValuesClient = {
 export const initialFormValuesBrand = {
     description: ''
 }
+
+// * Cuerpo inicial de nuestro inputs de agregar o editar marca
+export const initialFormValuesBusiness = {
+    name: '',
+    address: '',
+}

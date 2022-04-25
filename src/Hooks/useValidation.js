@@ -8,7 +8,7 @@ import { AlertContext } from '../Context/Alert/AlertContext';
     * @param {object} validate - Objeto con las validaciones del formulario 
     * @returns formValues, handleSubmit, handleInputChange, isValid
 */
-export const useValidation = ( initialState, validate ) => {
+export const useValidation = ( initialState, validate, fn ) => {
     const modeEditContext = useContext( ModeEditContext );
     const { statusEditMode, editInfo } = modeEditContext;
 
@@ -18,7 +18,6 @@ export const useValidation = ( initialState, validate ) => {
     const [ formValues, setFormValues ] = useState( initialState );
     const [ errors, setErrors ] = useState({});
     const [ submitForm, setSubmitForm ] = useState( false );
-    const [ isValid, setIsValid ] = useState( false );
 
     /*
         * En esta parte verificamos si hay algun objeto a editar
@@ -47,8 +46,9 @@ export const useValidation = ( initialState, validate ) => {
             const noErrors = Object.keys( errors ).length === 0;
 
             if( noErrors ) {
-                setIsValid( true ); // * Función que se ejecuta en el componente;
+                fn(); // * Función que se ejecuta en el componente;
                 handleResetInput();
+                setErrors({});
             }
             setSubmitForm( false );
         }
@@ -83,7 +83,5 @@ export const useValidation = ( initialState, validate ) => {
         formValues,
         handleSubmit,
         handleInputChange,
-        isValid,
-        handleResetInput
     };
 }

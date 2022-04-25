@@ -20,7 +20,7 @@ export const BrandModal = ({ handleResetSearchInput }) => {
     const modeEditContext = useContext( ModeEditContext );
     const { activeModeEdit, desactiveModeEdit } = modeEditContext;
     
-    const { formValues, handleSubmit, handleInputChange, isValid } = useValidation( initialFormValuesBrand, ValidateBrand );
+    const { formValues, handleSubmit, handleInputChange } = useValidation( initialFormValuesBrand, ValidateBrand, handleCreateAndUpdate );
     const { description } = formValues;
 
     /*
@@ -44,19 +44,15 @@ export const BrandModal = ({ handleResetSearchInput }) => {
         * Luego Desactivamos el modo de busqueda si esta activo
         * Luego reiniciamos el input de busqueda
     */
-    const handleOnSubmit = ( e ) => {
-        e.preventDefault();
-        handleSubmit(e);
-        if( isValid ) {
-            if( !brandModeEdit ) {
-                createBrand( formValues );
-            } else {
-                updateBrand( formValues );
-            }
-            uiCloseModal();
-            modeSearchBrandDesactive();
-            handleResetSearchInput();
+    function handleCreateAndUpdate() {
+        if( !brandModeEdit ) {
+            createBrand( formValues );
+        } else {
+            updateBrand( formValues );
         }
+        uiCloseModal();
+        modeSearchBrandDesactive();
+        handleResetSearchInput();
     }
 
     return (
@@ -66,7 +62,7 @@ export const BrandModal = ({ handleResetSearchInput }) => {
             className='modal modal__brand'
             ariaHideApp={false}
         >
-            <form className='form__modal' onSubmit={ handleOnSubmit }>
+            <form className='form__modal' onSubmit={ handleSubmit }>
                 <legend>{ brandModeEdit ? 'Editar Marca': 'Agregar Marca' }</legend>
                 
                 <label htmlFor='description'>Descripción: </label>

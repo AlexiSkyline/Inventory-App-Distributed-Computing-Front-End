@@ -20,7 +20,7 @@ export const ClientModal = ({ handleResetSearchInput }) => {
     const modeEditContext = useContext( ModeEditContext );
     const { activeModeEdit, desactiveModeEdit } = modeEditContext;
 
-    const { formValues, handleSubmit, handleInputChange, isValid } = useValidation( initialFormValuesClient, ValidateClient );
+    const { formValues, handleSubmit, handleInputChange } = useValidation( initialFormValuesClient, ValidateClient, handleCreateAndUpdate );
     const { name, lastName, rfc, address, email, phoneNumber } = formValues;
 
     /*
@@ -44,19 +44,15 @@ export const ClientModal = ({ handleResetSearchInput }) => {
         * Luego Desactivamos el modo de busqueda si esta activo
         * Luego reiniciamos el input de busqueda
     */
-    function handleOnSubmit( e ) {
-        e.preventDefault();
-        handleSubmit(e);
-        if( isValid ) {
-            if( !statusEditModeClient ) {
-                createClient( formValues );
-            } else {
-                updateClient( formValues );
-            }
-            uiCloseModal();
-            disactiveClientSearchMode();
-            handleResetSearchInput();
+    function handleCreateAndUpdate() {
+        if( !statusEditModeClient ) {
+            createClient( formValues );
+        } else {
+            updateClient( formValues );
         }
+        uiCloseModal();
+        disactiveClientSearchMode();
+        handleResetSearchInput();
     }
 
     return (
@@ -66,7 +62,7 @@ export const ClientModal = ({ handleResetSearchInput }) => {
             className='modal modal__big'
             ariaHideApp={false}
         >
-            <form className='form__modal' onSubmit={ handleOnSubmit }>
+            <form className='form__modal' onSubmit={ handleSubmit }>
                 <legend>{ statusEditModeClient ? 'Editar Cliente': 'Agregar Cliente' }</legend>
                 
                 <label htmlFor='name'>Nombre: </label>

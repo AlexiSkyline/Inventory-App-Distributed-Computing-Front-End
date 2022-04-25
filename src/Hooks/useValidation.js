@@ -2,6 +2,12 @@ import { useState, useEffect, useContext } from 'react';
 import { ModeEditContext } from '../Context/ModeEdit/ModeEditContext';
 import { AlertContext } from '../Context/Alert/AlertContext';
 
+/*
+    * Este hook es para verificar si hay errores en el formulario
+    * @param {object} initialState - Objeto con los valores iniciales del formulario 
+    * @param {object} validate - Objeto con las validaciones del formulario 
+    * @returns formValues, handleSubmit, handleInputChange, isValid
+*/
 export const useValidation = ( initialState, validate ) => {
     const modeEditContext = useContext( ModeEditContext );
     const { statusEditMode, editInfo } = modeEditContext;
@@ -14,6 +20,11 @@ export const useValidation = ( initialState, validate ) => {
     const [ submitForm, setSubmitForm ] = useState( false );
     const [ isValid, setIsValid ] = useState( false );
 
+    /*
+        * En esta parte verificamos si hay algun objeto a editar
+        * Si hay un objeto a editar, entonces le pasamos los fatos al formulario
+        * Si no hay un objeto a editar, entonces le pasamos los valores vacios al formulario 
+    */
     useEffect(() => {
         if( statusEditMode ) {
             setFormValues( editInfo );
@@ -23,15 +34,25 @@ export const useValidation = ( initialState, validate ) => {
         // eslint-disable-next-line
     }, [ statusEditMode ]);
 
+    // Todo: Funcion para reiniciar el formulario una vez que se haya enviado
+    const handleResetInput = () => {
+        setFormValues( initialState );
+    }
+    
+    /*
+        * En esta parte verificamos si no hay errores en el formulario 
+    */
     useEffect(() => {
         if( submitForm ) {
             const noErrors = Object.keys( errors ).length === 0;
 
             if( noErrors ) {
                 setIsValid( true ); // * Función que se ejecuta en el componente;
+                handleResetInput();
             }
             setSubmitForm( false );
         }
+       // eslint-disable-next-line 
     }, [errors]);
 
     // Todo: Función que se ejecuta conforme el usuario escribe algo
@@ -41,10 +62,6 @@ export const useValidation = ( initialState, validate ) => {
             [e.target.name]: e.target.value
         });
     } 
-    
-    const handleResetInput = () => {
-        setFormValues( initialState );
-    }
 
     // Todo: Función se ejecuta cuando hay un submit
     const handleSubmit = (e) => {   
@@ -52,13 +69,14 @@ export const useValidation = ( initialState, validate ) => {
         const errorsValidate = validate( formValues );
         setErrors( errorsValidate );
         setSubmitForm( true );
-        handleResetInput();
     }
 
+    //* En esta parte verificamos si tenemos errores que mostrar
     useEffect(() => {
         if( Object.values(errors)[0] ) {
             showAlert( Object.values(errors)[0], 'alert-error' );
         }
+        // eslint-disable-next-line
     }, [errors]);
 
     return {

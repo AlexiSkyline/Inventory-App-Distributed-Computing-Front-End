@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Modal from 'react-modal';
 import Proptypes from 'prop-types';
 
@@ -6,7 +6,6 @@ import { ClientContext } from '../../Context/Client/ClientContext';
 import { ModalContext } from '../../Context/Modal/ModalContext';
 import { useValidation } from '../../Hooks/useValidation';
 import { ValidateClient } from '../../validations/ValidateClient';
-import { AlertContext } from '../../Context/Alert/AlertContext';
 import { ModeEditContext } from '../../Context/ModeEdit/ModeEditContext';
 import { initialFormValuesClient } from '../../Data/InitialFormValues';
 

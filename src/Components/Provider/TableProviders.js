@@ -2,13 +2,18 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+
 import { ProviderContext } from '../../Context/Provider/ProviderContext';
+import { ModalContext } from '../../Context/Modal/ModalContext';
 
 export const TableProviders = ({ listProviders, handleResetSearchInput }) => {
     const MySwal = withReactContent(Swal);
 
     const providerContext = useContext( ProviderContext );
-    const { deleteProvider, activeModeEdit, desactiveModeEdit } = providerContext;
+    const { deleteProvider, activeModeEdit, disactiveProviderSearchMode } = providerContext;
+
+    const modalContext = useContext( ModalContext );
+    const { uiOpenModal } = modalContext;
 
     const handleDelete = ( id ) => {
         MySwal.fire({
@@ -29,8 +34,20 @@ export const TableProviders = ({ listProviders, handleResetSearchInput }) => {
                    'success'
                 );
                 handleResetSearchInput();
+                disactiveProviderSearchMode();
             }
         });
+    }
+
+    /*
+        * Funcion para abrir el modal de editar una Proveedor
+        * Recibe todo los datos del Proveedor a editar
+        * Abri el modal
+        * Luego activa el modo de edicion
+    */
+    const handleUpdate = ( proveedor ) => {
+        uiOpenModal();
+        activeModeEdit( proveedor );
     }
 
     return (
@@ -67,7 +84,7 @@ export const TableProviders = ({ listProviders, handleResetSearchInput }) => {
                                 <td>
                                     <button 
                                         className='btn__edit'
-                                        // onClick={ () => handleUpdate( provider ) }
+                                        onClick={ () => handleUpdate( provider ) }
                                     >
                                         Editar
                                     </button>

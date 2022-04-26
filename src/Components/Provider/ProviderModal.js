@@ -48,7 +48,9 @@ export const ProviderModal = ({ handleResetSearchInput }) => {
     function handleCreateAndUpdate() {
         if( !statusEditModeProvider ) {
             createProvider( formValues );
-        } 
+        } else {
+            updateProvider( formValues );
+        }
         uiCloseModal();
         disactiveProviderSearchMode();
         handleResetSearchInput();

@@ -65,7 +65,7 @@ export const ProviderState = ( props ) => {
 
     const updateProvider = async ( data ) => {
         try {
-            const response = clientAxios.put( `${ path }/${ state.infProviderEdit.id }`, {
+            const response = await clientAxios.put( `${ path }/${ state.infProviderEdit.id }`, {
                 name: data.name,
                 lastName: data.lastName,
                 rfc: data.rfc,

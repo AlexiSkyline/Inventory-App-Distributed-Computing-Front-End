@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { useSearch } from '../../Hooks/useSearch';
 
 import { AlertContext } from '../../Context/Alert/AlertContext';
 import { UnitMeasurementContext } from '../../Context/UnitMeasurement/UnitMeasurementContext';
@@ -21,35 +22,9 @@ export const UnitMeasurementScreen = () => {
     // * State para guardar la lista de unidad de medida a mostrar
     const [ listUnitMs, getListUnitMs ] = useState([]);
 
-    // * State para almacenar el parametro de busqueda
-    const [ formValues, setFormValues ] = useState({
-        searchUnitMsValue: ''
-    });
+    const { formValues, handleInputChange, handleResetSearchInput} = useSearch( { searchUnitMsValue: '' }, activeModeSearch );
     const { searchUnitMsValue } = formValues;
 
-    // * Funcion para obtener el parametro de busqueda
-    const handleInputChange = ({ target }) => {
-        setFormValues({
-            ...formValues,
-            [target.name]: target.value
-        });
-
-        activeModeSearch( target.value );
-    };
-
-     /*
-        * funcion para reiniciar el input de busqueda 
-    */
-     function handleResetSearchInput() {
-        setFormValues({
-            searchUnitMsValue: ''
-        });
-    }
-
-    /*
-        * Mostramos el mesaje si existe uno en el state
-        * El otro caso es que no se muestre ningun mensaje
-    */
     useEffect( () => {
         if( message ) {
             showAlert( message, typeMessage );

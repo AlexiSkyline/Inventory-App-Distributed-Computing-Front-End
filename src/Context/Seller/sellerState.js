@@ -121,6 +121,23 @@ export const SellerState = ( props ) => {
         });
     }
 
+    const disactiveSellerSearchMode = () => {
+        dispatch({
+            type: types_seller.searchSellerDesactive
+        });
+    }
+
+    const searchSeller = async ( value ) => {
+        if( value.trim() !== '' ) {
+            dispatch({
+                type: types_seller.searchSellerActive,
+                payload: value
+            });
+        } else {
+            disactiveSellerSearchMode();
+        }
+    } 
+
     return (
         <SellerContext.Provider
             value={{
@@ -138,6 +155,8 @@ export const SellerState = ( props ) => {
                 activeModeEdit,
                 desactiveModeEdit,
                 deleteMessage,
+                searchSeller,
+                disactiveSellerSearchMode
             }}
         >
             { props.children }

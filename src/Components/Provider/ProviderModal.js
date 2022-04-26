@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Modal from 'react-modal';
 import Proptypes from 'prop-types';
 
 import { ModalContext } from '../../Context/Modal/ModalContext';
 import { ProviderContext } from '../../Context/Provider/ProviderContext';
+import { ModeEditContext } from '../../Context/ModeEdit/ModeEditContext';
 
 import { initialFormValuesProvider } from '../../Data/InitialFormValues';
 import { ValidateProvider } from '../../validations/ValidateProvider';
-
 import { useValidation } from '../../Hooks/useValidation';
 
 export const ProviderModal = ({ handleResetSearchInput }) => {
@@ -18,8 +18,25 @@ export const ProviderModal = ({ handleResetSearchInput }) => {
     const modalContext = useContext( ModalContext );
     const { modalOpen, closeModal, uiCloseModal } = modalContext;
 
+    const modeEditContext = useContext( ModeEditContext );
+    const { activeModeEdit, desactiveModeEdit } = modeEditContext;
+
     const { formValues, handleSubmit, handleInputChange } = useValidation( initialFormValuesProvider, ValidateProvider, handleCreateAndUpdate );
     const { name, lastName, rfc, address, email, phoneNumber } = formValues;
+    
+    /*
+        * Hook para obtener los valores del para el modal 'Formulario'
+        * Caso 1: Le pasa los valores del proveedor a editar
+        * Caso 2: Le pasa los el objeto initEvent para crear un proveedor
+    */
+    useEffect(() => {
+        if( statusEditModeProvider ) {
+            activeModeEdit( infProviderEdit );
+        } else {
+            desactiveModeEdit();
+        }
+        // eslint-disable-next-line
+    }, [ statusEditModeProvider, activeModeEdit ]);
     
     /*
         * Funcion para crear o actualizar un proveedor 
@@ -29,7 +46,12 @@ export const ProviderModal = ({ handleResetSearchInput }) => {
         * Luego reiniciamos el input de busqueda
     */
     function handleCreateAndUpdate() {
-        
+        if( !statusEditModeProvider ) {
+            createProvider( formValues );
+        } 
+        uiCloseModal();
+        disactiveProviderSearchMode();
+        handleResetSearchInput();
     }
 
     return (

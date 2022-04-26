@@ -83,6 +83,25 @@ export const providerState = ( props ) => {
                 payload: error.response.data.message
             });
         }
+
+        deleteMessage();
+    }
+
+    const deleteProvider = async ( id ) => {
+        try {
+            const response = await clientAxios.delete( `${ path }/${ id }` );
+            dispatch({
+                type: types_provider.updateProvider,
+                payload: response.data.message
+            });
+        } catch (error) {
+            dispatch({
+                type: types_provider.updateProviderFailed,
+                payload: error.response.data.message
+            });
+        }
+
+        deleteMessage();
     }
 
     return (
@@ -98,6 +117,7 @@ export const providerState = ( props ) => {
                 createProvider,
                 getProviders,
                 updateProvider,
+                deleteProvider,
                 deleteMessage,
             }}
         >

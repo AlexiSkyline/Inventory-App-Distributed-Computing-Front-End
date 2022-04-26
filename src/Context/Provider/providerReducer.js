@@ -15,6 +15,7 @@ export const providerReducer = ( state, action ) => {
                 providerList: action.payload
             }
         case types_provider.updateProvider:
+        case types_provider.deleteProvider:
             return {
                 ...state,
                 message: action.payload.message,
@@ -23,6 +24,7 @@ export const providerReducer = ( state, action ) => {
         case types_provider.addProviderFailed:
         case types_provider.getProvidersFailed:
         case types_provider.updateProviderFailed:
+        case types_provider.deleteProviderFailed:
             return {
                 ...state,
                 error: true,

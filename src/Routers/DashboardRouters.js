@@ -13,6 +13,7 @@ import { ToolBar } from '../Components/UI/ToolBar/ToolBar';
 import { UnitMeasurementScreen } from '../Components/UnitMeasurement/UnitMeasurementScreen';
 import { BusinessScreen } from '../Components/Business/BusinessScreen';
 import { ClientScreen } from '../Components/Client/ClientScreen';
+import { ProviderScreen } from '../Components/Provider/ProviderScreen';
 
 export const DashboardRouters = () => {
     return (
@@ -31,6 +32,7 @@ export const DashboardRouters = () => {
                     <Route path = '/medidas' element={ <UnitMeasurementScreen /> }/>
                     <Route path = '/empresa' element={ <BusinessScreen /> }/>
                     <Route path = '/clientes' element={ <ClientScreen /> }/>
+                    <Route path = '/proveedores' element={ <ProviderScreen /> }/>
 
                     <Route path = '/' element={ <HomeScreen /> }/>
                 </Routes>

@@ -4,7 +4,7 @@ import { types_provider } from '../../Types/types.provider';
 import { ProviderContext } from './ProviderContext';
 import { providerReducer } from './providerReducer';
 
-export const providerState = ( props ) => {
+export const ProviderState = ( props ) => {
     const path = '/api/Provider';
     const initialState = {
         providerList: [],
@@ -125,7 +125,7 @@ export const providerState = ( props ) => {
         });
     }
 
-    const searchClient = async ( value ) => {
+    const searchProvider = async ( value ) => {
         if( value.trim() !== '' ) {
             dispatch({
                 type: types_provider.searchProviderActive,
@@ -153,7 +153,7 @@ export const providerState = ( props ) => {
                 deleteMessage,
                 activeModeEdit,
                 desactiveModeEdit,
-                searchClient,
+                searchProvider,
                 disactiveProviderSearchMode
             }}
         >

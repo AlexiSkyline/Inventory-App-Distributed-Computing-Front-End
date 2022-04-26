@@ -23,7 +23,7 @@ export const BrandScreen = () => {
     // * State para guardar la lista de marca a mostrar
     const [ listBrands, getListBrands ] = useState([]);
 
-    const { formValues, handleInputChange, handleResetSearchInput} = useSearch( { searchBrandValue: '' }, activeModeSearch );
+    const [ formValues, handleInputChange, handleResetSearchInput ] = useSearch( { searchBrandValue: '' }, activeModeSearch );
     const { searchBrandValue } = formValues;
 
     /*

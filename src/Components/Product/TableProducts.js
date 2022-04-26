@@ -1,61 +1,27 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
-import { ModalContext } from '../../Context/Modal/ModalContext';
+import { useActions } from '../../Hooks/useActions';
+
 import { ProductContext } from '../../Context/Product/ProductContext';
 
 export const TableProducts = ({ titles , products, handleResetSearchInput }) => {
-    const MySwal = withReactContent(Swal)
-
     const productContext = useContext( ProductContext );
-    const { deleteProduct, message, activeModeEdit, modeSearchProductDesactive } = productContext;
-
-    const modalContext = useContext( ModalContext );
-    const { uiOpenModal } = modalContext;
+    const { deleteProduct, activeModeEdit, modeSearchProductDesactive } = productContext;
 
     /*
         * Funcion para eliminar un producto
         * Recibe el id del producto a eliminar
-        * Luego pregunta si desea eliminarlo
         * Luego elimina el producto
         * Luego desactiva el modo de busqueda si esta activo
         * Luego reinicia el input de busqueda de productos
     */
-    const handleDelete = ( id ) => { 
-        MySwal.fire({
-            title: '¿Estas Seguro?',
-            text: 'El producto se eliminará permanentemente',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Aceptar',
-            cancelButtonText: 'Cancelar'
-        }).then(( result) => {
-            if( result.isConfirmed ) {
-                deleteProduct( id );
-                MySwal.fire(
-                  'Deleted!',
-                   message,
-                  'success'
-                );
-                modeSearchProductDesactive();
-                handleResetSearchInput();
-            }
-        });
+    const handleDelete = ( id ) => {
+        deleteProduct( id );
+        modeSearchProductDesactive();
+        handleResetSearchInput();
     }
 
-    /*
-        * Funcion para abrir el modal de editar un producto
-        * Recibe todo el producto a editar
-        * Abri el modal
-        * Luego activa el modo de edicion
-    */
-    const handleUpdate = ( product ) => {
-        uiOpenModal();
-        activeModeEdit( product );
-    }
+    const [ handleConfirm, handleUpdate ] = useActions( 'La marca', handleDelete, activeModeEdit );
 
     return (
         <div className='table__container'>  
@@ -94,7 +60,7 @@ export const TableProducts = ({ titles , products, handleResetSearchInput }) => 
                                     </button>
                                     <button 
                                         className='btn__delete'
-                                        onClick={ () => handleDelete( product.id ) }
+                                        onClick={ () => handleConfirm( product.id ) }
                                     >
                                         Eliminar
                                     </button>

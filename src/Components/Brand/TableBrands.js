@@ -8,8 +8,6 @@ export const TableBrands = ({ titles , brands, handleResetSearchInput }) => {
     const brandContext = useContext( BrandContext );
     const { deleteBrand, activeModeEdit, modeSearchBrandDesactive } = brandContext;
     
-    const [ handleConfirm, handleUpdate ] = useActions( 'La marca', handleDelete, activeModeEdit );
-    
     /*
         * Funcion para eliminar una marca una vez que se confirma
         * Recibe el id de la marca a eliminar
@@ -17,11 +15,14 @@ export const TableBrands = ({ titles , brands, handleResetSearchInput }) => {
         * Luego desactiva el modo de busqueda si esta activo
         * Luego reinicia el input de busqueda de la marca
     */
-    function handleDelete ( id ) { 
+    const handleDelete = ( id ) => { 
         deleteBrand( id );
         modeSearchBrandDesactive();
         handleResetSearchInput();
     }
+    
+    const [ handleConfirm, handleUpdate ] = useActions( 'La marca', handleDelete, activeModeEdit );
+    
 
     return (
         <div className='table__container'>  

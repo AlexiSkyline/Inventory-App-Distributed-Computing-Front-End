@@ -22,7 +22,7 @@ export const ClientScreen = () => {
     // * State para guardar la lista de Clientes a mostrar
     const [ listClients, getListClients ] = useState([]);
 
-    const { formValues, handleInputChange, handleResetSearchInput} = useSearch( { searchClientValue: '' }, searchClient );
+    const [ formValues, handleInputChange, handleResetSearchInput ] = useSearch( { searchClientValue: '' }, searchClient );
     const { searchClientValue } = formValues;
 
     /*

@@ -21,9 +21,5 @@ export const useSearch = ( initialState, fn ) => {
         setFormValues( initialState );
     }
 
-    return {
-        formValues,
-        handleInputChange,
-        handleResetSearchInput
-    }
+    return [ formValues, handleInputChange, handleResetSearchInput ];
 }

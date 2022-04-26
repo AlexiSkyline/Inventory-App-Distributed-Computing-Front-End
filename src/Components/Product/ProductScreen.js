@@ -23,7 +23,7 @@ export const ProductScreen = () => {
     // * State para guardar la lista de producto a mostrar
     const [ listProduct, getListProduct ] = useState([]);
 
-    const { formValues, handleInputChange, handleResetSearchInput} = useSearch( { searchProductValue: '' }, searchProduct );
+    const [ formValues, handleInputChange, handleResetSearchInput ] = useSearch( { searchProductValue: '' }, searchProduct );
     const { searchProductValue } = formValues;
 
     /*

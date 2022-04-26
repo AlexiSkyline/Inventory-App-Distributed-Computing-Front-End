@@ -22,7 +22,7 @@ export const ProviderScreen = () => {
     // * State para guardar la lista de Proveedore a mostrar
     const [ listProviders, getListProviders ] = useState([]);
 
-    const { formValues, handleInputChange, handleResetSearchInput} = useSearch( { searchProviderValue: '' }, searchProvider );
+    const [ formValues, handleInputChange, handleResetSearchInput ] = useSearch( { searchProviderValue: '' }, searchProvider );
     const { searchProviderValue } = formValues;
 
     /*

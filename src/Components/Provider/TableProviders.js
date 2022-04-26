@@ -1,54 +1,27 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
+import { useActions } from '../../Hooks/useActions';
 
 import { ProviderContext } from '../../Context/Provider/ProviderContext';
-import { ModalContext } from '../../Context/Modal/ModalContext';
 
 export const TableProviders = ({ listProviders, handleResetSearchInput }) => {
-    const MySwal = withReactContent(Swal);
-
     const providerContext = useContext( ProviderContext );
     const { deleteProvider, activeModeEdit, disactiveProviderSearchMode } = providerContext;
 
-    const modalContext = useContext( ModalContext );
-    const { uiOpenModal } = modalContext;
-
-    const handleDelete = ( id ) => {
-        MySwal.fire({
-            title: '¿Estas Seguro?',
-            text: 'El proveedor se eliminará permanentemente',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Aceptar',
-            cancelButtonText: 'Cancelar'
-        }).then(( result) => {
-            if( result.isConfirmed ) {
-                deleteProvider( id );
-                MySwal.fire(
-                   'Deleted!',
-                   'El proveedor se eliminó correctamente',
-                   'success'
-                );
-                handleResetSearchInput();
-                disactiveProviderSearchMode();
-            }
-        });
-    }
-
     /*
-        * Funcion para abrir el modal de editar una Proveedor
-        * Recibe todo los datos del Proveedor a editar
-        * Abri el modal
-        * Luego activa el modo de edicion
+        * Funcion para eliminar una proveedor una vez que se confirma
+        * Recibe el id de la proveedor a eliminar
+        * Luego elimina la proveedor
+        * Luego desactiva el modo de busqueda si esta activo
+        * Luego reinicia el input de busqueda de la proveedor
     */
-    const handleUpdate = ( proveedor ) => {
-        uiOpenModal();
-        activeModeEdit( proveedor );
+    const handleDelete = ( id ) => {
+        deleteProvider( id );
+        handleResetSearchInput();
+        disactiveProviderSearchMode();
     }
+
+    const [ handleConfirm, handleUpdate ] = useActions( 'El proveedor', handleDelete, activeModeEdit );
 
     return (
         <div className='table__container table__median'>  
@@ -90,7 +63,7 @@ export const TableProviders = ({ listProviders, handleResetSearchInput }) => {
                                     </button>
                                     <button 
                                         className='btn__delete'
-                                        onClick={ () => handleDelete( provider.id ) }
+                                        onClick={ () => handleConfirm( provider.id ) }
                                     >
                                         Eliminar
                                     </button>

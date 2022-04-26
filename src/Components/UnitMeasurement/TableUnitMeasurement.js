@@ -1,54 +1,27 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
+import { useActions } from '../../Hooks/useActions';
 
 import { UnitMeasurementContext } from '../../Context/UnitMeasurement/UnitMeasurementContext';
-import { ModalContext } from '../../Context/Modal/ModalContext';
 
 export const TableUnitMeasurement = ({ unitMs, handleResetSearchInput }) => {
-    const MySwal = withReactContent(Swal);
-
     const unitMeasurementContext = useContext( UnitMeasurementContext );
     const { deleteUnitM, activeModeEdit, modeSearchUnitMDesactive } = unitMeasurementContext;
 
-    const modalContext = useContext( ModalContext );
-    const { uiOpenModal } = modalContext;
-
-    const handleDelete = ( id ) => {
-        MySwal.fire({
-            title: '¿Estas Seguro?',
-            text: 'La unidad de medida se eliminará permanentemente',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Aceptar',
-            cancelButtonText: 'Cancelar'
-        }).then(( result) => {
-            if( result.isConfirmed ) {
-                deleteUnitM( id );
-                MySwal.fire(
-                   'Deleted!',
-                   'La unidad de medida se eliminó correctamente',
-                   'success'
-                );
-                handleResetSearchInput();
-                modeSearchUnitMDesactive();
-            }
-        });
-    }
-
     /*
-        * Funcion para abrir el modal de editar una unidad de medida
-        * Recibe todo la unidad de medida a editar
-        * Abri el modal
-        * Luego activa el modo de edicion
+        * Funcion para eliminar un unidad de medida una vez que se confirma
+        * Recibe el id de la unidad de medida a eliminar
+        * Luego elimina la unidad de medida
+        * Luego desactiva el modo de busqueda si esta activo
+        * Luego reinicia el input de busqueda de la unidad de medidas
     */
-    const handleUpdate = ( unitM ) => {
-        uiOpenModal();
-        activeModeEdit( unitM );
+    const handleDelete = ( id ) => {
+        deleteUnitM( id );
+        handleResetSearchInput();
+        modeSearchUnitMDesactive();
     }
+
+    const [ handleConfirm, handleUpdate ] = useActions( 'La marca', handleDelete, activeModeEdit );
 
     return (
         <div className='table__container'>  
@@ -80,7 +53,7 @@ export const TableUnitMeasurement = ({ unitMs, handleResetSearchInput }) => {
                                     </button>
                                     <button 
                                         className='btn__delete'
-                                        onClick={ () => handleDelete( unitM.id ) }
+                                        onClick={ () => handleConfirm( unitM.id ) }
                                     >
                                         Eliminar
                                     </button>

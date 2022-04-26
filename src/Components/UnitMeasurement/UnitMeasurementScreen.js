@@ -22,7 +22,7 @@ export const UnitMeasurementScreen = () => {
     // * State para guardar la lista de unidad de medida a mostrar
     const [ listUnitMs, getListUnitMs ] = useState([]);
 
-    const { formValues, handleInputChange, handleResetSearchInput} = useSearch( { searchUnitMsValue: '' }, activeModeSearch );
+    const [ formValues, handleInputChange, handleResetSearchInput ] = useSearch( { searchUnitMsValue: '' }, activeModeSearch );
     const { searchUnitMsValue } = formValues;
 
     useEffect( () => {

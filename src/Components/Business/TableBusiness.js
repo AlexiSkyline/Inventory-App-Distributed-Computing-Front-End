@@ -1,54 +1,27 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
+import { useActions } from '../../Hooks/useActions';
 
 import { BusinessContext } from '../../Context/Business/BusinessContext';
-import { ModalContext } from '../../Context/Modal/ModalContext';
 
 export const TableBusiness = ({ business, handleResetSearchInput  }) => {
-    const MySwal = withReactContent(Swal);
-
     const businessContext = useContext( BusinessContext );
     const { deleteBusiness, activeModeEdit, modeSearchBusinessDesactive } = businessContext;
-
-    const modalContext = useContext( ModalContext );
-    const { uiOpenModal } = modalContext;
     
+    /*
+        * Funcion para eliminar un empresa una vez que se confirma
+        * Recibe el id del empresa a eliminar
+        * Luego elimina el empresa
+        * Luego desactiva el modo de busqueda si esta activo
+        * Luego reinicia el input de busqueda de empresas
+    */
     const handleDelete = ( id ) => {
-        MySwal.fire({
-            title: '¿Estas Seguro?',
-            text: 'La empresa se eliminará permanentemente',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Aceptar',
-            cancelButtonText: 'Cancelar'
-        }).then(( result) => {
-            if( result.isConfirmed ) {
-                deleteBusiness( id );
-                MySwal.fire(
-                   'Deleted!',
-                   'La empresa se eliminó correctamente',
-                   'success'
-                );
-                handleResetSearchInput();
-                modeSearchBusinessDesactive();
-            }
-        });
+        deleteBusiness( id );
+        handleResetSearchInput();
+        modeSearchBusinessDesactive();
     }
 
-    /*
-        * Funcion para abrir el modal de editar una empresa
-        * Recibe todo la empresa a editar
-        * Abri el modal
-        * Luego activa el modo de edicion
-    */
-    const handleUpdate = ( busines ) => {
-        uiOpenModal();
-        activeModeEdit( busines );
-    }
+    const [ handleConfirm, handleUpdate ] = useActions( 'La empresa', handleDelete, activeModeEdit );
 
     return (
         <div className='table__container'>  
@@ -82,7 +55,7 @@ export const TableBusiness = ({ business, handleResetSearchInput  }) => {
                                     </button>
                                     <button 
                                         className='btn__delete'
-                                        onClick={ () => handleDelete( busines.id ) }
+                                        onClick={ () => handleConfirm( busines.id ) }
                                     >
                                         Eliminar
                                     </button>

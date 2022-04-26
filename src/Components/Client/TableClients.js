@@ -1,54 +1,27 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
+import { useActions } from '../../Hooks/useActions';
 
 import { ClientContext } from '../../Context/Client/ClientContext';
-import { ModalContext } from '../../Context/Modal/ModalContext';
 
 export const TableClients = ({ listClients, handleResetSearchInput }) => {
-    const MySwal = withReactContent(Swal);
-
     const clientContext = useContext( ClientContext );
     const { deleteClient, activeModeEdit, disactiveClientSearchMode } = clientContext;
 
-    const modalContext = useContext( ModalContext );
-    const { uiOpenModal } = modalContext;
-
-    const handleDelete = ( id ) => {
-        MySwal.fire({
-            title: '¿Estas Seguro?',
-            text: 'El cliente se eliminará permanentemente',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Aceptar',
-            cancelButtonText: 'Cancelar'
-        }).then(( result) => {
-            if( result.isConfirmed ) {
-                deleteClient( id );
-                MySwal.fire(
-                   'Deleted!',
-                   'El cliente se eliminó correctamente',
-                   'success'
-                );
-                handleResetSearchInput();
-                disactiveClientSearchMode();
-            }
-        });
-    }
-
     /*
-        * Funcion para abrir el modal de editar una Cliente
-        * Recibe todo los datos del Cliente a editar
-        * Abri el modal
-        * Luego activa el modo de edicion
+        * Funcion para eliminar un cliente una vez que se confirma
+        * Recibe el id del cliente a eliminar
+        * Luego elimina el cliente
+        * Luego desactiva el modo de busqueda si esta activo
+        * Luego reinicia el input de busqueda de clientes
     */
-    const handleUpdate = ( client ) => {
-        uiOpenModal();
-        activeModeEdit( client );
+    const handleDelete = ( id ) => {
+        deleteClient( id );
+        handleResetSearchInput();
+        disactiveClientSearchMode();
     }
+
+    const [ handleConfirm, handleUpdate ] = useActions( 'El cliente', handleDelete, activeModeEdit );
 
     return (
         <div className='table__container table__median'>  
@@ -90,7 +63,7 @@ export const TableClients = ({ listClients, handleResetSearchInput }) => {
                                     </button>
                                     <button 
                                         className='btn__delete'
-                                        onClick={ () => handleDelete( client.id ) }
+                                        onClick={ () => handleConfirm( client.id ) }
                                     >
                                         Eliminar
                                     </button>

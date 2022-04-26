@@ -22,7 +22,7 @@ export const BusinessScreen = () => {
     // * State para guardar la lista de empresas a mostrar
     const [ listBusiness, getListBusiness ] = useState([]);
 
-    const { formValues, handleInputChange, handleResetSearchInput} = useSearch( { searchBusinessValue: '' }, activeModeSearch );
+    const [ formValues, handleInputChange, handleResetSearchInput ] = useSearch( { searchBusinessValue: '' }, activeModeSearch );
     const { searchBusinessValue } = formValues;
 
      /*

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 import { ProviderContext } from '../../Context/Provider/ProviderContext';
 
@@ -6,6 +6,7 @@ import { HeadBoard } from '../UI/HeadBoard/HeadBoard';
 import { InputSearch } from '../UI/InputSearch/InputSearch';
 import { FloatingButton } from '../UI/FloatingButton/FloatingButton';
 import { FloatingButtonClose } from '../UI/FloatingButton/FloatingButtonClose';
+import { TableProviders } from './TableProviders';
 
 export const ProviderScreen = () => {
     const providerContext = useContext( ProviderContext );
@@ -35,6 +36,15 @@ export const ProviderScreen = () => {
         });
     }
 
+    /* 
+        * Obtenemos los proveedores y cargarlos en el state
+        * El otro caso es obtener los proveedores filtrados si el status es true
+    */
+    useEffect( () => {
+        setTimeout(() => { getProviders() }, 800);
+        // eslint-disable-next-line
+    }, [ providerList ] );
+
     return (
         <main className='data__container content__page'>
             <HeadBoard
@@ -48,10 +58,10 @@ export const ProviderScreen = () => {
                 handleInputChange={ handleInputChange }
             />
             
-            {/* <TableProviders
-                listProviders={ listProviders }
+            <TableProviders
+                listProviders={ providerList }
                 handleResetSearchInput={ handleResetSearchInput }
-            /> */}
+            />
 
             <FloatingButtonClose desactiveModeEdit={ desactiveModeEdit }/>
 

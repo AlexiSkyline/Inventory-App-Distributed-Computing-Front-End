@@ -65,6 +65,32 @@ export const SellerState = ( props ) => {
         }
     }
 
+    const updateSeller = async ( data ) => {
+        try {
+            const response = await clientAxios.put( `${ path }/${ state.infSellerEdit.id }`, {
+                name: data.name,
+                lastName: data.lastName,
+                rfc: data.rfc,
+                address: data.address,
+                email: data.email,
+                phoneNumber: data.phoneNumber,
+                userName: data.userName,
+                password: data.password
+            });
+            dispatch({
+                type: types_seller.updateSeller,
+                payload: response.data.message
+            });
+        } catch (error) {
+            dispatch({
+                type: types_seller.updateSellerFailed,
+                payload: error.response.data.message
+            });
+        }
+        
+        deleteMessage();
+    }
+
     return (
         <SellerContext.Provider
             value={{
@@ -77,6 +103,7 @@ export const SellerState = ( props ) => {
                 infSellerEdit: state.infSellerEdit,
                 createSeller,
                 getSellers,
+                updateSeller,
                 deleteMessage,
             }}
         >

@@ -21,7 +21,7 @@ export const ProviderModal = ({ handleResetSearchInput }) => {
     const modeEditContext = useContext( ModeEditContext );
     const { activeModeEdit, desactiveModeEdit } = modeEditContext;
 
-    const { formValues, handleSubmit, handleInputChange } = useValidation( initialFormValuesProvider, ValidateProvider, handleCreateAndUpdate );
+    const [ formValues, handleSubmit, handleInputChange ] = useValidation( initialFormValuesProvider, ValidateProvider, handleCreateAndUpdate );
     const { name, lastName, rfc, address, email, phoneNumber } = formValues;
     
     /*

@@ -79,9 +79,5 @@ export const useValidation = ( initialState, validate, fn ) => {
         // eslint-disable-next-line
     }, [errors]);
 
-    return {
-        formValues,
-        handleSubmit,
-        handleInputChange,
-    };
+    return [ formValues, handleSubmit, handleInputChange ];
 }

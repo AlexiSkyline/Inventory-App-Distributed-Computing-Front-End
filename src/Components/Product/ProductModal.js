@@ -20,7 +20,7 @@ export const ProductModal = ({ handleResetSearchInput }) => {
     const modeEditContext = useContext( ModeEditContext );
     const { activeModeEdit, desactiveModeEdit } = modeEditContext;
     
-    const { formValues, handleSubmit, handleInputChange } = useValidation( initialFormValuesProduct, ValidateProduct, handleCreateAndUpdate );
+    const [ formValues, handleSubmit, handleInputChange ] = useValidation( initialFormValuesProduct, ValidateProduct, handleCreateAndUpdate );
     const { name ,description ,price ,idUnitMesurement ,idBrand ,stock ,idProvider } = formValues;
 
     /*

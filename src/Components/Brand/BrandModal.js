@@ -20,7 +20,7 @@ export const BrandModal = ({ handleResetSearchInput }) => {
     const modeEditContext = useContext( ModeEditContext );
     const { activeModeEdit, desactiveModeEdit } = modeEditContext;
     
-    const { formValues, handleSubmit, handleInputChange } = useValidation( initialFormValuesBrand, ValidateBrand, handleCreateAndUpdate );
+    const [ formValues, handleSubmit, handleInputChange ] = useValidation( initialFormValuesBrand, ValidateBrand, handleCreateAndUpdate );
     const { description } = formValues;
 
     /*

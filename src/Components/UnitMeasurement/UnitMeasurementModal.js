@@ -21,7 +21,7 @@ export const UnitMeasurementModal = ({ handleResetSearchInput }) => {
     const modeEditContext = useContext( ModeEditContext );
     const { activeModeEdit, desactiveModeEdit } = modeEditContext;
 
-    const { formValues, handleSubmit, handleInputChange } = useValidation( initialFormValuesUnitMeasurement, ValidateUnitMeasurement, handleCreateAndUpdate );
+    const [ formValues, handleSubmit, handleInputChange ] = useValidation( initialFormValuesUnitMeasurement, ValidateUnitMeasurement, handleCreateAndUpdate );
     const { description } = formValues;
 
     /*

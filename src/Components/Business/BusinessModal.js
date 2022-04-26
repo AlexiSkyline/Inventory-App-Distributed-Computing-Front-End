@@ -21,7 +21,7 @@ export const BusinessModal = ({ handleResetSearchInput }) => {
     const modeEditContext = useContext( ModeEditContext );
     const { activeModeEdit, desactiveModeEdit } = modeEditContext;
 
-    const { formValues, handleSubmit, handleInputChange } = useValidation( initialFormValuesBusiness, ValidateBusiness, handleCreateAndUpdate );
+    const [ formValues, handleSubmit, handleInputChange ] = useValidation( initialFormValuesBusiness, ValidateBusiness, handleCreateAndUpdate );
     const { name, address } = formValues;
 
     /*

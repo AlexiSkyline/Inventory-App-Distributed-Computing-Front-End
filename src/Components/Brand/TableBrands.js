@@ -1,60 +1,26 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
+import { useActions } from '../../Hooks/useActions';
+
 import { BrandContext } from '../../Context/Brand/BrandContext';
-import { ModalContext } from '../../Context/Modal/ModalContext';
 
 export const TableBrands = ({ titles , brands, handleResetSearchInput }) => {
-    const MySwal = withReactContent(Swal);
-
     const brandContext = useContext( BrandContext );
     const { deleteBrand, activeModeEdit, modeSearchBrandDesactive } = brandContext;
-
-    const modalContext = useContext( ModalContext );
-    const { uiOpenModal } = modalContext;
+    
+    const [ handleConfirm, handleUpdate ] = useActions( 'La marca', handleDelete, activeModeEdit );
     
     /*
-        * Funcion para eliminar una marca
+        * Funcion para eliminar una marca una vez que se confirma
         * Recibe el id de la marca a eliminar
-        * Luego pregunta si desea eliminarlo
         * Luego elimina la marca
         * Luego desactiva el modo de busqueda si esta activo
         * Luego reinicia el input de busqueda de la marca
     */
-    const handleDelete = ( id ) => { 
-        MySwal.fire({
-            title: '¿Estas Seguro?',
-            text: 'La marca se eliminará permanentemente',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Aceptar',
-            cancelButtonText: 'Cancelar'
-        }).then(( result) => {
-            if( result.isConfirmed ) {
-                deleteBrand( id );
-                MySwal.fire(
-                   'Deleted!',
-                   'La marca se eliminó correctamente',
-                   'success'
-                );
-                modeSearchBrandDesactive();
-                handleResetSearchInput();
-            }
-        });
-    }
-
-    /*
-        * Funcion para abrir el modal de editar una marca
-        * Recibe todo la marca a editar
-        * Abri el modal
-        * Luego activa el modo de edicion
-    */
-    const handleUpdate = ( brand ) => {
-        uiOpenModal();
-        activeModeEdit( brand );
+    function handleDelete ( id ) { 
+        deleteBrand( id );
+        modeSearchBrandDesactive();
+        handleResetSearchInput();
     }
 
     return (
@@ -88,7 +54,7 @@ export const TableBrands = ({ titles , brands, handleResetSearchInput }) => {
                                     </button>
                                     <button 
                                         className='btn__delete'
-                                        onClick={ () => handleDelete( brand.id ) }
+                                        onClick={ () => handleConfirm( brand.id ) }
                                     >
                                         Eliminar
                                     </button>

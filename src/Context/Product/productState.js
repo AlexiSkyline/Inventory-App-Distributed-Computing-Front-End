@@ -94,11 +94,9 @@ export const ProductState = ( props ) => {
     }
 
     const desactiveModeEdit = () => {
-        setTimeout(() => {
-            dispatch({
-                type: types.desactiveModeEdit
-            });
-        } , 100);
+        dispatch({
+            type: types.desactiveModeEdit
+        });
     }
 
     const updateProduct = async ( product ) => {

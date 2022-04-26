@@ -112,11 +112,9 @@ export const ProviderState = ( props ) => {
     }
 
     const desactiveModeEdit = () => {
-        setTimeout(() => {
-            dispatch({
-                type: types_provider.desactiveModeEdit
-            });
-        } , 100);
+        dispatch({
+            type: types_provider.desactiveModeEdit
+        });
     }
 
     const disactiveProviderSearchMode = () => {

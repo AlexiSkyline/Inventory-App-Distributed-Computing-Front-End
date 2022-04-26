@@ -104,11 +104,9 @@ export const BusinessState = ( props ) => {
     }
 
     const desactiveModeEdit = () => {
-        setTimeout(() => {
-            dispatch({
-                type: types_business.desactiveModeEdit
-            });
-        } , 100);
+        dispatch({
+            type: types_business.desactiveModeEdit
+        });
     }
 
     const modeSearchBusinessDesactive = () => {

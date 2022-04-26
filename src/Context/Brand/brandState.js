@@ -104,11 +104,9 @@ export const BrandState = ( props ) => {
     }
 
     const desactiveModeEdit = () => {
-        setTimeout(() => {
-            dispatch({
-                type: types_brand.desactiveModeEdit
-            });
-        } , 100);
+        dispatch({
+            type: types_brand.desactiveModeEdit
+        });
     }
     
     const modeSearchBrandDesactive = () => {

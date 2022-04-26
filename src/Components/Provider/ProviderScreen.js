@@ -18,6 +18,9 @@ export const ProviderScreen = () => {
     const alertContext = useContext( AlertContext );
     const { showAlert } = alertContext;
 
+    // * State para guardar la lista de Proveedore a mostrar
+    const [ listProviders, getListProviders ] = useState([]);
+
     // * State para almacenar el parametro de busqueda
     const [ formValues, setFormValues ] = useState({
         searchProviderValue: ''
@@ -30,6 +33,8 @@ export const ProviderScreen = () => {
             ...formValues,
             [target.name]: target.value
         });
+
+        searchProvider( target.value );
     };
 
     /*
@@ -58,8 +63,13 @@ export const ProviderScreen = () => {
     */
     useEffect( () => {
         setTimeout(() => { getProviders() }, 800);
+        if( searchModeStatus ) {
+            getListProviders( listProviderFound );
+        } else {
+            getListProviders( providerList );
+        }
         // eslint-disable-next-line
-    }, [ providerList ] );
+    }, [ providerList, searchModeStatus ] );
 
     return (
         <main className='data__container content__page'>
@@ -75,7 +85,7 @@ export const ProviderScreen = () => {
             />
             
             <TableProviders
-                listProviders={ providerList }
+                listProviders={ listProviders }
                 handleResetSearchInput={ handleResetSearchInput }
             />
 

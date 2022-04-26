@@ -113,11 +113,9 @@ export const ClientState = ( props ) => {
     }
 
     const desactiveModeEdit = () => {
-        setTimeout(() => {
-            dispatch({
-                type: types_client.desactiveModeEdit
-            });
-        } , 100);
+        dispatch({
+            type: types_client.desactiveModeEdit
+        });
     }
 
     const disactiveClientSearchMode = () => {

@@ -104,11 +104,9 @@ export const UnitMeasurementState = ( props ) => {
     }
 
     const desactiveModeEdit = () => {
-        setTimeout(() => {
-            dispatch({
-                type: types_unitMeasurement.desactiveModeEdit
-            });
-        } , 100);
+        dispatch({
+            type: types_unitMeasurement.desactiveModeEdit
+        });
     }
 
     const modeSearchUnitMDesactive = () => {

@@ -91,6 +91,23 @@ export const SellerState = ( props ) => {
         deleteMessage();
     }
 
+    const deleteSeller = async ( id ) => {
+        try {
+            const response = await clientAxios.delete( `${ path }/${ id }` );
+            dispatch({
+                type: types_seller.deleteSeller,
+                payload: response.data.message
+            });
+        } catch (error) {
+            dispatch({
+                type: types_seller.deleteSellerFailed,
+                payload: error.response.data.message
+            });
+        }
+        
+        deleteMessage();
+    }
+
     return (
         <SellerContext.Provider
             value={{
@@ -104,6 +121,7 @@ export const SellerState = ( props ) => {
                 createSeller,
                 getSellers,
                 updateSeller,
+                deleteSeller,
                 deleteMessage,
             }}
         >

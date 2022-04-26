@@ -15,6 +15,7 @@ export const sellerReducer = ( state, action ) => {
                 sellerList: action.payload
             }
         case types_seller.updateSeller:
+        case types_seller.deleteSeller:
             return {
                 ...state,
                 message: action.payload,
@@ -23,6 +24,7 @@ export const sellerReducer = ( state, action ) => {
         case types_seller.addSellerFailed:
         case types_seller.getSellersFailed:
         case types_seller.updateSellerFailed:
+        case types_seller.deleteSellerFailed:
             return {
                 ...state,
                 error: true,

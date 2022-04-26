@@ -91,7 +91,7 @@ export const ProviderState = ( props ) => {
         try {
             const response = await clientAxios.delete( `${ path }/${ id }` );
             dispatch({
-                type: types_provider.updateProvider,
+                type: types_provider.deleteProvider,
                 payload: response.data.message
             });
         } catch (error) {

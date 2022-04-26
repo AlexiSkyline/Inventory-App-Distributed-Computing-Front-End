@@ -18,7 +18,7 @@ export const providerReducer = ( state, action ) => {
         case types_provider.deleteProvider:
             return {
                 ...state,
-                message: action.payload.message,
+                message: action.payload,
                 typeMessage: 'alert-ok'
             }
         case types_provider.addProviderFailed:

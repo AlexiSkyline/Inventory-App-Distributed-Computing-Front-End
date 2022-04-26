@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 
 import { ProviderContext } from '../../Context/Provider/ProviderContext';
+import { AlertContext } from '../../Context/Alert/AlertContext';
 
 import { HeadBoard } from '../UI/HeadBoard/HeadBoard';
 import { InputSearch } from '../UI/InputSearch/InputSearch';
@@ -13,6 +14,9 @@ export const ProviderScreen = () => {
     const { providerList, message, typeMessage, listProviderFound, 
             searchModeStatus, getProviders, desactiveModeEdit, searchProvider } = providerContext;
     
+    const alertContext = useContext( AlertContext );
+    const { showAlert } = alertContext;
+
     // * State para almacenar el parametro de busqueda
     const [ formValues, setFormValues ] = useState({
         searchProviderValue: ''
@@ -35,6 +39,17 @@ export const ProviderScreen = () => {
             searchProviderValue: ''
         });
     }
+
+    /*
+        * Mostramos el mesaje si existe uno en el state
+        * El otro caso es que no se muestre ningun mensaje
+    */
+    useEffect( () => {
+        if( message ) {
+            showAlert( message, typeMessage );
+        }
+        // eslint-disable-next-line
+    } , [message] );
 
     /* 
         * Obtenemos los proveedores y cargarlos en el state

@@ -108,6 +108,19 @@ export const SellerState = ( props ) => {
         deleteMessage();
     }
 
+    const activeModeEdit = ( seller ) => {
+        dispatch({
+            type: types_seller.activeModeEdit,
+            payload: seller
+        });
+    }
+
+    const desactiveModeEdit = () => {
+        dispatch({
+            type: types_seller.desactiveModeEdit
+        });
+    }
+
     return (
         <SellerContext.Provider
             value={{
@@ -122,6 +135,8 @@ export const SellerState = ( props ) => {
                 getSellers,
                 updateSeller,
                 deleteSeller,
+                activeModeEdit,
+                desactiveModeEdit,
                 deleteMessage,
             }}
         >

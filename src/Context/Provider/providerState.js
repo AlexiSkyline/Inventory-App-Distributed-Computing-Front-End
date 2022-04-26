@@ -63,6 +63,28 @@ export const providerState = ( props ) => {
         }
     }
 
+    const updateProvider = async ( data ) => {
+        try {
+            const response = clientAxios.put( `${ path }/${ state.infProviderEdit.id }`, {
+                name: data.name,
+                lastName: data.lastName,
+                rfc: data.rfc,
+                address: data.address,
+                email: data.email,
+                phoneNumber: data.phoneNumber
+            });
+            dispatch({
+                type: types_provider.updateProvider,
+                payload: response.data.message
+            });
+        } catch (error) {
+            dispatch({
+                type: types_provider.updateProviderFailed,
+                payload: error.response.data.message
+            });
+        }
+    }
+
     return (
         <ProviderContext.Provider
             value={{
@@ -75,6 +97,7 @@ export const providerState = ( props ) => {
                 infProviderEdit: state.infProviderEdit,
                 createProvider,
                 getProviders,
+                updateProvider,
                 deleteMessage,
             }}
         >

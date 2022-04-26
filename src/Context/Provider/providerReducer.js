@@ -31,6 +31,30 @@ export const providerReducer = ( state, action ) => {
                 message: action.payload,
                 typeMessage: 'alert-error'
             }
+        case types_provider.activeModeEdit:
+            return {
+                ...state,
+                statusEditModeProvider: true,
+                infProviderEdit: action.payload
+            }
+        case types_provider.desactiveModeEdit:
+            return {
+                ...state,
+                statusEditModeProvider: false,
+                infProviderEdit: null
+            }
+        case types_provider.searchProviderActive:
+            return {
+                ...state,
+                searchModeStatus: true,
+                listProviderFound: state.providerList.filter( provider => provider.name.toLowerCase().includes( action.payload.toLowerCase() ) )
+            }
+        case types_provider.searchProviderDesactive:
+            return {
+                ...state,
+                searchModeStatus: false,
+                listProviderFound: []
+            }
         case types_provider.removeMessages:
             return {
                 ...state,

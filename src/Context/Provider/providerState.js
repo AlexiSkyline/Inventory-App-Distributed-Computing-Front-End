@@ -104,6 +104,38 @@ export const providerState = ( props ) => {
         deleteMessage();
     }
 
+    const activeModeEdit = ( provider ) => {
+        dispatch({
+            type: types_provider.activeModeEdit,
+            payload: provider
+        });
+    }
+
+    const desactiveModeEdit = () => {
+        setTimeout(() => {
+            dispatch({
+                type: types_provider.desactiveModeEdit
+            });
+        } , 100);
+    }
+
+    const disactiveProviderSearchMode = () => {
+        dispatch({
+            type: types_provider.searchProviderDesactive
+        });
+    }
+
+    const searchClient = async ( value ) => {
+        if( value.trim() !== '' ) {
+            dispatch({
+                type: types_provider.searchProviderActive,
+                payload: value
+            });
+        } else {
+            disactiveProviderSearchMode();
+        }
+    }
+
     return (
         <ProviderContext.Provider
             value={{
@@ -119,6 +151,10 @@ export const providerState = ( props ) => {
                 updateProvider,
                 deleteProvider,
                 deleteMessage,
+                activeModeEdit,
+                desactiveModeEdit,
+                searchClient,
+                disactiveProviderSearchMode
             }}
         >
             {props.children}

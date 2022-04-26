@@ -8,6 +8,7 @@ import { InputSearch } from '../UI/InputSearch/InputSearch';
 import { FloatingButton } from '../UI/FloatingButton/FloatingButton';
 import { FloatingButtonClose } from '../UI/FloatingButton/FloatingButtonClose';
 import { TableProviders } from './TableProviders';
+import { ProviderModal } from './ProviderModal';
 
 export const ProviderScreen = () => {
     const providerContext = useContext( ProviderContext );
@@ -82,9 +83,9 @@ export const ProviderScreen = () => {
 
             <FloatingButton />
 
-            {/* <ProviderModal 
+            <ProviderModal 
                 handleResetSearchInput={ handleResetSearchInput }
-            /> */}
+            />
         </main>
     );
 }

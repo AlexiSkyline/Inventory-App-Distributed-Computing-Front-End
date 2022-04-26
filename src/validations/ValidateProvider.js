@@ -1,4 +1,4 @@
-export const ValidateProviders = ( values ) => {
+export const ValidateProvider = ( values ) => {
     let errors = {};
 
     // * Validar el nombre del proveedor

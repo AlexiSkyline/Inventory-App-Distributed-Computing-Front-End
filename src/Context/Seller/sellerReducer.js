@@ -9,6 +9,19 @@ export const sellerReducer = ( state, action ) => {
                 message: action.payload.message,
                 typeMessage: 'alert-ok'
             }
+        case types_seller.getSellers:
+            return {
+                ...state,
+                sellerList: action.payload
+            }
+        case types_seller.addSellerFailed:
+        case types_seller.getSellersFailed:
+            return {
+                ...state,
+                error: true,
+                message: action.payload,
+                typeMessage: 'alert-error'
+            }
         case types_seller.removeMessages: 
             return {
                 ...state,

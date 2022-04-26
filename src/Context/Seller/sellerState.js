@@ -51,6 +51,20 @@ export const SellerState = ( props ) => {
         deleteMessage();
     }
 
+    const getSellers = async () => {
+        try {
+            const response = await clientAxios.get( path );
+            dispatch({
+                type: types_seller.getSellers,
+                payload: response.data.results
+            });
+        } catch (error) {
+            dispatch({
+                type: types_seller.getSellersFailed,
+            });
+        }
+    }
+
     return (
         <SellerContext.Provider
             value={{
@@ -62,6 +76,7 @@ export const SellerState = ( props ) => {
                 statusEditModeSeller: state.statusEditModeSeller,
                 infSellerEdit: state.infSellerEdit,
                 createSeller,
+                getSellers,
                 deleteMessage,
             }}
         >

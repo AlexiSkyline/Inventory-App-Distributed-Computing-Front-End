@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useSearch } from '../../Hooks/useSearch';
 
 import { AlertContext } from '../../Context/Alert/AlertContext';
 import { BrandContext } from '../../Context/Brand/BrandContext';
@@ -22,30 +23,8 @@ export const BrandScreen = () => {
     // * State para guardar la lista de marca a mostrar
     const [ listBrands, getListBrands ] = useState([]);
 
-    // * State para almacenar el parametro de busqueda
-    const [ formValues, setFormValues ] = useState({
-        searchBrandValue: ''
-    });
+    const { formValues, handleInputChange, handleResetSearchInput} = useSearch( { searchBrandValue: '' }, activeModeSearch );
     const { searchBrandValue } = formValues;
-
-    // * Funcion para obtener el parametro de busqueda
-    const handleInputChange = ({ target }) => {
-        setFormValues({
-            ...formValues,
-            [target.name]: target.value
-        });
-
-        activeModeSearch( target.value );
-    };
-
-    /*
-        * funcion para reiniciar el input de busqueda 
-    */
-    function handleResetSearchInput() {
-        setFormValues({
-            searchBrandValue: ''
-        });
-    }
 
     /*
         * Mostramos el mesaje si existe uno en el state

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { AlertContext } from '../../Context/Alert/AlertContext';
+import { useSearch } from '../../Hooks/useSearch';
 
+import { AlertContext } from '../../Context/Alert/AlertContext';
 import { ProductContext } from '../../Context/Product/ProductContext';
 
 import { FloatingButton } from '../UI/FloatingButton/FloatingButton';
@@ -22,29 +23,8 @@ export const ProductScreen = () => {
     // * State para guardar la lista de producto a mostrar
     const [ listProduct, getListProduct ] = useState([]);
 
-    // * State para almacenar el parametro de busqueda
-    const [ formValues, setFormValues ] = useState({
-        searchProductValue: ''
-    });
+    const { formValues, handleInputChange, handleResetSearchInput} = useSearch( { searchProductValue: '' }, searchProduct );
     const { searchProductValue } = formValues;
-
-    // * Funcion para obtener el parametro de busqueda
-    const handleInputChange = ({ target }) => {
-        setFormValues({
-            ...formValues,
-            [target.name]: target.value
-        });
-        searchProduct( target.value );
-    };
-
-    /*
-        * funcion para reiniciar el input de busqueda 
-    */
-    function handleResetSearchInput() {
-        setFormValues({
-            searchProductValue: ''
-        });
-    }
 
     /*
         * Mostramos el mesaje si existe uno en el state

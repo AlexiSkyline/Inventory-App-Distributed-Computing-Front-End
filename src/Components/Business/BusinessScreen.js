@@ -1,6 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react';
+import { useSearch } from '../../Hooks/useSearch';
+
 import { AlertContext } from '../../Context/Alert/AlertContext';
 import { BusinessContext } from '../../Context/Business/BusinessContext';
+
 import { FloatingButton } from '../UI/FloatingButton/FloatingButton';
 import { FloatingButtonClose } from '../UI/FloatingButton/FloatingButtonClose';
 import { HeadBoard } from '../UI/HeadBoard/HeadBoard';
@@ -19,30 +22,8 @@ export const BusinessScreen = () => {
     // * State para guardar la lista de empresas a mostrar
     const [ listBusiness, getListBusiness ] = useState([]);
 
-    // * State para almacenar el parametro de busqueda
-    const [ formValues, setFormValues ] = useState({
-        searchBusinessValue: ''
-    });
+    const { formValues, handleInputChange, handleResetSearchInput} = useSearch( { searchBusinessValue: '' }, activeModeSearch );
     const { searchBusinessValue } = formValues;
-
-    // * Funcion para obtener el parametro de busqueda
-    const handleInputChange = ({ target }) => {
-        setFormValues({
-            ...formValues,
-            [target.name]: target.value
-        });
-
-        activeModeSearch( target.value );
-    };
-
-    /*
-        * funcion para reiniciar el input de busqueda 
-    */
-    function handleResetSearchInput() {
-        setFormValues({
-            searchBusinessValue: ''
-        });
-    }
 
      /*
         * Mostramos el mesaje si existe uno en el state

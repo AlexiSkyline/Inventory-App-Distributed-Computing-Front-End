@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { AlertContext } from '../../Context/Alert/AlertContext';
+import { useSearch } from '../../Hooks/useSearch';
 
+import { AlertContext } from '../../Context/Alert/AlertContext';
 import { ClientContext } from '../../Context/Client/ClientContext';
 
 import { FloatingButton } from '../UI/FloatingButton/FloatingButton';
@@ -21,30 +22,8 @@ export const ClientScreen = () => {
     // * State para guardar la lista de Clientes a mostrar
     const [ listClients, getListClients ] = useState([]);
 
-    // * State para almacenar el parametro de busqueda
-    const [ formValues, setFormValues ] = useState({
-        searchClientValue: ''
-    });
+    const { formValues, handleInputChange, handleResetSearchInput} = useSearch( { searchClientValue: '' }, searchClient );
     const { searchClientValue } = formValues;
-
-    // * Funcion para obtener el parametro de busqueda
-    const handleInputChange = ({ target }) => {
-        setFormValues({
-            ...formValues,
-            [target.name]: target.value
-        });
-
-        searchClient( target.value );
-    };
-
-    /*
-        * funcion para reiniciar el input de busqueda 
-    */
-    function handleResetSearchInput() {
-        setFormValues({
-            searchClientValue: ''
-        });
-    }
 
     /*
         * Mostramos el mesaje si existe uno en el state

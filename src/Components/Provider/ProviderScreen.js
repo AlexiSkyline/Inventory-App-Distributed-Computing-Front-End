@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { useSearch } from '../../Hooks/useSearch';
 
 import { ProviderContext } from '../../Context/Provider/ProviderContext';
 import { AlertContext } from '../../Context/Alert/AlertContext';
@@ -21,30 +22,8 @@ export const ProviderScreen = () => {
     // * State para guardar la lista de Proveedore a mostrar
     const [ listProviders, getListProviders ] = useState([]);
 
-    // * State para almacenar el parametro de busqueda
-    const [ formValues, setFormValues ] = useState({
-        searchProviderValue: ''
-    });
+    const { formValues, handleInputChange, handleResetSearchInput} = useSearch( { searchProviderValue: '' }, searchProvider );
     const { searchProviderValue } = formValues;
-
-    // * Funcion para obtener el parametro de busqueda
-    const handleInputChange = ({ target }) => {
-        setFormValues({
-            ...formValues,
-            [target.name]: target.value
-        });
-
-        searchProvider( target.value );
-    };
-
-    /*
-        * funcion para reiniciar el input de busqueda 
-    */
-    function handleResetSearchInput() {
-        setFormValues({
-            searchProviderValue: ''
-        });
-    }
 
     /*
         * Mostramos el mesaje si existe uno en el state

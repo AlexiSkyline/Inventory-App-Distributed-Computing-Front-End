@@ -12,6 +12,7 @@ import { ClientModal } from './ClientModal';
 import { TableClients } from './TableClients';
 
 export const ClientScreen = () => {
+    const headers = [ 'ID' ,'Nombre' ,'Apellidos' ,'RFC' ,'Dirección' ,'Email' ,'Telefono' ];
     const clientContext = useContext( ClientContext );
     const { clientList, message, typeMessage, listClientFound, searchModeStatus, 
                 getClients, desactiveModeEdit, searchClient } = clientContext;
@@ -64,6 +65,7 @@ export const ClientScreen = () => {
             />
             
             <TableClients
+                titles={ headers }
                 listClients={ listClients }
                 handleResetSearchInput={ handleResetSearchInput }
             />

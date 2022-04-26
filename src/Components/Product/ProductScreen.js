@@ -12,7 +12,7 @@ import { ProductModal } from './ProductModal';
 import { TableProducts } from './TableProducts';
 
 export const ProductScreen = () => {
-    const header = ['id', 'Nombre', 'Marca','Descripción', 'Precio', 'U. Medida', 'Stock', 'Proveedor' ];
+    const headers = ['id', 'Nombre', 'Marca','Descripción', 'Precio', 'U. Medida', 'Stock', 'Proveedor' ];
     const productContext = useContext( ProductContext );
     const { products, getProducts, searchProduct, productSearchFilter, 
                 message, typeMessage, productSearchFilterStatus, desactiveModeEdit } = productContext;
@@ -65,7 +65,7 @@ export const ProductScreen = () => {
             />
             
             <TableProducts 
-                titles={ header }
+                titles={ headers }
                 products={ listProduct }
                 handleResetSearchInput={ handleResetSearchInput }
             />

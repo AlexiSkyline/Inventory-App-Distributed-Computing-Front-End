@@ -21,7 +21,7 @@ export const TableProducts = ({ titles , products, handleResetSearchInput }) => 
         handleResetSearchInput();
     }
 
-    const [ handleConfirm, handleUpdate ] = useActions( 'La marca', handleDelete, activeModeEdit );
+    const [ handleConfirm, handleUpdate ] = useActions( 'La producto', handleDelete, activeModeEdit );
 
     return (
         <div className='table__container'>  

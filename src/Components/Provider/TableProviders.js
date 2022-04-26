@@ -4,7 +4,7 @@ import { useActions } from '../../Hooks/useActions';
 
 import { ProviderContext } from '../../Context/Provider/ProviderContext';
 
-export const TableProviders = ({ listProviders, handleResetSearchInput }) => {
+export const TableProviders = ({ titles, listProviders, handleResetSearchInput }) => {
     const providerContext = useContext( ProviderContext );
     const { deleteProvider, activeModeEdit, disactiveProviderSearchMode } = providerContext;
 
@@ -28,13 +28,9 @@ export const TableProviders = ({ listProviders, handleResetSearchInput }) => {
             <table className='table'> 
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Apellidos</th>
-                        <th>RFC</th>
-                        <th>Dirección</th>
-                        <th>Email</th>
-                        <th>Número de Telefono</th>
+                        {
+                            titles.map( ( title, index ) => <th key={ index }>{ title }</th> )
+                        }
                         <th>
                             Acciones
                         </th>
@@ -78,6 +74,7 @@ export const TableProviders = ({ listProviders, handleResetSearchInput }) => {
 }
 
 TableProviders.propTypes = {
+    titles: PropTypes.array.isRequired,
     listProviders: PropTypes.array.isRequired,
     handleResetSearchInput: PropTypes.func.isRequired
 }

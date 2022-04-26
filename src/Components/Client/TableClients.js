@@ -4,7 +4,7 @@ import { useActions } from '../../Hooks/useActions';
 
 import { ClientContext } from '../../Context/Client/ClientContext';
 
-export const TableClients = ({ listClients, handleResetSearchInput }) => {
+export const TableClients = ({ titles, listClients, handleResetSearchInput }) => {
     const clientContext = useContext( ClientContext );
     const { deleteClient, activeModeEdit, disactiveClientSearchMode } = clientContext;
 
@@ -28,13 +28,9 @@ export const TableClients = ({ listClients, handleResetSearchInput }) => {
             <table className='table'> 
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Apellidos</th>
-                        <th>RFC</th>
-                        <th>Dirección</th>
-                        <th>Email</th>
-                        <th>Número de Telefono</th>
+                        {
+                            titles.map( ( title, index ) => <th key={ index }>{ title }</th> )
+                        }
                         <th>
                             Acciones
                         </th>
@@ -78,6 +74,7 @@ export const TableClients = ({ listClients, handleResetSearchInput }) => {
 }
 
 TableClients.propTypes = {
+    titles: PropTypes.array.isRequired,
     listClients: PropTypes.array.isRequired,
     handleResetSearchInput: PropTypes.func.isRequired
 }

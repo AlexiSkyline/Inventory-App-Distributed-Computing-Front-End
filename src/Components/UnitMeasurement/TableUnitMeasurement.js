@@ -21,7 +21,7 @@ export const TableUnitMeasurement = ({ unitMs, handleResetSearchInput }) => {
         modeSearchUnitMDesactive();
     }
 
-    const [ handleConfirm, handleUpdate ] = useActions( 'La marca', handleDelete, activeModeEdit );
+    const [ handleConfirm, handleUpdate ] = useActions( 'La unidad de medida', handleDelete, activeModeEdit );
 
     return (
         <div className='table__container'>  

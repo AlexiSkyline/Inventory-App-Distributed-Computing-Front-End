@@ -12,6 +12,7 @@ import { TableProviders } from './TableProviders';
 import { ProviderModal } from './ProviderModal';
 
 export const ProviderScreen = () => {
+    const headers = [ 'ID' ,'Nombre' ,'Apellidos' ,'RFC' ,'Dirección' ,'Email' ,'Telefono' ];
     const providerContext = useContext( ProviderContext );
     const { providerList, message, typeMessage, listProviderFound, 
             searchModeStatus, getProviders, desactiveModeEdit, searchProvider } = providerContext;
@@ -64,6 +65,7 @@ export const ProviderScreen = () => {
             />
             
             <TableProviders
+                titles={ headers }
                 listProviders={ listProviders }
                 handleResetSearchInput={ handleResetSearchInput }
             />

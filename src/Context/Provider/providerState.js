@@ -49,6 +49,20 @@ export const providerState = ( props ) => {
         deleteMessage();
     }
 
+    const getProviders = async () => {
+        try {
+            const response = await clientAxios.get( path );
+            dispatch({
+                type: types_provider.getProviders,
+                payload: response.data.results
+            });
+        } catch (error) {
+            dispatch({
+                type: types_provider.addProviderFailed
+            });
+        }
+    }
+
     return (
         <ProviderContext.Provider
             value={{
@@ -59,6 +73,8 @@ export const providerState = ( props ) => {
                 searchModeStatus: state.searchModeStatus,
                 statusEditModeProvider: state.statusEditModeProvider,
                 infProviderEdit: state.infProviderEdit,
+                createProvider,
+                getProviders,
                 deleteMessage,
             }}
         >

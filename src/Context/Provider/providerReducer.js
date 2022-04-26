@@ -9,7 +9,13 @@ export const providerReducer = ( state, action ) => {
                 message: action.payload.message,
                 typeMessage: 'alert-ok'
             }
+        case types_provider.getProviders:
+            return {
+                ...state,
+                providerList: action.payload
+            }
         case types_provider.addProviderFailed:
+        case types_provider.getProvidersFailed:
             return {
                 ...state,
                 error: true,

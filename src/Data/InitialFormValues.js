@@ -23,3 +23,14 @@ export const initialFormValuesBusiness = {
 export const initialFormValuesUnitMeasurement = {
     description: ''
 }
+
+// * Cuerpo inicial de nuestro inputs de agregar o editar productos
+export const initialFormValuesProduct = {
+    name: '',
+    description: '',
+    price: '',
+    idUnitMesurement: '',
+    idBrand: '',
+    stock: '',
+    idProvider: ''
+}

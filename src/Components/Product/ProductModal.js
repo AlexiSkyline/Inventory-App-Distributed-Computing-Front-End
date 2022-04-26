@@ -1,19 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Modal from 'react-modal';
 import Proptypes from 'prop-types';
+
 import { ModalContext } from '../../Context/Modal/ModalContext';
 import { ProductContext } from '../../Context/Product/ProductContext';
+import { ModeEditContext } from '../../Context/ModeEdit/ModeEditContext';
 
-// * Cuerpo inicial de nuestro inputs de agregar o editar producto
-const initEvent = {
-    name: '',
-    description: '',
-    price: 0,
-    idUnitMesurement: '',
-    idBrand: '',
-    stock: 0,
-    idProvider: ''
-}
+import { useValidation } from '../../Hooks/useValidation';
+import { initialFormValuesProduct } from '../../Data/InitialFormValues';
+import { ValidateProduct } from '../../validations/ValidateProduct';
 
 export const ProductModal = ({ handleResetSearchInput }) => {
     const modalContext = useContext( ModalContext );
@@ -22,9 +17,11 @@ export const ProductModal = ({ handleResetSearchInput }) => {
     const productContext = useContext( ProductContext );
     const { createProduct, productModeEdit, productEdit, updateProduct, modeSearchProductDesactive } = productContext;
 
-    // * State para almacenar la informacion del producto a crear o actualizar
-    const [ formValues, setFormValues ] = useState( initEvent );
-    const { name, description, price, idUnitMesurement, idBrand, stock, idProvider } = formValues;
+    const modeEditContext = useContext( ModeEditContext );
+    const { activeModeEdit, desactiveModeEdit } = modeEditContext;
+    
+    const { formValues, handleSubmit, handleInputChange } = useValidation( initialFormValuesProduct, ValidateProduct, handleCreateAndUpdate );
+    const { name ,description ,price ,idUnitMesurement ,idBrand ,stock ,idProvider } = formValues;
 
     /*
         * Hook para obtener los valores del para el modal 'Formulario'
@@ -33,28 +30,13 @@ export const ProductModal = ({ handleResetSearchInput }) => {
     */
     useEffect(() => {
         if( productModeEdit ) {
-            setFormValues( productEdit );
+            activeModeEdit( productEdit );
         } else {
-            setFormValues( initEvent );
+            desactiveModeEdit();
         }
         // eslint-disable-next-line
-    }, [ productModeEdit, setFormValues ]);
+    }, [ productModeEdit, activeModeEdit ]);
     
-     // * Funcion para obtener los valores del formulario
-    const handleInputChange = ({ target }) => {
-        setFormValues({
-            ...formValues,
-            [target.name]: target.value
-        });
-    };
-
-    /*
-        * funcion para reiniciar el input de busqueda 
-    */
-    function handleResetInput() {
-        setFormValues( initEvent );
-    }
-
     /*
         * Funcion para crear o actualizar un producto 
         * Caso 1: Crear un producto
@@ -62,16 +44,13 @@ export const ProductModal = ({ handleResetSearchInput }) => {
         * Luego Desactivamos el modo de busqueda si esta activo
         * Luego reiniciamos el input de busqueda
     */
-    const handleOnSubmit = ( e ) => {
-        e.preventDefault();
+    function handleCreateAndUpdate() {
         if( !productModeEdit ) {
             createProduct( formValues );
         } else {
             updateProduct( formValues );
         }
-        setFormValues( initEvent );
         uiCloseModal();
-        handleResetInput();
         modeSearchProductDesactive();
         handleResetSearchInput();
     }
@@ -83,7 +62,7 @@ export const ProductModal = ({ handleResetSearchInput }) => {
             className="modal"
             ariaHideApp={false}
         >
-            <form className='form__modal' onSubmit={ handleOnSubmit }>
+            <form className='form__modal' onSubmit={ handleSubmit }>
                 <legend>{ productModeEdit ? 'Editar Producto': 'Agregar producto' }</legend>
                 
                 <label htmlFor='name'>Nombre: </label>

@@ -21,7 +21,7 @@ export const TableSeller = ({ titles, listSeller, handleResetSearchInput }) => {
         disactiveSellerSearchMode();
     }
 
-    const [ handleConfirm, handleUpdate ] = useActions( 'El cliente', handleDelete, activeModeEdit );
+    const [ handleConfirm, handleUpdate ] = useActions( 'El vendedor', handleDelete, activeModeEdit );
 
     return (
         <div className='table__container table__median'>  

@@ -6,6 +6,7 @@ import { FloatingButton } from '../UI/FloatingButton/FloatingButton';
 import { FloatingButtonClose } from '../UI/FloatingButton/FloatingButtonClose';
 import { HeadBoard } from '../UI/HeadBoard/HeadBoard';
 import { InputSearch } from '../UI/InputSearch/InputSearch';
+import { SellerModal } from './SellerModal';
 import { TableSeller } from './TableSeller';
 
 export const SellerScreen = () => {
@@ -48,9 +49,9 @@ export const SellerScreen = () => {
 
             <FloatingButton />
 
-            {/* <SellerModal 
+            <SellerModal 
                 handleResetSearchInput={ handleResetSearchInput }
-            /> */}
+            />
         </main>
     );
 }

@@ -1,4 +1,5 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { useSearch } from '../../Hooks/useSearch';
 
 import { AlertContext } from '../../Context/Alert/AlertContext';
 import { SellerContext } from '../../Context/Seller/SellerContext';
@@ -19,7 +20,11 @@ export const SellerScreen = () => {
     const alertContext = useContext( AlertContext );
     const { showAlert } = alertContext;
 
-    const handleResetSearchInput = () => {}
+    // * State para guardar la lista de Clientes a mostrar
+    const [ listSellers, getListSellers ] = useState([]);
+
+    const [ formValues, handleInputChange, handleResetSearchInput ] = useSearch( { searchSellerValue: '' }, searchSeller );
+    const { searchSellerValue } = formValues;
 
     /*
         * Mostramos el mesaje si existe uno en el state
@@ -31,13 +36,18 @@ export const SellerScreen = () => {
         }
         // eslint-disable-next-line
     } , [message] );
-    
+
     /* 
         * Obtenemos las Vendedores y cargarlos en el state
         * El otro caso es obtener las Vendedores filtrados si el status es true
     */
     useEffect( () => {
         setTimeout(() => { getSellers() }, 800);
+        if( searchModeStatus ) {
+            getListSellers( listSellerFound );
+        } else {
+            getListSellers( sellerList );
+        }
         // eslint-disable-next-line
     }, [ sellerList, searchModeStatus ] );
 
@@ -48,15 +58,15 @@ export const SellerScreen = () => {
             />
 
             <InputSearch
-                // name={ 'searchSellerValue' }
-                // value={ searchSellerValue }
+                name={ 'searchSellerValue' }
+                value={ searchSellerValue }
                 placeholder={ 'Buscar vendedores por su nombre' }
-                // handleInputChange={ handleInputChange }
+                handleInputChange={ handleInputChange }
             />
             
             <TableSeller
                 titles={ headers }
-                listSeller={ sellerList }
+                listSeller={ listSellers }
                 handleResetSearchInput={ handleResetSearchInput }
             />
 

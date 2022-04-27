@@ -1,9 +1,13 @@
 import React, { useContext, useState } from 'react';
 import Modal from 'react-modal';
 import Proptypes from 'prop-types';
+import { useValidation } from '../../Hooks/useValidation';
 
 import { SellerContext } from '../../Context/Seller/SellerContext';
 import { ModalContext } from '../../Context/Modal/ModalContext';
+
+import { initialFormValuesSeller } from '../../Data/InitialFormValues';
+import { ValidateSeller } from '../../validations/ValidateSeller';
 
 export const SellerModal = ({ handleResetSearchInput }) => {
     const sellerContext = useContext( SellerContext );
@@ -13,11 +17,25 @@ export const SellerModal = ({ handleResetSearchInput }) => {
     const modalContext = useContext( ModalContext );
     const { modalOpen, closeModal, uiCloseModal } = modalContext;
     
-    const [ formValues, setFormValues ] = useState({});
+    const [ formValues, handleSubmit, handleInputChange ] = useValidation( initialFormValuesSeller, ValidateSeller, handleCreateAndUpdate );
     const { name, lastName, rfc, address, email, phoneNumber, userName, password } = formValues;
-    
-    const handleInputChange = () => {}
-    const handleSubmit = () => {}
+
+    /*
+        * Funcion para crear o actualizar un vendedor 
+        * Caso 1: Crear un vendedor
+        * Caso 2: Actualizar un vendedor
+        * Luego Desactivamos el modo de busqueda si esta activo
+        * Luego reiniciamos el input de busqueda
+    */
+    function handleCreateAndUpdate() {
+        if( !statusEditModeSeller ) {
+            createSeller( formValues );
+        }
+
+        uiCloseModal();
+        disactiveSellerSearchMode();
+        handleResetSearchInput();
+    }
 
     return (
         <Modal

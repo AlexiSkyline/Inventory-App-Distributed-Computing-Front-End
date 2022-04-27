@@ -1,0 +1,75 @@
+export const ValidateSeller = ( values ) => {
+    let errors = {};
+
+    // * Validar el nombre de Vendedor
+    if( !values.name ) {
+        errors.name = 'El nombre es obligatorio';
+    } else if( values.name.length < 5 ) {
+        errors.name = 'El nombre debe tener al menos 5 caracteres';
+    } else if( values.name.length > 50 ) {
+        errors.name = 'El nombre debe tener menos de 50 caracteres';
+    }
+
+    // * Validar el apellido des Vendedor
+    if( !values.lastName ) {
+        errors.lastName = 'Los apellidos son obligatorios';
+    } else if( values.lastName.length < 5 ) {
+        errors.lastName = 'Los apellidos debe tener al menos 5 caracteres';
+    } else if( values.lastName.length > 100 ) {
+        errors.lastName = 'Los apellidos debe tener menos de 1000 caracteres';
+    }
+
+    // * Validar el rfc de Vendedor
+    if( !values.rfc ) {
+        errors.rfc = 'El RFC es obligatorios';
+    } else if( values.rfc.length !== 13 ) {
+        errors.rfc = 'El RFC debe tener 13 caracteres';
+    }
+    
+    // * Validar la dirección de Vendedor
+    if( !values.address ) {
+        errors.address = 'La dirección es obligatorios';
+    } else if( values.address.length < 5 ) {
+        errors.address = 'Las dirección debe tener al menos 5 caracteres';
+    } else if( values.address.length > 200 ) {
+        errors.address = 'Las dirección debe tener menos de 200 caracteres';
+    }
+
+    // * Validar el email
+    if( !values.email ) {
+        errors.email = 'El email es Obligatoria';
+    } else if( !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test( values.email ) ) {
+        errors.email = 'Email o válido';
+    }
+
+    // * Validar el numero de telefono
+    if( !values.phoneNumber ) {
+        errors.phoneNumber = 'El numero de telefono es obligatorio';
+    } else if( values.phoneNumber.length < 10 ) {
+        errors.phoneNumber = 'El numero de telefono debe tener al menos 10 caracteres';
+    } else if( values.phoneNumber.length > 10 ) {
+        errors.phoneNumber = 'El numero de telefono debe tener menos de 10 caracteres';
+    } else if( !/^[0-9]{10}$/i.test( values.phoneNumber ) ) {
+        errors.phoneNumber = 'El numero de telefono no es valido';
+    }
+
+    // * Validar el nombre de usuario
+    if( !values.userName ) {
+        errors.userName = 'El nombre de usuario es obligatorio';
+    } else if( values.userName.length < 6 ) {
+        errors.userName = 'El nombre de usuario debe tener al menos 6 caracteres';
+    } else if( values.userName.length > 20 ) {
+        errors.userName = 'El nombre de usuario debe tener menos de 20 caracteres';
+    }
+
+    // * Validar el password
+    if( !values.password ) {
+        errors.password = 'El password es obligatorio';
+    } else if( values.password.length < 6 ) {
+        errors.password = 'El password debe tener al menos 6 caracteres';
+    } else if( values.password.length > 20 ) {
+        errors.password = 'El password debe tener menos de 20 caracteres';
+    }
+
+    return errors;
+}

@@ -18,6 +18,18 @@ export const initialFormValuesProvider = {
     phoneNumber: ''
 }
 
+// * Cuerpo inicial de nuestro inputs de agregar o editar Vendedor
+export const initialFormValuesSeller = {
+    name: '',
+    lastName: '',
+    rfc: '',
+    address: '',
+    email: '',
+    phoneNumber: '',
+    username: '',
+    password: ''
+}
+
 // * Cuerpo inicial de nuestro inputs de agregar o editar marca
 export const initialFormValuesBrand = {
     description: ''

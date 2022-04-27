@@ -1,10 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Modal from 'react-modal';
 import Proptypes from 'prop-types';
 import { useValidation } from '../../Hooks/useValidation';
 
 import { SellerContext } from '../../Context/Seller/SellerContext';
 import { ModalContext } from '../../Context/Modal/ModalContext';
+import { ModeEditContext } from '../../Context/ModeEdit/ModeEditContext';
 
 import { initialFormValuesSeller } from '../../Data/InitialFormValues';
 import { ValidateSeller } from '../../validations/ValidateSeller';
@@ -16,9 +17,26 @@ export const SellerModal = ({ handleResetSearchInput }) => {
 
     const modalContext = useContext( ModalContext );
     const { modalOpen, closeModal, uiCloseModal } = modalContext;
+
+    const modeEditContext = useContext( ModeEditContext );
+    const { activeModeEdit, desactiveModeEdit } = modeEditContext;
     
     const [ formValues, handleSubmit, handleInputChange ] = useValidation( initialFormValuesSeller, ValidateSeller, handleCreateAndUpdate );
     const { name, lastName, rfc, address, email, phoneNumber, userName, password } = formValues;
+
+    /*
+        * Hook para obtener los valores del para el modal 'Formulario'
+        * Caso 1: Le pasa los valores del Vendedor a editar
+        * Caso 2: Le pasa los el objeto initEvent para crear un Vendedor
+    */
+    useEffect(() => {
+        if( statusEditModeSeller ) {
+            activeModeEdit( infSellerEdit );
+        } else {
+            desactiveModeEdit();
+        }
+        // eslint-disable-next-line
+    }, [ statusEditModeSeller, activeModeEdit ]);
 
     /*
         * Funcion para crear o actualizar un vendedor 
@@ -30,8 +48,9 @@ export const SellerModal = ({ handleResetSearchInput }) => {
     function handleCreateAndUpdate() {
         if( !statusEditModeSeller ) {
             createSeller( formValues );
+        } else {
+            updateSeller( formValues );
         }
-
         uiCloseModal();
         disactiveSellerSearchMode();
         handleResetSearchInput();

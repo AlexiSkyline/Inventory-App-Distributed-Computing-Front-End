@@ -26,7 +26,7 @@ export const initialFormValuesSeller = {
     address: '',
     email: '',
     phoneNumber: '',
-    username: '',
+    userName: '',
     password: ''
 }
 

@@ -109,6 +109,8 @@ export const SellerState = ( props ) => {
     }
 
     const activeModeEdit = ( seller ) => {
+        seller.password = '123456';
+
         dispatch({
             type: types_seller.activeModeEdit,
             payload: seller

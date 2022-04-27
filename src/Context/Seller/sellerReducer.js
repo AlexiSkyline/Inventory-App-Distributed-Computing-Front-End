@@ -43,13 +43,13 @@ export const sellerReducer = ( state, action ) => {
                 statusEditModeSeller: false,
                 infSellerEdit: null
             }
-        case types_seller.searchClientActive:
+        case types_seller.searchSellerActive:
             return {
                 ...state,
                 searchModeStatus: true,
                 listSellerFound: state.sellerList.filter( seller => seller.name.toLowerCase().includes( action.payload.toLowerCase() ) )
             }
-        case types_seller.searchClientDesactive:
+        case types_seller.searchSellerDesactive:
             return {
                 ...state,
                 searchModeStatus: false,

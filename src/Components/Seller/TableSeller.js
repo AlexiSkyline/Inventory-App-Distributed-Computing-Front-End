@@ -1,10 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
+import { SellerContext } from '../../Context/Seller/SellerContext';
+import { useActions } from '../../Hooks/useActions';
+
 export const TableSeller = ({ titles, listSeller, handleResetSearchInput }) => {
-    
-    const handleUpdate = ( id ) => {}
-    const handleConfirm = ( id ) => {}
+    const sellerContext = useContext( SellerContext );
+    const { deleteSeller, activeModeEdit, disactiveSellerSearchMode  } = sellerContext;
+
+    /*
+        * Funcion para eliminar un vendedor una vez que se confirma
+        * Recibe el id del vendedor a eliminar
+        * Luego elimina el vendedor
+        * Luego desactiva el modo de busqueda si esta activo
+        * Luego reinicia el input de busqueda de vendedores
+    */
+    const handleDelete = ( id ) => {
+        deleteSeller( id );
+        handleResetSearchInput();
+        disactiveSellerSearchMode();
+    }
+
+    const [ handleConfirm, handleUpdate ] = useActions( 'El cliente', handleDelete, activeModeEdit );
 
     return (
         <div className='table__container table__median'>  

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 
+import { AlertContext } from '../../Context/Alert/AlertContext';
 import { SellerContext } from '../../Context/Seller/SellerContext';
 
 import { FloatingButton } from '../UI/FloatingButton/FloatingButton';
@@ -15,8 +16,22 @@ export const SellerScreen = () => {
     const { sellerList, message, typeMessage, listSellerFound, searchModeStatus,
                 getSellers, desactiveModeEdit, searchSeller  } = sellerContext;
 
+    const alertContext = useContext( AlertContext );
+    const { showAlert } = alertContext;
+
     const handleResetSearchInput = () => {}
 
+    /*
+        * Mostramos el mesaje si existe uno en el state
+        * El otro caso es que no se muestre ningun mensaje
+    */
+    useEffect( () => {
+        if( message ) {
+            showAlert( message, typeMessage );
+        }
+        // eslint-disable-next-line
+    } , [message] );
+    
     /* 
         * Obtenemos las Vendedores y cargarlos en el state
         * El otro caso es obtener las Vendedores filtrados si el status es true

@@ -39,6 +39,31 @@ export const SalesDetailState = ( props ) => {
         }
     }
 
+    const updateSalesDetail = async ( data ) => {
+        try {
+            const response = await clientAxios.put( `${ path }/${ state.infSalesDetailEdit.id }`, {
+                id: data.id,
+                idSale: data.idSale,
+                idProduct: data.idProduct,
+                amountProduct: data.amountProduct,
+                purchasePrice: data.purchasePrice,
+                amount: data.amount,
+                date: data.date
+            });
+            dispatch({
+                type: types_SalesDetail.updateSalesDetail,
+                payload: response.data.message
+            });
+        } catch (error) {
+            dispatch({
+                type: types_SalesDetail.updateSalesDetailFailed,
+                payload: error.response.data.message
+            });
+        }
+
+        deleteMessage();
+    }
+
     return (
         <SalesDetailContext.Provider 
             value={{
@@ -50,6 +75,7 @@ export const SalesDetailState = ( props ) => {
                 statusEditModeSalesDetail: state.statusEditModeSalesDetail,
                 infSalesDetailEdit: state.infSalesDetailEdit,
                 getSalesDetail,
+                updateSalesDetail,
                 deleteMessage,
             }}
         >

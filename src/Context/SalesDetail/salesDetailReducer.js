@@ -8,6 +8,7 @@ export const salesDetailReducer = ( state, action ) => {
                 salesDetailList: action.payload
             }
         case types_SalesDetail.updateSalesDetail:
+        case types_SalesDetail.deleteSalesDetail:
             return {
                 ...state,
                 message: action.payload,
@@ -15,6 +16,7 @@ export const salesDetailReducer = ( state, action ) => {
             }
         case types_SalesDetail.getSalesDetailFailed:
         case types_SalesDetail.updateSalesDetailFailed:
+        case types_SalesDetail.deleteSalesDetailFailed:
             return {
                 ...state,
                 error: true,

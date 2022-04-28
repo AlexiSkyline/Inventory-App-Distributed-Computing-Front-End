@@ -64,6 +64,23 @@ export const SalesDetailState = ( props ) => {
         deleteMessage();
     }
 
+    const deleteSalesDetail = async ( id ) => {
+        try {
+            const response = await clientAxios.delete( `${ path }/${ id }` );
+            dispatch({
+                type: types_SalesDetail.deleteSalesDetail,
+                payload: response.data.message
+            });
+        } catch (error) {
+            dispatch({
+                type: types_SalesDetail.deleteSalesDetailFailed,
+                payload: error.response.data.message
+            });
+        }
+
+        deleteMessage();
+    }
+
     return (
         <SalesDetailContext.Provider 
             value={{
@@ -76,6 +93,7 @@ export const SalesDetailState = ( props ) => {
                 infSalesDetailEdit: state.infSalesDetailEdit,
                 getSalesDetail,
                 updateSalesDetail,
+                deleteSalesDetail,
                 deleteMessage,
             }}
         >

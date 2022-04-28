@@ -17,6 +17,12 @@ export const SalesDetailState = ( props ) => {
 
     const [ state, dispatch ] = useReducer( salesDetailReducer, initialState );
 
+    const deleteMessage = () => { 
+        setTimeout(() => {
+            dispatch({ type: types_SalesDetail.removeMessages });
+        }, 3000 );
+    }
+
     return (
         <SalesDetailContext.Provider 
             value={{
@@ -27,6 +33,8 @@ export const SalesDetailState = ( props ) => {
                 searchModeStatus: state.searchModeStatus,
                 statusEditModeSalesDetail: state.statusEditModeSalesDetail,
                 infSalesDetailEdit: state.infSalesDetailEdit,
+                deleteMessage,
+                
             }}
         >
             {props.children}

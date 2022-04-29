@@ -81,6 +81,19 @@ export const SalesDetailState = ( props ) => {
         deleteMessage();
     }
 
+    const activeModeEdit = ( data ) => {
+        dispatch({
+            type: types_SalesDetail.activeModeEdit,
+            payload: data
+        });
+    }
+
+    const desactiveModeEdit = () => {
+        dispatch({
+            type: types_SalesDetail.desactiveModeEdit
+        });
+    }
+
     return (
         <SalesDetailContext.Provider 
             value={{
@@ -95,6 +108,8 @@ export const SalesDetailState = ( props ) => {
                 updateSalesDetail,
                 deleteSalesDetail,
                 deleteMessage,
+                activeModeEdit,
+                desactiveModeEdit
             }}
         >
             {props.children}

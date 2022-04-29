@@ -23,6 +23,18 @@ export const salesDetailReducer = ( state, action ) => {
                 message: action.payload,
                 typeMessage: 'alert-error'
             }
+        case types_SalesDetail.activeModeEdit:
+            return {
+                ...state,
+                statusEditModeSalesDetail: true,
+                infSalesDetailEdit: action.payload
+            }
+        case types_SalesDetail.desactiveModeEdit:
+            return {
+                ...state,
+                statusEditModeSalesDetail: false,
+                infSalesDetailEdit: null
+            }
         case types_SalesDetail.removeMessages:
             return {
                 ...state,

@@ -8,6 +8,7 @@ import { useValidation } from '../../Hooks/useValidation';
 import { ValidateSalesDetail } from '../../validations/ValidateSalesDetail';
 import { initialFormValuesSalesDetail } from '../../Data/InitialFormValues';
 import { ModeEditContext } from '../../Context/ModeEdit/ModeEditContext';
+import { SelectProduct } from '../UI/Select/SelectProduct';
 
 export const SalesDetailModal = ({ handleResetSearchInput }) => {
     const salesDetailContext = useContext( SalesDetailContext );
@@ -72,14 +73,7 @@ export const SalesDetailModal = ({ handleResetSearchInput }) => {
                 />
 
                 <label htmlFor='idProduct'>ID del Producto: </label>
-                <input 
-                    type='text' 
-                    className='form-control' 
-                    placeholder='ID del Producto'
-                    name='idProduct'
-                    value={ idProduct }
-                    onChange={ handleInputChange }
-                />
+                <SelectProduct value={ idProduct } onChange={ handleInputChange }/>
                 
                 <label htmlFor='amountProduct'>Cantidad: </label>
                 <input 

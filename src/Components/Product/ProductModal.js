@@ -11,6 +11,7 @@ import { initialFormValuesProduct } from '../../Data/InitialFormValues';
 import { ValidateProduct } from '../../validations/ValidateProduct';
 import { SelectUnitMeasurement } from '../UI/Select/SelectUnitMeasurement';
 import { SelectBrand } from '../UI/Select/SelectBrand';
+import { SelectProvider } from '../UI/Select/SelectProvider';
 
 export const ProductModal = ({ handleResetSearchInput }) => {
     const modalContext = useContext( ModalContext );
@@ -104,14 +105,6 @@ export const ProductModal = ({ handleResetSearchInput }) => {
                 />
             
                 <label htmlFor='idBrand'>ID de la Marca: </label>
-                {/* <input 
-                    type='text' 
-                    className='form-control' 
-                    placeholder='ID Marca' 
-                    name='idBrand'
-                    value={ idBrand }
-                    onChange={ handleInputChange }
-                /> */}
                 <SelectBrand 
                     value={ idBrand } 
                     onChange={ handleInputChange }
@@ -128,14 +121,7 @@ export const ProductModal = ({ handleResetSearchInput }) => {
                 />
                 
                 <label htmlFor='idProvider'>ID Proveedor: </label>
-                <input 
-                    type='text' 
-                    className='form-control' 
-                    placeholder='ID Proveedor' 
-                    name='idProvider'
-                    value={ idProvider }
-                    onChange={ handleInputChange }
-                />
+                <SelectProvider value={ idProvider } onChange={ handleInputChange }/>
                         
                 <input 
                     type='submit' 

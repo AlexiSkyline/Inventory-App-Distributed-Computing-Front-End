@@ -98,7 +98,6 @@ export const SalesDetailModal = ({ handleResetSearchInput }) => {
                     value={ date }
                     onChange={ handleInputChange }
                 />
-
                         
                 <input 
                     type='submit' 

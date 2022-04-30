@@ -1,10 +1,12 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { SalesDetailContext } from '../../Context/SalesDetail/SalesDetailContext';
 import { FloatingButtonClose } from '../UI/FloatingButton/FloatingButtonClose';
 import { HeadBoard } from '../UI/HeadBoard/HeadBoard';
 import { InputSearch } from '../UI/InputSearch/InputSearch';
+import { TableSalesDetail } from './TableSalesDetail';
 
 export const SalesDetailScreen = () => {
+    const headers = [ 'ID', 'Folio', 'Producto', 'Cantidad', 'Precio', 'Total', 'Fecha' ];
     const salesDetailContext = useContext( SalesDetailContext );
     const { salesDetailList, message, typeMessage, listSalesDetailFound, searchModeStatus,
                 getSalesDetail, desactiveModeEdit, searchSalesDetail } = salesDetailContext;
@@ -12,7 +14,13 @@ export const SalesDetailScreen = () => {
     const [ formValues, setFormValues ] = React.useState({ searchSalesDetailValue: ''});
     const { searchSalesDetailValue } = formValues;
     const handleInputChange = () => {}
+    const handleResetSearchInput = () => {}
 
+    
+    useEffect(() => {
+        getSalesDetail();
+    }, [salesDetailList]);
+    
     return (
         <main className='data__container content__page'>
             <HeadBoard
@@ -26,11 +34,11 @@ export const SalesDetailScreen = () => {
                 handleInputChange={ handleInputChange }
             />
             
-            {/* <TableSalesDetail
+            <TableSalesDetail
                 titles={ headers }
-                listSalesDetail={ listSalesDetails }
+                listSalesDetail={ salesDetailList }
                 handleResetSearchInput={ handleResetSearchInput }
-            /> */}
+            />
 
             <FloatingButtonClose desactiveModeEdit={ desactiveModeEdit }/>
 

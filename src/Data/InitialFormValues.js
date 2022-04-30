@@ -30,6 +30,15 @@ export const initialFormValuesSeller = {
     password: ''
 }
 
+// * Cuerpo inicial de nuestro inputs de modificar el detalle de una venta
+export const initialFormValuesSalesDetail = {
+    idSale: '', 
+    idProduct: '', 
+    amountProduct: '', 
+    purchasePrice: '', 
+    amount: ''
+}
+
 // * Cuerpo inicial de nuestro inputs de agregar o editar marca
 export const initialFormValuesBrand = {
     description: ''

@@ -1,9 +1,13 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Proptypes from 'prop-types';
 import Modal from 'react-modal';
 
 import { ModalContext } from '../../Context/Modal/ModalContext';
 import { SalesDetailContext } from '../../Context/SalesDetail/SalesDetailContext';
+import { useValidation } from '../../Hooks/useValidation';
+import { ValidateSalesDetail } from '../../validations/ValidateSalesDetail';
+import { initialFormValuesSalesDetail } from '../../Data/InitialFormValues';
+import { ModeEditContext } from '../../Context/ModeEdit/ModeEditContext';
 
 export const SalesDetailModal = ({ handleResetSearchInput }) => {
     const salesDetailContext = useContext( SalesDetailContext );
@@ -13,22 +17,40 @@ export const SalesDetailModal = ({ handleResetSearchInput }) => {
     const modalContext = useContext( ModalContext );
     const { modalOpen, closeModal, uiCloseModal } = modalContext;
 
-    const [ formValues, setformValues ] = useState({ 
-        idSale: '', 
-        idProduct: '', 
-        amountProduct: '', 
-        purchasePrice: '', 
-        amount: '', 
-        date: ''
-    });
+    const modeEditContext = useContext( ModeEditContext );
+    const { activeModeEdit, desactiveModeEdit } = modeEditContext;
 
-    const { idSale ,idProduct ,amountProduct ,purchasePrice ,amount ,date } = formValues;
-
-    const handleSubmit = (e) => {}
-    const handleInputChange = (e) => {
-        console.log( e.target.value );
-    }
+    const [ formValues, handleSubmit, handleInputChange ] = useValidation( initialFormValuesSalesDetail, 
+                                                                        ValidateSalesDetail, handleUpdate );
+    const { idSale ,idProduct ,amountProduct ,purchasePrice ,amount } = formValues;
     
+    /*
+        * Hook para obtener los valores del para el modal 'Formulario'
+        * Caso 1: Le pasa los valores del Vendedor a editar
+        * Caso 2: Le pasa los el objeto initEvent para crear un Vendedor
+    */
+    useEffect(() => {
+        if( statusEditModeSalesDetail ) {
+            activeModeEdit( infSalesDetailEdit );
+        } else {
+            desactiveModeEdit();
+        }
+        // eslint-disable-next-line
+    }, [ statusEditModeSalesDetail, activeModeEdit ]);
+
+    /*
+        * Funcion para actualizar un registro de los detaller de nuestras ventas 
+        * Caso 1: Actualizar un registro de los detaller de nuestras ventas
+        * Luego Desactivamos el modo de busqueda si esta activo
+        * Luego reiniciamos el input de busqueda
+    */
+    function handleUpdate() {
+        updateSalesDetail( formValues );
+        uiCloseModal();
+        disactiveSalesDetailSearchMode();
+        handleResetSearchInput();
+        desactiveModeEdit();
+    }
     return (
         <Modal
             isOpen={ modalOpen }
@@ -86,16 +108,6 @@ export const SalesDetailModal = ({ handleResetSearchInput }) => {
                     placeholder='Ingrese el total'
                     name='amount'
                     value={ amount }
-                    onChange={ handleInputChange }
-                />
-                
-                <label htmlFor='date'>Fecha: </label>
-                <input 
-                    type='date' 
-                    className='form-control' 
-                    placeholder='Fecha'
-                    name='date'
-                    value={ date }
                     onChange={ handleInputChange }
                 />
                         

@@ -42,7 +42,6 @@ export const SalesDetailState = ( props ) => {
     const updateSalesDetail = async ( data ) => {
         try {
             const response = await clientAxios.put( `${ path }/${ state.infSalesDetailEdit.id }`, {
-                id: data.id,
                 idSale: data.idSale,
                 idProduct: data.idProduct,
                 amountProduct: data.amountProduct,
@@ -54,11 +53,13 @@ export const SalesDetailState = ( props ) => {
                 type: types_SalesDetail.updateSalesDetail,
                 payload: response.data.message
             });
+            console.log( response.data );
         } catch (error) {
             dispatch({
                 type: types_SalesDetail.updateSalesDetailFailed,
                 payload: error.response.data.message
             });
+            console.log( error.response.data );
         }
 
         deleteMessage();
@@ -82,6 +83,9 @@ export const SalesDetailState = ( props ) => {
     }
 
     const activeModeEdit = ( data ) => {
+        data.idSale = '';
+        data.idProduct = '';
+
         dispatch({
             type: types_SalesDetail.activeModeEdit,
             payload: data

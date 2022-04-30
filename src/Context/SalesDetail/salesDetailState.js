@@ -83,9 +83,8 @@ export const SalesDetailState = ( props ) => {
     }
 
     const activeModeEdit = ( data ) => {
-        data.idSale = '';
-        data.idProduct = '';
-
+        data.idSale = data.idSales;
+        
         dispatch({
             type: types_SalesDetail.activeModeEdit,
             payload: data

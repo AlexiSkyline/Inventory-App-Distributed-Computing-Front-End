@@ -83,10 +83,6 @@ export const ProductState = ( props ) => {
     }
 
     const activeModeEdit = ( product = {} ) => {
-        product.idUnitMesurement = '';
-        product.idBrand = '';
-        product.idProvider = '';   
-
         dispatch({
             type: types.activeModeEdit,
             payload: product

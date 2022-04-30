@@ -1,9 +1,12 @@
 import React, { useContext, useEffect } from 'react'
+
 import { AlertContext } from '../../Context/Alert/AlertContext';
 import { SalesDetailContext } from '../../Context/SalesDetail/SalesDetailContext';
+
 import { FloatingButtonClose } from '../UI/FloatingButton/FloatingButtonClose';
 import { HeadBoard } from '../UI/HeadBoard/HeadBoard';
 import { InputSearch } from '../UI/InputSearch/InputSearch';
+import { SalesDetailModal } from './SalesDetailModal';
 import { TableSalesDetail } from './TableSalesDetail';
 
 export const SalesDetailScreen = () => {
@@ -56,9 +59,9 @@ export const SalesDetailScreen = () => {
 
             <FloatingButtonClose desactiveModeEdit={ desactiveModeEdit }/>
 
-            {/* <SalesDetailModal 
+            <SalesDetailModal 
                 handleResetSearchInput={ handleResetSearchInput }
-            /> */}
+            />
         </main>
     );
 }

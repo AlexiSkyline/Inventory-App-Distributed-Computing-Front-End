@@ -94,6 +94,16 @@ export const OptionActivities = [
             classN: 'img__option',
             alt: 'Detalles de Ventas'
         }
+    },
+    {
+        to: '/ventas',
+        title: 'Ventas Realizadas',
+        description: 'Ver el historial de ventas realizadas',
+        img: {
+            path: './assets/Options/compras.png', 
+            classN:'img__option', 
+            alt: 'Ventas'
+        }
     }
 ];
 

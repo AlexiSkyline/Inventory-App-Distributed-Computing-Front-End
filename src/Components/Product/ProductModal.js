@@ -9,6 +9,7 @@ import { ModeEditContext } from '../../Context/ModeEdit/ModeEditContext';
 import { useValidation } from '../../Hooks/useValidation';
 import { initialFormValuesProduct } from '../../Data/InitialFormValues';
 import { ValidateProduct } from '../../validations/ValidateProduct';
+import { SelectUnitMeasurement } from '../UI/Select/SelectUnitMeasurement';
 
 export const ProductModal = ({ handleResetSearchInput }) => {
     const modalContext = useContext( ModalContext );
@@ -96,12 +97,8 @@ export const ProductModal = ({ handleResetSearchInput }) => {
                 />
 
                 <label htmlFor='idUnitMesurement'>ID Unidad de Medida: </label>
-                <input 
-                    type='text' 
-                    className='form-control' 
-                    placeholder='ID Unidad de Medida' 
-                    name='idUnitMesurement'
-                    value={ idUnitMesurement }
+                <SelectUnitMeasurement 
+                    value={ idUnitMesurement } 
                     onChange={ handleInputChange }
                 />
             

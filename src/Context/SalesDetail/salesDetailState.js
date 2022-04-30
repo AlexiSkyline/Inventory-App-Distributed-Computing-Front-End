@@ -53,13 +53,11 @@ export const SalesDetailState = ( props ) => {
                 type: types_SalesDetail.updateSalesDetail,
                 payload: response.data.message
             });
-            console.log( response.data );
         } catch (error) {
             dispatch({
                 type: types_SalesDetail.updateSalesDetailFailed,
                 payload: error.response.data.message
             });
-            console.log( error.response.data );
         }
 
         deleteMessage();

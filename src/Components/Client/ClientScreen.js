@@ -34,22 +34,22 @@ export const ClientScreen = () => {
         if( message ) {
             showAlert( message, typeMessage );
         }
-        // eslint-disable-next-line
-    } , [message] );
+    } , [ message, showAlert, typeMessage ]);
 
     /* 
         * Obtenemos las empresas y cargarlos en el state
         * El otro caso es obtener las empresas filtrados si el status es true
     */
     useEffect( () => {
-        setTimeout(() => { getClients() }, 800);
         if( searchModeStatus ) {
             getListClients( listClientFound );
         } else {
             getListClients( clientList );
         }
-        // eslint-disable-next-line
-    }, [ clientList, searchModeStatus ] );
+    }, [ clientList, searchModeStatus, listClientFound ]);
+
+    // eslint-disable-next-line
+    useEffect( () => { getClients() } , []);
 
     return (
         <main className='data__container content__page'>

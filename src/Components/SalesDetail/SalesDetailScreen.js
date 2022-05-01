@@ -33,22 +33,22 @@ export const SalesDetailScreen = () => {
         if( message ) {
             showAlert( message, typeMessage );
         }
-        // eslint-disable-next-line
-    } , [message] );
+    } , [ showAlert, message, typeMessage ]);
     
      /* 
         * Obtenemos los detalles de las ventas y cargarlos en el state
         * El otro caso es obtener los detalles de las ventas filtrados si el status es true
     */
     useEffect(() => {
-        getSalesDetail();
         if( searchModeStatus ) {
             getListSalesDetail( listSalesDetailFound );
         } else {
             getListSalesDetail( salesDetailList );
         }
-        // eslint-disable-next-line
-    }, [salesDetailList, searchModeStatus ]);
+    }, [ salesDetailList, searchModeStatus, listSalesDetailFound ]);
+
+    // eslint-disable-next-line
+    useEffect(() => { getSalesDetail() }, []);
     
     return (
         <main className='data__container content__page'>

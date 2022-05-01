@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Proptypes from 'prop-types';
 import Modal from 'react-modal';
 
@@ -36,8 +36,7 @@ export const SalesDetailModal = ({ handleResetSearchInput }) => {
         } else {
             desactiveModeEdit();
         }
-        // eslint-disable-next-line
-    }, [ statusEditModeSalesDetail, activeModeEdit ]);
+    }, [ statusEditModeSalesDetail, activeModeEdit, desactiveModeEdit, infSalesDetailEdit ]);
 
     /*
         * Funcion para actualizar un registro de los detaller de nuestras ventas 
@@ -52,6 +51,7 @@ export const SalesDetailModal = ({ handleResetSearchInput }) => {
         handleResetSearchInput();
         desactiveModeEdit();
     }
+    
     return (
         <Modal
             isOpen={ modalOpen }

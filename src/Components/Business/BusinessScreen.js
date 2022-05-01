@@ -33,23 +33,23 @@ export const BusinessScreen = () => {
         if( message ) {
             showAlert( message, typeMessage );
         }
-        // eslint-disable-next-line
-    } , [message] );
+    } , [ message, showAlert, typeMessage ]);
 
     /* 
         * Obtenemos las empresas y cargarlos en el state
         * El otro caso es obtener las empresas filtrados si el status es true
     */
-    useEffect( () => { 
-        setTimeout(() => { getBusiness() }, 800);
+    useEffect( () => {
         if( businessSearchFilterStatus ) {
             getListBusiness( businessSearchFilter );
         } else {
             getListBusiness( business );
         }
-        // eslint-disable-next-line
-    } , [business, businessSearchFilterStatus] );
+    } , [business, businessSearchFilterStatus, businessSearchFilter] );
     
+    // eslint-disable-next-line
+    useEffect( () => { getBusiness() } , []);
+
     return (
         <main className='data__container content__page'>
             <HeadBoard

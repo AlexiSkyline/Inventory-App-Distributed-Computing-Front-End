@@ -11,7 +11,7 @@ import { initialFormValuesClient } from '../../Data/InitialFormValues';
 
 export const ClientModal = ({ handleResetSearchInput }) => {
     const clientContext = useContext( ClientContext );
-    const { statusEditModeClient, infClientEdit, createClient, 
+    const { getClients, statusEditModeClient, infClientEdit, createClient, 
                 updateClient, disactiveClientSearchMode } = clientContext;
     
     const modalContext = useContext( ModalContext );
@@ -34,8 +34,7 @@ export const ClientModal = ({ handleResetSearchInput }) => {
         } else {
             desactiveModeEdit();
         }
-        // eslint-disable-next-line
-    }, [ statusEditModeClient, activeModeEdit ]);
+    }, [ statusEditModeClient, activeModeEdit, desactiveModeEdit, infClientEdit ]);
 
     /*
         * Funcion para crear o actualizar un cliente 
@@ -50,6 +49,7 @@ export const ClientModal = ({ handleResetSearchInput }) => {
         } else {
             updateClient( formValues );
         }
+        getClients();
         uiCloseModal();
         disactiveClientSearchMode();
         handleResetSearchInput();

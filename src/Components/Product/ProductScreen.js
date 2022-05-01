@@ -34,23 +34,23 @@ export const ProductScreen = () => {
         if( message ) {
             showAlert( message, typeMessage );
         }
-        // eslint-disable-next-line
-    } , [message] );
+    } , [ message, showAlert, typeMessage ]);
 
     /* 
         * Obtenemos los productos y cargarlos en el state
         * El otro caso es obtener los productos filtrados si el status es true
     */
     useEffect( () => { 
-        setTimeout(() => { getProducts() }, 800 );
         if( productSearchFilterStatus ) {
             getListProduct( productSearchFilter );
         } else {
             getListProduct( products );
         }
-        // eslint-disable-next-line
-    } , [products, productSearchFilterStatus] );
+    } , [ products, productSearchFilterStatus, productSearchFilter ]);
 
+    // eslint-disable-next-line
+    useEffect( () => { getProducts() } , []);
+    
     return (
         <main className='data__container content__page'>
             <HeadBoard 

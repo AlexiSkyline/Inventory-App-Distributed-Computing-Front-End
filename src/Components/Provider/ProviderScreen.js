@@ -34,22 +34,22 @@ export const ProviderScreen = () => {
         if( message ) {
             showAlert( message, typeMessage );
         }
-        // eslint-disable-next-line
-    } , [message] );
+    } , [ message, showAlert, typeMessage ]);
 
     /* 
         * Obtenemos los proveedores y cargarlos en el state
         * El otro caso es obtener los proveedores filtrados si el status es true
     */
     useEffect( () => {
-        setTimeout(() => { getProviders() }, 800);
         if( searchModeStatus ) {
             getListProviders( listProviderFound );
         } else {
             getListProviders( providerList );
         }
-        // eslint-disable-next-line
-    }, [ providerList, searchModeStatus ] );
+    }, [ providerList, searchModeStatus, listProviderFound ] );
+    
+    // eslint-disable-next-line
+    useEffect( () => { getProviders() } , []);
 
     return (
         <main className='data__container content__page'>

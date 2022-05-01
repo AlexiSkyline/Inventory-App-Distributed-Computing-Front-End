@@ -7,7 +7,7 @@ export const SelectProvider = ({ value, onChange }) => {
     const providerContext = useContext( ProviderContext );
     const { providerList, getProviders } = providerContext;
     
-    useEffect(() => { getProviders() }, [])
+    useEffect(() => { getProviders() }, [getProviders]);
     
     return (
         <select

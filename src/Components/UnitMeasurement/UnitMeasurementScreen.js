@@ -29,22 +29,22 @@ export const UnitMeasurementScreen = () => {
         if( message ) {
             showAlert( message, typeMessage );
         }
-        // eslint-disable-next-line
-    } , [message] );
+    } , [ message, showAlert, typeMessage ]);
 
     /* 
         * Obtenemos las unidades de medida y cargarlos en el state
         * El otro caso es obtener las unidades de medida filtrados si el status es true
     */
     useEffect( () => {
-        setTimeout(() => { getUnitMs() }, 800 );
         if( unitMsSearchFilterStatus ) {
             getListUnitMs( unitMsSearchFilter );
         } else {
             getListUnitMs( unitMs );
         }
-        // eslint-disable-next-line
-    }, [unitMs, unitMsSearchFilterStatus] );
+    }, [ unitMs, unitMsSearchFilterStatus, unitMsSearchFilter ]);
+
+    // eslint-disable-next-line
+    useEffect( () => { getUnitMs() }, [] );
 
     return (
         <main className='data__container content__page'>

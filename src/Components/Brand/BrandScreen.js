@@ -34,22 +34,22 @@ export const BrandScreen = () => {
         if( message ) {
             showAlert( message, typeMessage );
         }
-        // eslint-disable-next-line
-    } , [message] );
+    } , [ message, showAlert, typeMessage ]);
 
     /* 
         * Obtenemos las marcas y cargarlos en el state
         * El otro caso es obtener las marcas filtrados si el status es true
     */
     useEffect( () => { 
-        setTimeout(() => { getBrands() }, 800);
         if( brandSearchFilterStatus ) {
             getListBrands( brandSearchFilter );
         } else {
             getListBrands( brands );
         }
-        // eslint-disable-next-line
-    } , [brands, brandSearchFilterStatus] );
+    } , [ brands, brandSearchFilterStatus, brandSearchFilter ]);
+
+    // eslint-disable-next-line
+    useEffect( () => { getBrands() }, []);
     
     return (
         <main className='data__container content__page'>

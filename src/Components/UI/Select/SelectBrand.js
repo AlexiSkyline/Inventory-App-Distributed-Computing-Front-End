@@ -7,7 +7,7 @@ export const SelectBrand = ({ value, onChange }) => {
     const brandContext = useContext( BrandContext );
     const { brands, getBrands } = brandContext;
 
-    useEffect(() => { getBrands() } , []);
+    useEffect(() => { getBrands() } , [getBrands]);
 
     return (
         <select 

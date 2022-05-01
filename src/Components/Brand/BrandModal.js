@@ -12,7 +12,7 @@ import { initialFormValuesBrand } from '../../Data/InitialFormValues';
 
 export const BrandModal = ({ handleResetSearchInput }) => {
     const brandContext = useContext( BrandContext );
-    const { brandModeEdit, brandEdit, createBrand, updateBrand, modeSearchBrandDesactive } = brandContext;
+    const { getBrands, brandModeEdit, brandEdit, createBrand, updateBrand, modeSearchBrandDesactive } = brandContext;
 
     const modalContext = useContext( ModalContext );
     const { modalOpen, closeModal, uiCloseModal } = modalContext;
@@ -34,8 +34,7 @@ export const BrandModal = ({ handleResetSearchInput }) => {
         } else {
             desactiveModeEdit();
         }
-        // eslint-disable-next-line
-    }, [ brandModeEdit, activeModeEdit ]);
+    }, [ brandModeEdit, activeModeEdit, desactiveModeEdit, brandEdit ]);
 
     /*
         * Funcion para crear o actualizar una marca 
@@ -50,6 +49,7 @@ export const BrandModal = ({ handleResetSearchInput }) => {
         } else {
             updateBrand( formValues );
         }
+        getBrands();
         uiCloseModal();
         modeSearchBrandDesactive();
         handleResetSearchInput();

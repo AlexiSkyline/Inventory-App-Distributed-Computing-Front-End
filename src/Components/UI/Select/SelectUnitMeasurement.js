@@ -7,7 +7,7 @@ export const SelectUnitMeasurement = ({ value, onChange }) => {
     const unitMeasurementContext = useContext( UnitMeasurementContext );
     const { unitMs, getUnitMs } = unitMeasurementContext;
 
-    useEffect(() => { getUnitMs() }, []);
+    useEffect(() => { getUnitMs() }, [getUnitMs]);
 
     return (
         <select 

@@ -34,22 +34,22 @@ export const SellerScreen = () => {
         if( message ) {
             showAlert( message, typeMessage );
         }
-        // eslint-disable-next-line
-    } , [message] );
+    } , [ message, showAlert, typeMessage ]);
 
     /* 
         * Obtenemos las Vendedores y cargarlos en el state
         * El otro caso es obtener las Vendedores filtrados si el status es true
     */
     useEffect( () => {
-        setTimeout(() => { getSellers() }, 800);
         if( searchModeStatus ) {
             getListSellers( listSellerFound );
         } else {
             getListSellers( sellerList );
         }
-        // eslint-disable-next-line
-    }, [ sellerList, searchModeStatus ] );
+    }, [ sellerList, searchModeStatus, listSellerFound ]);
+    
+    // eslint-disable-next-line
+    useEffect( () => { getSellers() } , []);
 
     return (
         <main className='data__container content__page'>

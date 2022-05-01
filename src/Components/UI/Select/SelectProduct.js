@@ -7,7 +7,7 @@ export const SelectProduct = ({ value, onChange }) => {
     const productContext = useContext( ProductContext );
     const { products, getProducts } = productContext;
 
-    useEffect(() => { getProducts() } ,[]);
+    useEffect(() => { getProducts() } ,[getProducts]);
 
     return (
         <select

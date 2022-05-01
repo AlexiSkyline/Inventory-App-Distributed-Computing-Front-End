@@ -18,10 +18,18 @@ export const productReducer = ( state, action ) => {
             }
         }
         case types.updateProduct:
+            return {
+                ...state,
+                products: state.products.map( product => product.id === action.payload.id ? action.payload : product ),
+                message: action.payload.message,
+                typeMessage: 'alert-ok',
+                loading: false
+            }
         case types.deleteProduct:
             return {
                 ...state,
-                message: action.payload,
+                products: state.products.filter( product => product.id !== action.payload.id ),
+                message: action.payload.message,
                 typeMessage: 'alert-ok',
                 loading: false
             }

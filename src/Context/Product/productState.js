@@ -70,7 +70,7 @@ export const ProductState = ( props ) => {
             const response = await clientAxios.delete( `/api/Product/${ id }` );
             dispatch({
                 type: types.deleteProduct,
-                payload: response.data.message
+                payload: response.data
             });
         } catch (error) {
             dispatch({
@@ -109,7 +109,7 @@ export const ProductState = ( props ) => {
 
             dispatch({
                 type: types.updateProduct,
-                payload: response.data.message
+                payload: response.data
             });
         } catch (error) {
             dispatch({

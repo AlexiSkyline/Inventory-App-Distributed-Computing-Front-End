@@ -15,13 +15,13 @@ export const ProductScreen = () => {
     const headers = ['id', 'Nombre', 'Marca','Descripción', 'Precio', 'U. Medida', 'Stock', 'Proveedor' ];
     const productContext = useContext( ProductContext );
     const { products, getProducts, searchProduct, productSearchFilter, 
-                message, typeMessage, productSearchFilterStatus, desactiveModeEdit } = productContext;
+                message, typeMessage, productSearchFilterStatus, desactiveModeEditProduct } = productContext;
     
     const alertContext = useContext( AlertContext );
     const { showAlert } = alertContext;
 
     // * State para guardar la lista de producto a mostrar
-    const [ listProduct, getListProduct ] = useState([]);
+    const [ listProduct, setListProduct ] = useState([]);
 
     const [ formValues, handleInputChange, handleResetSearchInput ] = useSearch( { searchProductValue: '' }, searchProduct );
     const { searchProductValue } = formValues;
@@ -42,9 +42,9 @@ export const ProductScreen = () => {
     */
     useEffect( () => { 
         if( productSearchFilterStatus ) {
-            getListProduct( productSearchFilter );
+            setListProduct( productSearchFilter );
         } else {
-            getListProduct( products );
+            setListProduct( products );
         }
     } , [ products, productSearchFilterStatus, productSearchFilter ]);
 
@@ -70,7 +70,7 @@ export const ProductScreen = () => {
                 handleResetSearchInput={ handleResetSearchInput }
             />
 
-            <FloatingButtonClose desactiveModeEdit={ desactiveModeEdit }/>
+            <FloatingButtonClose desactiveModeEdit={ desactiveModeEditProduct }/>
 
             <FloatingButton />
 

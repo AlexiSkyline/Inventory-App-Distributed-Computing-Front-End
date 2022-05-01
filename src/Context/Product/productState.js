@@ -72,6 +72,7 @@ export const ProductState = ( props ) => {
                 type: types.deleteProduct,
                 payload: response.data
             });
+            getProducts();
         } catch (error) {
             dispatch({
                 type: types.deleteProductFailed,
@@ -89,7 +90,7 @@ export const ProductState = ( props ) => {
         });
     }
 
-    const desactiveModeEdit = () => {
+    const desactiveModeEditProduct = () => {
         dispatch({
             type: types.desactiveModeEdit
         });
@@ -111,6 +112,7 @@ export const ProductState = ( props ) => {
                 type: types.updateProduct,
                 payload: response.data
             });
+            getProducts();
         } catch (error) {
             dispatch({
                 type: types.updateProductFailed,
@@ -154,7 +156,7 @@ export const ProductState = ( props ) => {
                 deleteProduct,
                 createProduct,
                 activeModeEdit,
-                desactiveModeEdit,
+                desactiveModeEditProduct,
                 updateProduct,
                 searchProduct,
                 modeSearchProductDesactive

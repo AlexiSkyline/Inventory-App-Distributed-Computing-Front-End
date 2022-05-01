@@ -15,7 +15,7 @@ export const SellerScreen = () => {
     const headers = [ 'ID' ,'Nombre' ,'Apellidos' ,'RFC' ,'Dirección' ,'Email' ,'Telefono', 'Nombre de Usuario' ];
     const sellerContext = useContext( SellerContext );
     const { sellerList, message, typeMessage, listSellerFound, searchModeStatus,
-                getSellers, desactiveModeEdit, searchSeller  } = sellerContext;
+                getSellers, desactiveModeEditSeller, searchSeller  } = sellerContext;
 
     const alertContext = useContext( AlertContext );
     const { showAlert } = alertContext;
@@ -70,7 +70,7 @@ export const SellerScreen = () => {
                 handleResetSearchInput={ handleResetSearchInput }
             />
 
-            <FloatingButtonClose desactiveModeEdit={ desactiveModeEdit }/>
+            <FloatingButtonClose desactiveModeEdit={ desactiveModeEditSeller }/>
 
             <FloatingButton />
 

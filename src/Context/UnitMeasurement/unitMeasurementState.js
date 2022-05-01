@@ -69,6 +69,7 @@ export const UnitMeasurementState = ( props ) => {
                 type: types_unitMeasurement.updateUnitMs,
                 payload: response.data.message
             });
+            getUnitMs();
         } catch ( error ) {
             dispatch({
                 type: types_unitMeasurement.updateUnitMsFailed,
@@ -86,6 +87,7 @@ export const UnitMeasurementState = ( props ) => {
                 type: types_unitMeasurement.deleteUnitMs,
                 payload: respose.data.message
             });
+            getUnitMs();
         } catch ( error ) {
             dispatch({
                 type: types_unitMeasurement.deleteUnitMFailed,
@@ -103,7 +105,7 @@ export const UnitMeasurementState = ( props ) => {
         });
     }
 
-    const desactiveModeEdit = () => {
+    const desactiveModeEditUnitMs = () => {
         dispatch({
             type: types_unitMeasurement.desactiveModeEdit
         });
@@ -141,7 +143,7 @@ export const UnitMeasurementState = ( props ) => {
                 updateUnitMs,
                 deleteUnitM,
                 activeModeEdit,
-                desactiveModeEdit,
+                desactiveModeEditUnitMs,
                 activeModeSearch,
                 modeSearchUnitMDesactive
             }}

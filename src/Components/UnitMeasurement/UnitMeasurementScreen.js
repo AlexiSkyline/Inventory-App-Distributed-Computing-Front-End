@@ -14,7 +14,7 @@ import { UnitMeasurementModal } from './UnitMeasurementModal';
 export const UnitMeasurementScreen = () => {
     const unitMeasurementContext = useContext( UnitMeasurementContext );
     const { unitMs, message, typeMessage, unitMsSearchFilter, unitMsSearchFilterStatus,
-            getUnitMs, desactiveModeEdit, activeModeSearch } = unitMeasurementContext;
+            getUnitMs, desactiveModeEditUnitMs, activeModeSearch } = unitMeasurementContext;
 
     const alertContext = useContext( AlertContext );
     const { showAlert } = alertContext;
@@ -64,7 +64,7 @@ export const UnitMeasurementScreen = () => {
                 handleResetSearchInput={ handleResetSearchInput }
             />
 
-            <FloatingButtonClose desactiveModeEdit={ desactiveModeEdit }/>
+            <FloatingButtonClose desactiveModeEdit={ desactiveModeEditUnitMs }/>
 
             <FloatingButton />
 

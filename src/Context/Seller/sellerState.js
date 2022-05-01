@@ -81,6 +81,7 @@ export const SellerState = ( props ) => {
                 type: types_seller.updateSeller,
                 payload: response.data.message
             });
+            getSellers();
         } catch (error) {
             dispatch({
                 type: types_seller.updateSellerFailed,
@@ -98,6 +99,7 @@ export const SellerState = ( props ) => {
                 type: types_seller.deleteSeller,
                 payload: response.data.message
             });
+            getSellers();
         } catch (error) {
             dispatch({
                 type: types_seller.deleteSellerFailed,
@@ -117,7 +119,7 @@ export const SellerState = ( props ) => {
         });
     }
 
-    const desactiveModeEdit = () => {
+    const desactiveModeEditSeller = () => {
         dispatch({
             type: types_seller.desactiveModeEdit
         });
@@ -155,7 +157,7 @@ export const SellerState = ( props ) => {
                 updateSeller,
                 deleteSeller,
                 activeModeEdit,
-                desactiveModeEdit,
+                desactiveModeEditSeller,
                 deleteMessage,
                 searchSeller,
                 disactiveSellerSearchMode

@@ -12,8 +12,8 @@ import { ValidateSeller } from '../../validations/ValidateSeller';
 
 export const SellerModal = ({ handleResetSearchInput }) => {
     const sellerContext = useContext( SellerContext );
-    const { getSellers, statusEditModeSeller, infSellerEdit, createSeller, 
-                updateSeller, disactiveSellerSearchMode  } = sellerContext;
+    const { statusEditModeSeller, infSellerEdit, createSeller, 
+                updateSeller, disactiveSellerSearchMode, desactiveModeEditSeller } = sellerContext;
 
     const modalContext = useContext( ModalContext );
     const { modalOpen, closeModal, uiCloseModal } = modalContext;
@@ -35,7 +35,8 @@ export const SellerModal = ({ handleResetSearchInput }) => {
         } else {
             desactiveModeEdit();
         }
-    }, [ statusEditModeSeller, activeModeEdit, desactiveModeEdit, infSellerEdit ]);
+        // eslint-disable-next-line
+    }, [ statusEditModeSeller ]);
 
     /*
         * Funcion para crear o actualizar un vendedor 
@@ -50,7 +51,8 @@ export const SellerModal = ({ handleResetSearchInput }) => {
         } else {
             updateSeller( formValues );
         }
-        getSellers();
+        desactiveModeEdit();
+        desactiveModeEditSeller();
         uiCloseModal();
         disactiveSellerSearchMode();
         handleResetSearchInput();

@@ -12,8 +12,8 @@ import { ValidateUnitMeasurement } from '../../validations/ValidateUnitMeasureme
 
 export const UnitMeasurementModal = ({ handleResetSearchInput }) => {
     const unitMeasurementContext = useContext( UnitMeasurementContext );
-    const { getUnitMs, unitMsModeEdit, unitMsEdit, createUnitMs, updateUnitMs, 
-                modeSearchUnitMDesactive } = unitMeasurementContext;
+    const { unitMsModeEdit, unitMsEdit, createUnitMs, updateUnitMs, 
+                modeSearchUnitMDesactive, desactiveModeEditUnitMs } = unitMeasurementContext;
 
     const modalContext = useContext( ModalContext );
     const { modalOpen, closeModal, uiCloseModal } = modalContext;
@@ -35,7 +35,8 @@ export const UnitMeasurementModal = ({ handleResetSearchInput }) => {
         } else {
             desactiveModeEdit();
         }
-    }, [ unitMsModeEdit, activeModeEdit, desactiveModeEdit, unitMsEdit ]);
+        // eslint-disable-next-line
+    }, [ unitMsModeEdit ]);
 
     /*
         * Funcion para crear o actualizar una unidad de medida 
@@ -50,7 +51,8 @@ export const UnitMeasurementModal = ({ handleResetSearchInput }) => {
         } else {
             updateUnitMs( formValues );
         }
-        getUnitMs();
+        desactiveModeEdit();
+        desactiveModeEditUnitMs();
         uiCloseModal();
         modeSearchUnitMDesactive();
         handleResetSearchInput();

@@ -1,4 +1,5 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react';
+import { useSearch } from '../../Hooks/useSearch';
 
 import { AlertContext } from '../../Context/Alert/AlertContext';
 import { SalesDetailContext } from '../../Context/SalesDetail/SalesDetailContext';
@@ -18,10 +19,11 @@ export const SalesDetailScreen = () => {
     const alertContext = useContext( AlertContext );
     const { showAlert } = alertContext;
 
-    const [ formValues, setFormValues ] = React.useState({ searchSalesDetailValue: ''});
+    // * State para guardar la lista de detalles ventas a mostrar
+    const [ listSalesDetail, getListSalesDetail ] = useState([]);
+
+    const [ formValues, handleInputChange, handleResetSearchInput ] = useSearch( { searchSalesDetailValue: '' }, searchSalesDetail );
     const { searchSalesDetailValue } = formValues;
-    const handleInputChange = () => {}
-    const handleResetSearchInput = () => {}
     
     /*
         * Mostramos el mesaje si existe uno en el state
@@ -34,9 +36,19 @@ export const SalesDetailScreen = () => {
         // eslint-disable-next-line
     } , [message] );
     
+     /* 
+        * Obtenemos los detalles de las ventas y cargarlos en el state
+        * El otro caso es obtener los detalles de las ventas filtrados si el status es true
+    */
     useEffect(() => {
         getSalesDetail();
-    }, [salesDetailList]);
+        if( searchModeStatus ) {
+            getListSalesDetail( listSalesDetailFound );
+        } else {
+            getListSalesDetail( salesDetailList );
+        }
+        // eslint-disable-next-line
+    }, [salesDetailList, searchModeStatus ]);
     
     return (
         <main className='data__container content__page'>
@@ -53,7 +65,7 @@ export const SalesDetailScreen = () => {
             
             <TableSalesDetail
                 titles={ headers }
-                listSalesDetail={ salesDetailList }
+                listSalesDetail={ listSalesDetail }
                 handleResetSearchInput={ handleResetSearchInput }
             />
 

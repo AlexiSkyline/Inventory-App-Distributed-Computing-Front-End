@@ -39,7 +39,7 @@ export const salesDetailReducer = ( state, action ) => {
             return {
                 ...state,
                 searchModeStatus: true,
-                listSalesDetailFound: state.salesDetailList.filter( salesDetail => salesDetail.folio === action.payload )
+                listSalesDetailFound: state.salesDetailList.filter( salesDetail => salesDetail.folio == action.payload )
             }
         case types_SalesDetail.searchSalesDetailDesactive:
             return {

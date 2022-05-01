@@ -102,11 +102,13 @@ export const SalesDetailState = ( props ) => {
     }
 
     const searchSalesDetail = ( value ) => {
-        if( value.trim() === '' ) {
+        if( value.trim() !== '' ) {
             dispatch({
                 type: types_SalesDetail.searchSalesDetailActive,
                 payload: value
             });
+        } else {
+            disactiveSalesDetailSearchMode();
         }
     }
 

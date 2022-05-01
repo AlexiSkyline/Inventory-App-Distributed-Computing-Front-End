@@ -14,7 +14,7 @@ import { TableBrands } from './TableBrands';
 const headers = [ 'id', 'descripción' ];
 export const BrandScreen = () => {
     const brandContext = useContext( BrandContext );
-    const { brands, getBrands, message, typeMessage, desactiveModeEdit,
+    const { brands, getBrands, message, typeMessage, desactiveModeEditBrand,
                 brandSearchFilter, brandSearchFilterStatus, activeModeSearch } = brandContext;
 
     const alertContext = useContext( AlertContext );
@@ -70,7 +70,7 @@ export const BrandScreen = () => {
                 handleResetSearchInput={ handleResetSearchInput }
             />
 
-            <FloatingButtonClose desactiveModeEdit={ desactiveModeEdit }/>
+            <FloatingButtonClose desactiveModeEdit={ desactiveModeEditBrand }/>
 
             <FloatingButton />
 

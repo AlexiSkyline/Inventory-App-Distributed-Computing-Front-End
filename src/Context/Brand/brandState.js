@@ -69,6 +69,7 @@ export const BrandState = ( props ) => {
                 type: types_brand.updateBrand,
                 payload: response.data.message
             });
+            getBrands();
         } catch (error) {
             dispatch({
                 type: types_brand.updateBrandFailed,
@@ -86,6 +87,7 @@ export const BrandState = ( props ) => {
                 type: types_brand.deleteBrand,
                 payload: response.data.message
             });
+            getBrands();
         } catch ( error ) {
             dispatch({
                 type: types_brand.deleteBrandFailed,
@@ -103,7 +105,7 @@ export const BrandState = ( props ) => {
         });
     }
 
-    const desactiveModeEdit = () => {
+    const desactiveModeEditBrand = () => {
         dispatch({
             type: types_brand.desactiveModeEdit
         });
@@ -141,7 +143,7 @@ export const BrandState = ( props ) => {
                 updateBrand,
                 deleteBrand,
                 activeModeEdit,
-                desactiveModeEdit,
+                desactiveModeEditBrand,
                 activeModeSearch,
                 modeSearchBrandDesactive
             }}

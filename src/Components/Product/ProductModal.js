@@ -18,7 +18,7 @@ export const ProductModal = ({ handleResetSearchInput }) => {
     const { modalOpen, closeModal, uiCloseModal } = modalContext;
 
     const productContext = useContext( ProductContext );
-    const { getProducts, createProduct, productModeEdit, productEdit, updateProduct, modeSearchProductDesactive, desactiveModeEditProduct } = productContext;
+    const { createProduct, productModeEdit, productEdit, updateProduct, modeSearchProductDesactive, desactiveModeEditProduct } = productContext;
 
     const modeEditContext = useContext( ModeEditContext );
     const { activeModeEdit, desactiveModeEdit } = modeEditContext;
@@ -38,7 +38,7 @@ export const ProductModal = ({ handleResetSearchInput }) => {
             desactiveModeEdit();
         }
         // eslint-disable-next-line
-    }, [ productModeEdit, productModeEdit ]);
+    }, [ productModeEdit ]);
     
     /*
         * Funcion para crear o actualizar un producto 
@@ -55,7 +55,6 @@ export const ProductModal = ({ handleResetSearchInput }) => {
         }
         desactiveModeEdit();
         desactiveModeEditProduct();
-        getProducts();
         uiCloseModal();
         modeSearchProductDesactive();
         handleResetSearchInput();

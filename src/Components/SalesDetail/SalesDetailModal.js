@@ -72,7 +72,7 @@ export const SalesDetailModal = ({ handleResetSearchInput }) => {
                     onChange={ handleInputChange }
                 />
 
-                <label htmlFor='idProduct'>ID del Producto: </label>
+                <label htmlFor='idProduct'>Producto: </label>
                 <SelectProduct value={ idProduct } onChange={ handleInputChange }/>
                 
                 <label htmlFor='amountProduct'>Cantidad: </label>

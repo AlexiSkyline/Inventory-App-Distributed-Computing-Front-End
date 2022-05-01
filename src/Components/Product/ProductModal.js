@@ -98,13 +98,13 @@ export const ProductModal = ({ handleResetSearchInput }) => {
                     onChange={ handleInputChange }
                 />
 
-                <label htmlFor='idUnitMesurement'>ID Unidad de Medida: </label>
+                <label htmlFor='idUnitMesurement'>Unidad de Medida: </label>
                 <SelectUnitMeasurement 
                     value={ idUnitMesurement } 
                     onChange={ handleInputChange }
                 />
             
-                <label htmlFor='idBrand'>ID de la Marca: </label>
+                <label htmlFor='idBrand'>Marca: </label>
                 <SelectBrand 
                     value={ idBrand } 
                     onChange={ handleInputChange }
@@ -120,7 +120,7 @@ export const ProductModal = ({ handleResetSearchInput }) => {
                     onChange={ handleInputChange }
                 />
                 
-                <label htmlFor='idProvider'>ID Proveedor: </label>
+                <label htmlFor='idProvider'>Proveedor: </label>
                 <SelectProvider value={ idProvider } onChange={ handleInputChange }/>
                         
                 <input 

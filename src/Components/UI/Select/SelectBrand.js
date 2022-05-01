@@ -16,7 +16,7 @@ export const SelectBrand = ({ value, onChange }) => {
             onChange={ onChange } 
             value={ value }
         >
-            <option value=''>-- Opciones --</option>
+            <option value=''>Seleccione una Marca</option>
             {
                 brands.map( ( brand ) => (
                     <option key={ brand.id } value={ brand.id }>{ brand.description }</option>

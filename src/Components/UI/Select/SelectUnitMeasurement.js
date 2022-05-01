@@ -16,7 +16,7 @@ export const SelectUnitMeasurement = ({ value, onChange }) => {
             onChange={ onChange } 
             value={ value }
         >
-            <option value=''>-- Opciones --</option>
+            <option value=''>Seleccione una Unidad de Medida</option>
             {
                 unitMs.map( ( unitM ) => (
                     <option key={ unitM.id } value={ unitM.id }>{ unitM.description }</option>

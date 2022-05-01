@@ -12,8 +12,8 @@ import { ValidateBusiness } from '../../validations/ValidateBusiness';
 
 export const BusinessModal = ({ handleResetSearchInput }) => {
     const businessContext = useContext( BusinessContext );
-    const { getBusiness, businessModeEdit, businessEdit, createBusiness, 
-                updateBusiness, modeSearchBusinessDesactive } = businessContext;
+    const { businessModeEdit, businessEdit, createBusiness, 
+                updateBusiness, modeSearchBusinessDesactive, desactiveModeEditBusiness } = businessContext;
 
     const modalContext = useContext( ModalContext );
     const { modalOpen, closeModal, uiCloseModal } = modalContext;
@@ -35,7 +35,8 @@ export const BusinessModal = ({ handleResetSearchInput }) => {
         } else {
             desactiveModeEdit();
         }
-    }, [ businessModeEdit, activeModeEdit, businessEdit, desactiveModeEdit ]);
+        // eslint-disable-next-line
+    }, [ businessModeEdit ]);
 
     /*
         * Funcion para crear o actualizar una empresa 
@@ -50,7 +51,8 @@ export const BusinessModal = ({ handleResetSearchInput }) => {
         } else {
             updateBusiness( formValues );
         }
-        getBusiness();
+        desactiveModeEdit();
+        desactiveModeEditBusiness();
         uiCloseModal();
         modeSearchBusinessDesactive();
         handleResetSearchInput();

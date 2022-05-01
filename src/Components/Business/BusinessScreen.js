@@ -14,7 +14,7 @@ import { TableBusiness } from './TableBusiness';
 export const BusinessScreen = () => {
     const businessContext = useContext( BusinessContext );
     const { business, message, typeMessage, businessSearchFilter, businessSearchFilterStatus, 
-                getBusiness, desactiveModeEdit, activeModeSearch } = businessContext;
+                getBusiness, desactiveModeEditBusiness, activeModeSearch } = businessContext;
     
     const alertContext = useContext( AlertContext );
     const { showAlert } = alertContext;
@@ -68,7 +68,7 @@ export const BusinessScreen = () => {
                 handleResetSearchInput={ handleResetSearchInput }
             />
 
-            <FloatingButtonClose desactiveModeEdit={ desactiveModeEdit }/>
+            <FloatingButtonClose desactiveModeEdit={ desactiveModeEditBusiness }/>
 
             <FloatingButton />
 

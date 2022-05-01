@@ -78,6 +78,7 @@ export const ClientState = ( props ) => {
                 type: types_client.updateClient,
                 payload: response.data.message
             });
+            getClients();
         } catch (error) {
             dispatch({
                 type: types_client.updateClientFailed,
@@ -95,6 +96,7 @@ export const ClientState = ( props ) => {
                 type: types_client.deleteClient,
                 payload: response.data.message
             });
+            getClients();
         } catch (error) {
             dispatch({
                 type: types_client.deleteClientFailed,
@@ -112,7 +114,7 @@ export const ClientState = ( props ) => {
         });
     }
 
-    const desactiveModeEdit = () => {
+    const desactiveModeEditClient = () => {
         dispatch({
             type: types_client.desactiveModeEdit
         });
@@ -152,7 +154,7 @@ export const ClientState = ( props ) => {
                 deleteClient,
                 deleteMessage,
                 activeModeEdit,
-                desactiveModeEdit,
+                desactiveModeEditClient,
                 searchClient,
                 disactiveClientSearchMode
             }}

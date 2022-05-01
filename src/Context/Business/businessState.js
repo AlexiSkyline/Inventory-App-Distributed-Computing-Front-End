@@ -69,6 +69,7 @@ export const BusinessState = ( props ) => {
                 type: types_business.updateBusiness,
                 payload: response.data.message
             });
+            getBusiness();
         } catch ( error) { 
             dispatch({
                 type: types_business.updateBusinessFailed,
@@ -86,6 +87,7 @@ export const BusinessState = ( props ) => {
                 type: types_business.deleteBusiness,
                 payload: response.data.message
             });
+            getBusiness();
         } catch ( error) { 
             dispatch({
                 type: types_business.deleteBusinessFailed,
@@ -103,7 +105,7 @@ export const BusinessState = ( props ) => {
         });
     }
 
-    const desactiveModeEdit = () => {
+    const desactiveModeEditBusiness = () => {
         dispatch({
             type: types_business.desactiveModeEdit
         });
@@ -142,7 +144,7 @@ export const BusinessState = ( props ) => {
                 updateBusiness,
                 deleteMessage,
                 activeModeEdit,
-                desactiveModeEdit,
+                desactiveModeEditBusiness,
                 activeModeSearch,
                 modeSearchBusinessDesactive
             }}

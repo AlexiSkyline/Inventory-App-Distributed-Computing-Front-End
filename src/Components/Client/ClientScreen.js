@@ -15,7 +15,7 @@ export const ClientScreen = () => {
     const headers = [ 'ID' ,'Nombre' ,'Apellidos' ,'RFC' ,'Dirección' ,'Email' ,'Telefono' ];
     const clientContext = useContext( ClientContext );
     const { clientList, message, typeMessage, listClientFound, searchModeStatus, 
-                getClients, desactiveModeEdit, searchClient } = clientContext;
+                getClients, desactiveModeEditClient, searchClient } = clientContext;
     
     const alertContext = useContext( AlertContext );
     const { showAlert } = alertContext;
@@ -70,7 +70,7 @@ export const ClientScreen = () => {
                 handleResetSearchInput={ handleResetSearchInput }
             />
 
-            <FloatingButtonClose desactiveModeEdit={ desactiveModeEdit }/>
+            <FloatingButtonClose desactiveModeEdit={ desactiveModeEditClient }/>
 
             <FloatingButton />
 

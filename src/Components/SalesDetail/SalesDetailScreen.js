@@ -14,7 +14,7 @@ export const SalesDetailScreen = () => {
     const headers = [ 'ID', 'Folio', 'Producto', 'Cantidad', 'Precio', 'Total', 'Fecha' ];
     const salesDetailContext = useContext( SalesDetailContext );
     const { salesDetailList, message, typeMessage, listSalesDetailFound, searchModeStatus,
-                getSalesDetail, desactiveModeEdit, searchSalesDetail } = salesDetailContext;
+                getSalesDetail, desactiveModeEditSalesDetail, searchSalesDetail } = salesDetailContext;
 
     const alertContext = useContext( AlertContext );
     const { showAlert } = alertContext;
@@ -69,7 +69,7 @@ export const SalesDetailScreen = () => {
                 handleResetSearchInput={ handleResetSearchInput }
             />
 
-            <FloatingButtonClose desactiveModeEdit={ desactiveModeEdit }/>
+            <FloatingButtonClose desactiveModeEdit={ desactiveModeEditSalesDetail }/>
 
             <SalesDetailModal 
                 handleResetSearchInput={ handleResetSearchInput }

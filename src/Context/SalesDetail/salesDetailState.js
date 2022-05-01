@@ -53,6 +53,7 @@ export const SalesDetailState = ( props ) => {
                 type: types_SalesDetail.updateSalesDetail,
                 payload: response.data.message
             });
+            getSalesDetail();
         } catch (error) {
             dispatch({
                 type: types_SalesDetail.updateSalesDetailFailed,
@@ -70,6 +71,7 @@ export const SalesDetailState = ( props ) => {
                 type: types_SalesDetail.deleteSalesDetail,
                 payload: response.data.message
             });
+            getSalesDetail();
         } catch (error) {
             dispatch({
                 type: types_SalesDetail.deleteSalesDetailFailed,
@@ -89,7 +91,7 @@ export const SalesDetailState = ( props ) => {
         });
     }
 
-    const desactiveModeEdit = () => {
+    const desactiveModeEditSalesDetail = () => {
         dispatch({
             type: types_SalesDetail.desactiveModeEdit
         });
@@ -127,7 +129,7 @@ export const SalesDetailState = ( props ) => {
                 deleteSalesDetail,
                 deleteMessage,
                 activeModeEdit,
-                desactiveModeEdit,
+                desactiveModeEditSalesDetail,
                 searchSalesDetail,
                 disactiveSalesDetailSearchMode
             }}

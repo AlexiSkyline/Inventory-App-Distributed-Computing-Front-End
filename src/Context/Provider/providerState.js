@@ -77,6 +77,7 @@ export const ProviderState = ( props ) => {
                 type: types_provider.updateProvider,
                 payload: response.data.message
             });
+            getProviders();
         } catch (error) {
             dispatch({
                 type: types_provider.updateProviderFailed,
@@ -94,6 +95,7 @@ export const ProviderState = ( props ) => {
                 type: types_provider.deleteProvider,
                 payload: response.data.message
             });
+            getProviders();
         } catch (error) {
             dispatch({
                 type: types_provider.updateProviderFailed,
@@ -111,7 +113,7 @@ export const ProviderState = ( props ) => {
         });
     }
 
-    const desactiveModeEdit = () => {
+    const desactiveModeEditProviders = () => {
         dispatch({
             type: types_provider.desactiveModeEdit
         });
@@ -150,7 +152,7 @@ export const ProviderState = ( props ) => {
                 deleteProvider,
                 deleteMessage,
                 activeModeEdit,
-                desactiveModeEdit,
+                desactiveModeEditProviders,
                 searchProvider,
                 disactiveProviderSearchMode
             }}

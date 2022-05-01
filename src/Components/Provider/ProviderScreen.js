@@ -15,7 +15,7 @@ export const ProviderScreen = () => {
     const headers = [ 'ID' ,'Nombre' ,'Apellidos' ,'RFC' ,'Dirección' ,'Email' ,'Telefono' ];
     const providerContext = useContext( ProviderContext );
     const { providerList, message, typeMessage, listProviderFound, 
-            searchModeStatus, getProviders, desactiveModeEdit, searchProvider } = providerContext;
+            searchModeStatus, getProviders, desactiveModeEditProviders, searchProvider } = providerContext;
     
     const alertContext = useContext( AlertContext );
     const { showAlert } = alertContext;
@@ -70,7 +70,7 @@ export const ProviderScreen = () => {
                 handleResetSearchInput={ handleResetSearchInput }
             />
 
-            <FloatingButtonClose desactiveModeEdit={ desactiveModeEdit }/>
+            <FloatingButtonClose desactiveModeEdit={ desactiveModeEditProviders }/>
 
             <FloatingButton />
 

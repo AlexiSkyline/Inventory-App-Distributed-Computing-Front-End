@@ -13,7 +13,7 @@ import { SelectProduct } from '../UI/Select/SelectProduct';
 export const SalesDetailModal = ({ handleResetSearchInput }) => {
     const salesDetailContext = useContext( SalesDetailContext );
     const { statusEditModeSalesDetail, infSalesDetailEdit, updateSalesDetail, 
-                disactiveSalesDetailSearchMode } = salesDetailContext;
+                disactiveSalesDetailSearchMode, desactiveModeEditSalesDetail } = salesDetailContext;
 
     const modalContext = useContext( ModalContext );
     const { modalOpen, closeModal, uiCloseModal } = modalContext;
@@ -36,7 +36,8 @@ export const SalesDetailModal = ({ handleResetSearchInput }) => {
         } else {
             desactiveModeEdit();
         }
-    }, [ statusEditModeSalesDetail, activeModeEdit, desactiveModeEdit, infSalesDetailEdit ]);
+        // eslint-disable-next-line
+    }, [ statusEditModeSalesDetail ]);
 
     /*
         * Funcion para actualizar un registro de los detaller de nuestras ventas 
@@ -50,6 +51,7 @@ export const SalesDetailModal = ({ handleResetSearchInput }) => {
         disactiveSalesDetailSearchMode();
         handleResetSearchInput();
         desactiveModeEdit();
+        desactiveModeEditSalesDetail();
     }
     
     return (

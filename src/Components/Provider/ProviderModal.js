@@ -12,8 +12,8 @@ import { useValidation } from '../../Hooks/useValidation';
 
 export const ProviderModal = ({ handleResetSearchInput }) => {
     const providerContext = useContext( ProviderContext );
-    const { getProviders, statusEditModeProvider, infProviderEdit, createProvider, updateProvider,
-            disactiveProviderSearchMode } = providerContext;
+    const { statusEditModeProvider, infProviderEdit, createProvider, updateProvider,
+            disactiveProviderSearchMode, desactiveModeEditProviders } = providerContext;
     
     const modalContext = useContext( ModalContext );
     const { modalOpen, closeModal, uiCloseModal } = modalContext;
@@ -35,7 +35,8 @@ export const ProviderModal = ({ handleResetSearchInput }) => {
         } else {
             desactiveModeEdit();
         }
-    }, [ statusEditModeProvider, activeModeEdit, desactiveModeEdit, infProviderEdit ]);
+        // eslint-disable-next-line
+    }, [ statusEditModeProvider ]);
     
     /*
         * Funcion para crear o actualizar un proveedor 
@@ -50,7 +51,8 @@ export const ProviderModal = ({ handleResetSearchInput }) => {
         } else {
             updateProvider( formValues );
         }
-        getProviders();
+        desactiveModeEdit();
+        desactiveModeEditProviders();
         uiCloseModal();
         disactiveProviderSearchMode();
         handleResetSearchInput();

@@ -84,6 +84,21 @@ export const SalesState = ( props ) => {
 
         deleteMessage();
     }
+
+    const activeModeEdit = ( data ) => {
+        data.idSale = data.idSales;
+
+        dispatch({
+            type: types_sales.activeModeEdit,
+            payload: data
+        });
+    }
+
+    const desactiveModeEditSales = () => {
+        dispatch({
+            type: types_sales.desactiveModeEdit
+        });
+    }
     
     return (
         <SalesContext.Provider 
@@ -98,6 +113,8 @@ export const SalesState = ( props ) => {
                 getSales,
                 updateSales,
                 deleteSales,
+                activeModeEdit,
+                desactiveModeEditSales,
                 deleteMessage,            
             }}
         >

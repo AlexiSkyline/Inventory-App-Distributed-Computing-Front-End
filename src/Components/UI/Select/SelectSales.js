@@ -7,6 +7,7 @@ export const SelectSales = ({ value, onChange }) => {
     const salesContext = useContext( SalesContext );
     const { salesList, getSales } = salesContext;
 
+    // eslint-disable-next-line
     useEffect(() => { getSales() } , []);
 
     return (

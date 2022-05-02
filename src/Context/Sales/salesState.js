@@ -99,6 +99,23 @@ export const SalesState = ( props ) => {
             type: types_sales.desactiveModeEdit
         });
     }
+
+    const disactiveSalesSearchMode = () => {
+        dispatch({
+            type: types_sales.searchSalesDesactive
+        });
+    }
+
+    const searchSales = ( value ) => {
+        if( value.trim() !== '' ) {
+            dispatch({
+                type: types_sales.searchSalesActive,
+                payload: value
+            });
+        } else {
+            disactiveSalesSearchMode();
+        }
+    }
     
     return (
         <SalesContext.Provider 
@@ -115,7 +132,9 @@ export const SalesState = ( props ) => {
                 deleteSales,
                 activeModeEdit,
                 desactiveModeEditSales,
-                deleteMessage,            
+                deleteMessage,  
+                searchSales,
+                disactiveSalesSearchMode          
             }}
         >
             { props.children }

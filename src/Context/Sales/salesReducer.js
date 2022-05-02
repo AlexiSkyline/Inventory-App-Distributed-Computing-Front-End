@@ -35,6 +35,18 @@ export const salesReducer = ( state, action ) =>  {
                 statusEditModeSales: false,
                 infSalesEdit: null
             }
+        case types_sales.searchSalesActive:
+            return {
+                ...state,
+                searchModeStatus: true,
+                listSalesFound: state.salesList.filter( sales => sales.folio === Number( action.payload ) )
+            }
+        case types_sales.searchSalesDesactive:
+            return {
+                ...state,
+                searchModeStatus: false,
+                listSalesFound: []
+            }
         case types_sales.removeMessages:
             return {
                 ...state,

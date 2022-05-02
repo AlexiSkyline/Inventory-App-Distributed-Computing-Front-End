@@ -7,7 +7,8 @@ export const SelectBrand = ({ value, onChange }) => {
     const brandContext = useContext( BrandContext );
     const { brands, getBrands } = brandContext;
 
-    useEffect(() => { getBrands() } , [getBrands]);
+    // eslint-disable-next-line
+    useEffect(() => { getBrands() } , []);
 
     return (
         <select 

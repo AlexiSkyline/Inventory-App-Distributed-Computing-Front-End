@@ -9,6 +9,7 @@ import { ValidateSalesDetail } from '../../validations/ValidateSalesDetail';
 import { initialFormValuesSalesDetail } from '../../Data/InitialFormValues';
 import { ModeEditContext } from '../../Context/ModeEdit/ModeEditContext';
 import { SelectProduct } from '../UI/Select/SelectProduct';
+import { SelectSales } from '../UI/Select/SelectSales';
 
 export const SalesDetailModal = ({ handleResetSearchInput }) => {
     const salesDetailContext = useContext( SalesDetailContext );
@@ -65,14 +66,7 @@ export const SalesDetailModal = ({ handleResetSearchInput }) => {
                 <legend> Editar el detalle de la venta </legend>
                 
                 <label htmlFor='idSale'>ID de la venta: </label>
-                <input 
-                    type='text' 
-                    className='form-control' 
-                    placeholder='ID de la venta'
-                    name='idSale'
-                    value={ idSale }
-                    onChange={ handleInputChange }
-                />
+                <SelectSales value={ idSale } onChange={ handleInputChange }/>
 
                 <label htmlFor='idProduct'>Producto: </label>
                 <SelectProduct value={ idProduct } onChange={ handleInputChange }/>

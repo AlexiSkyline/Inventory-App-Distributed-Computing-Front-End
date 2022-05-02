@@ -7,7 +7,8 @@ export const SelectUnitMeasurement = ({ value, onChange }) => {
     const unitMeasurementContext = useContext( UnitMeasurementContext );
     const { unitMs, getUnitMs } = unitMeasurementContext;
 
-    useEffect(() => { getUnitMs() }, [getUnitMs]);
+    // eslint-disable-next-line
+    useEffect(() => { getUnitMs() }, []);
 
     return (
         <select 

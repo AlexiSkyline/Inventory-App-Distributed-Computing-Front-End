@@ -7,7 +7,8 @@ export const SelectProduct = ({ value, onChange }) => {
     const productContext = useContext( ProductContext );
     const { products, getProducts } = productContext;
 
-    useEffect(() => { getProducts() } ,[getProducts]);
+    // eslint-disable-next-line
+    useEffect(() => { getProducts() } ,[]);
 
     return (
         <select

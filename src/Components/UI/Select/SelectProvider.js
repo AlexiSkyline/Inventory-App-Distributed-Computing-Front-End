@@ -7,7 +7,8 @@ export const SelectProvider = ({ value, onChange }) => {
     const providerContext = useContext( ProviderContext );
     const { providerList, getProviders } = providerContext;
     
-    useEffect(() => { getProviders() }, [getProviders]);
+    // eslint-disable-next-line
+    useEffect(() => { getProviders() }, []);
     
     return (
         <select

@@ -7,7 +7,14 @@ export const salesReducer = ( state, action ) =>  {
                 ...state,
                 salesList: action.payload
             }
+        case types_sales.updateSales:
+            return {
+                ...state,
+                message: action.payload,
+                typeMessage: 'alert-ok'
+            }
         case types_sales.getSalesFailed:
+        case types_sales.updateSalesFailed:
             return {
                 ...state,
                 error: true,

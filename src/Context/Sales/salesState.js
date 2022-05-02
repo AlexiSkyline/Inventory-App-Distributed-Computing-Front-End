@@ -38,6 +38,34 @@ export const SalesState = ( props ) => {
             });
         }
     }
+
+    const updateSales = async ( data ) => {
+        try {
+            const response = await clientAxios.put( `${ path }/${ data.id }`, {
+                date: data.date,
+                idSeller: data.idSeller,
+                idClient: data.idClient,
+                folio: data.folio,
+                idBusiness: data.idBusiness,
+                total: data.total,
+                iva: data.iva,
+                subTotal: data.subTotal,
+                paymentType: data.paymentType
+            });
+            dispatch({
+                type: types_sales.updateSales,
+                payload: response.data.message
+            });
+            getSales();
+        } catch (error) {
+            dispatch({
+                type: types_sales.updateSalesFailed,
+                payload: error.response.data.message
+            });
+        }
+
+        deleteMessage();
+    }
     
     return (
         <SalesContext.Provider 
@@ -50,6 +78,7 @@ export const SalesState = ( props ) => {
                 statusEditModeSales: state.statusEditModeSales,
                 infSalesEdit: state.infSalesEdit,
                 getSales,
+                updateSales,
                 deleteMessage,            
             }}
         >

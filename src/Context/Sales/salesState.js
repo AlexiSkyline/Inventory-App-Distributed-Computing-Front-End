@@ -16,6 +16,12 @@ export const SalesState = ( props ) => {
     }
 
     const [ state, dispatch ] = useReducer( salesReducer, initialState );
+
+    const deleteMessage = () => {
+        dispatch({
+            type: types_sales.removeMessages
+        });
+    }
     
     return (
         <SalesContext.Provider 
@@ -26,7 +32,8 @@ export const SalesState = ( props ) => {
                 listSalesFound: state.listSalesFound,
                 searchModeStatus: state.searchModeStatus,
                 statusEditModeSales: state.statusEditModeSales,
-                infSalesEdit: state.infSalesEdit,            
+                infSalesEdit: state.infSalesEdit,
+                deleteMessage,            
             }}
         >
             { props.children }

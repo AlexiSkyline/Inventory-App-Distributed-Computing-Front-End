@@ -3,7 +3,9 @@ import Proptypes from 'prop-types';
 import Modal from 'react-modal';
 
 import { ModalContext } from '../../Context/Modal/ModalContext';
+
 import { SelectProduct } from '../UI/Select/SelectProduct';
+import { SelectSeller } from '../UI/Select/SelectSeller';
 
 export const SalesModal = ({ handleResetSearchInput }) => {
     const modalContext = useContext( ModalContext );
@@ -27,6 +29,7 @@ export const SalesModal = ({ handleResetSearchInput }) => {
                 <legend> Editar venta </legend>
                 
                 <label htmlFor='idSeller'>Vendedor: </label>
+                <SelectSeller value={ idSeller } onChange={ handleInputChange } />
 
                 <label htmlFor='idClient'>Cliente: </label>
                 

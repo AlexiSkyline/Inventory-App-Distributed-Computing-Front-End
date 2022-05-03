@@ -6,6 +6,7 @@ import { SalesContext } from '../../Context/Sales/SalesContext';
 import { FloatingButtonClose } from '../UI/FloatingButton/FloatingButtonClose';
 import { HeadBoard } from '../UI/HeadBoard/HeadBoard';
 import { InputSearch } from '../UI/InputSearch/InputSearch';
+import { SalesModal } from './SalesModal';
 import { TableSales } from './TableSales';
 
 export const SalesScreen = () => {
@@ -57,9 +58,9 @@ export const SalesScreen = () => {
 
             <FloatingButtonClose desactiveModeEdit={ desactiveModeEditSales }/>
 
-            {/* <SalesModal 
+            <SalesModal 
                 handleResetSearchInput={ handleResetSearchInput }
-            /> */}
+            />
         </main>
     );
 }

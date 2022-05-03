@@ -65,3 +65,16 @@ export const initialFormValuesProduct = {
     stock: '',
     idProvider: ''
 }
+
+// * Cuerpo inicial de nuestro inputs de agregar o editar ventas
+export const initialFormValuesSale = {
+    idSeller:'', 
+    idClient:'', 
+    folio:'', 
+    idBusiness:'', 
+    total:'', 
+    iva:'', 
+    subTotal:'', 
+    date:'', 
+    paymentType:''
+}

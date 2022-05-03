@@ -86,7 +86,7 @@ export const SalesState = ( props ) => {
     }
 
     const activeModeEdit = ( data ) => {
-        data.idSale = data.idSales;
+        data.date    = data.date.split('T')[0];
 
         dispatch({
             type: types_sales.activeModeEdit,

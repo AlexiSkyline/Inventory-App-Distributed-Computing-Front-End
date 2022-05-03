@@ -1,28 +1,67 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Proptypes from 'prop-types';
 import Modal from 'react-modal';
 
+import { SalesContext } from '../../Context/Sales/SalesContext';
 import { ModalContext } from '../../Context/Modal/ModalContext';
+import { ModeEditContext } from '../../Context/ModeEdit/ModeEditContext';
 
 import { SelectSeller } from '../UI/Select/SelectSeller';
 import { SelectClient } from '../UI/Select/SelectClient';
+import { SelectBusiness } from '../UI/Select/SelectBusiness';
+
+import { initialFormValuesSale } from '../../Data/InitialFormValues';
+import { useValidation } from '../../Hooks/useValidation';
+import { ValidateSales } from '../../validations/ValidateSale';
 
 export const SalesModal = ({ handleResetSearchInput }) => {
+    const salesContext = useContext( SalesContext );
+    const { statusEditModeSales, infSalesEdit, updateSales, 
+                desactiveModeEditSales, disactiveSalesSearchMode } = salesContext;
+
     const modalContext = useContext( ModalContext );
     const { modalOpen, closeModal, uiCloseModal } = modalContext;
+
+    const modeEditContext = useContext( ModeEditContext );
+    const { activeModeEdit, desactiveModeEdit } = modeEditContext;
     
-    const [ formValues, setFormValues ] = React.useState({ idSeller:'', idClient:'', folio:'', idBusiness:'', total:'', iva:'', subTotal:'', date:'', paymentType:'' });
-    const { idSeller, idClient, folio, idBusiness, total, iva, subTotal, date, paymentType } = formValues;
+    const [ formValues, handleSubmit, handleInputChange ] = useValidation( initialFormValuesSale, ValidateSales, handleUpdate );
+    const { idSeller, idClient, idBusiness, folio, total, iva, subTotal, paymentType, date } = formValues;
 
-    const handleInputChange = () => {};
-    const handleSubmit = () => {};
+    /*
+        * Hook para obtener los valores del para el modal 'Formulario'
+        * Caso 1: Le pasa los valores del Vendedor a editar
+        * Caso 2: Le pasa los el objeto initEvent para crear un Vendedor
+    */
+    useEffect(() => {
+        if( statusEditModeSales ) {
+            activeModeEdit( infSalesEdit );
+        } else {
+            desactiveModeEdit();
+        }
+        // eslint-disable-next-line
+    }, [ statusEditModeSales ]);
 
+    /*
+        * Funcion para actualizar un registro de las nuestras ventas 
+        * Caso 1: Actualizar un registro de las nuestras ventas
+        * Luego Desactivamos el modo de busqueda si esta activo
+        * Luego reiniciamos el input de busqueda
+    */
+    function handleUpdate() {
+        updateSales( formValues );
+        uiCloseModal();
+        disactiveSalesSearchMode();
+        handleResetSearchInput();
+        desactiveModeEdit();
+        desactiveModeEditSales();
+    }
 
     return (
         <Modal
             isOpen={ modalOpen }
             onRequestClose={ closeModal }
-            className='modal'
+            className='modal modal__sales'
             ariaHideApp={false}
         >
             <form className='form__modal' onSubmit={ handleSubmit }>
@@ -45,7 +84,7 @@ export const SalesModal = ({ handleResetSearchInput }) => {
                 />
                 
                 <label htmlFor='idBusiness'>Empresa: </label>
-            
+                <SelectBusiness value={ idBusiness } onChange={ handleInputChange } />
                 
                 <label htmlFor='total'>Total: </label>
                 <input 

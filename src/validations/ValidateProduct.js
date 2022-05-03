@@ -22,7 +22,7 @@ export const ValidateProduct = ( values ) => {
     // * Validar el precio del producto
     if( !values.price ) {
         errors.price = 'El precio es obligatorio';
-    } else if( !/^[0-9]{1,10}$/i.test( values.price ) ) {
+    } else if( isNaN( values.price ) ) {
         errors.price = 'El precio no es valido';
     }
 

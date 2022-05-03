@@ -29,15 +29,15 @@ export const ValidateSalesDetail = ( values ) => {
     // * Validar el precio unitario
     if( !values.purchasePrice ) {
         errors.purchasePrice = 'El precio unitario es requerido';
-    } else if( !/^[0-9]{1,10}$/i.test( values.purchasePrice ) ) {
-        errors.purchasePrice = 'El precio unitario debe ser un numero entero';
+    } else if( isNaN( values.purchasePrice ) ) {
+        errors.purchasePrice = 'El precio unitario debe ser un numero';
     }
 
     // * Validar el precio total
     if( !values.amount ) {
         errors.amount = 'El precio total es requerido';
-    } else if( !/^[0-9]{1,10}$/i.test( values.amount ) ) {
-        errors.amount = 'El precio total debe ser un numero entero';
+    } else if( isNaN( values.amount ) ) {
+        errors.amount = 'El precio total debe ser un numero';
     }
     
     return errors;

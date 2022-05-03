@@ -13,6 +13,7 @@ import { SelectBusiness } from '../UI/Select/SelectBusiness';
 import { initialFormValuesSale } from '../../Data/InitialFormValues';
 import { useValidation } from '../../Hooks/useValidation';
 import { ValidateSales } from '../../validations/ValidateSale';
+import { SelectPaymentType } from '../UI/Select/SelectPaymentType';
 
 export const SalesModal = ({ handleResetSearchInput }) => {
     const salesContext = useContext( SalesContext );
@@ -117,14 +118,7 @@ export const SalesModal = ({ handleResetSearchInput }) => {
                 />
 
                 <label htmlFor='paymentType'>Tipo de pago: </label>
-                <input 
-                    type='tetx' 
-                    className='form-control' 
-                    placeholder='Ingrese el Tipo de pago'
-                    name='paymentType'
-                    value={ paymentType }
-                    onChange={ handleInputChange }
-                />
+                <SelectPaymentType value={ paymentType } onChange={ handleInputChange } />
                 
                 <label htmlFor='date'>Fecha: </label>
                 <input 

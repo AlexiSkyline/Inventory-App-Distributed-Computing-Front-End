@@ -4,14 +4,14 @@ import Modal from 'react-modal';
 
 import { ModalContext } from '../../Context/Modal/ModalContext';
 
-import { SelectProduct } from '../UI/Select/SelectProduct';
 import { SelectSeller } from '../UI/Select/SelectSeller';
+import { SelectClient } from '../UI/Select/SelectClient';
 
 export const SalesModal = ({ handleResetSearchInput }) => {
     const modalContext = useContext( ModalContext );
     const { modalOpen, closeModal, uiCloseModal } = modalContext;
     
-    const [ formValues, setFormValues ] = React.useState({ searchSalesValue: '' });
+    const [ formValues, setFormValues ] = React.useState({ idSeller:'', idClient:'', folio:'', idBusiness:'', total:'', iva:'', subTotal:'', date:'', paymentType:'' });
     const { idSeller, idClient, folio, idBusiness, total, iva, subTotal, date, paymentType } = formValues;
 
     const handleInputChange = () => {};
@@ -32,6 +32,7 @@ export const SalesModal = ({ handleResetSearchInput }) => {
                 <SelectSeller value={ idSeller } onChange={ handleInputChange } />
 
                 <label htmlFor='idClient'>Cliente: </label>
+                <SelectClient value={ idClient } onChange={ handleInputChange } />
                 
                 <label htmlFor='folio'>Folio: </label>
                 <input 

@@ -19,7 +19,7 @@ export const SelectSeller = ({ value, onChange }) => {
         >
             <option value=''>Seleccione una Vendedor</option>
             {
-                sellerList.map( ( seller ) => (
+                sellerList.map(( seller ) => (
                     <option key={ seller.id } value={ seller.id }>{ `${ seller.name } ${ seller.lastName }` }</option>
                 ))
             }

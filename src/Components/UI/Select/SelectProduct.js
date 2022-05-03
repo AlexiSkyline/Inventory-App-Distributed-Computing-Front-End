@@ -19,7 +19,7 @@ export const SelectProduct = ({ value, onChange }) => {
         >
             <option value=''>Seleccione un producto</option>
             {
-                products.map( product => (
+                products.map(( product ) => (
                     <option key={ product.id } value={ product.id }>{ product.name }</option>
                 ))
             }

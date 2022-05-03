@@ -20,7 +20,7 @@ export const SelectClient = ({ value, onChange }) => {
         >
             <option value=''>Seleccione un Cliente</option>   
             {
-                clientList.map( ( client ) => (
+                clientList.map(( client ) => (
                     <option key={ client.id } value={ client.id }>{ `${ client.name } ${ client.lastName }` }</option>
                 ))
             }

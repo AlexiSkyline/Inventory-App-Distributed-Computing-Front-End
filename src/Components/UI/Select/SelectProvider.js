@@ -19,7 +19,7 @@ export const SelectProvider = ({ value, onChange }) => {
         >
             <option value=''>Seleccione un Proveedor</option>
             {
-                providerList.map( ( provider ) => (
+                providerList.map(( provider ) => (
                     <option key={ provider.id } value={ provider.id }>{ `${ provider.name } ${ provider.lastName }` }</option>
                 ))
             }

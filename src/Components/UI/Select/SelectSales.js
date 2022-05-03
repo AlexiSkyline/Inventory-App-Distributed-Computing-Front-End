@@ -19,7 +19,7 @@ export const SelectSales = ({ value, onChange }) => {
         >
             <option value=''>Seleccione una Venta</option>
             {
-                salesList.map( ( sale ) => (
+                salesList.map(( sale ) => (
                     <option key={ sale.id } value={ sale.id }>{ sale.folio }</option>
                 ))
             }

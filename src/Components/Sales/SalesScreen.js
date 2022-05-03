@@ -1,5 +1,8 @@
 import React, { useContext, useEffect } from 'react';
+
+import { AlertContext } from '../../Context/Alert/AlertContext';
 import { SalesContext } from '../../Context/Sales/SalesContext';
+
 import { FloatingButtonClose } from '../UI/FloatingButton/FloatingButtonClose';
 import { HeadBoard } from '../UI/HeadBoard/HeadBoard';
 import { InputSearch } from '../UI/InputSearch/InputSearch';
@@ -11,8 +14,21 @@ export const SalesScreen = () => {
     const { salesList, message, typeMessage, listSalesFound, searchModeStatus,
                getSales, desactiveModeEditSales, searchSales  } = salesContext;
 
+    const alertContext = useContext( AlertContext );
+    const { showAlert } = alertContext;
+
     const [ formValues, setFormValues ] = React.useState({ searchSalesValue: '' });
     const { searchSalesValue } = formValues;
+
+     /*
+        * Mostramos el mesaje si existe uno en el state
+        * El otro caso es que no se muestre ningun mensaje
+    */
+     useEffect( () => {
+        if( message ) {
+            showAlert( message, typeMessage );
+        }
+    } , [ showAlert, message, typeMessage ]);
 
     const handleInputChange = () => {}
     const handleResetSearchInput = () => {}

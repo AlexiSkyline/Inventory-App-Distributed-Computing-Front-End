@@ -20,9 +20,9 @@ export const SalesState = ( props ) => {
     const [ state, dispatch ] = useReducer( salesReducer, initialState );
 
     const deleteMessage = () => {
-        dispatch({
-            type: types_sales.removeMessages
-        });
+        setTimeout(() => {
+            dispatch({ type: types_sales.removeMessages });
+        }, 3000 );
     }
 
     const getSales = async () => {

@@ -19,24 +19,22 @@
         border-spacing: 1;
         border-collapse: collapse;
         background: white;
-        border-radius: 10px;
-        overflow: hidden;
         width: 100%;
         margin: 0 auto;
         position: relative;
+        text-align: center;
 
         thead tr {
             height: 60px;
-            background: $darkBlueColor;
+            background-color: $darkBlueColor;
+            position: sticky; 
+            top: 0px;
         }
+
         tbody tr {
             height: 50px;
         }
-        
-        td, th {
-            text-align: center;
-        }
-    }
+    } 
 
     .table__container {
         overflow:scroll;

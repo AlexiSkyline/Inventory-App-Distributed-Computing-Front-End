@@ -1,9 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { SalesContext } from '../../Context/Sales/SalesContext';
+import { useActions } from '../../Hooks/useActions';
 
 export const TableSales = ({ titles, listSales, handleResetSearchInput }) => {
-    const handleUpdate = () => {}
-    const handleConfirm = () => {}
+    const salesContext = useContext( SalesContext );
+    const { deleteSales, activeModeEdit, disactiveSalesSearchMode } = salesContext;
+    
+     /*
+        * Funcion para eliminar una Ventas una vez que se confirma
+        * Recibe el id de la Ventas a eliminar
+        * Luego elimina la Ventas
+        * Luego desactiva el modo de busqueda si esta activo
+        * Luego reinicia el input de busqueda de la Venta
+    */
+     const handleDelete = ( id ) => {
+        deleteSales( id );
+        handleResetSearchInput();
+        disactiveSalesSearchMode();
+    }
+
+    const [ handleConfirm, handleUpdate ] = useActions( 'La venta', handleDelete, activeModeEdit );
 
     return (
         <div className='table__container table__median'>  

@@ -17,6 +17,7 @@ export const SalesScreen = () => {
     const handleInputChange = () => {}
     const handleResetSearchInput = () => {}
 
+    // eslint-disable-next-line
     useEffect(() => { getSales() }, []);
     
     return (

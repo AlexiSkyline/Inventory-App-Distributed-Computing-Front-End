@@ -21,6 +21,7 @@ export const TableSeller = ({ titles, listSeller, handleResetSearchInput }) => {
         disactiveSellerSearchMode();
     }
 
+    // * Hook para confirmar la eliminacion o actualizacion de un vendedor
     const [ handleConfirm, handleUpdate ] = useActions( 'El vendedor', handleDelete, activeModeEdit );
 
     return (

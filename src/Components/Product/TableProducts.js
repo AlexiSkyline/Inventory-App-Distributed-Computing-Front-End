@@ -21,6 +21,7 @@ export const TableProducts = ({ titles , products, handleResetSearchInput }) => 
         handleResetSearchInput();
     }
 
+    // * Hook para confirmar la eliminacion o actualizacion de un producto
     const [ handleConfirm, handleUpdate ] = useActions( 'La producto', handleDelete, activeModeEdit );
 
     return (

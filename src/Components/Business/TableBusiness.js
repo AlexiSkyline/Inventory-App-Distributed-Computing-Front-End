@@ -21,6 +21,7 @@ export const TableBusiness = ({ business, handleResetSearchInput  }) => {
         modeSearchBusinessDesactive();
     }
 
+    // * Hook para confirmar la eliminacion o actualizacion de una empresa
     const [ handleConfirm, handleUpdate ] = useActions( 'La empresa', handleDelete, activeModeEdit );
 
     return (

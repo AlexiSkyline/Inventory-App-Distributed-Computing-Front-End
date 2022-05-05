@@ -37,8 +37,9 @@ export const ClientScreen = () => {
     } , [ message, showAlert, typeMessage ]);
 
     /* 
-        * Obtenemos las empresas y cargarlos en el state
-        * El otro caso es obtener las empresas filtrados si el status es true
+        * Obtenemos la lista de Clientes para mostrar dependiendo de
+        * 1: Si el modo de busqueda esta activo, mostramos la lista de Clientes encontrados
+        * 2: Caso contrario, mostramos la lista completa de Clientes
     */
     useEffect( () => {
         if( searchModeStatus ) {
@@ -48,6 +49,10 @@ export const ClientScreen = () => {
         }
     }, [ clientList, searchModeStatus, listClientFound ]);
 
+    /*
+        * En esta parte mandamos a llamar el metodo para obtener las Clientes cuando la pagina
+        * carga por primera vez o cuando se recarga la pagina
+    */ 
     // eslint-disable-next-line
     useEffect( () => { getClients() } , []);
 

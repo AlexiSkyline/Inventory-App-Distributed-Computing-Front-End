@@ -21,6 +21,7 @@ export const TableClients = ({ titles, listClients, handleResetSearchInput }) =>
         disactiveClientSearchMode();
     }
 
+    // * Hook para confirmar la eliminacion o actualizacion de un cliente
     const [ handleConfirm, handleUpdate ] = useActions( 'El cliente', handleDelete, activeModeEdit );
 
     return (

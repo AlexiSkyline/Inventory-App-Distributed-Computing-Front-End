@@ -36,8 +36,9 @@ export const BusinessScreen = () => {
     } , [ message, showAlert, typeMessage ]);
 
     /* 
-        * Obtenemos las empresas y cargarlos en el state
-        * El otro caso es obtener las empresas filtrados si el status es true
+        * Obtenemos la lista de empresas para mostrar dependiendo de
+        * 1: Si el modo de busqueda esta activo, mostramos la lista de empresas encontradas
+        * 2: Caso contrario, mostramos la lista completa de empresas
     */
     useEffect( () => {
         if( businessSearchFilterStatus ) {
@@ -47,6 +48,10 @@ export const BusinessScreen = () => {
         }
     } , [business, businessSearchFilterStatus, businessSearchFilter] );
     
+    /*
+        * En esta parte mandamos a llamar el metodo para obtener las empresas cuando la pagina
+        * carga por primera vez o cuando se recarga la pagina
+    */ 
     // eslint-disable-next-line
     useEffect( () => { getBusiness() } , []);
 

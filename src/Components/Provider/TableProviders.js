@@ -21,6 +21,7 @@ export const TableProviders = ({ titles, listProviders, handleResetSearchInput }
         disactiveProviderSearchMode();
     }
 
+    // * Hook para confirmar la eliminacion o actualizacion de una proveedor
     const [ handleConfirm, handleUpdate ] = useActions( 'El proveedor', handleDelete, activeModeEdit );
 
     return (

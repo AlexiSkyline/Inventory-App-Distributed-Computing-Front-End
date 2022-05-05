@@ -26,8 +26,8 @@ export const ProviderModal = ({ handleResetSearchInput }) => {
     
     /*
         * Hook para obtener los valores del para el modal 'Formulario'
-        * Caso 1: Le pasa los valores del proveedor a editar
-        * Caso 2: Le pasa los el objeto initEvent para crear un proveedor
+        * Si el modo de edicion esta activo, le pasamos los valores para actualizar
+        * Si no esta activo, le pasamos los valores vacios para crear
     */
     useEffect(() => {
         if( statusEditModeProvider ) {
@@ -40,10 +40,12 @@ export const ProviderModal = ({ handleResetSearchInput }) => {
     
     /*
         * Funcion para crear o actualizar un proveedor 
-        * Caso 1: Crear un proveedor
-        * Caso 2: Actualizar un proveedor
-        * Luego Desactivamos el modo de busqueda si esta activo
-        * Luego reiniciamos el input de busqueda
+        * Si el modo de edicion esta en false, se crea un nuevo proveedor
+        * Si el modo edicion esta en true, se actualiza el proveedor
+        * 1: Desactivamos el modo de busqueda si esta activo
+        * 2: Desactivamos el modo de edicion de proveedor
+        * 3: Cerramos el modal
+        * 4: Reiniciamos el input de busqueda
     */
     function handleCreateAndUpdate() {
         if( !statusEditModeProvider ) {

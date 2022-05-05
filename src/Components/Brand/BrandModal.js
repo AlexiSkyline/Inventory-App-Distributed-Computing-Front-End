@@ -25,8 +25,8 @@ export const BrandModal = ({ handleResetSearchInput }) => {
 
     /*
         * Hook para obtener los valores del para el modal 'Formulario'
-        * Caso 1: Le pasa los valores de la marca a editar
-        * Caso 2: Le pasa los el objeto initEvent para crear una nuva marca
+        * Si el modo de edicion esta activo, le pasamos los valores para actualizar
+        * Si no esta activo, le pasamos los valores vacios para crear
     */
     useEffect(() => {
         if( brandModeEdit ) {
@@ -39,10 +39,13 @@ export const BrandModal = ({ handleResetSearchInput }) => {
 
     /*
         * Funcion para crear o actualizar una marca 
-        * Caso 1: Crear una marca
-        * Caso 2: Actualizar una marca
-        * Luego Desactivamos el modo de busqueda si esta activo
-        * Luego reiniciamos el input de busqueda
+        * Si el modo de edicion es falsa, se crea una nueva marca
+        * Si el modo edicion es verdadera, se actualiza la marca
+        * 1: Desactivamos el modo de busqueda si esta activo
+        * 2: Desactivamos el modo de edicion de marca
+        * 3: Cerramos el modal
+        * 4: Reiniciamos el input de busqueda
+        * 5: Eliminamos el texto de input de busqueda si hay alguno
     */
     function handleCreateAndUpdate() {
         if( !brandModeEdit ) {

@@ -37,8 +37,9 @@ export const ProviderScreen = () => {
     } , [ message, showAlert, typeMessage ]);
 
     /* 
-        * Obtenemos los proveedores y cargarlos en el state
-        * El otro caso es obtener los proveedores filtrados si el status es true
+        * Obtenemos la lista de Proveedores para mostrar dependiendo de
+        * 1: Si el modo de busqueda esta activo, mostramos la lista de Proveedores encontrados
+        * 2: Caso contrario, mostramos la lista completa de Proveedores
     */
     useEffect( () => {
         if( searchModeStatus ) {
@@ -48,6 +49,10 @@ export const ProviderScreen = () => {
         }
     }, [ providerList, searchModeStatus, listProviderFound ] );
     
+    /*
+        * En esta parte mandamos a llamar el metodo para obtener las Proveedores cuando la pagina
+        * carga por primera vez o cuando se recarga la pagina
+    */
     // eslint-disable-next-line
     useEffect( () => { getProviders() } , []);
 

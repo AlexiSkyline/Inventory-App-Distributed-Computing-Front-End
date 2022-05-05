@@ -28,8 +28,8 @@ export const SalesDetailModal = ({ handleResetSearchInput }) => {
     
     /*
         * Hook para obtener los valores del para el modal 'Formulario'
-        * Caso 1: Le pasa los valores del Vendedor a editar
-        * Caso 2: Le pasa los el objeto initEvent para crear un Vendedor
+        * Si el modo de edicion esta activo, le pasamos los valores para actualizar
+        * Si no esta activo, le pasamos los valores vacios para crear
     */
     useEffect(() => {
         if( statusEditModeSalesDetail ) {
@@ -41,10 +41,12 @@ export const SalesDetailModal = ({ handleResetSearchInput }) => {
     }, [ statusEditModeSalesDetail ]);
 
     /*
-        * Funcion para actualizar un registro de los detaller de nuestras ventas 
-        * Caso 1: Actualizar un registro de los detaller de nuestras ventas
-        * Luego Desactivamos el modo de busqueda si esta activo
-        * Luego reiniciamos el input de busqueda
+        * Funcion para actualizar el detalle de una venta
+        * 1: Cerramos el modal
+        * 2: Desactivamos el modo de busqueda si esta activo
+        * 3: Reiniciamos el input de busqueda
+        * 4: Desactivamos el modo de edicion General
+        * 5: Desactivamos el modo de edicion de Venta
     */
     function handleUpdate() {
         updateSalesDetail( formValues );

@@ -36,8 +36,9 @@ export const SalesDetailScreen = () => {
     } , [ showAlert, message, typeMessage ]);
     
      /* 
-        * Obtenemos los detalles de las ventas y cargarlos en el state
-        * El otro caso es obtener los detalles de las ventas filtrados si el status es true
+        * Obtenemos la lista de detalles ventas para mostrar dependiendo de
+        * 1: Si el modo de busqueda esta activo, mostramos la lista de detalles ventas encontrados
+        * 2: Caso contrario, mostramos la lista completa de detalles ventas
     */
     useEffect(() => {
         if( searchModeStatus ) {
@@ -47,6 +48,10 @@ export const SalesDetailScreen = () => {
         }
     }, [ salesDetailList, searchModeStatus, listSalesDetailFound ]);
 
+    /*
+        * En esta parte mandamos a llamar el metodo para obtener las detalles ventas
+        * cuando la pagina se carga por primera vez
+    */
     // eslint-disable-next-line
     useEffect(() => { getSalesDetail() }, []);
     

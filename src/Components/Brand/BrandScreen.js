@@ -37,8 +37,9 @@ export const BrandScreen = () => {
     } , [ message, showAlert, typeMessage ]);
 
     /* 
-        * Obtenemos las marcas y cargarlos en el state
-        * El otro caso es obtener las marcas filtrados si el status es true
+        * Obtenemos la lista de marcas para mostrar dependiendo de
+        * 1: si el modo de busqueda esta activo, mostramos la lista de marcas encontradas
+        * 2: caso contrario, mostramos la lista completa de marcas
     */
     useEffect( () => { 
         if( brandSearchFilterStatus ) {
@@ -48,6 +49,10 @@ export const BrandScreen = () => {
         }
     } , [ brands, brandSearchFilterStatus, brandSearchFilter ]);
 
+    /*
+        * En esta parte mandamos a llamar el metodo para obtener las marcas cuando la pagina
+        * carga por primera vez o cuando se recarga la pagina
+    */
     // eslint-disable-next-line
     useEffect( () => { getBrands() }, []);
     

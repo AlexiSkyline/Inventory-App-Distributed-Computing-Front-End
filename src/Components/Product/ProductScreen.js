@@ -36,9 +36,10 @@ export const ProductScreen = () => {
         }
     } , [ message, showAlert, typeMessage ]);
 
-    /* 
-        * Obtenemos los productos y cargarlos en el state
-        * El otro caso es obtener los productos filtrados si el status es true
+    /*
+        * Obtenemos la lista de productos para mostrar dependiendo de 
+        * 1: si el modo de busqueda esta activo, mostramos la lista de productos encontrados
+        * 2: caso contrario, mostramos la lista completa de productos
     */
     useEffect( () => { 
         if( productSearchFilterStatus ) {
@@ -48,6 +49,10 @@ export const ProductScreen = () => {
         }
     } , [ products, productSearchFilterStatus, productSearchFilter ]);
 
+    /*
+        * En esta parte mandamos a llamar el metodo para obtener los productos cuando la pagina
+        * carga por primera vez o cuando se recarga la pagina
+    */
     // eslint-disable-next-line
     useEffect( () => { getProducts() } , []);
     

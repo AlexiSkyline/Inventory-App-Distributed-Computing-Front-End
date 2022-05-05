@@ -20,6 +20,7 @@ export const TableSalesDetail = ({ titles, listSalesDetail, handleResetSearchInp
         disactiveSalesDetailSearchMode();
     }
 
+    // * Hook para confirmar la eliminacion o actualizacion de un detalle Ventas
     const [ handleConfirm, handleUpdate ] = useActions( 'El detalle de la venta', handleDelete, activeModeEdit );
     
     return (

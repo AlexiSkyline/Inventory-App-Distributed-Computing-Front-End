@@ -37,8 +37,9 @@ export const SellerScreen = () => {
     } , [ message, showAlert, typeMessage ]);
 
     /* 
-        * Obtenemos las Vendedores y cargarlos en el state
-        * El otro caso es obtener las Vendedores filtrados si el status es true
+        * Obtenemos la lista de vendedores para mostrar dependiendo de
+        * 1: Si el modo de busqueda esta activo, mostramos la lista de vendedores encontrados
+        * 2: Caso contrario, mostramos la lista completa de vendedores
     */
     useEffect( () => {
         if( searchModeStatus ) {
@@ -48,6 +49,10 @@ export const SellerScreen = () => {
         }
     }, [ sellerList, searchModeStatus, listSellerFound ]);
     
+    /*
+        * En esta parte mandamos a llamar el metodo para obtener los vendedores cuando la pagina
+        * carga por primera vez o cuando se recarga la pagina
+    */
     // eslint-disable-next-line
     useEffect( () => { getSellers() } , []);
 

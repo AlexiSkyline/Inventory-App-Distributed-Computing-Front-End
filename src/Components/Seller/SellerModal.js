@@ -26,8 +26,8 @@ export const SellerModal = ({ handleResetSearchInput }) => {
 
     /*
         * Hook para obtener los valores del para el modal 'Formulario'
-        * Caso 1: Le pasa los valores del Vendedor a editar
-        * Caso 2: Le pasa los el objeto initEvent para crear un Vendedor
+        * Si el modo de edicion esta activo, le pasamos los valores para actualizar
+        * Si no esta activo, le pasamos los valores vacios para crear
     */
     useEffect(() => {
         if( statusEditModeSeller ) {
@@ -40,10 +40,13 @@ export const SellerModal = ({ handleResetSearchInput }) => {
 
     /*
         * Funcion para crear o actualizar un vendedor 
-        * Caso 1: Crear un vendedor
-        * Caso 2: Actualizar un vendedor
-        * Luego Desactivamos el modo de busqueda si esta activo
-        * Luego reiniciamos el input de busqueda
+        * Si el modo de edicion esta activo, actualizamos el vendedor
+        * Si no esta activo, creamos el vendedor
+        * 1: Desactivamos el modo edicion de General
+        * 2: Desactivamos el modo edicion de vendedor
+        * 3: Cerramos el modal
+        * 4: Desactivamos el modo de busqueda si esta activo
+        * 5: Reiniciamos el input de busqueda
     */
     function handleCreateAndUpdate() {
         if( !statusEditModeSeller ) {

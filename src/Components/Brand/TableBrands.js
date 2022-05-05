@@ -21,9 +21,9 @@ export const TableBrands = ({ titles , brands, handleResetSearchInput }) => {
         handleResetSearchInput();
     }
     
+    // * Hook para confirmar la eliminacion o actualizacion de una marca
     const [ handleConfirm, handleUpdate ] = useActions( 'La marca', handleDelete, activeModeEdit );
     
-
     return (
         <div className='table__container'>  
             <table className='table table__small'> 

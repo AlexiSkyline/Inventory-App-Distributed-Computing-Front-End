@@ -25,8 +25,8 @@ export const ClientModal = ({ handleResetSearchInput }) => {
 
     /*
         * Hook para obtener los valores del para el modal 'Formulario'
-        * Caso 1: Le pasa los valores del Cliente a editar
-        * Caso 2: Le pasa los el objeto initEvent para crear un Cliente
+        * Si el modo de edicion esta activo, le pasamos los valores para actualizar
+        * Si no esta activo, le pasamos los valores vacios para crear
     */
     useEffect(() => {
         if( statusEditModeClient ) {
@@ -39,10 +39,12 @@ export const ClientModal = ({ handleResetSearchInput }) => {
 
     /*
         * Funcion para crear o actualizar un cliente 
-        * Caso 1: Crear un cliente
-        * Caso 2: Actualizar un cliente
-        * Luego Desactivamos el modo de busqueda si esta activo
-        * Luego reiniciamos el input de busqueda
+        * Si el modo de edicion esta activo, actualizamos el cliente
+        * Si no esta activo, creamos el cliente
+        * 1: Desactivamos el modo de busqueda si esta activo
+        * 2: Desactivamos el modo de edicion de cliente
+        * 3: Cerramos el modal
+        * 4: Reiniciamos el input de busqueda
     */
     function handleCreateAndUpdate() {
         if( !statusEditModeClient ) {

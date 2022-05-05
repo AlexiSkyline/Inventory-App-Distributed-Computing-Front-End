@@ -36,9 +36,9 @@ export const SalesScreen = () => {
     } , [ showAlert, message, typeMessage ]);
 
     /* 
-        * Obtenemos la lista de ventas para mostrar
-        * En la condicion agregamos la lista de ventas encontradas si esta activa la busqueda
-        * Caso contrario, asignamos la lista completa de ventas a mostrar
+        * Obtenemos la lista de ventas para mostrar dependiendo de
+        * 1: Si el modo de busqueda esta activo, mostramos la lista de ventas encontradas
+        * 2: Caso contrario, mostramos la lista completa de ventas
     */
     useEffect(() => {
         if( searchModeStatus ) {

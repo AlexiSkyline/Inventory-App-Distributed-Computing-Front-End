@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import { ClientContext } from '../../../Context/Client/ClientContext';
 
-
 export const SelectClient = ({ value, onChange }) => {
     const clientContext = useContext( ClientContext );
     const { clientList, getClients } = clientContext;

@@ -1,4 +1,5 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { useSearch } from '../../Hooks/useSearch';
 
 import { AlertContext } from '../../Context/Alert/AlertContext';
 import { SalesContext } from '../../Context/Sales/SalesContext';
@@ -18,7 +19,10 @@ export const SalesScreen = () => {
     const alertContext = useContext( AlertContext );
     const { showAlert } = alertContext;
 
-    const [ formValues, setFormValues ] = React.useState({ searchSalesValue: '' });
+    // * State para guardar la lista de ventas a mostrar
+    const [ listSales, getListSales ] = useState([]);
+
+    const [ formValues, handleInputChange, handleResetSearchInput ] = useSearch( { searchSalesValue: '' }, searchSales );
     const { searchSalesValue } = formValues;
 
      /*
@@ -31,9 +35,23 @@ export const SalesScreen = () => {
         }
     } , [ showAlert, message, typeMessage ]);
 
-    const handleInputChange = () => {}
-    const handleResetSearchInput = () => {}
+    /* 
+        * Obtenemos la lista de ventas para mostrar
+        * En la condicion agregamos la lista de ventas encontradas si esta activa la busqueda
+        * Caso contrario, asignamos la lista completa de ventas a mostrar
+    */
+    useEffect(() => {
+        if( searchModeStatus ) {
+            getListSales( listSalesFound );
+        } else {
+            getListSales( salesList );
+        }
+    }, [ salesList, searchModeStatus, listSalesFound ]);
 
+    /* 
+        * En esta parte mandamos a llamar el metodo para obtener las ventas cuando la pagina 
+        * carga por primera vez o cuando se recarga la pagina
+    */
     // eslint-disable-next-line
     useEffect(() => { getSales() }, []);
     
@@ -52,7 +70,7 @@ export const SalesScreen = () => {
             
             <TableSales
                 titles={ headers }
-                listSales={ salesList }
+                listSales={ listSales }
                 handleResetSearchInput={ handleResetSearchInput }
             />
 

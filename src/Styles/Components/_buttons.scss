@@ -18,9 +18,9 @@
 }
 
 .btn__edit {
-    background: rgb(92, 248, 92);
+    background: rgb(100, 233, 129);
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     color: $whiteColor;
     cursor: pointer;
     padding: 10px;
@@ -29,8 +29,9 @@
     margin-right: 10px;
 
     &:hover {
+        transform: scale(1.10);
         transition: .90s;
-        background-color: darken( $color: rgb(76, 216, 76), $amount: 10);
+        background-color: darken( $color: rgb(100, 233, 129), $amount: 10);
     }
 
     transition: .90s;
@@ -39,7 +40,7 @@
 .btn__delete {
     background: rgb(211, 73, 60);
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     color: $whiteColor;
     cursor: pointer;
     padding: 10px;
@@ -48,6 +49,7 @@
 
     &:hover {
         transition: .90s;
+        transform: scale(1.10);
         background-color: darken( $color: rgb(184, 63, 52), $amount: 10);
     }
 
@@ -78,4 +80,36 @@
 .fab-close {
     background-image: url(../../../public/assets/cerrar.png);
     z-index: 9999;
+}
+
+.btn__search {
+    background: rgb(61, 151, 224);
+    border: none;
+    border-radius: 5px;
+    color: $whiteColor;
+    cursor: pointer;
+    height: 30px;
+
+    &:hover {
+        transform: scale(1.05);
+        transition: .90s;
+        background-color: darken( $color: rgb(61, 151, 224), $amount: 10);
+    }
+    transition: .90s;
+}
+
+.btn__add {
+    background: rgb(100, 233, 129);
+    border: none;
+    border-radius: 5px;
+    color: $whiteColor;
+    cursor: pointer;
+    height: 30px;
+
+    &:hover {
+        transform: scale(1.05);
+        transition: .90s;
+        background-color: darken( $color: rgb(100, 233, 129), $amount: 10);
+    }
+    transition: .90s;
 }

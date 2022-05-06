@@ -1,6 +1,6 @@
 export const OptionsHome = [
     {
-        to: '/ventas',
+        to: '/nuevaVenta',
         title: 'Realizar una Venta',
         description: 'Hacer una venta',
         img: {

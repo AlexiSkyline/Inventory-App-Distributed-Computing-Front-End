@@ -25,4 +25,8 @@ export const types_client = {
     // ! Acciones para activar y desactivar el modo de busqueda
     searchClientActive: '[Client] search Client active',
     searchClientDesactive: '[Client] search Client desactive',
+
+    // ! Acciones para buscar un cliente por el ID
+    searchClientById: '[Client] search Client by id',
+    searchClientByIdFailed: '[Client] search Client by id failed'
 }

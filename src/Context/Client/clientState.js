@@ -126,11 +126,22 @@ export const ClientState = ( props ) => {
         });
     }
 
-    const searchClient = async ( value ) => {
+    const searchClient = ( value ) => {
         if( value.trim() !== '' ) {
             dispatch({
                 type: types_client.searchClientActive,
                 payload: value
+            });
+        } else {
+            disactiveClientSearchMode();
+        }
+    }
+
+    const searchClientById = ( id ) => {
+        if( value.trim() !== '' ) {
+            dispatch({
+                type: types_client.searchClientById,
+                payload: id
             });
         } else {
             disactiveClientSearchMode();
@@ -156,6 +167,7 @@ export const ClientState = ( props ) => {
                 activeModeEdit,
                 desactiveModeEditClient,
                 searchClient,
+                searchClientById,
                 disactiveClientSearchMode
             }}
         >

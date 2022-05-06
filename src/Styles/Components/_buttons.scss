@@ -23,10 +23,11 @@
     border-radius: 5px;
     color: $whiteColor;
     cursor: pointer;
-    padding: 10px;
+    padding: 7px;
     letter-spacing: 1px;
     outline: none;
     margin-right: 10px;
+    font-size: 12px;
 
     &:hover {
         transform: scale(1.10);
@@ -43,9 +44,10 @@
     border-radius: 5px;
     color: $whiteColor;
     cursor: pointer;
-    padding: 10px;
+    padding: 7px;
     letter-spacing: 1px;
     outline: none;
+    font-size: 12px;
 
     &:hover {
         transition: .90s;
@@ -88,7 +90,7 @@
     border-radius: 5px;
     color: $whiteColor;
     cursor: pointer;
-    height: 30px;
+    height: 28px;
 
     &:hover {
         transform: scale(1.05);
@@ -104,7 +106,7 @@
     border-radius: 5px;
     color: $whiteColor;
     cursor: pointer;
-    height: 30px;
+    height: 28px;
 
     &:hover {
         transform: scale(1.05);

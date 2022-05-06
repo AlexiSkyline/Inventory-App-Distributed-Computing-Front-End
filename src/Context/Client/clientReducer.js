@@ -55,6 +55,12 @@ export const clientReducer = ( state, action ) => {
                 searchModeStatus: false,
                 listClientFound: []
             }
+        case types_client.searchClientById:
+            return {
+                ...state,
+                searchModeStatus: true,
+                listClientFound: state.clientList.filter( client => client.id === action.payload )
+            }
         case types_client.removeMessages: 
             return {
                 ...state,

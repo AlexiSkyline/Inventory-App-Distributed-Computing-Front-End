@@ -30,9 +30,13 @@ export const types = {
 
     searchProductActive: '[products] search product active',
     searchProductDesactive: '[products] search product desactive',
-    
-    removeMessages: '[messages] remove messages',
 
+    removeMessages: '[messages] remove messages',
+    
+    // ! Acciones buscar un producto por el ID
+    searchProductById: '[products] search product by id',
+    searchProductByIdFailed: '[products] search product by id failed',
+    
     // ! Acciones para el modal
     uiOpenModal: '[ui] Open modal',
     uiCloseModal: '[ui] Close modal',

@@ -36,6 +36,12 @@ export const productReducer = ( state, action ) => {
                 productSearchFilterStatus: false,
                 productSearchFilter: []
             }
+        case types.searchProductById:
+            return {
+                ...state,
+                productSearchFilterStatus: true,
+                productSearchFilter: state.products.find( product => product.id === action.payload )
+            }
         case types.activeModeEdit:
             return {
                 ...state,

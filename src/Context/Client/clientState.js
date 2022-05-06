@@ -138,7 +138,7 @@ export const ClientState = ( props ) => {
     }
 
     const searchClientById = ( id ) => {
-        if( value.trim() !== '' ) {
+        if( id.trim() !== '' ) {
             dispatch({
                 type: types_client.searchClientById,
                 payload: id

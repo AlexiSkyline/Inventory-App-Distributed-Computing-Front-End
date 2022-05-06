@@ -140,6 +140,17 @@ export const ProductState = ( props ) => {
         }
     }
 
+    const searchProductById = ( id ) => {
+        if( id.trim() !== '' ) {
+            dispatch({
+                type: types.searchProductById,
+                payload: id
+            });
+        } else {
+            modeSearchProductDesactive();
+        }
+    }
+
     return (
         <ProductContext.Provider 
             value={{ 
@@ -159,6 +170,7 @@ export const ProductState = ( props ) => {
                 desactiveModeEditProduct,
                 updateProduct,
                 searchProduct,
+                searchProductById,
                 modeSearchProductDesactive
             }}
         >

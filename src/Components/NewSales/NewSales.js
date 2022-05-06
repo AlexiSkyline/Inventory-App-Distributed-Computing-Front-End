@@ -7,7 +7,7 @@ export const NewSales = () => {
     return (
         <main className='data__container content__page sales__page'>
             <HeadBoard
-                title='Nueva Venta'
+                title='Generar nueva venta'
             />
 
             <div className='info__page-sales'>

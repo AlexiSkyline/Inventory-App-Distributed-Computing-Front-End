@@ -65,7 +65,7 @@ export const SellerModal = ({ handleResetSearchInput }) => {
         <Modal
             isOpen={ modalOpen }
             onRequestClose={ closeModal }
-            className='modal'
+            className='modal modal__seller'
             ariaHideApp={false}
         >
             <form className='form__modal' onSubmit={ handleSubmit }>

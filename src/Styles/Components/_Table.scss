@@ -96,3 +96,27 @@
         }
     }
 }
+
+.table__sale {
+    height: 170px !important;
+
+    .table {
+        thead tr {
+            height: 40px;
+        }
+        
+        th {
+            font-size: 10px;
+        }
+
+        tbody tr {
+            font-size: 10px;
+            height: 35px;
+        }
+        
+        button {
+            font-size: 10px;
+            padding: 6px;
+        }
+    }
+}

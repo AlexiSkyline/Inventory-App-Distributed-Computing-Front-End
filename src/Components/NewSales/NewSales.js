@@ -1,6 +1,7 @@
 import React from 'react';
 import { HeadBoard } from '../UI/HeadBoard/HeadBoard';
 import { SalesForm } from './SalesForm';
+import { TableProduct } from './TableProduct';
 
 export const NewSales = () => {
     return (
@@ -16,6 +17,8 @@ export const NewSales = () => {
             </div>
 
             <SalesForm />
+
+            <TableProduct />
 
             <div className='container__buttons'>
                 <button 

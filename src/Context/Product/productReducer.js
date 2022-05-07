@@ -40,7 +40,7 @@ export const productReducer = ( state, action ) => {
             return {
                 ...state,
                 productSearchFilterStatus: true,
-                productSearchFilter: state.products.find( product => product.id === action.payload )
+                productSearchFilter: state.products.filter( product => product.id.includes( action.payload ) )
             }
         case types.activeModeEdit:
             return {

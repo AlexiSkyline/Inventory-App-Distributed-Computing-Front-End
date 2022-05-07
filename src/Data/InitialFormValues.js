@@ -78,3 +78,22 @@ export const initialFormValuesSale = {
     date:'', 
     paymentType:''
 }
+
+// * Cuerpo inicial de nuestro inputs de agregar o editar ventas
+export const initialInfoSale = { 
+    purchasePrice: '', 
+    amountProduct: '',
+    stock: '',
+    client: '',
+    product: '',
+    seller: '', 
+    idClient: '',
+    idProduct: '',
+};
+
+export const initFormValues = { 
+    idClient: '', 
+    idProduct: '',
+    amountProduct: '',
+}
+    

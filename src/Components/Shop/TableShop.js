@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { NewSaleContext } from '../../Context/NewSale/NewSaleContext';
 
 export const TableProduct = () => {
+    const newSalesContext = useContext( NewSaleContext );
+    const { cart } = newSalesContext;
+
     return (
         <div className='table__container table__sale'>
             <table className='table'>
@@ -17,83 +21,23 @@ export const TableProduct = () => {
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>213123</td>
-                        <td>Coca cola</td>
-                        <td>2</td>
-                        <td>$25</td>
-                        <td>$50</td>
-                        <td>
-                            <button className='btn__delete'>Eliminar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>213123</td>
-                        <td>Coca cola</td>
-                        <td>2</td>
-                        <td>$25</td>
-                        <td>$50</td>
-                        <td>
-                            <button className='btn__delete'>Eliminar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>213123</td>
-                        <td>Coca cola</td>
-                        <td>2</td>
-                        <td>$25</td>
-                        <td>$50</td>
-                        <td>
-                            <button className='btn__delete'>Eliminar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>213123</td>
-                        <td>Coca cola</td>
-                        <td>2</td>
-                        <td>$25</td>
-                        <td>$50</td>
-                        <td>
-                            <button className='btn__delete'>Eliminar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>213123</td>
-                        <td>Coca cola</td>
-                        <td>2</td>
-                        <td>$25</td>
-                        <td>$50</td>
-                        <td>
-                            <button className='btn__delete'>Eliminar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>213123</td>
-                        <td>Coca cola</td>
-                        <td>2</td>
-                        <td>$25</td>
-                        <td>$50</td>
-                        <td>
-                            <button className='btn__delete'>Eliminar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>213123</td>
-                        <td>Coca cola</td>
-                        <td>2</td>
-                        <td>$25</td>
-                        <td>$50</td>
-                        <td>
-                            <button className='btn__delete'>Eliminar</button>
-                        </td>
-                    </tr>
+                    {
+                        cart.map( (product, index = 1 ) => (
+                            <tr
+                                key={ index }
+                            >
+                                <td>{ index + 1 }</td>
+                                <td>{ product.idProduct.split('-')[0] }</td>
+                                <td>{ product.product }</td>
+                                <td>{ product.amountProduct }</td>
+                                <td>{ `$${ product.purchasePrice }` }</td>
+                                <td>{ `$${ product.purchasePrice * product.amountProduct }` }</td>
+                                <td>
+                                    <button className='btn__delete'>Eliminar</button>
+                                </td>
+                            </tr>
+                        ))
+                    }
                 </tbody>
             </table>
         </div>

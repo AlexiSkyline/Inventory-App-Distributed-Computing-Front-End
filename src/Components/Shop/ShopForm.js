@@ -1,8 +1,10 @@
 import React, { useContext, useEffect } from 'react';
-import { AuthContext } from '../../Context/Auth/AuthContext';
 
+import { AuthContext } from '../../Context/Auth/AuthContext';
 import { ClientContext } from '../../Context/Client/ClientContext';
+import { NewSaleContext } from '../../Context/NewSale/NewSaleContext';
 import { ProductContext } from '../../Context/Product/ProductContext';
+
 import { initFormValues, initialInfoSale } from '../../Data/InitialFormValues';
 import { useForm } from '../../Hooks/useForm';
 import { useSetUpSale } from '../../Hooks/useSetUpSale';
@@ -19,6 +21,9 @@ export const SalesForm = () => {
     const { user } = authContext;
     initialInfoSale.seller = user.name + ' ' + user.lastName;
     initialInfoSale.idSeller = user.id;
+
+    const newSalesContext = useContext( NewSaleContext );
+    const { addCart } = newSalesContext;
 
     const [ values, handleInputChange ] = useForm( initFormValues );
     const { idClient, idProduct, amountProduct, iva, paymentType } = values;
@@ -37,6 +42,7 @@ export const SalesForm = () => {
 
     const handleAddProduct = (e) => {
         e.preventDefault();
+        addCart({ idProduct, product, amountProduct, iva, purchasePrice });
     }
 
     return (

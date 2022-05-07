@@ -17,7 +17,7 @@ import { ProviderScreen } from '../Components/Provider/ProviderScreen';
 import { SellerScreen } from '../Components/Seller/SellerScreen';
 import { SalesDetailScreen } from '../Components/SalesDetail/SalesDetailScreen';
 import { SalesScreen } from '../Components/Sales/SalesScreen';
-import { NewSales } from '../Components/NewSales/NewSales';
+import { ShopScreen } from '../Components/Shop/ShopScreen';
 
 export const DashboardRouters = () => {
     return (
@@ -40,7 +40,7 @@ export const DashboardRouters = () => {
                     <Route path = '/vendedores' element={ <SellerScreen /> }/>
                     <Route path = '/detallesVentas' element={ <SalesDetailScreen /> }/>
                     <Route path = '/ventas' element={ <SalesScreen /> }/>
-                    <Route path = '/nuevaVenta' element={ <NewSales /> }/>
+                    <Route path = '/nuevaVenta' element={ <ShopScreen /> }/>
 
                     <Route path = '/' element={ <HomeScreen /> }/>
                 </Routes>

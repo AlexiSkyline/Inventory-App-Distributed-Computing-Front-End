@@ -1,9 +1,9 @@
 import React from 'react';
 import { HeadBoard } from '../UI/HeadBoard/HeadBoard';
-import { SalesForm } from './SalesForm';
-import { TableProduct } from './TableProduct';
+import { SalesForm } from './ShopForm';
+import { TableProduct } from './TableShop';
 
-export const NewSales = () => {
+export const ShopScreen = () => {
     return (
         <main className='data__container content__page sales__page'>
             <HeadBoard

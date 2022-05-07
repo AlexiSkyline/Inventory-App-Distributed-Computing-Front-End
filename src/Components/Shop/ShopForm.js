@@ -1,10 +1,11 @@
 import React, { useContext, useEffect } from 'react';
+import { AuthContext } from '../../Context/Auth/AuthContext';
 
 import { ClientContext } from '../../Context/Client/ClientContext';
 import { ProductContext } from '../../Context/Product/ProductContext';
 import { initFormValues, initialInfoSale } from '../../Data/InitialFormValues';
 import { useForm } from '../../Hooks/useForm';
-import { useSearchById } from '../../Hooks/useSearchById';
+import { useSetUpSale } from '../../Hooks/useSetUpSale';
 
 export const SalesForm = () => {
     const clientContext = useContext( ClientContext );
@@ -13,12 +14,17 @@ export const SalesForm = () => {
     const productContext = useContext( ProductContext );
     const { getProducts, searchProductById, productSearchFilter, modeSearchProductDesactive } = productContext;
     
+    const authContext = useContext( AuthContext );
+    const { user } = authContext;
+    initialInfoSale.seller = user.name + ' ' + user.lastName;
+    initialInfoSale.idSeller = user.id;
+
     const [ values, handleInputChange ] = useForm( initFormValues );
     const { idClient, idProduct, amountProduct } = values;
 
-    const [ valueFormReading, handleSearch ] = useSearchById( initialInfoSale, searchClientById, 
-                                    searchProductById, listClientFound, productSearchFilter );
-    const { purchasePrice, stock, client, product } = valueFormReading;
+    const toolsObject = { searchClientById, searchProductById, listClientFound, productSearchFilter }
+    const [ valueFormReading, handleSearch ] = useSetUpSale( initialInfoSale, toolsObject );
+    const { purchasePrice, stock, client, product, seller } = valueFormReading;
     
     useEffect( () => {
         disactiveClientSearchMode();
@@ -27,6 +33,10 @@ export const SalesForm = () => {
         getProducts();
         // eslint-disable-next-line
     } , []);
+
+    const handleAddProduct = (e) => {
+        e.preventDefault();
+    }
 
     return (
         <div className='container__forms'>
@@ -71,6 +81,7 @@ export const SalesForm = () => {
                 />
                 <button
                     className='btn__add'
+                    onClick={ handleAddProduct }
                 >
                     AGREGAR P
                 </button>
@@ -96,7 +107,7 @@ export const SalesForm = () => {
                 <input type='number' placeholder='STOCK' value={ stock } name='stock' readOnly/>
 
                 <label>VENDEDOR:</label>
-                <input type='text' placeholder='VENDEDOR' readOnly/>
+                <input type='text' placeholder='VENDEDOR' value={ seller } name='seller' readOnly/>
             </form>
         </div>
     );

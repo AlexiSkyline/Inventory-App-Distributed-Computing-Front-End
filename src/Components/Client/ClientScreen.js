@@ -15,7 +15,7 @@ export const ClientScreen = () => {
     const headers = [ 'ID' ,'Nombre' ,'Apellidos' ,'RFC' ,'Dirección' ,'Email' ,'Telefono' ];
     const clientContext = useContext( ClientContext );
     const { clientList, message, typeMessage, listClientFound, searchModeStatus, 
-                getClients, desactiveModeEditClient, searchClient } = clientContext;
+                getClients, desactiveModeEditClient, searchClient, disactiveClientSearchMode } = clientContext;
     
     const alertContext = useContext( AlertContext );
     const { showAlert } = alertContext;
@@ -53,8 +53,11 @@ export const ClientScreen = () => {
         * En esta parte mandamos a llamar el metodo para obtener las Clientes cuando la pagina
         * carga por primera vez o cuando se recarga la pagina
     */ 
-    // eslint-disable-next-line
-    useEffect( () => { getClients() } , []);
+    useEffect( () => {
+       disactiveClientSearchMode();
+       getClients() 
+       // eslint-disable-next-line
+    } , []);
 
     return (
         <main className='data__container content__page'>

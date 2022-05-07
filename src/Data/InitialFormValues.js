@@ -88,7 +88,6 @@ export const initialInfoSale = {
     seller: '', 
     idClient: '',
     idProduct: '',
-    seller: '',
     idSeller: ''
 };
 
@@ -96,5 +95,7 @@ export const initFormValues = {
     idClient: '', 
     idProduct: '',
     amountProduct: '',
+    iva: '',
+    paymentType: ''
 }
     

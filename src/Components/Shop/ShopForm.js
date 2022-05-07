@@ -6,6 +6,7 @@ import { ProductContext } from '../../Context/Product/ProductContext';
 import { initFormValues, initialInfoSale } from '../../Data/InitialFormValues';
 import { useForm } from '../../Hooks/useForm';
 import { useSetUpSale } from '../../Hooks/useSetUpSale';
+import { SelectPaymentType } from '../UI/Select/SelectPaymentType';
 
 export const SalesForm = () => {
     const clientContext = useContext( ClientContext );
@@ -20,7 +21,7 @@ export const SalesForm = () => {
     initialInfoSale.idSeller = user.id;
 
     const [ values, handleInputChange ] = useForm( initFormValues );
-    const { idClient, idProduct, amountProduct } = values;
+    const { idClient, idProduct, amountProduct, iva, paymentType } = values;
 
     const toolsObject = { searchClientById, searchProductById, listClientFound, productSearchFilter }
     const [ valueFormReading, handleSearch ] = useSetUpSale( initialInfoSale, toolsObject );
@@ -94,6 +95,15 @@ export const SalesForm = () => {
                     value={ amountProduct }
                     onChange={ handleInputChange }
                 />
+
+                <label>IVA:</label>
+                <input 
+                    type='number' 
+                    placeholder='IVA' 
+                    name='iva'
+                    value={ iva }
+                    onChange={ handleInputChange }
+                />
             </form>
 
             <form className='form__reading'>
@@ -108,6 +118,9 @@ export const SalesForm = () => {
 
                 <label>VENDEDOR:</label>
                 <input type='text' placeholder='VENDEDOR' value={ seller } name='seller' readOnly/>
+
+                <label>TIPO DE PAGO:</label>
+                <SelectPaymentType value={ paymentType } onChange={ handleInputChange }/>
             </form>
         </div>
     );

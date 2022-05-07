@@ -15,7 +15,7 @@ export const ProductScreen = () => {
     const headers = ['id', 'Nombre', 'Marca','Descripción', 'Precio', 'U. Medida', 'Stock', 'Proveedor' ];
     const productContext = useContext( ProductContext );
     const { products, getProducts, searchProduct, productSearchFilter, 
-                message, typeMessage, productSearchFilterStatus, desactiveModeEditProduct } = productContext;
+                message, typeMessage, productSearchFilterStatus, desactiveModeEditProduct, modeSearchProductDesactive } = productContext;
     
     const alertContext = useContext( AlertContext );
     const { showAlert } = alertContext;
@@ -53,8 +53,11 @@ export const ProductScreen = () => {
         * En esta parte mandamos a llamar el metodo para obtener los productos cuando la pagina
         * carga por primera vez o cuando se recarga la pagina
     */
-    // eslint-disable-next-line
-    useEffect( () => { getProducts() } , []);
+   useEffect( () => { 
+       modeSearchProductDesactive();
+       getProducts();
+       // eslint-disable-next-line
+    } , []);
     
     return (
         <main className='data__container content__page'>

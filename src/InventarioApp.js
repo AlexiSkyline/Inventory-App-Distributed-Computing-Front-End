@@ -7,6 +7,7 @@ import { ClientState } from './Context/Client/clientState';
 import { MenuState } from './Context/Menu/menuState';
 import { ModalState } from './Context/Modal/modalState';
 import { ModeEditState } from './Context/ModeEdit/modeEditState';
+import { NewSaleState } from './Context/NewSale/newSaleState';
 import { ProductState } from './Context/Product/productState';
 import { ProviderState } from './Context/Provider/providerState';
 import { SalesState } from './Context/Sales/salesState';
@@ -18,33 +19,35 @@ import { AppRouter } from './Routers/AppRouter';
 export const InventarioApp = () => {
     return (
         <ModeEditState>
-            <SalesState>
-                <SalesDetailState>
-                    <SellerState>
-                        <ProviderState>
-                            <ClientState>
-                                <BusinessState>
-                                    <UnitMeasurementState>     
-                                        <BrandState>
-                                            <ModalState>
-                                                <ProductState>
-                                                    <AlertState>
-                                                        <AuthState>
-                                                            <MenuState>
-                                                                <AppRouter />
-                                                            </MenuState>
-                                                        </AuthState>
-                                                    </AlertState>
-                                                </ProductState>
-                                            </ModalState>
-                                        </BrandState>
-                                    </UnitMeasurementState>
-                                </BusinessState>
-                            </ClientState>
-                        </ProviderState>
-                    </SellerState>
-                </SalesDetailState>
-            </SalesState>
+            <NewSaleState>
+                <SalesState>
+                    <SalesDetailState>
+                        <SellerState>
+                            <ProviderState>
+                                <ClientState>
+                                    <BusinessState>
+                                        <UnitMeasurementState>     
+                                            <BrandState>
+                                                <ModalState>
+                                                    <ProductState>
+                                                        <AlertState>
+                                                            <AuthState>
+                                                                <MenuState>
+                                                                    <AppRouter />
+                                                                </MenuState>
+                                                            </AuthState>
+                                                        </AlertState>
+                                                    </ProductState>
+                                                </ModalState>
+                                            </BrandState>
+                                        </UnitMeasurementState>
+                                    </BusinessState>
+                                </ClientState>
+                            </ProviderState>
+                        </SellerState>
+                    </SalesDetailState>
+                </SalesState>
+            </NewSaleState>
         </ModeEditState>
     );
 }

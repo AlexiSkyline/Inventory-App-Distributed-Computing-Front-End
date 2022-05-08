@@ -8,7 +8,7 @@ import { AlertContext } from '../Context/Alert/AlertContext';
     * @param {object} validate - Objeto con las validaciones del formulario 
     * @returns formValues, handleSubmit, handleInputChange, isValid
 */
-export const useValidation = ( initialState, validate, fn ) => {
+export const useValidation = ( initialState, validate, fn, onlyReset = {} ) => {
     const modeEditContext = useContext( ModeEditContext );
     const { statusEditMode, editInfo } = modeEditContext;
 
@@ -35,7 +35,11 @@ export const useValidation = ( initialState, validate, fn ) => {
 
     // Todo: Funcion para reiniciar el formulario una vez que se haya enviado
     const handleResetInput = () => {
-        setFormValues( initialState );
+        if( Object.keys( onlyReset ).length === 0 ) {
+            setFormValues( initialState );
+        } else {
+            setFormValues({ ...formValues, ...onlyReset });
+        }
     }
     
     /*

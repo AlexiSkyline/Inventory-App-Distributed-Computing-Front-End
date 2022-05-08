@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import { AlertContext } from '../../Context/Alert/AlertContext';
 
 import { AuthContext } from '../../Context/Auth/AuthContext';
 import { ClientContext } from '../../Context/Client/ClientContext';
@@ -6,13 +7,17 @@ import { NewSaleContext } from '../../Context/NewSale/NewSaleContext';
 import { ProductContext } from '../../Context/Product/ProductContext';
 
 import { initFormValues, initialInfoSale } from '../../Data/InitialFormValues';
-import { useForm } from '../../Hooks/useForm';
 import { useSetUpSale } from '../../Hooks/useSetUpSale';
+import { useValidation } from '../../Hooks/useValidation';
+import { ValidateNewSale } from '../../validations/ValidateNewSale';
 import { SelectPaymentType } from '../UI/Select/SelectPaymentType';
 
 export const SalesForm = () => {
     const clientContext = useContext( ClientContext );
     const { getClients, searchClientById, listClientFound, disactiveClientSearchMode } = clientContext;
+
+    const alertContext = useContext( AlertContext );
+    const { showAlert } = alertContext;
 
     const productContext = useContext( ProductContext );
     const { getProducts, searchProductById, productSearchFilter, modeSearchProductDesactive } = productContext;
@@ -25,13 +30,14 @@ export const SalesForm = () => {
     const newSalesContext = useContext( NewSaleContext );
     const { addCart } = newSalesContext;
 
-    const [ values, handleInputChange ] = useForm( initFormValues );
+    const [ values, handleSubmit, handleInputChange ] = useValidation( initFormValues, ValidateNewSale, handleAddProduct, 
+                                                                { idProduct: '', amountProduct: '', iva: '' });
     const { idClient, idProduct, amountProduct, iva, paymentType } = values;
 
     const toolsObject = { searchClientById, searchProductById, listClientFound, productSearchFilter }
     const [ valueFormReading, handleSearch ] = useSetUpSale( initialInfoSale, toolsObject );
     const { purchasePrice, stock, client, product, seller } = valueFormReading;
-    
+
     useEffect( () => {
         disactiveClientSearchMode();
         modeSearchProductDesactive();
@@ -40,9 +46,18 @@ export const SalesForm = () => {
         // eslint-disable-next-line
     } , []);
 
-    const handleAddProduct = (e) => {
-        e.preventDefault();
-        addCart({ idProduct, product, amountProduct, iva, purchasePrice });
+    function handleAddProduct () {
+        if( !product ) {
+            return showAlert( 'Error Busque un Producto', 'alert-error' );
+        }
+        if( !client ) {
+            return showAlert( 'Error Busque un Cliente', 'alert-error' );
+        }
+
+        if( product && client ) {
+            addCart({ idProduct, product, amountProduct, iva, purchasePrice });
+            modeSearchProductDesactive();
+        }
     }
 
     return (
@@ -88,7 +103,7 @@ export const SalesForm = () => {
                 />
                 <button
                     className='btn__add'
-                    onClick={ handleAddProduct }
+                    onClick={ handleSubmit }
                 >
                     AGREGAR P
                 </button>

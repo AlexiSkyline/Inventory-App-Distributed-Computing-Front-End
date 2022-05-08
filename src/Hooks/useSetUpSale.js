@@ -45,9 +45,5 @@ export const useSetUpSale = ( initialState, toolsObject ) => {
         }
     }
 
-    function handleInputReset() {
-        setFormReading( initialState );
-    }
-
-    return [ valueFormReading, handleSubmit, handleInputReset ];
+    return [ valueFormReading, handleSubmit ];
 }

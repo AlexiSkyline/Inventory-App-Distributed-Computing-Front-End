@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import { NewSaleContext } from '../../Context/NewSale/NewSaleContext';
+
 import { HeadBoard } from '../UI/HeadBoard/HeadBoard';
 import { SalesForm } from './ShopForm';
 import { TableProduct } from './TableShop';
 
 export const ShopScreen = () => {
+    const newSalesContext = useContext( NewSaleContext );
+    const { totalSale, date } = newSalesContext;
+
     return (
         <main className='data__container content__page sales__page'>
             <HeadBoard
@@ -11,9 +17,9 @@ export const ShopScreen = () => {
             />
 
             <div className='info__page-sales'>
-                <p className='date'>Fecha:  2022-05-06</p>
+                <p className='date'>Fecha: { `${ date }` }</p>
                 <p className='folio'>Folio:  #3</p>
-                <p className='total'>Total a pagar: $2000</p>
+                <p className='total'>Total a pagar: ${ `${ totalSale }` }</p>
             </div>
 
             <SalesForm />

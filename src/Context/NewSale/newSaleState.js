@@ -4,11 +4,18 @@ import { NewSaleContext } from './NewSaleContext';
 import { newSalesReducer } from './newSalesReducer';
 
 export const NewSaleState = ( props ) => {
+    const today = Date.now();
+    const date = new Date( today );
+    const formatDate = date.getFullYear() + '-' + 
+                ('0' + (date.getMonth()+1)).slice(-2) + '-' +
+                ('0' + date.getDate()).slice(-2);
+
     const initialState = {
         cart: [],
         total: 0,
         iva: 0,
-        totalSale: 0
+        totalSale: 0,
+        date: formatDate,
     }
 
     const [ state, dispatch ] = useReducer( newSalesReducer, initialState );
@@ -25,8 +32,6 @@ export const NewSaleState = ( props ) => {
             type: types_newSales.RemoveCart,
             payload: id
         });
-
-        console.log( id );
     }
     
     return (
@@ -35,6 +40,8 @@ export const NewSaleState = ( props ) => {
                 cart: state.cart,
                 total: state.total,
                 iva: state.iva,
+                totalSale: state.totalSale,
+                date: state.date,
                 addCart,
                 removeCart
             }}

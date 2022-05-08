@@ -13,7 +13,7 @@ export const newSalesReducer = ( state, action ) => {
         case types_newSales.RemoveCart:
             return {
                 ...state,
-                cart: state.cart.filter( product => product.idProduct != action.payload ),
+                cart: state.cart.filter( product => product.idProduct !== action.payload ),
                 total: state.total - state.cart.find( product => product.idProduct === action.payload ).purchasePrice,
                 iva: state.iva - state.cart.find( product => product.idProduct === action.payload ).purchasePrice * 0.16,
                 totalSale: state.totalSale - state.cart.find( product => product.idProduct === action.payload ).purchasePrice * state.cart.find( product => product.idProduct === action.payload ).amountProduct

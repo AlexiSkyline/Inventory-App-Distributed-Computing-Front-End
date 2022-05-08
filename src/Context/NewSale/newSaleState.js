@@ -7,7 +7,8 @@ export const NewSaleState = ( props ) => {
     const initialState = {
         cart: [],
         total: 0,
-        iva: 0
+        iva: 0,
+        totalSale: 0
     }
 
     const [ state, dispatch ] = useReducer( newSalesReducer, initialState );
@@ -18,6 +19,15 @@ export const NewSaleState = ( props ) => {
             payload: product
         });
     }
+
+    const removeCart = ( id ) => {
+        dispatch({
+            type: types_newSales.RemoveCart,
+            payload: id
+        });
+
+        console.log( id );
+    }
     
     return (
         <NewSaleContext.Provider
@@ -25,7 +35,8 @@ export const NewSaleState = ( props ) => {
                 cart: state.cart,
                 total: state.total,
                 iva: state.iva,
-                addCart
+                addCart,
+                removeCart
             }}
         >
             { props.children }

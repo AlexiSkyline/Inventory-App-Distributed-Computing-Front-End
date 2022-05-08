@@ -3,7 +3,7 @@ import { NewSaleContext } from '../../Context/NewSale/NewSaleContext';
 
 export const TableProduct = () => {
     const newSalesContext = useContext( NewSaleContext );
-    const { cart } = newSalesContext;
+    const { cart, removeCart } = newSalesContext;
 
     return (
         <div className='table__container table__sale'>
@@ -33,7 +33,12 @@ export const TableProduct = () => {
                                 <td>{ `$${ product.purchasePrice }` }</td>
                                 <td>{ `$${ product.purchasePrice * product.amountProduct }` }</td>
                                 <td>
-                                    <button className='btn__delete'>Eliminar</button>
+                                    <button 
+                                        className='btn__delete'
+                                        onClick={ () => removeCart( product.idProduct ) }
+                                    >
+                                        Eliminar
+                                    </button>
                                 </td>
                             </tr>
                         ))

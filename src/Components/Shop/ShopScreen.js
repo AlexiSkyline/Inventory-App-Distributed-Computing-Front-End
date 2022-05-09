@@ -9,7 +9,7 @@ import { TableProduct } from './TableShop';
 
 export const ShopScreen = () => {
     const newSalesContext = useContext( NewSaleContext );
-    const { totalSale, date, addSalesDetail, message, typeMessage } = newSalesContext;
+    const { totalSale, date, addSale, message, typeMessage } = newSalesContext;
 
     const alertContext = useContext( AlertContext );
     const { showAlert } = alertContext;
@@ -44,7 +44,7 @@ export const ShopScreen = () => {
                 <button 
                     type='submit'
                     className='btn__edit'
-                    onClick={ addSalesDetail }
+                    onClick={ addSale }
                 >
                     GUARDAR
                 </button>

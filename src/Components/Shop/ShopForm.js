@@ -57,7 +57,7 @@ export const SalesForm = () => {
         if( product && client ) {
             addCart({ idProduct, product, amountProduct, iva, purchasePrice });
             modeSearchProductDesactive();
-            AddInfoSale({ idSeller: user.id, idClient: 'ab77da93-9766-48fc-885e-18faa43d93a6', paymentType });
+            AddInfoSale({ idSeller: user.id, idClient, paymentType });
         }
     }
 

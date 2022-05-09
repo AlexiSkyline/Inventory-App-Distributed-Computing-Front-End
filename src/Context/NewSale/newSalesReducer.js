@@ -37,6 +37,7 @@ export const newSalesReducer = ( state, action ) => {
                 typeMessage: 'alert-ok',
             }
         case types_newSales.AddSalesDetailFailed:
+        case types_newSales.AddSaleFailed:
             return {
                 ...state,
                 cart: [],
@@ -59,7 +60,7 @@ export const newSalesReducer = ( state, action ) => {
                 ...state,
                 idSeller: action.payload.idSeller,
                 idClient: action.payload.idClient,
-                idBusiness: action.payload.idBusiness,
+                // idBusiness: action.payload.idBusiness,
                 paymentType: action.payload.paymentType,
             }
         default: 

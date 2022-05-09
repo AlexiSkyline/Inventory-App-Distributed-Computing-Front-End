@@ -87,6 +87,29 @@ export const NewSaleState = ( props ) => {
             payload: infoSale
         });
     }
+
+    const addSale = async () => {
+        try {
+            const response = await clientAxios.post( '/api/Sales', {
+                date: state.date,
+                idSeller: state.idSeller,
+                idClient: state.idClient,
+                folio: '7',
+                idBusiness: 'ab77da93-9766-48fc-885e-18faa43d93a6',
+                total: state.totalSale,
+                iva: state.iva,
+                subTotal: state.totalSale + state.iva,
+                paymentType: state.paymentType,
+            });
+            const idSale = response.data.id;
+            await addSalesDetail( idSale );
+        } catch (error) {
+            dispatch({
+                type: types_newSales.AddInfoSale,
+                payload: error.response.data.message
+            });
+        }
+    }
     
     
     return (
@@ -104,6 +127,7 @@ export const NewSaleState = ( props ) => {
                 clearCart,
                 addSalesDetail,
                 AddInfoSale,
+                addSale,
                 deleteMessage
             }}
         >

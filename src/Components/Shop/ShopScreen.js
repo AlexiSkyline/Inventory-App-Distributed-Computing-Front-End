@@ -8,7 +8,7 @@ import { TableProduct } from './TableShop';
 
 export const ShopScreen = () => {
     const newSalesContext = useContext( NewSaleContext );
-    const { totalSale, date } = newSalesContext;
+    const { totalSale, date, addSalesDetail } = newSalesContext;
 
     return (
         <main className='data__container content__page sales__page'>
@@ -30,6 +30,7 @@ export const ShopScreen = () => {
                 <button 
                     type='submit'
                     className='btn__edit'
+                    onClick={ addSalesDetail }
                 >
                     GUARDAR
                 </button>

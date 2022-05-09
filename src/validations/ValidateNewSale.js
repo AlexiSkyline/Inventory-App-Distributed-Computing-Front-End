@@ -5,8 +5,8 @@ export const ValidateNewSale = ( value ) => {
         errors.idClient = 'El Cliente es Obligatorio';
     }
 
-    if( !value.idProduct ) {
-        errors.idProduct = 'El Producto es Obligatorio';
+    if( !value.idProductI ) {
+        errors.idProductI = 'El Producto es Obligatorio';
     }
 
     if( !value.amountProduct ) {

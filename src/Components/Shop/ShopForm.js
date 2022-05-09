@@ -31,12 +31,12 @@ export const SalesForm = () => {
     const { addCart } = newSalesContext;
 
     const [ values, handleSubmit, handleInputChange ] = useValidation( initFormValues, ValidateNewSale, handleAddProduct, 
-                                                                { idProduct: '', amountProduct: '', iva: '' });
-    const { idClient, idProduct, amountProduct, iva, paymentType } = values;
+                                                                { idProductI: '', amountProduct: '', iva: '' });
+    const { idClient, idProductI, amountProduct, iva, paymentType } = values;
 
     const toolsObject = { searchClientById, searchProductById, listClientFound, productSearchFilter }
     const [ valueFormReading, handleSearch ] = useSetUpSale( initialInfoSale, toolsObject );
-    const { purchasePrice, stock, client, product, seller } = valueFormReading;
+    const { idProduct, purchasePrice, stock, client, product, seller } = valueFormReading;
 
     useEffect( () => {
         disactiveClientSearchMode();
@@ -82,8 +82,8 @@ export const SalesForm = () => {
                 <input 
                     type='text' 
                     placeholder='ID PRODUCTO' 
-                    name='idProduct'
-                    value={ idProduct }
+                    name='idProductI'
+                    value={ idProductI }
                     onChange={ handleInputChange }
                 />
                 <button

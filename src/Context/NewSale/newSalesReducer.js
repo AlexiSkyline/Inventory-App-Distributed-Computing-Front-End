@@ -26,6 +26,16 @@ export const newSalesReducer = ( state, action ) => {
                 iva: 0,
                 totalSale: 0,
             }
+        case types_newSales.AddSalesDetail:
+            return {
+                ...state,
+                cart: [],
+                total: 0,
+                iva: 0,
+                totalSale: 0,
+                message: action.payload,
+                typeMessage: 'alert-ok',
+            }
         default: 
             return state;
     }

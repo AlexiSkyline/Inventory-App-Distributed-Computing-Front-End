@@ -33,6 +33,12 @@ export const NewSaleState = ( props ) => {
             payload: id
         });
     }
+
+    const clearCart = () => {
+        dispatch({
+            type: types_newSales.ClearCart,
+        });
+    }
     
     return (
         <NewSaleContext.Provider
@@ -43,7 +49,8 @@ export const NewSaleState = ( props ) => {
                 totalSale: state.totalSale,
                 date: state.date,
                 addCart,
-                removeCart
+                removeCart,
+                clearCart,
             }}
         >
             { props.children }

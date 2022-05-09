@@ -18,7 +18,7 @@ export const NewSaleState = ( props ) => {
         iva: 0,
         totalSale: 0,
         date: formatDate,
-        error: null,
+        error: false,
         message: '',
         typeMessage: '',
     }
@@ -53,7 +53,7 @@ export const NewSaleState = ( props ) => {
 
     const addSalesDetail = async ( idSale ) => {
         try {
-            const response = state.cart.forEach( product => {
+            state.cart.forEach( product => {
                 clientAxios.post( pathSalesDetail, {
                     idSale: idSale,
                     idProduct: product.idProduct,
@@ -85,6 +85,8 @@ export const NewSaleState = ( props ) => {
                 iva: state.iva,
                 totalSale: state.totalSale,
                 date: state.date,
+                message: state.message,
+                typeMessage: state.typeMessage,
                 addCart,
                 removeCart,
                 clearCart,

@@ -52,7 +52,7 @@ export const newSalesReducer = ( state, action ) => {
                 ...state,
                 message: '',
                 typeMessage: '',
-                error: false,
+                error: false
             }
         default: 
             return state;

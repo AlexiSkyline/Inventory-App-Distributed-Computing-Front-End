@@ -25,6 +25,12 @@ export const NewSaleState = ( props ) => {
 
     const [ state, dispatch ] = useReducer( newSalesReducer, initialState );
 
+    const deleteMessage = () => { 
+        setTimeout(() => {
+            dispatch({ type: types_newSales.removeMessages });
+        }, 3000 );
+    }
+
     const addCart = ( product ) => {
         dispatch({
             type: types_newSales.AddCart,
@@ -66,7 +72,9 @@ export const NewSaleState = ( props ) => {
                 type: types_newSales.AddSalesDetail,
                 payload: error.response.data.message
             });
-        }       
+        }
+
+        deleteMessage();
     }
     
     return (
@@ -81,6 +89,7 @@ export const NewSaleState = ( props ) => {
                 removeCart,
                 clearCart,
                 addSalesDetail,
+                deleteMessage
             }}
         >
             { props.children }

@@ -5,4 +5,6 @@ export const types_newSales = {
 
     AddSalesDetail: 'ADD_SALES',
     AddSalesDetailFailed: 'ADD_SALES_FAILED',
+
+    removeMessages: 'DELETE_MESSAGE',
 }

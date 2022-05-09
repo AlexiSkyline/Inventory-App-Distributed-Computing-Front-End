@@ -36,6 +36,24 @@ export const newSalesReducer = ( state, action ) => {
                 message: action.payload,
                 typeMessage: 'alert-ok',
             }
+        case types_newSales.AddSalesDetailFailed:
+            return {
+                ...state,
+                cart: [],
+                total: 0,
+                iva: 0,
+                totalSale: 0,
+                error: true,
+                message: action.payload,
+                typeMessage: 'alert-error',
+            }
+        case types_newSales.removeMessages:
+            return {
+                ...state,
+                message: '',
+                typeMessage: '',
+                error: false,
+            }
         default: 
             return state;
     }

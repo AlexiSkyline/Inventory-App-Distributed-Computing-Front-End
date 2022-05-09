@@ -21,6 +21,10 @@ export const NewSaleState = ( props ) => {
         error: false,
         message: '',
         typeMessage: '',
+        idSeller: '',
+        idClient: '',
+        idBusiness: '',
+        paymentType: '',
     }
 
     const [ state, dispatch ] = useReducer( newSalesReducer, initialState );
@@ -76,6 +80,14 @@ export const NewSaleState = ( props ) => {
 
         deleteMessage();
     }
+
+    const AddInfoSale =  ( infoSale ) => {
+        dispatch({
+            type: types_newSales.AddInfoSale,
+            payload: infoSale
+        });
+    }
+    
     
     return (
         <NewSaleContext.Provider
@@ -91,6 +103,7 @@ export const NewSaleState = ( props ) => {
                 removeCart,
                 clearCart,
                 addSalesDetail,
+                AddInfoSale,
                 deleteMessage
             }}
         >

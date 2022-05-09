@@ -6,5 +6,11 @@ export const types_newSales = {
     AddSalesDetail: 'ADD_SALES',
     AddSalesDetailFailed: 'ADD_SALES_FAILED',
 
+    AddInfoSale: 'ADD_INFO_SALE',
+    AddInfoSaleFailed: 'ADD_INFO_SALE_FAILED',
+
+    AddSale: 'ADD_SALE',
+    AddSaleFailed: 'ADD_SALE_FAILED',
+
     removeMessages: 'DELETE_MESSAGE',
 }

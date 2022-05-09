@@ -76,7 +76,7 @@ export const OptionStaff = [
 
 export const OptionActivities = [
     {
-        to: '/ventas',
+        to: '/nuevaVenta',
         title: 'Realizar una Venta',
         description: 'Hacer una venta',
         img: {

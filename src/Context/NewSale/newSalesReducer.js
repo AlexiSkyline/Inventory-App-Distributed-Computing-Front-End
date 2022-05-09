@@ -54,6 +54,14 @@ export const newSalesReducer = ( state, action ) => {
                 typeMessage: '',
                 error: false
             }
+        case types_newSales.AddInfoSale:
+            return {
+                ...state,
+                idSeller: action.payload.idSeller,
+                idClient: action.payload.idClient,
+                idBusiness: action.payload.idBusiness,
+                paymentType: action.payload.paymentType,
+            }
         default: 
             return state;
     }

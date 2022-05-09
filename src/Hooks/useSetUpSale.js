@@ -35,7 +35,6 @@ export const useSetUpSale = ( initialState, toolsObject ) => {
         }
     } , [ productSearchFilter, valueFormReading ]);
 
-    // * State para almacenar el parametro de busqueda
     function handleSubmit(e) {
         e.preventDefault();
         if( e.target.className.includes('btn__search-client') ) {

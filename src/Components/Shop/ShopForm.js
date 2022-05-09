@@ -23,20 +23,20 @@ export const SalesForm = () => {
     const { getProducts, searchProductById, productSearchFilter, modeSearchProductDesactive } = productContext;
     
     const authContext = useContext( AuthContext );
-    const { user } = authContext;
+    const { id, user } = authContext;
     initialInfoSale.seller = user.name + ' ' + user.lastName;
     initialInfoSale.idSeller = user.id;
 
     const newSalesContext = useContext( NewSaleContext );
-    const { addCart } = newSalesContext;
+    const { addCart, AddInfoSale } = newSalesContext;
 
     const [ values, handleSubmit, handleInputChange ] = useValidation( initFormValues, ValidateNewSale, handleAddProduct, 
                                                                 { idProductI: '', amountProduct: '', iva: '' });
-    const { idClient, idProductI, amountProduct, iva, paymentType } = values;
+    const { idClientI, idProductI, amountProduct, iva, paymentType } = values;
 
     const toolsObject = { searchClientById, searchProductById, listClientFound, productSearchFilter }
     const [ valueFormReading, handleSearch ] = useSetUpSale( initialInfoSale, toolsObject );
-    const { idProduct, purchasePrice, stock, client, product, seller } = valueFormReading;
+    const { idProduct, purchasePrice, stock, client, product, seller, idClient } = valueFormReading;
 
     useEffect( () => {
         disactiveClientSearchMode();
@@ -57,6 +57,7 @@ export const SalesForm = () => {
         if( product && client ) {
             addCart({ idProduct, product, amountProduct, iva, purchasePrice });
             modeSearchProductDesactive();
+            AddInfoSale({ idSeller: user.id, idClient: 'ab77da93-9766-48fc-885e-18faa43d93a6', paymentType });
         }
     }
 
@@ -67,8 +68,8 @@ export const SalesForm = () => {
                 <input 
                     type='text' 
                     placeholder='ID CLIENTE' 
-                    name='idClient'
-                    value={ idClient }
+                    name='idClientI'
+                    value={ idClientI }
                     onChange={ handleInputChange }
                 />
                 <button

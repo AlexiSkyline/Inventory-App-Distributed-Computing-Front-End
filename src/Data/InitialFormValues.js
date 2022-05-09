@@ -92,7 +92,7 @@ export const initialInfoSale = {
 };
 
 export const initFormValues = { 
-    idClient: '', 
+    idClientI: '', 
     idProductI: '',
     amountProduct: '',
     iva: '',

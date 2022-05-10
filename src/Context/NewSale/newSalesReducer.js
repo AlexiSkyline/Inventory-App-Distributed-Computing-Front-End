@@ -38,6 +38,7 @@ export const newSalesReducer = ( state, action ) => {
             }
         case types_newSales.AddSalesDetailFailed:
         case types_newSales.AddSaleFailed:
+        case types_newSales.GetFolioFailed:
             return {
                 ...state,
                 cart: [],
@@ -62,6 +63,11 @@ export const newSalesReducer = ( state, action ) => {
                 idClient: action.payload.idClient,
                 // idBusiness: action.payload.idBusiness,
                 paymentType: action.payload.paymentType,
+            }
+        case types_newSales.GetFolio:
+            return {
+                ...state,
+                folio: action.payload.folio
             }
         default: 
             return state;

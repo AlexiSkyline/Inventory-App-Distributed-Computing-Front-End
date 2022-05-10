@@ -12,5 +12,8 @@ export const types_newSales = {
     AddSale: 'ADD_SALE',
     AddSaleFailed: 'ADD_SALE_FAILED',
 
+    GetFolio: 'GET_FOLIO',
+    GetFolioFailed: 'GET_FOLIO_FAILED',
+
     removeMessages: 'DELETE_MESSAGE',
 }

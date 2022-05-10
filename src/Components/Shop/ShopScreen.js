@@ -9,11 +9,12 @@ import { TableProduct } from './TableShop';
 
 export const ShopScreen = () => {
     const newSalesContext = useContext( NewSaleContext );
-    const { totalSale, date, addSale, message, typeMessage } = newSalesContext;
+    const { totalSale, date, addSale, message, typeMessage, folio, getFolio } = newSalesContext;
 
     const alertContext = useContext( AlertContext );
     const { showAlert } = alertContext;
 
+    useEffect( () => { getFolio() } , []);
     /*
         * Mostramos el mesaje si existe uno en el state
         * El otro caso es que no se muestre ningun mensaje
@@ -31,9 +32,9 @@ export const ShopScreen = () => {
             />
 
             <div className='info__page-sales'>
-                <p className='date'>Fecha: { `${ date }` }</p>
-                <p className='folio'>Folio:  #3</p>
-                <p className='total'>Total a pagar: ${ `${ totalSale }` }</p>
+                <p className='date'>Fecha: <span>{ date }</span></p>
+                <p className='folio'>Folio:  <span>#{ folio }</span></p>
+                <p className='total'>Total a pagar: <span>${ totalSale }</span></p>
             </div>
 
             <SalesForm />

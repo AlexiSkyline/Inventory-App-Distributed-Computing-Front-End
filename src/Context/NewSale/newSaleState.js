@@ -12,6 +12,7 @@ export const NewSaleState = ( props ) => {
                 ('0' + date.getDate()).slice(-2);
 
     const pathSalesDetail = '/api/SalesDetail';
+    const pathSales       = '/api/Sales';
     const initialState = {
         cart: [],
         total: 0,
@@ -25,6 +26,7 @@ export const NewSaleState = ( props ) => {
         idClient: '',
         idBusiness: '',
         paymentType: '',
+        folio: '',
     }
 
     const [ state, dispatch ] = useReducer( newSalesReducer, initialState );
@@ -33,6 +35,21 @@ export const NewSaleState = ( props ) => {
         setTimeout(() => {
             dispatch({ type: types_newSales.removeMessages });
         }, 3000 );
+    }
+
+    const getFolio = async () => {
+        try {
+            const response = await clientAxios.get( `${ pathSales }/Folio` );
+            dispatch({ 
+                type: types_newSales.GetFolio, 
+                payload: response.data 
+            });
+        } catch (error) {
+            dispatch({
+                type: types_newSales.GetFolioFailed,
+                payload: 'Error al obtener el folio'
+            });
+        }
     }
 
     const addCart = ( product ) => {
@@ -90,11 +107,11 @@ export const NewSaleState = ( props ) => {
 
     const addSale = async () => {
         try {
-            const response = await clientAxios.post( '/api/Sales', {
+            const response = await clientAxios.post( pathSales, {
                 date: state.date,
                 idSeller: state.idSeller,
                 idClient: state.idClient,
-                folio: '7',
+                folio: state.folio,
                 idBusiness: 'ab77da93-9766-48fc-885e-18faa43d93a6',
                 total: state.totalSale,
                 iva: state.iva,
@@ -109,8 +126,10 @@ export const NewSaleState = ( props ) => {
                 payload: error.response.data.message
             });
         }
+
+        deleteMessage();
+        getFolio();
     }
-    
     
     return (
         <NewSaleContext.Provider
@@ -122,12 +141,14 @@ export const NewSaleState = ( props ) => {
                 date: state.date,
                 message: state.message,
                 typeMessage: state.typeMessage,
+                folio: state.folio,
                 addCart,
                 removeCart,
                 clearCart,
                 addSalesDetail,
                 AddInfoSale,
                 addSale,
+                getFolio,
                 deleteMessage
             }}
         >

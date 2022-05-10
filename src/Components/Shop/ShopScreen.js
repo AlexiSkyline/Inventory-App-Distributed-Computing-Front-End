@@ -14,7 +14,13 @@ export const ShopScreen = () => {
     const alertContext = useContext( AlertContext );
     const { showAlert } = alertContext;
 
+    /*
+        * Este hook se ejecuta cuando se carga la página
+        * para obtener el folio de la venta
+    */
+    // eslint-disable-next-line
     useEffect( () => { getFolio() } , []);
+
     /*
         * Mostramos el mesaje si existe uno en el state
         * El otro caso es que no se muestre ningun mensaje

@@ -1,3 +1,9 @@
+// * Cuerpo inicial de los datos de la pantalla de login
+export const initialFormValuesLogin = {
+    username: '',
+    password: ''
+}
+
 // * Cuerpo inicial de nuestro inputs de agregar o editar cliente
 export const initialFormValuesClient = {
     name: '',

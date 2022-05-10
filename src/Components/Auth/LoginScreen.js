@@ -1,7 +1,11 @@
 import React, { useContext, useEffect } from 'react';
+
 import { AlertContext } from '../../Context/Alert/AlertContext';
 import { AuthContext } from '../../Context/Auth/AuthContext';
-import { useForm } from '../../Hooks/useForm';
+
+import { initialFormValuesLogin } from '../../Data/InitialFormValues';
+import { useValidation } from '../../Hooks/useValidation';
+import { ValidateLogin } from '../../validations/ValidateLogin';
 
 export const LoginScreen = () => {
     const alertContext = useContext( AlertContext );
@@ -16,33 +20,16 @@ export const LoginScreen = () => {
         }
     }, [ message, showAlert ]);
     
-    const [ formValue, handleInputChange ] = useForm({
-        username: '',
-        password: ''
-    });
+    const [ formValues, handleSubmit, handleInputChange  ] = useValidation( initialFormValuesLogin, ValidateLogin, handleLogin  );
+    const { username, password } = formValues;
 
-    const { username, password } = formValue;
-
-    // todo: Cuando el usuario quiere iniciar Sesión
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        // Todo: Validar los campos
-        if( username.trim() === '' || password.trim() === '' ) {
-            showAlert( 'Todos los campos son obligatorios', 'alert-error' )
-            return;
-        }
-
-        if( username.length > 20 ) {
-            showAlert( 'El nombre de usuario debe tener un máximo de 20 caracteres.', 'alert-error' )
-            return;
-        }
-
-        if( password.length < 6 ) {
-            showAlert( 'La contraseña debe tener un minimo de 6 caracteres.', 'alert-error' )
-            return;
-        }
-
+    /*
+        * @Description: Funcion para iniciar sesion
+        * @Param: { username, password }
+        * @Return: { void }
+        * @Usage: login( username, password );
+    */
+    function handleLogin() {
         login({ username, password });
     }
 

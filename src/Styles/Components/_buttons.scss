@@ -18,7 +18,7 @@
 }
 
 .btn__edit {
-    background: rgb(100, 233, 129);
+    background: $greenColor;
     border: none;
     border-radius: 5px;
     color: $whiteColor;
@@ -32,14 +32,14 @@
     &:hover {
         transform: scale(1.10);
         transition: .90s;
-        background-color: darken( $color: rgb(100, 233, 129), $amount: 10);
+        background-color: darken( $color: $greenColor, $amount: 10);
     }
 
     transition: .90s;
 }
 
 .btn__delete {
-    background: rgb(211, 73, 60);
+    background: $redColor;
     border: none;
     border-radius: 5px;
     color: $whiteColor;
@@ -52,7 +52,7 @@
     &:hover {
         transition: .90s;
         transform: scale(1.10);
-        background-color: darken( $color: rgb(184, 63, 52), $amount: 10);
+        background-color: darken( $color: $redColor, $amount: 10);
     }
 
     transition: .90s;
@@ -85,7 +85,7 @@
 }
 
 .btn__search {
-    background: rgb(61, 151, 224);
+    background: $blueColor;
     border: none;
     border-radius: 5px;
     color: $whiteColor;
@@ -95,13 +95,13 @@
     &:hover {
         transform: scale(1.05);
         transition: .90s;
-        background-color: darken( $color: rgb(61, 151, 224), $amount: 10);
+        background-color: darken( $color: $blueColor, $amount: 10);
     }
     transition: .90s;
 }
 
 .btn__add {
-    background: rgb(100, 233, 129);
+    background: $greenColor;
     border: none;
     border-radius: 5px;
     color: $whiteColor;
@@ -111,7 +111,7 @@
     &:hover {
         transform: scale(1.05);
         transition: .90s;
-        background-color: darken( $color: rgb(100, 233, 129), $amount: 10);
+        background-color: darken( $color: $greenColor, $amount: 10);
     }
     transition: .90s;
 }

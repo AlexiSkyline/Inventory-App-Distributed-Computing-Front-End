@@ -106,7 +106,7 @@ section {
         }
     
         .form__container {
-            background: rgb( 255, 255, 255 );
+            background: $whiteColor;
             border-radius: 30px;
             height: 75%;
             margin: auto;
@@ -126,7 +126,7 @@ section {
 @media ( max-width : 620px ) {
     section .form__container {
         width: 80%;
-        background: rgb( 255, 255, 255 );
+        background: $whiteColor;
         
         .form__container--form {
             padding: 50px;

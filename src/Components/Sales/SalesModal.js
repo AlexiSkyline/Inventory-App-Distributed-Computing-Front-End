@@ -83,6 +83,7 @@ export const SalesModal = ({ handleResetSearchInput }) => {
                     name='folio'
                     value={ folio }
                     onChange={ handleInputChange }
+                    readOnly
                 />
                 
                 <label htmlFor='idBusiness'>Empresa: </label>

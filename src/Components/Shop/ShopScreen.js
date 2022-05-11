@@ -6,14 +6,16 @@ import { NewSaleContext } from '../../Context/NewSale/NewSaleContext';
 import { HeadBoard } from '../UI/HeadBoard/HeadBoard';
 import { SalesForm } from './ShopForm';
 import { TableProduct } from './TableShop';
+import { useActionSale } from '../../Hooks/useActionSale';
 
 export const ShopScreen = () => {
     const newSalesContext = useContext( NewSaleContext );
-    const { totalSale, date, addSale, message, typeMessage, folio, getFolio } = newSalesContext;
+    const { totalSale, date, message, typeMessage, folio, getFolio } = newSalesContext;
 
     const alertContext = useContext( AlertContext );
     const { showAlert } = alertContext;
 
+    const [ handleNewSales ] = useActionSale();
     /*
         * Este hook se ejecuta cuando se carga la página
         * para obtener el folio de la venta
@@ -51,7 +53,7 @@ export const ShopScreen = () => {
                 <button 
                     type='submit'
                     className='btn__edit'
-                    onClick={ addSale }
+                    onClick={ handleNewSales }
                 >
                     GUARDAR
                 </button>

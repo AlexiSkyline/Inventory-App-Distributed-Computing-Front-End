@@ -6,7 +6,7 @@ import { ProductContext } from '../Context/Product/ProductContext';
 
 export const useSetUpSale = ( initialState ) => {
     const clientContext = useContext( ClientContext );
-    const { searchClientById, listClientFound } = clientContext;
+    const { searchClientById, listClientFound, message: messageClient, typeMessage: typeMessageClient } = clientContext;
 
     const productContext = useContext( ProductContext );
     const { searchProductById, productSearchFilter, message: messageProduct,
@@ -20,9 +20,11 @@ export const useSetUpSale = ( initialState ) => {
     useEffect( () => {
         if( messageProduct ) {
             showAlert( messageProduct, typeMessageProduct );
+        } else if( messageClient ) {
+            showAlert( messageClient, typeMessageClient );
         }
         // eslint-disable-next-line
-    } , [ messageProduct ]);
+    } , [ messageProduct, messageClient ]);
 
     useEffect(() => { 
         if( Object.values( listClientFound )[0] ) {

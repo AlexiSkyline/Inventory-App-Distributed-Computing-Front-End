@@ -146,6 +146,8 @@ export const ClientState = ( props ) => {
         } else {
             disactiveClientSearchMode();
         }
+
+        deleteMessage();
     }
 
     return (

@@ -39,10 +39,8 @@ export const productReducer = ( state, action ) => {
         case types.searchProductById:
             return {
                 ...state,
-                productSearchFilter: state.products.filter( product => product.id.includes( action.payload ) ),
-                productSearchFilterStatus: state.productSearchFilter.legth > 0 ? true : false,
-                message: state.productSearchFilter.legth > 0 ? '' : 'No se encontró el producto',
-                typeMessage: state.productSearchFilter.legth > 0 ? '' : 'alert-error'
+                productSearchFilterStatus: true,
+                productSearchFilter: state.products.filter( product => product.id.includes( action.payload ) )
             }
         case types.activeModeEdit:
             return {
@@ -59,7 +57,7 @@ export const productReducer = ( state, action ) => {
         case types.addProductFailed:
         case types.getProductsFailed:
         case types.deleteProductFailed:
-        case types.updateProductFailed:
+        case types.searchProductByIdFailed:
             return {
                 ...state,
                 loading: false,

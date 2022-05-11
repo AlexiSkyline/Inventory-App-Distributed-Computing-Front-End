@@ -146,6 +146,13 @@ export const ClientState = ( props ) => {
         } else {
             disactiveClientSearchMode();
         }
+    }
+
+    const searchClientByIdFailed = ( message ) => {
+        dispatch({
+            type: types_client.searchClientByIdFailed,
+            payload: message
+        });
 
         deleteMessage();
     }
@@ -170,6 +177,7 @@ export const ClientState = ( props ) => {
                 desactiveModeEditClient,
                 searchClient,
                 searchClientById,
+                searchClientByIdFailed,
                 disactiveClientSearchMode
             }}
         >

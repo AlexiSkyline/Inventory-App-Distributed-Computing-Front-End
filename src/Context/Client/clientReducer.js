@@ -25,6 +25,7 @@ export const clientReducer = ( state, action ) => {
         case types_client.getClientFailed:
         case types_client.updateClientFailed:
         case types_client.deleteClientFailed:
+        case types_client.searchClientByIdFailed:
             return {
                 ...state,
                 error: true,
@@ -58,10 +59,8 @@ export const clientReducer = ( state, action ) => {
         case types_client.searchClientById:
             return {
                 ...state,
-                listClientFound: state.clientList.filter( client => client.id.includes( action.payload ) ),
-                searchModeStatus: state.listClientFound.legth > 0 ? true : false,
-                message: state.listClientFound.legth > 0 ? '' : 'No se encontró el cliente',
-                typeMessage: state.listClientFound.legth > 0 ? '' : 'alert-error'
+                searchModeStatus: true,
+                listClientFound: state.clientList.filter( client => client.id.includes( action.payload ) )
             }
         case types_client.removeMessages: 
             return {

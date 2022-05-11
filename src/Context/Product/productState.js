@@ -149,6 +149,13 @@ export const ProductState = ( props ) => {
         } else {
             modeSearchProductDesactive();
         }
+    }
+
+    const searchProductByIdFailed = ( message ) => {
+        dispatch({
+            type: types.searchProductByIdFailed,
+            payload: message
+        });
 
         deleteMessage();
     }
@@ -173,6 +180,7 @@ export const ProductState = ( props ) => {
                 updateProduct,
                 searchProduct,
                 searchProductById,
+                searchProductByIdFailed,
                 modeSearchProductDesactive
             }}
         >

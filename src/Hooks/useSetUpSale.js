@@ -6,11 +6,14 @@ import { ProductContext } from '../Context/Product/ProductContext';
 
 export const useSetUpSale = ( initialState ) => {
     const clientContext = useContext( ClientContext );
-    const { searchClientById, listClientFound, message: messageClient, typeMessage: typeMessageClient } = clientContext;
+    const { searchClientById, listClientFound, message: messageClient, typeMessage: typeMessageClient, 
+                    searchClientByIdFailed } = clientContext;
+
+    const [ isNotFirst, setIsNotFirst ] = useState(false);
 
     const productContext = useContext( ProductContext );
     const { searchProductById, productSearchFilter, message: messageProduct,
-        typeMessage: typeMessageProduct } = productContext;
+        typeMessage: typeMessageProduct, searchProductByIdFailed } = productContext;
 
     const alertContext = useContext( AlertContext );
     const { showAlert } = alertContext;
@@ -35,6 +38,9 @@ export const useSetUpSale = ( initialState ) => {
             });
         } else {
             setFormReading({ ...valueFormReading, client: '' });
+            if( isNotFirst ) {
+                searchClientByIdFailed( 'Cliente no encontrado' );
+            }
         }
         // eslint-disable-next-line
     } , [ listClientFound ]);
@@ -54,13 +60,17 @@ export const useSetUpSale = ( initialState ) => {
                 purchasePrice: '',
                 product: '',
                 stock: ''   
-            });
+            });    
+            if( isNotFirst ) {
+                searchProductByIdFailed( 'El Producto no encontrado' );
+            }
         }
         // eslint-disable-next-line
     } , [ productSearchFilter ]);
 
     function handleSubmit(e) {
         e.preventDefault();
+        setIsNotFirst(true);
         if( e.target.className.includes('btn__search-client') ) {
             searchClientById( e.target.previousSibling.value );
         } else if( e.target.className.includes('btn__search-product') ) {

@@ -4,7 +4,7 @@ import { NewSaleContext } from '../Context/NewSale/NewSaleContext';
 
 export const useActionSale = () => {
     const newSalesContext = useContext( NewSaleContext );
-    const { cart, addSale } = newSalesContext;
+    const { cart, addSale, clearCart } = newSalesContext;
 
     const alertContext = useContext( AlertContext );
     const { showAlert } = alertContext;
@@ -19,5 +19,10 @@ export const useActionSale = () => {
         addSale();
     }
 
-    return [ handleNewSales ]
+    const handleCancelSale = (e) => {
+        e.preventDefault();
+        clearCart();
+    }
+
+    return [ handleNewSales, handleCancelSale ]
 }

@@ -15,7 +15,7 @@ export const ShopScreen = () => {
     const alertContext = useContext( AlertContext );
     const { showAlert } = alertContext;
 
-    const [ handleNewSales ] = useActionSale();
+    const [ handleNewSales, handleCancelSale ] = useActionSale();
     /*
         * Este hook se ejecuta cuando se carga la página
         * para obtener el folio de la venta
@@ -61,6 +61,7 @@ export const ShopScreen = () => {
                 <button 
                     type='submit'
                     className='btn__delete'
+                    onClick={ handleCancelSale }
                 >
                     CANCELAR
                 </button>

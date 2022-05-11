@@ -149,6 +149,8 @@ export const ProductState = ( props ) => {
         } else {
             modeSearchProductDesactive();
         }
+
+        deleteMessage();
     }
 
     return (

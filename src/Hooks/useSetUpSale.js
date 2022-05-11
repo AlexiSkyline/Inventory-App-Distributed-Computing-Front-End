@@ -1,8 +1,28 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { AlertContext } from '../Context/Alert/AlertContext';
 
-export const useSetUpSale = ( initialState, toolsObject ) => {
-    const { searchClientById, searchProductById, listClientFound, productSearchFilter } = toolsObject;
+import { ClientContext } from '../Context/Client/ClientContext';
+import { ProductContext } from '../Context/Product/ProductContext';
+
+export const useSetUpSale = ( initialState ) => {
+    const clientContext = useContext( ClientContext );
+    const { searchClientById, listClientFound } = clientContext;
+
+    const productContext = useContext( ProductContext );
+    const { searchProductById, productSearchFilter, message: messageProduct,
+        typeMessage: typeMessageProduct } = productContext;
+
+    const alertContext = useContext( AlertContext );
+    const { showAlert } = alertContext;
+    
     const [ valueFormReading, setFormReading ] = useState( initialState );
+
+    useEffect( () => {
+        if( messageProduct ) {
+            showAlert( messageProduct, typeMessageProduct );
+        }
+        // eslint-disable-next-line
+    } , [ messageProduct ]);
 
     useEffect(() => { 
         if( Object.values( listClientFound )[0] ) {
@@ -14,7 +34,8 @@ export const useSetUpSale = ( initialState, toolsObject ) => {
         } else {
             setFormReading({ ...valueFormReading, client: '' });
         }
-    } , [ listClientFound, valueFormReading ]);
+        // eslint-disable-next-line
+    } , [ listClientFound ]);
    
     useEffect(() => { 
         if( Object.values( productSearchFilter )[0] ) {
@@ -33,7 +54,8 @@ export const useSetUpSale = ( initialState, toolsObject ) => {
                 stock: ''   
             });
         }
-    } , [ productSearchFilter, valueFormReading ]);
+        // eslint-disable-next-line
+    } , [ productSearchFilter ]);
 
     function handleSubmit(e) {
         e.preventDefault();

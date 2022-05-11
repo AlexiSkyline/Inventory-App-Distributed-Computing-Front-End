@@ -14,13 +14,13 @@ import { SelectPaymentType } from '../UI/Select/SelectPaymentType';
 
 export const SalesForm = () => {
     const clientContext = useContext( ClientContext );
-    const { getClients, searchClientById, listClientFound, disactiveClientSearchMode } = clientContext;
+    const { getClients, disactiveClientSearchMode } = clientContext;
 
     const alertContext = useContext( AlertContext );
     const { showAlert } = alertContext;
 
     const productContext = useContext( ProductContext );
-    const { getProducts, searchProductById, productSearchFilter, modeSearchProductDesactive } = productContext;
+    const { getProducts, modeSearchProductDesactive } = productContext;
     
     const authContext = useContext( AuthContext );
     const { user } = authContext;
@@ -34,8 +34,7 @@ export const SalesForm = () => {
                                                                 { idProductI: '', amountProduct: '', iva: '' });
     const { idClientI, idProductI, amountProduct, iva, paymentType } = values;
 
-    const toolsObject = { searchClientById, searchProductById, listClientFound, productSearchFilter }
-    const [ valueFormReading, handleSearch, handleResetView ] = useSetUpSale( initialInfoSale, toolsObject );
+    const [ valueFormReading, handleSearch, handleResetView ] = useSetUpSale( initialInfoSale );
     const { idProduct, purchasePrice, stock, client, product, seller, idClient } = valueFormReading;
 
     useEffect( () => {

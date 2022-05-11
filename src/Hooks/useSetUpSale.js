@@ -44,5 +44,10 @@ export const useSetUpSale = ( initialState, toolsObject ) => {
         }
     }
 
-    return [ valueFormReading, handleSubmit ];
+    function handleInputReset(e) {
+        e.preventDefault();
+        setFormReading( initialState );
+    }
+
+    return [ valueFormReading, handleSubmit, handleInputReset ];
 }

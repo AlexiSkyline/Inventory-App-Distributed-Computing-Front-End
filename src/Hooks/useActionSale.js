@@ -12,7 +12,7 @@ export const useActionSale = () => {
     const handleNewSales = (e) => {
         e.preventDefault();
 
-        if( cart.length == 0 ) {
+        if( cart.length === 0 ) {
             return showAlert( 'No hay productos en el carrito', 'alert-error' );
         }
 

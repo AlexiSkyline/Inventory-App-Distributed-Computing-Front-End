@@ -23,19 +23,19 @@ export const SalesForm = () => {
     const { getProducts, searchProductById, productSearchFilter, modeSearchProductDesactive } = productContext;
     
     const authContext = useContext( AuthContext );
-    const { id, user } = authContext;
+    const { user } = authContext;
     initialInfoSale.seller = user.name + ' ' + user.lastName;
     initialInfoSale.idSeller = user.id;
 
     const newSalesContext = useContext( NewSaleContext );
     const { addCart, AddInfoSale } = newSalesContext;
 
-    const [ values, handleSubmit, handleInputChange ] = useValidation( initFormValues, ValidateNewSale, handleAddProduct, 
+    const [ values, handleSubmit, handleInputChange, handleResetInput ] = useValidation( initFormValues, ValidateNewSale, handleAddProduct, 
                                                                 { idProductI: '', amountProduct: '', iva: '' });
     const { idClientI, idProductI, amountProduct, iva, paymentType } = values;
 
     const toolsObject = { searchClientById, searchProductById, listClientFound, productSearchFilter }
-    const [ valueFormReading, handleSearch ] = useSetUpSale( initialInfoSale, toolsObject );
+    const [ valueFormReading, handleSearch, handleResetView ] = useSetUpSale( initialInfoSale, toolsObject );
     const { idProduct, purchasePrice, stock, client, product, seller, idClient } = valueFormReading;
 
     useEffect( () => {
@@ -59,6 +59,11 @@ export const SalesForm = () => {
             modeSearchProductDesactive();
             AddInfoSale({ idSeller: user.id, idClient, paymentType });
         }
+    }
+
+    const handleInputReset = () => {
+        handleResetInput();
+        handleResetView();
     }
 
     return (
@@ -117,6 +122,12 @@ export const SalesForm = () => {
                     value={ amountProduct }
                     onChange={ handleInputChange }
                 />
+                <button
+                    className='btn__delete'
+                    onClick={ handleInputReset}
+                >
+                    Limpiar
+                </button>
 
                 <label>IVA:</label>
                 <input 

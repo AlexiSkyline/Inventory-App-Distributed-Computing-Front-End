@@ -7,13 +7,15 @@ import { ProductContext } from '../Context/Product/ProductContext';
 export const useSetUpSale = ( initialState ) => {
     const clientContext = useContext( ClientContext );
     const { searchClientById, listClientFound, message: messageClient, typeMessage: typeMessageClient, 
-                    searchClientByIdFailed } = clientContext;
+                    searchClientByIdFailed, disactiveClientSearchMode } = clientContext;
 
     const [ isNotFirst, setIsNotFirst ] = useState(false);
+    const [ isButtonSearchClient, setIsButtonSearchClient ] = useState(false);
+    const [ isButtonSearchProduct, setIsButtonSearchProduct ] = useState(false);
 
     const productContext = useContext( ProductContext );
     const { searchProductById, productSearchFilter, message: messageProduct,
-        typeMessage: typeMessageProduct, searchProductByIdFailed } = productContext;
+        typeMessage: typeMessageProduct, searchProductByIdFailed, modeSearchProductDesactive } = productContext;
 
     const alertContext = useContext( AlertContext );
     const { showAlert } = alertContext;
@@ -30,6 +32,7 @@ export const useSetUpSale = ( initialState ) => {
     } , [ messageProduct, messageClient ]);
 
     useEffect(() => { 
+        setIsButtonSearchClient(false);
         if( Object.values( listClientFound )[0] ) {
             setFormReading({ 
                 ...valueFormReading, 
@@ -43,9 +46,10 @@ export const useSetUpSale = ( initialState ) => {
             }
         }
         // eslint-disable-next-line
-    } , [ listClientFound ]);
+    } , [ isButtonSearchClient ]);
    
     useEffect(() => { 
+        setIsButtonSearchProduct(false);
         if( Object.values( productSearchFilter )[0] ) {
             setFormReading({ 
                 ...valueFormReading, 
@@ -66,21 +70,24 @@ export const useSetUpSale = ( initialState ) => {
             }
         }
         // eslint-disable-next-line
-    } , [ productSearchFilter ]);
+    } , [ isButtonSearchProduct ]);
 
     function handleSubmit(e) {
         e.preventDefault();
         setIsNotFirst(true);
         if( e.target.className.includes('btn__search-client') ) {
             searchClientById( e.target.previousSibling.value );
+            setIsButtonSearchClient(true);
         } else if( e.target.className.includes('btn__search-product') ) {
             searchProductById( e.target.previousSibling.value );
+            setIsButtonSearchProduct(true);
         }
     }
 
-    function handleInputReset(e) {
-        e.preventDefault();
+    function handleInputReset() {
         setFormReading( initialState );
+        disactiveClientSearchMode();
+        modeSearchProductDesactive();
     }
 
     return [ valueFormReading, handleSubmit, handleInputReset ];

@@ -31,7 +31,7 @@ export const SalesForm = () => {
     const { addCart, AddInfoSale } = newSalesContext;
 
     const [ values, handleSubmit, handleInputChange, handleResetInput ] = useValidation( initFormValues, ValidateNewSale, handleAddProduct, 
-                                                                { idProductI: '', amountProduct: '', iva: '' });
+                                                                { idProductI: '', amountProduct: '' });
     const { idClientI, idProductI, amountProduct, iva, paymentType } = values;
 
     const [ valueFormReading, handleSearch, handleResetView ] = useSetUpSale( initialInfoSale );
@@ -60,7 +60,8 @@ export const SalesForm = () => {
         }
     }
 
-    const handleInputReset = () => {
+    const handleInputReset = (e) => {
+        e.preventDefault();
         handleResetInput();
         handleResetView();
     }

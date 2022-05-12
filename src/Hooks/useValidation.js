@@ -35,11 +35,12 @@ export const useValidation = ( initialState, validate, fn, onlyReset = {} ) => {
 
     // Todo: Funcion para reiniciar el formulario una vez que se haya enviado
     const handleResetInput = () => {
-        if( Object.keys( onlyReset ).length === 0 ) {
-            setFormValues( initialState );
-        } else {
-            setFormValues({ ...formValues, ...onlyReset });
-        }
+        setFormValues( initialState );
+        
+    }
+
+    const handleResetInputIgnore = ( ignore ) => {
+        setFormValues({ ...formValues, ...ignore });
     }
     
     /*
@@ -51,7 +52,11 @@ export const useValidation = ( initialState, validate, fn, onlyReset = {} ) => {
 
             if( noErrors ) {
                 fn(); // * Función que se ejecuta en el componente;
-                handleResetInput();
+                if( Object.keys( onlyReset ).length === 0 ) {
+                    handleResetInput();
+                } else {
+                    handleResetInputIgnore( onlyReset );
+                }
                 setErrors({});
             }
             setSubmitForm( false );

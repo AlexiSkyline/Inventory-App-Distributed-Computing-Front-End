@@ -52,6 +52,14 @@ export const SalesForm = () => {
         if( !client ) {
             return showAlert( 'Error Busque un Cliente', 'alert-error' );
         }
+        
+        if( amountProduct > stock ) {
+            return showAlert( 'Error, No hay suficiente stock', 'alert-error' );
+        }
+
+        if( amountProduct <= 0 ) {
+            return showAlert( 'Error, La cantidad debe ser mayor a 0', 'alert-error' );
+        }
 
         if( product && client ) {
             addCart({ idProduct, product, amountProduct, iva, purchasePrice });
